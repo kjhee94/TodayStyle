@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+/*기본 설정*/
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style-type: none;
+	box-sizing: border-box;
+}
+
+/*페이지세로 가변적인 길이 유지*/
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+}
+#wrap {
+	min-height: 100%;
+	position: relative;
+}
+
+/*푸터 고정*/
+footer {
+	position: absolute;
+	/*bottom: -300px;*/
+}
+
+/*content 기본형식*/
+#content{
+	width: 70%;
+    margin: 100px auto 0;
+}
+
+
+/*input 태그 디자인*/
+/*input 태그에 적용*/
+.input-style {
+	height: 50px;
+	border: 0.5px solid #C8C8C8;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	color: #707070;
+	padding: 15px;
+}
+input::placeholder,
+textarea::placeholder {
+  	color: #C8C8C8;
+}
+input:focus,
+select:focus,
+textarea:focus
+ {
+	outline: none;
+}
+textarea {
+	white-space: pre-wrap;
+}
+
+
+/*button 디자인(민트)*/
+/*button 태그에 적용*/
+.btn-style-mint {
+	/*width는 개별 css에서 설정해주세요*/
+	height: 50px;
+	line-height: 50px;
+	border: 0;
+	background-color: #A9D4D9;
+	border-radius: 10px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 18px;
+	color: #fff;
+	cursor: pointer;
+}
+.btn-style-mint>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 18px;
+	line-height: 50px;
+	color: #fff;
+}
+
+/*button 디자인(테두리만)*/
+/*button 태그에 적용*/
+.btn-style-line {
+	/*width는 개별 css에서 설정해주세요*/
+	height: 50px;
+	line-height: 50px;
+	border: 0.5px solid #C8C8C8;
+	background-color: #fff;
+	border-radius: 10px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 18px;
+	color: #707070;
+	cursor: pointer;
+}
+.btn-style-line>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 18px;
+	line-height: 50px;
+	color: #707070;
+}
+
+/*button 디자인(회색)*/
+/*button 태그에 적용*/
+.btn-style-gray {
+	/*width는 개별 css에서 설정해주세요*/
+	height: 50px;
+	line-height: 50px;
+	border: 0;
+	background-color: #C8C8C8;
+	border-radius: 10px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 18px;
+	color: #fff;
+	cursor: pointer;
+}
+.btn-style-gray>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 18px;
+	line-height: 50px;
+	color: #fff;
+}
+
+
+/*사용자 프로필 디자인(사진만)*/
+/*div 태그에 적용(div>a>img의 형태)*/
+.profile {
+	/*width와 height는 개별 css에서 설정해주세요*/
+	border: 1px solid #707070;
+	border-radius: 100px;
+	overflow: hidden;
+}
+.profile>a>img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
