@@ -16,189 +16,9 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/common/header.css">
+<link rel="stylesheet" href="/resources/css/coordiList.css">
 <style>
-/* div {
-	border: 1px solid black;
-	box-sizing: border-box;
-}
- */
-#content {
-	padding-top: 40px;
-}
 
-/* 카테고리바 css */
-#categoryBarArea {
-	float: left;
-	width: 16%;
-	height: 1455px;
-}
-
-.category {
-	width: 100%;
-	border-top: 1px solid #707070;
-	line-height: 170%;
-}
-
-.categoryName {
-	width: 100%;
-	height: 55px;
-	padding-top: 17px;
-	font-size: 16px;
-	color: #707070;
-}
-
-#genderArea {
-	height: 183px;
-}
-
-#seasonArea {
-	height: 210px;
-}
-
-#tempArea {
-	height: 200px;
-}
-
-.name {
-	position:relative;
-	margin-left: 5px;
-	font-size: 15px;
-	color: #707070;
-	top:-3px;
-}
-
-.box+label {
-	display: inline-block;
-	width: 18px;
-	height: 18px;
-	border: 1px solid #9F9F9F;
-	cursor: pointer;
-	border-radius: 2px;
-}
-
-.box:checked+label {
-	background-color: #A9D4D9;
-}
-
-.box {
-	display: none;
-}
-
-.tempBox {
-	width: 56px;
-	height: 30px;
-	border: 1px solid #9F9F9F;
-	cursor: pointer;
-	display: inline-block;
-	border-radius: 2px;
-	margin-top: 5px;
-	color: #707070;
-	font-size: 15px;
-	text-align: center;
-	background-color:rgba(0, 0, 0, 0);
-}
-/* 코디리스트 css */
-#coordiListArea {
-	float: left;
-	width: 84%;
-	height: 1455px;
-	padding-left: 50px;
-}
-
-#coordiListNumArea {
-	font-size: 18px;
-	color: #707070;
-	font-weight: bold;
-	height: 59px;
-}
-
-#coordiListFilterArea {
-	height: 40px;
-	color: #707070;
-	font-weight: medium;
-	font-size: 18px;
-}
-
-#filterImg {
-	display: inline-block;
-	weight: 13px;
-	height: 13px;
-}
-
-select::-ms-expand {
-	display: none;
-}
-
-#filter {
-	-o-appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	border: none;
-	font-size: 18px;
-	color: #707070;
-	font-weight: medium;
-}
-
-#coordiListImgArea {
-	
-}
-/* 코디이미지 이미지들어간후에 height 삭제 */
-.coordiImgArea {
-	border-radius: 2px;
-	width: 240px;
-	height: 400px;
-	margin-right: 18px;
-	margin-bottom: 30px;
-	display: inline-block;
-	position: relative;
-	cursor: pointer;
-	background-color:#707070;
-}
-
-.nickNameArea {
-	position: absolute;
-	width: 200px;
-	bottom: 25px;
-	left: 25px;
-	height: 35px;
-	text-align: left;
-}
-
-.profileArea {
-	width: 35px;
-	height: 35px;
-	display: inline-block;
-}
-
-.nickName {
-	position: relative;
-	top: -10px;
-	display: inline-block;
-	font-size: 16px;
-	color: white;
-}
-
-.likeScrapArea {
-	position: absolute;
-	top: 15px;
-	right: 10px;
-	width: 30px;
-	height: 80px;
-}
-
-.like {
-	width: 30px;
-	height: 30px;
-	margin-bottom: 20px;
-	cursor: pointer;
-}
-
-.scrap {
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
-}
 </style>
 </head>
 <body>
@@ -265,8 +85,8 @@ select::-ms-expand {
 				<div class="coordiImgArea">
 					사진
 					<div class="likeScrapArea">
-						<img class="like" src="/resources/images/icon/heart.png"> <img
-							class="scrap" src="/resources/images/icon/saved.png">
+						<img class="like" src="/resources/images/icon/heart_w.png"> <img
+							class="scrap" src="/resources/images/icon/saved_w.png">
 					</div>
 					<div class="nickNameArea">
 
@@ -290,7 +110,7 @@ select::-ms-expand {
 		
 		$('.like').click(function() {
 			if ($(this).attr('src') === "/resources/images/icon/heart_on.png") {
-				$(this).attr('src', "/resources/images/icon/heart.png");
+				$(this).attr('src', "/resources/images/icon/heart_w.png");
 			} else {
 				$(this).attr('src', "/resources/images/icon/heart_on.png");
 			}
@@ -298,7 +118,7 @@ select::-ms-expand {
 		});
 		$('.scrap').click(function() {
 			if ($(this).attr('src') === "/resources/images/icon/saved_on.png") {
-				$(this).attr('src', "/resources/images/icon/saved.png");
+				$(this).attr('src', "/resources/images/icon/saved_w.png");
 			} else {
 				$(this).attr('src', "/resources/images/icon/saved_on.png");
 			}

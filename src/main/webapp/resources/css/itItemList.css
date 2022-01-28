@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+/* 	div {
+	border: 1px solid black;
+}
+ */
+#content {
+	padding-top: 40px;
+}
+
+/* 카테고리바 css */
+#categoryBarArea {
+	float: left;
+	width: 16%;
+	height: 1455px;
+}
+
+.category {
+	width: 100%;
+	border-top: 1px solid #707070;
+	line-height: 170%;
+	
+}
+
+.categoryName {
+	width: 100%;
+	height: 55px;
+	padding-top: 15px;
+	font-size: 16px;
+	color: #707070;
+	position:relative;
+}
+.categoryContent{
+	display:none;
+}
+.categoryBtn{
+	width :15px;
+	height:15px;
+	position:absolute;
+	right:0px;
+	top:20px;
+	cursor:pointer;
+}
+.categoryBtnImg{
+	width:100%;
+	height:100%;
+}
+
+
+.name {
+	position:relative;
+	margin-left: 5px;
+	font-size: 15px;
+	color: #707070;
+	top:-3px;
+}
+
+.box+label {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	border: 1px solid #9F9F9F;
+	cursor: pointer;
+	border-radius: 3px;
+}
+
+.box:checked+label {
+	background-color: #A9D4D9;
+}
+
+.box {
+	display: none;
+}
+
+/* 잇템리스트 css */
+#itItemListArea {
+	float: left;
+	width: 84%;
+	height: 1455px;
+	padding-left: 50px;
+}
+
+#itItemListNumArea {
+	font-size: 18px;
+	color: #707070;
+	font-weight: bold;
+	height: 59px;
+}
+
+#itItemListFilterArea {
+	height: 40px;
+	color: #707070;
+	font-weight: medium;
+	font-size: 18px;
+}
+
+#filterImg {
+	display: inline-block;
+	weight: 13px;
+	height: 13px;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+#filter option{
+	border-radius:5px;
+	font-size:16px;
+	padding:10px 0;
+}
+
+#filter {
+	-o-appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: none;
+	font-size: 18px;
+	color: #707070;
+	font-weight: medium;
+}
+
+#itItemListImgArea {
+	
+}
+/* 코디이미지 이미지들어간후에 height 삭제 */
+.itItemImgArea {
+	border-radius: 2px;
+	width: 240px;
+	height: 240px;
+	position: relative;
+	cursor: pointer;
+	background-color:#707070;
+	display:inline-block;
+}
+.itItemImgWrap{
+	display:inline-block;
+	width: 240px;
+	margin-right: 18px;
+	border-radius: 2px;
+	float:left;
+	cursor: pointer;
+}
+.itItemInfoArea{
+	position:relative;
+	width:100%;
+	height:100px;
+	display:inline-block;
+}
+.itItemInfoCategory{
+	padding-top:5px;
+	height:30px;
+	width:100%;
+	font-size:14px;
+	color:#707070;
+}
+.itItemInfoTitle{
+	height:30px;
+	width:100%;
+	font-size:16px;
+	color:#707070;
+}
+
+
+.nickNameArea {
+	position: absolute;
+	width: 200px;
+	bottom: 5px;
+	height: 25px;
+	text-align: left;
+}
+
+.profileArea {
+	width: 25px;
+	height: 25px;
+	display: inline-block;
+}
+
+.nickName {
+	position: relative;
+	top: -8px;
+	display: inline-block;
+	font-size: 16px;
+	color: #707070;
+}
+
+.likeScrapArea {
+	position: absolute;
+	top: 15px;
+	right: 10px;
+	width: 30px;
+	height: 80px;
+}
+
+.like {
+	width: 30px;
+	height: 30px;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+.scrap {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
