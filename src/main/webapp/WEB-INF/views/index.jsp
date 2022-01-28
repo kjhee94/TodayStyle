@@ -27,7 +27,6 @@
 	<div id="content" style="">
 		<!-- 코디 부분(설명,온도,캐러샐,더보러가기까지) -->
 		<div id="coordiArea">
-			<a href="/WEB-INF/views/coordi/coordiList.jsp">코디리스트</a>
 			<div id="coordiMentArea">이번주 한파가 시작됩니다 한결 따뜻한 코디를 참고하세요.</div>
 			<div id="coordiTempArea">서울특별시 은평구 갈현제2동 | -13도 | 겨울</div>
 			<div id="coordiImgArea">
