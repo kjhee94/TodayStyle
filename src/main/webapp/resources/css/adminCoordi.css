@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+@charset "UTF-8";
+
+#gnbList ul:nth-of-type(2){
+	display: block;
+}
+
+#gnbList .lnb-list:nth-of-type(2)>li:first-child {
+	background-color: #557A7E;
+}
