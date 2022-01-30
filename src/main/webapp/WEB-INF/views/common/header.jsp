@@ -15,6 +15,7 @@
 					<li><a href="">마이페이지</a></li>
 					<li><a href="">코디작성</a></li>
 					<li><a href="">잇템작성</a></li>
+					<li><a href="/admin/adminMain.do">관리자</a></li>
 				</ul>
 			</nav>
 			<div id="member">
