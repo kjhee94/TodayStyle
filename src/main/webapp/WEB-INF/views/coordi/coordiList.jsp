@@ -16,7 +16,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/common/header.css">
-<link rel="stylesheet" href="/resources/css/coordiList.css?dk">
+<link rel="stylesheet" href="/resources/css/coordiList.css?ds">
 <style>
 
 </style>
@@ -27,11 +27,11 @@
 		<div id="categoryBarArea">
 			<div class="category" id="genderArea">
 				<div class="categoryName">성별
-				<div class="categoryBtn">
+					<div class="categoryBtn">
 						<img class="categoryBtnImg" src="/resources/images/icon/down.png">
 					</div>
 				</div>
-				<div class="categoryContent" style="display:none;">
+				<div class="categoryContent">
 					<input type="checkbox" id="gender-box1" class="box" />
 					<label for="gender-box1"></label><span class="name">여성</span><br> 
 					<input type="checkbox" id="gender-box2" class="box" />
@@ -65,6 +65,7 @@
 					</div>
 				</div>
 				<div class="categoryContent">
+					
 					<div class="tempBox">4˚이하</div>
 					<div class="tempBox">5˚~8˚</div>
 					<div class="tempBox">9˚~11˚</div>
@@ -96,12 +97,17 @@
 		<div id="coordiListArea">
 			<div id="coordiListNumArea">코디 1000개</div>
 			<div id="coordiListFilterArea">
-				<img id="filterImg" alt="" src="/resources/images/icon/filter.png">
+				
+				
+				
+				<!-- <img id="filterImg" alt="" src="/resources/images/icon/filter.png">
+			 -->
 				<select id="filter">
-					<option>최신순</option>
-					<option>최근 인기순</option>
-					<option>역대 인기순</option>
-					<option>팔로잉</option>
+				
+					<option>&nbsp&nbsp&nbsp&nbsp&nbsp최신순</option>
+					<option>&nbsp&nbsp&nbsp&nbsp&nbsp최근 인기순</option>
+					<option>&nbsp&nbsp&nbsp&nbsp&nbsp역대 인기순</option>
+					<option>&nbsp&nbsp&nbsp&nbsp&nbsp팔로잉</option>
 				</select>
 			</div>
 			<div id="coordiListImgArea">
@@ -153,15 +159,18 @@
 		
 		$('.tempBox').click(function(){
 			var color=$(this).css("background-color");
-			console.log(color);
+			
 			if(color==='rgba(0, 0, 0, 0)'){
+				$('.tempBox').css('background-color','rgba(0, 0, 0, 0)');
 				$(this).css('background-color','rgb(169,212,217)');
 			}else{
 				$(this).css('background-color','rgba(0, 0, 0, 0)');
 				
 			}
 			
-		})
+		});
+		
+
 		
 		
 	</script>

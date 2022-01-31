@@ -14,7 +14,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/common/header.css">
-<link rel="stylesheet" href="/resources/css/itItemList.css">
+<link rel="stylesheet" href="/resources/css/itItemList.css?Sd">
 <style>
 
 
@@ -127,12 +127,11 @@
 		<div id="itItemListArea">
 			<div id="itItemListNumArea">잇템 전체 1000개</div>
 			<div id="itItemListFilterArea">
-				<img id="filterImg" alt="" src="/resources/images/icon/filter.png">
 				<select id="filter">
-					<option>최신순</option>
-					<option>최근 인기순</option>
-					<option>역대 인기순</option>
-					<option>팔로잉</option>
+					<option>&nbsp&nbsp&nbsp&nbsp&nbsp최신순</option>
+					<option>&nbsp&nbsp&nbsp&nbsp&nbsp최근 인기순</option>
+					<option>&nbsp&nbsp&nbsp&nbsp&nbsp역대 인기순</option>
+					<option>&nbsp&nbsp&nbsp&nbsp&nbsp팔로잉</option>
 				</select>
 			</div>
 			<div id="itItemImgArea">
