@@ -6,6 +6,8 @@ header {
 	position: fixed;
 	top: 0;
 	right: 0;
+	background-color: #fff;
+	z-index: 999;
 }
 #container {
 	width: 70%;

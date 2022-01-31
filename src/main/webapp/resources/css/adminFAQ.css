@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+#gnbList ul:last-of-type{
+	display: block;
+}
+
+#gnbList .lnb-list:last-of-type>li:last-child {
+	background-color: #557A7E;
+}
+
+#boxBtn button:last-child {
+	background-color: #A9D4D9;
+	margin-left: 20px;
+}

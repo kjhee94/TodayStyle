@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+#topTitle:after {
+	display: none;
+}
+
+#bottom {
+	width: 85%;
+	position: absolute;
+	bottom: 0;
+}
