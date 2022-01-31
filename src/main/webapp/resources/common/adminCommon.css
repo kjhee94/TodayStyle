@@ -1,0 +1,299 @@
+@charset "UTF-8";
+
+/*기본 설정*/
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style-type: none;
+	box-sizing: border-box;
+}
+
+/*페이지세로 가변적인 길이 유지*/
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	background-color: #F5F5F5;
+}
+#wrap {
+	min-height: 100%;
+	position: relative;
+}
+
+/*content 기본형식*/
+#content{
+	width: 85%;
+	float: right;
+}
+
+/*top 디자인*/
+#top {
+	width: 100%;
+	height: 100px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 10% 0 30px;
+	background-color: #fff;
+}
+#topLink {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	color: #C8C8C8;
+	letter-spacing: -0.3px;
+	white-space: normal;
+}
+#topTitle {
+	font-weight: 700;
+	font-size: 18px;
+	color: #707070;
+}
+#topTitle:after {
+	content: "";
+	display: inline-block;
+	background-color: #C8C8C8;
+	width: 0.5px;
+	height: 15px;
+	margin: 0 20px;
+}
+#topAction {
+	color: #707070;
+}
+#top>a {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	color: #707070;
+	letter-spacing: -0.3px;
+}
+
+/*container 영역*/
+#container {
+	width: 80%;
+	margin: 30px auto;
+	padding: 30px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+#searchAndBtn {
+	display: flex;
+	justify-content: space-between;
+}
+
+/*select 태그 디자인*/
+#boxSelect {
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	position: relative;
+}
+.select-style {
+	width: 100%;
+	height: 100%;
+	border: 0.5px solid #C8C8C8;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	color: #707070;
+	padding: 0 15px;
+	
+	-o-appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.select-style::-ms-expand { 
+	display: none;
+}
+.fa-chevron-down {
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	font-size: 12px;
+	color: #707070;
+}
+
+/*input_text 태그 디자인*/
+#boxSearch {
+	display: inline-block;
+	padding-left: 15px;
+	width: 250px;
+	height: 40px;
+	position: relative;
+}
+.input-style {
+	width: 100%;
+	height: 100%;
+	border: 0.5px solid #C8C8C8;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	color: #707070;
+	padding: 0 45px 0 15px;
+}
+input::placeholder,
+textarea::placeholder {
+  	color: #C8C8C8;
+}
+input:focus,
+select:focus,
+textarea:focus
+ {
+	outline: none;
+}
+textarea {
+	white-space: pre-wrap;
+}
+.fa-search {
+	position: absolute;
+	top: 12px;
+	right: 15px;
+	font-size: 18px;
+	color: #707070;
+}
+
+/*input_checkbox 태그 디자인*/
+input[type=checkbox] {
+	width: 18px;
+	height: 18px;
+}
+input[type=checkbox]:checked {
+	background-color: #A9D4D9;
+}
+
+/*button 디자인*/
+.btn-style {
+	width: 120px;
+	height: 100%;
+	line-height: 50px;
+	border: 0;
+	background-color: #FD8A69;
+	border-radius: 10px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 18px;
+	color: #fff;
+	cursor: pointer;
+}
+.btn-style>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 18px;
+	line-height: 50px;
+	color: #fff;
+}
+
+.btn-style-icon {
+	width: 30px;
+	height: 30px;
+	background-color: #F1F1F1;
+	border-radius: 10px;
+	padding: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.btn-style-icon>i {
+	font-size: 15px;
+	color: #707070;
+}
+
+/*table 디자인*/
+table {
+	width: 100%;
+	margin-top: 20px;
+	border-top: 1px solid #707070;
+	border-collapse: collapse
+}
+table>tbody {
+	width: 100%;
+}
+table>tbody>tr {
+	width: 100%;
+	height: 80px;
+	border-bottom: 0.5px solid #D9D9D9;
+}
+table>tbody>tr>th,
+table>tbody>tr>td {
+	padding: 0 20px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 400;
+	font-size: 15px;
+	color: #707070;
+	letter-spacing: -0.3px;
+	text-align: left;
+}
+table>tbody>tr>th {
+	font-weight: 700;
+}
+
+/*page navi*/
+#page_wrap {
+    width: 100%;
+    padding-top: 30px;
+}
+#page_wrap .page_ul {
+    display: flex;
+    justify-content: flex-end;
+}
+#page_wrap .page_ul li {
+    display: block;
+    width: 35px;
+    height: 35px;
+    float: left;
+    text-align: center;
+    margin: 0 5px;
+    line-height: 15.5px;
+    font-size: 16px;
+    color: #707070;
+}
+#page_wrap .page_ul li i {
+	color: #707070;
+}
+#page_wrap .page_ul li a {
+    display: block;
+    font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	color: #707070;
+    padding: 10px;
+    border-radius: 50%;
+}
+#page_wrap .page_ul li a.page_active {
+    background-color: #A9D4D9;
+    border-radius: 10px;
+    color: #fff;
+}
+
+#bottom {
+	height: 80px;
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	padding-left: 30px;
+}
+#bottom p{
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 14px;
+	color: #707070;
+	letter-spacing: -0.3px;
+}
+
+
+
+/*사용자 프로필 디자인(사진만)*/
+/*div 태그에 적용(div>a>img의 형태)*/
+.profile {
+	/*width와 height는 개별 css에서 설정해주세요*/
+	border: 1px solid #707070;
+	border-radius: 100px;
+	overflow: hidden;
+}
+.profile>a>img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
