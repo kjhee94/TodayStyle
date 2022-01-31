@@ -8,9 +8,9 @@
 			</div>
 			<nav>
 				<ul id="gnb-list">
-					<li><a href="">오늘의 코디</a></li>
+					<li><a href="/coordi/coordiList.do">오늘의 코디</a></li>
 					<li><a href="/beststyle/bestPage.do">베스트 코디</a></li>
-					<li><a href="">오늘의 잇템</a></li>
+					<li><a href="/itItem/itItemList.do">오늘의 잇템</a></li>
 					<li><a href="/board/boardPage.do">고객센터</a></li>
 					<li><a href="/myPage/myStyle.do">마이페이지</a></li>
 					<li><a href="">코디작성</a></li>
