@@ -22,6 +22,7 @@
 	<div id="insertModel">
 		<div class="model-area">
 			<h4>공지사항 작성</h4>
+			<i class="fas fa-times"></i>
 			<form action="" method="get">
 				<input type="text" class="model-title" placeholder="제목을 입력하세요">
 				<textarea class="model-content" placeholder="내용을 입력하세요"></textarea>

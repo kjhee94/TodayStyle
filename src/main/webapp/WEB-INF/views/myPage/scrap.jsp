@@ -89,8 +89,15 @@
             display: block;
             padding-bottom: 100%;
         }
-
-        .contents>img {
+		.contents>img {
+            position: absolute;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+		
+        .contents>a>img {
             position: absolute;
             display: block;
             width: 100%;
@@ -105,7 +112,7 @@
             left: 0;
             top: 0;
             line-height: 35px;
-            margin: 20px;
+            padding: 20px;
         }
         .scrapUserProfile{
             width: 35px;
@@ -160,15 +167,14 @@
                     <a>
                         <div class="contents">
                             <img src="/resources/images/default/profile.jpg">
-                            
-                        </div>
-                        <div class="userData">
+                            <div class="userData">
                             	<a href="/myPage/userPage.do">
 	                                <div class="profile scrapUserProfile"><a><img src="/resources/images/default/profile.jpg"></a></div>
 	                                <div class="ScrapUserName">연신내핵주먹</div>
                                 </a>
                                 <div class="scrapIcon"><img src="/resources/images/icon/saved_on.png"></div>
                             </div>
+                        </div> 
                     </a>
                     <a>
                         <div class="contents"><img src="/resources/images/default/profile.jpg">
