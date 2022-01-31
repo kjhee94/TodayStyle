@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/common/adminCommon.css">
 <link rel="stylesheet" href="/resources/common/adminHeader.css">
-<link rel="stylesheet" href="/resources/css/adminIttem.css">
+<link rel="stylesheet" href="/resources/css/admin/adminIttem.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="/resources/js/admin.js"></script>
 </head>
@@ -73,22 +73,80 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>제목입니다. 길면 줄임표...</td>
-						<td>내용입니다. 길면 줄임표...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>2022.01.24</td>
 						<td>
 							<div id="box-icon-btn">
-								<div class="btn-style-icon">
-									<i class="fas fa-tshirt"></i>
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-tshirt"></i>
+									</div>
+									<div class="box-style detail">
+										<div class="style">
+											<div class="img-style">
+												<img alt="상의" src="/resources/images/default/shoes.png">
+											</div>
+											<div class="txt-style">
+												<p>Shoes &nbsp·&nbsp 운동화</p>
+												<span>NIKE</span>
+											</div>
+										</div>
+										<div class="txt-item">
+											<div class="txt-item-list">
+												<span class="tit-item">상품명</span>
+												<span>나이키 에어포스1</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">색상</span>
+												<span>화이트</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">구매 사이즈</span>
+												<span>245mm</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="btn-style-icon">
-									<i class="fas fa-user"></i>
+								
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-user"></i>
+									</div>
+									<div class="box-user detail">
+										<div class="txt-item-list">
+											<span class="tit-item">구매자 키</span>
+											<span>163cm</span>
+										</div>
+										<div class="txt-item-list">
+											<span class="tit-item">정사이즈</span>
+											<span>240mm</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리운동화</div>
+									<div class="h-wrap">#나이키</div>
+									<div class="h-wrap">#스니커즈</div>
+									<div class="h-wrap">#운동화추천</div>
+								</div>
 							</div>
 						</td>
 						<td>
@@ -108,28 +166,88 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>제목입니다. 길면 줄임표...</td>
-						<td>내용입니다. 길면 줄임표...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>2022.01.24</td>
 						<td>
 							<div id="box-icon-btn">
-								<div class="btn-style-icon">
-									<i class="fas fa-tshirt"></i>
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-tshirt"></i>
+									</div>
+									<div class="box-style detail">
+										<div class="style">
+											<div class="img-style">
+												<img alt="상의" src="/resources/images/default/shoes.png">
+											</div>
+											<div class="txt-style">
+												<p>Shoes &nbsp·&nbsp 운동화</p>
+												<span>NIKE</span>
+											</div>
+										</div>
+										<div class="txt-item">
+											<div class="txt-item-list">
+												<span class="tit-item">상품명</span>
+												<span>나이키 에어포스1</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">색상</span>
+												<span>화이트</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">구매 사이즈</span>
+												<span>245mm</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="btn-style-icon">
-									<i class="fas fa-user"></i>
+								
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-user"></i>
+									</div>
+									<div class="box-user detail">
+										<div class="txt-item-list">
+											<span class="tit-item">구매자 키</span>
+											<span>163cm</span>
+										</div>
+										<div class="txt-item-list">
+											<span class="tit-item">정사이즈</span>
+											<span>240mm</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리운동화</div>
+									<div class="h-wrap">#나이키</div>
+									<div class="h-wrap">#스니커즈</div>
+									<div class="h-wrap">#운동화추천</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="far fa-comment-dots"></i>
-							</div>
+							<a href="/admin/adminIttemComment.do">
+								<div class="btn-style-icon">
+									<i class="far fa-comment-dots"></i>
+								</div>
+							</a>
 						</td>
 						<td>
 							<div class="btn-style-icon">
@@ -141,28 +259,88 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>제목입니다. 길면 줄임표...</td>
-						<td>내용입니다. 길면 줄임표...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>2022.01.24</td>
 						<td>
 							<div id="box-icon-btn">
-								<div class="btn-style-icon">
-									<i class="fas fa-tshirt"></i>
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-tshirt"></i>
+									</div>
+									<div class="box-style detail">
+										<div class="style">
+											<div class="img-style">
+												<img alt="상의" src="/resources/images/default/shoes.png">
+											</div>
+											<div class="txt-style">
+												<p>Shoes &nbsp·&nbsp 운동화</p>
+												<span>NIKE</span>
+											</div>
+										</div>
+										<div class="txt-item">
+											<div class="txt-item-list">
+												<span class="tit-item">상품명</span>
+												<span>나이키 에어포스1</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">색상</span>
+												<span>화이트</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">구매 사이즈</span>
+												<span>245mm</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="btn-style-icon">
-									<i class="fas fa-user"></i>
+								
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-user"></i>
+									</div>
+									<div class="box-user detail">
+										<div class="txt-item-list">
+											<span class="tit-item">구매자 키</span>
+											<span>163cm</span>
+										</div>
+										<div class="txt-item-list">
+											<span class="tit-item">정사이즈</span>
+											<span>240mm</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리운동화</div>
+									<div class="h-wrap">#나이키</div>
+									<div class="h-wrap">#스니커즈</div>
+									<div class="h-wrap">#운동화추천</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="far fa-comment-dots"></i>
-							</div>
+							<a href="/admin/adminIttemComment.do">
+								<div class="btn-style-icon">
+									<i class="far fa-comment-dots"></i>
+								</div>
+							</a>
 						</td>
 						<td>
 							<div class="btn-style-icon">
@@ -174,28 +352,88 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>제목입니다. 길면 줄임표...</td>
-						<td>내용입니다. 길면 줄임표...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>2022.01.24</td>
 						<td>
 							<div id="box-icon-btn">
-								<div class="btn-style-icon">
-									<i class="fas fa-tshirt"></i>
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-tshirt"></i>
+									</div>
+									<div class="box-style detail">
+										<div class="style">
+											<div class="img-style">
+												<img alt="상의" src="/resources/images/default/shoes.png">
+											</div>
+											<div class="txt-style">
+												<p>Shoes &nbsp·&nbsp 운동화</p>
+												<span>NIKE</span>
+											</div>
+										</div>
+										<div class="txt-item">
+											<div class="txt-item-list">
+												<span class="tit-item">상품명</span>
+												<span>나이키 에어포스1</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">색상</span>
+												<span>화이트</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">구매 사이즈</span>
+												<span>245mm</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="btn-style-icon">
-									<i class="fas fa-user"></i>
+								
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-user"></i>
+									</div>
+									<div class="box-user detail">
+										<div class="txt-item-list">
+											<span class="tit-item">구매자 키</span>
+											<span>163cm</span>
+										</div>
+										<div class="txt-item-list">
+											<span class="tit-item">정사이즈</span>
+											<span>240mm</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리운동화</div>
+									<div class="h-wrap">#나이키</div>
+									<div class="h-wrap">#스니커즈</div>
+									<div class="h-wrap">#운동화추천</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="far fa-comment-dots"></i>
-							</div>
+							<a href="/admin/adminIttemComment.do">
+								<div class="btn-style-icon">
+									<i class="far fa-comment-dots"></i>
+								</div>
+							</a>
 						</td>
 						<td>
 							<div class="btn-style-icon">
@@ -207,28 +445,88 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>제목입니다. 길면 줄임표...</td>
-						<td>내용입니다. 길면 줄임표...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>2022.01.24</td>
 						<td>
 							<div id="box-icon-btn">
-								<div class="btn-style-icon">
-									<i class="fas fa-tshirt"></i>
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-tshirt"></i>
+									</div>
+									<div class="box-style detail">
+										<div class="style">
+											<div class="img-style">
+												<img alt="상의" src="/resources/images/default/shoes.png">
+											</div>
+											<div class="txt-style">
+												<p>Shoes &nbsp·&nbsp 운동화</p>
+												<span>NIKE</span>
+											</div>
+										</div>
+										<div class="txt-item">
+											<div class="txt-item-list">
+												<span class="tit-item">상품명</span>
+												<span>나이키 에어포스1</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">색상</span>
+												<span>화이트</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">구매 사이즈</span>
+												<span>245mm</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="btn-style-icon">
-									<i class="fas fa-user"></i>
+								
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-user"></i>
+									</div>
+									<div class="box-user detail">
+										<div class="txt-item-list">
+											<span class="tit-item">구매자 키</span>
+											<span>163cm</span>
+										</div>
+										<div class="txt-item-list">
+											<span class="tit-item">정사이즈</span>
+											<span>240mm</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리운동화</div>
+									<div class="h-wrap">#나이키</div>
+									<div class="h-wrap">#스니커즈</div>
+									<div class="h-wrap">#운동화추천</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="far fa-comment-dots"></i>
-							</div>
+							<a href="/admin/adminIttemComment.do">
+								<div class="btn-style-icon">
+									<i class="far fa-comment-dots"></i>
+								</div>
+							</a>
 						</td>
 						<td>
 							<div class="btn-style-icon">
@@ -240,28 +538,88 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>제목입니다. 길면 줄임표...</td>
-						<td>내용입니다. 길면 줄임표...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>2022.01.24</td>
 						<td>
 							<div id="box-icon-btn">
-								<div class="btn-style-icon">
-									<i class="fas fa-tshirt"></i>
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-tshirt"></i>
+									</div>
+									<div class="box-style detail">
+										<div class="style">
+											<div class="img-style">
+												<img alt="상의" src="/resources/images/default/shoes.png">
+											</div>
+											<div class="txt-style">
+												<p>Shoes &nbsp·&nbsp 운동화</p>
+												<span>NIKE</span>
+											</div>
+										</div>
+										<div class="txt-item">
+											<div class="txt-item-list">
+												<span class="tit-item">상품명</span>
+												<span>나이키 에어포스1</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">색상</span>
+												<span>화이트</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">구매 사이즈</span>
+												<span>245mm</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="btn-style-icon">
-									<i class="fas fa-user"></i>
+								
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-user"></i>
+									</div>
+									<div class="box-user detail">
+										<div class="txt-item-list">
+											<span class="tit-item">구매자 키</span>
+											<span>163cm</span>
+										</div>
+										<div class="txt-item-list">
+											<span class="tit-item">정사이즈</span>
+											<span>240mm</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리운동화</div>
+									<div class="h-wrap">#나이키</div>
+									<div class="h-wrap">#스니커즈</div>
+									<div class="h-wrap">#운동화추천</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="far fa-comment-dots"></i>
-							</div>
+							<a href="/admin/adminIttemComment.do">
+								<div class="btn-style-icon">
+									<i class="far fa-comment-dots"></i>
+								</div>
+							</a>
 						</td>
 						<td>
 							<div class="btn-style-icon">
@@ -273,28 +631,88 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>제목입니다. 길면 줄임표...</td>
-						<td>내용입니다. 길면 줄임표...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>2022.01.24</td>
 						<td>
 							<div id="box-icon-btn">
-								<div class="btn-style-icon">
-									<i class="fas fa-tshirt"></i>
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-tshirt"></i>
+									</div>
+									<div class="box-style detail">
+										<div class="style">
+											<div class="img-style">
+												<img alt="상의" src="/resources/images/default/shoes.png">
+											</div>
+											<div class="txt-style">
+												<p>Shoes &nbsp·&nbsp 운동화</p>
+												<span>NIKE</span>
+											</div>
+										</div>
+										<div class="txt-item">
+											<div class="txt-item-list">
+												<span class="tit-item">상품명</span>
+												<span>나이키 에어포스1</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">색상</span>
+												<span>화이트</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">구매 사이즈</span>
+												<span>245mm</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="btn-style-icon">
-									<i class="fas fa-user"></i>
+								
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-user"></i>
+									</div>
+									<div class="box-user detail">
+										<div class="txt-item-list">
+											<span class="tit-item">구매자 키</span>
+											<span>163cm</span>
+										</div>
+										<div class="txt-item-list">
+											<span class="tit-item">정사이즈</span>
+											<span>240mm</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리운동화</div>
+									<div class="h-wrap">#나이키</div>
+									<div class="h-wrap">#스니커즈</div>
+									<div class="h-wrap">#운동화추천</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="far fa-comment-dots"></i>
-							</div>
+							<a href="/admin/adminIttemComment.do">
+								<div class="btn-style-icon">
+									<i class="far fa-comment-dots"></i>
+								</div>
+							</a>
 						</td>
 						<td>
 							<div class="btn-style-icon">
@@ -306,28 +724,88 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>제목입니다. 길면 줄임표...</td>
-						<td>내용입니다. 길면 줄임표...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>2022.01.24</td>
 						<td>
 							<div id="box-icon-btn">
-								<div class="btn-style-icon">
-									<i class="fas fa-tshirt"></i>
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-tshirt"></i>
+									</div>
+									<div class="box-style detail">
+										<div class="style">
+											<div class="img-style">
+												<img alt="상의" src="/resources/images/default/shoes.png">
+											</div>
+											<div class="txt-style">
+												<p>Shoes &nbsp·&nbsp 운동화</p>
+												<span>NIKE</span>
+											</div>
+										</div>
+										<div class="txt-item">
+											<div class="txt-item-list">
+												<span class="tit-item">상품명</span>
+												<span>나이키 에어포스1</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">색상</span>
+												<span>화이트</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">구매 사이즈</span>
+												<span>245mm</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="btn-style-icon">
-									<i class="fas fa-user"></i>
+								
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-user"></i>
+									</div>
+									<div class="box-user detail">
+										<div class="txt-item-list">
+											<span class="tit-item">구매자 키</span>
+											<span>163cm</span>
+										</div>
+										<div class="txt-item-list">
+											<span class="tit-item">정사이즈</span>
+											<span>240mm</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리운동화</div>
+									<div class="h-wrap">#나이키</div>
+									<div class="h-wrap">#스니커즈</div>
+									<div class="h-wrap">#운동화추천</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="far fa-comment-dots"></i>
-							</div>
+							<a href="/admin/adminIttemComment.do">
+								<div class="btn-style-icon">
+									<i class="far fa-comment-dots"></i>
+								</div>
+							</a>
 						</td>
 						<td>
 							<div class="btn-style-icon">
@@ -339,28 +817,88 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>제목입니다. 길면 줄임표...</td>
-						<td>내용입니다. 길면 줄임표...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>2022.01.24</td>
 						<td>
 							<div id="box-icon-btn">
-								<div class="btn-style-icon">
-									<i class="fas fa-tshirt"></i>
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-tshirt"></i>
+									</div>
+									<div class="box-style detail">
+										<div class="style">
+											<div class="img-style">
+												<img alt="상의" src="/resources/images/default/shoes.png">
+											</div>
+											<div class="txt-style">
+												<p>Shoes &nbsp·&nbsp 운동화</p>
+												<span>NIKE</span>
+											</div>
+										</div>
+										<div class="txt-item">
+											<div class="txt-item-list">
+												<span class="tit-item">상품명</span>
+												<span>나이키 에어포스1</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">색상</span>
+												<span>화이트</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">구매 사이즈</span>
+												<span>245mm</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="btn-style-icon">
-									<i class="fas fa-user"></i>
+								
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-user"></i>
+									</div>
+									<div class="box-user detail">
+										<div class="txt-item-list">
+											<span class="tit-item">구매자 키</span>
+											<span>163cm</span>
+										</div>
+										<div class="txt-item-list">
+											<span class="tit-item">정사이즈</span>
+											<span>240mm</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리운동화</div>
+									<div class="h-wrap">#나이키</div>
+									<div class="h-wrap">#스니커즈</div>
+									<div class="h-wrap">#운동화추천</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="far fa-comment-dots"></i>
-							</div>
+							<a href="/admin/adminIttemComment.do">
+								<div class="btn-style-icon">
+									<i class="far fa-comment-dots"></i>
+								</div>
+							</a>
 						</td>
 						<td>
 							<div class="btn-style-icon">
@@ -372,28 +910,88 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>제목입니다. 길면 줄임표...</td>
-						<td>내용입니다. 길면 줄임표...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>2022.01.24</td>
 						<td>
 							<div id="box-icon-btn">
-								<div class="btn-style-icon">
-									<i class="fas fa-tshirt"></i>
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-tshirt"></i>
+									</div>
+									<div class="box-style detail">
+										<div class="style">
+											<div class="img-style">
+												<img alt="상의" src="/resources/images/default/shoes.png">
+											</div>
+											<div class="txt-style">
+												<p>Shoes &nbsp·&nbsp 운동화</p>
+												<span>NIKE</span>
+											</div>
+										</div>
+										<div class="txt-item">
+											<div class="txt-item-list">
+												<span class="tit-item">상품명</span>
+												<span>나이키 에어포스1</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">색상</span>
+												<span>화이트</span>
+											</div>
+											<div class="txt-item-list">
+												<span class="tit-item">구매 사이즈</span>
+												<span>245mm</span>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="btn-style-icon">
-									<i class="fas fa-user"></i>
+								
+								<div class="relative">
+									<div class="btn-style-icon">
+										<i class="fas fa-user"></i>
+									</div>
+									<div class="box-user detail">
+										<div class="txt-item-list">
+											<span class="tit-item">구매자 키</span>
+											<span>163cm</span>
+										</div>
+										<div class="txt-item-list">
+											<span class="tit-item">정사이즈</span>
+											<span>240mm</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리운동화</div>
+									<div class="h-wrap">#나이키</div>
+									<div class="h-wrap">#스니커즈</div>
+									<div class="h-wrap">#운동화추천</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="far fa-comment-dots"></i>
-							</div>
+							<a href="/admin/adminIttemComment.do">
+								<div class="btn-style-icon">
+									<i class="far fa-comment-dots"></i>
+								</div>
+							</a>
 						</td>
 						<td>
 							<div class="btn-style-icon">

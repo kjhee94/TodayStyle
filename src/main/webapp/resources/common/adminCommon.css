@@ -282,18 +282,92 @@ table>tbody>tr>th {
 }
 
 
-
-/*사용자 프로필 디자인(사진만)*/
-/*div 태그에 적용(div>a>img의 형태)*/
-.profile {
-	/*width와 height는 개별 css에서 설정해주세요*/
-	border: 1px solid #707070;
-	border-radius: 100px;
-	overflow: hidden;
+/*ellipsis 설정*/
+.relative {
+	position: relative;
 }
-.profile>a>img {
-	display: block;
+.ellipsis {
+	width: 180px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.box-hovor {
+	display: none;
+	width: 400px;
+	background-color: #fff;
+	padding: 30px;
+	border: 0.5px solid #C8C8C8;
+	border-radius: 10px;
+	box-shadow: 3px 3px 10px;
+	position: absolute;
+	top: 35px;
+	right: 10px;
+	z-index: 999;
+}
+
+
+/*의상 정보*/
+.box-style {
+	display: none;
+	width: 350px;
+	background-color: #fff;
+	padding: 30px;
+	border: 0.5px solid #C8C8C8;
+	border-radius: 10px;
+	box-shadow: 3px 3px 10px;
+	position: absolute;
+	top: 40px;
+	right: 30px;
+	z-index: 999;
+}
+.style {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+}
+.box-style .style:last-child {
+	margin-bottom: 0;
+}
+.img-style {
+	width: 100px;
+	height: 100px;
+	padding: 16px;
+	background-color: #FAFAFA;
+}
+.img-style img {
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+}
+.txt-style {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	color: #707070;
+	letter-spacing: -0.3px;
+	padding-left: 20px;
+}
+.txt-style p {
+	font-weight: 500;
+	padding-bottom: 10px;
+}
+
+/*hashtag*/
+.box-hashtag {
+	display: none;
+	width: 400px;
+	background-color: #fff;
+	padding: 25px;
+	border: 0.5px solid #C8C8C8;
+	border-radius: 10px;
+	box-shadow: 3px 3px 10px;
+	position: absolute;
+	top: 40px;
+	right: 30px;
+	z-index: 999;
+}
+.h-wrap {
+	background-color: #F5F5F5;
+	padding: 5px 9px;
+	float: left;
+	margin: 5px;
 }
