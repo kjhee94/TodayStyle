@@ -1,0 +1,266 @@
+
+@keyframes fadeIn { 
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+@keyframes fadeOut { 
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+
+#title{
+    border-bottom:solid 3px #707070; 
+    height: auto;
+    font-weight: 1000;
+    color:#707070;
+    font-size: 25px;
+    margin:10px;
+}
+
+#info-wrapper{height:70%;width: 90%;margin: 15px}
+
+#picture-wrapper{border-top:solid 1px #C8C8C8; padding: 15px}
+
+
+.select{
+width: 335px;
+height: 38px;
+padding: 5px;
+border: 1px solid #C8C8C8;
+font-family: inherit;
+background: url('arrow.jpg') no-repeat 95% 50%;
+border-radius: 0px;
+-webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+margin: 15px;
+float: left;
+}
+
+.textarea2{
+    resize: none;
+    width: 335px;
+    height: 38px;
+    padding: 5px;
+    border: 1px solid #C8C8C8;
+    font-family: inherit;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color:#C8C8C8;
+    vertical-align: middle;
+    margin: 15px;
+}
+
+
+
+.select-category{
+display: block; 
+height: auto;
+width: 100%;
+float: left
+}
+
+
+#select-category2{
+	float:left;
+}
+
+#select-category2>div span{
+	display:inline-block;
+	height:30px;
+	margin:15px;
+}
+.info-detail>div{border-bottom:solid 1px #D9D9D9; height: 120px}
+
+.info-detail>div:nth-last-child(1){
+    border:0;
+}
+
+.info-detail>div>div:nth-last-child(1){
+    border:0;
+}
+
+input[id="info-check"]{
+    display: none;
+    font-size: 16px;
+}
+
+input[id="info-check"] + label {
+    display: block;
+    padding: 20px;
+    cursor:pointer;
+}
+input[id="info-check"] + label + div{
+    max-height: 0;
+    overflow: hidden;
+    animation: fadeOut .8s;
+}
+
+input[id="info-check"]:checked + label + div{
+    max-height: 1500px;
+    animation: fadeIn .8s;
+}
+
+#insert-item{
+    height: auto;
+    width: auto;
+    display: block;
+}
+
+
+#pic-insert{border:solid 1px grey; width:200px; height: 200px}
+
+#insert-picture{
+    float:left; 
+    width:50% ; 
+    height:488px; 
+    border-right: solid 1px #C8C8C8;
+    position: relative;
+    margin: 10px;
+    
+}
+#insert-info{
+    float:left; width:40%; height:400px ; padding:20px;position: relative;margin: auto;
+}
+#coordi-info1{
+    width:auto; 
+    height:auto; 
+    position:relative;
+    margin: auto;
+}
+#hashtag{
+    float:left; 
+    width:100%; 
+    height:150px; 
+    padding: 16px; 
+    position:relative;
+}
+
+#insert-picture>input[type="file"]{
+    display: none;
+}
+
+
+.insert-box{
+    border: solid 1px #C8C8C8; 
+    width: 466px; 
+    height: 466px;
+    margin: 0;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color:#707070;
+    margin: auto;
+}
+
+.cancel-button{
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    color:white;
+    border:0;
+    
+}
+
+#coordi-post{
+    float:left;
+    width:100%;
+    text-align: center;
+}
+
+.btn-style-mint{
+	width:120px;
+}
+.togglebox>a div{
+    border-radius: 20px;
+    border: solid 1px #C8C8C8;
+    font-size:16px;
+    text-align: center;
+    width: 120px;
+    height: 30px;
+    color:#707070;
+    float:left;
+    padding:20px;
+    margin: 15px;
+    padding-bottom: 30px;
+    padding-top: 10px
+    
+}
+.togglebox{
+    position: relative;
+    margin: auto;
+    width: auto;
+    height: 80px;
+    display: block;
+}
+
+
+
+.subject{
+    font-size: 18px;
+    color:#707070;
+    margin: 20px;
+}
+
+
+
+
+.textarea{
+    width: 100%; 
+    height:150px ; 
+    border: solid 1px #C8C8C8; 
+    padding: 16px; 
+    resize: none}
+
+#item-info{
+    height: auto;
+    width: auto;
+}
+#item-info>div span{
+    display: inline;
+}
+
+#user-info{
+    height: auto;
+}
+
+
+#item-info>div p{
+    display: inline;
+    
+}
+#item-info>div>span{
+    display: inline-block;
+    width:100px;
+    
+}
+#user-info>div>span{
+    display:inline-block;
+    width:100px;
+}
+
+#user-info>div p{
+    display: inline
+    
+}
+
+
+    
+
+
+        
