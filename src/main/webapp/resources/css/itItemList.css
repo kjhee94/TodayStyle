@@ -119,6 +119,11 @@ select::-ms-expand {
 	font-size: 18px;
 	color: #707070;
 	font-weight: medium;
+	background-image: url('/resources/images/icon/filter.png');
+ 	background-repeat: no-repeat;
+  	background-position: 0px 0px;
+ 	background-size: 16%;
+	
 }
 
 #itItemListImgArea {
