@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
-
+	 <select id="selectLoginMember" parameterType="member" resultType="member">
+      SELECT
+          user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+      FROM
+         member
+      WHERE user_Id = #{userId} and user_Pwd = #{userPwd} and end_yn='N'
+      
+   </select>
+   
+    <insert id="insertMember" parameterType="member">
+      INSERT INTO
+         MEMBER
+      VALUES (MEMBER_SEQ.NEXTVAL, #{userId}, #{userPwd}, #{userName}, #{userEmail}, #{gender},#{nickname}, DEFAULT, DEFAULT, 'N')
+   </insert>
 	
 
 </mapper>
