@@ -12,10 +12,10 @@
 	<util:properties id="db" location="classpath:/settings.properties"></util:properties>
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="#{db['jdbc.driver']}"></property>
-		<property name="url" value="#{db['jdbc.url']}"></property>
-		<property name="username" value="#{db['jdbc.username']}"></property>
-		<property name="password" value="#{db['jdbc.password']}"></property>
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="test96"/>
+		<property name="password" value="test96"/>
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">

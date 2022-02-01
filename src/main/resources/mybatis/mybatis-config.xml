@@ -5,6 +5,8 @@
 	<!-- 별칭 등록 -->
 	<typeAliases>
 		<typeAlias type="kr.or.iei.member.model.vo.Member" alias="member"/>
+		<typeAlias type="kr.or.iei.board.model.vo.FAQ" alias="FAQ"/>
+		<typeAlias type="kr.or.iei.board.model.vo.Notice" alias="Notice"/>
 	</typeAliases>
 
 </configuration>

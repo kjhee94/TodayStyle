@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="board">
+   <select id="AllFAQ" resultType="FAQ">
+      SELECT
+          faq_no as faqNo,
+         category as category,
+         title as title,
+         content as content,
+         user_id as userId,
+       regdate as regdate,
+         end_yn as endYN
+      FROM
+         faq
+   </select>
+   
+   
+   <select id="AllNotice" resultType="Notice">
+          SELECT
+      notice_No as noticeNo,
+         title as title,
+         content as content,
+         regdate as regdate,
+    user_name as username
+      FROM
+         notice n
+         left join member m on(n.user_id=m.user_id)
+         ORDER BY notice_NO DESC
+   </select>
+</mapper>
