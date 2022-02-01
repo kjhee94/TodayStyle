@@ -137,8 +137,7 @@
 			<div id="itItemImgArea">
 				<div class="itItemImgWrap">
 					<div class="itItemImgArea">
-				
-					사진
+					<img class="itItemImg" src="/resources/images/itItem/item1.jpg">
 						<div class="likeScrapArea">
 							<img class="like" src="/resources/images/icon/heart_w.png"> <img
 								class="scrap" src="/resources/images/icon/saved_w.png">
@@ -194,6 +193,17 @@
 			}
 
 		});
+	</script>
+	<script>
+		$('.itItemImg').hover(function(){
+			
+			$(this).css('transition','all 0.2s linear');
+			$(this).css('transform','scale(1.01)');
+			
+		},function(){
+			$(this).css('transition','all 0.2s linear');
+			$(this).css('transform','scale(1.0)');
+		})
 	</script>
 </body>
 </html>

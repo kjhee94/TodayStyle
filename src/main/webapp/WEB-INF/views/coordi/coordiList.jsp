@@ -112,7 +112,7 @@
 			</div>
 			<div id="coordiListImgArea">
 				<div class="coordiImgArea">
-					사진
+					<img class="coordiImg" src="/resources/images/coordi/stylelist1_2.jpg">
 					<div class="likeScrapArea">
 						<img class="like" src="/resources/images/icon/heart_w.png"> <img
 							class="scrap" src="/resources/images/icon/saved_w.png">
@@ -127,10 +127,6 @@
 						<span class="nickName">닉네임</span>
 					</div>
 				</div>
-				<div class="coordiImgArea">사진</div>
-				<div class="coordiImgArea">사진</div>
-				<div class="coordiImgArea">사진</div>
-				<div class="coordiImgArea">사진</div>
 			</div>
 		</div>
 
@@ -170,9 +166,20 @@
 			
 		});
 		
-
 		
 		
 	</script>
+	<script>
+		$('.coordiImg').hover(function(){
+			
+			$(this).css('transition','all 0.2s linear');
+			$(this).css('transform','scale(1.01)');
+			
+		},function(){
+			$(this).css('transition','all 0.2s linear');
+			$(this).css('transform','scale(1.0)');
+		})
+	</script>
+	
 </body>
 </html>

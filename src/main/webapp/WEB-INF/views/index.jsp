@@ -33,7 +33,8 @@
 				<!-- Swiper -->
 				<div class="coordiSwiper mySwiper">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide coordiImg">Slide 1
+						<div class="swiper-slide coordiImg">
+							<img class="coordiImg" src="/resources/images/coordi/stylelist1_2.jpg">
 							<div class="nickNameArea">
 								<div class="profileArea">
 									<div class="profile">
@@ -359,5 +360,16 @@
 				
 			</script>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<script>
+		$('.coordiImg').hover(function(){
+			
+			$(this).css('transition','all 0.2s linear');
+			$(this).css('transform','scale(1.01)');
+			
+		},function(){
+			$(this).css('transition','all 0.2s linear');
+			$(this).css('transform','scale(1.0)');
+		})
+	</script>
 </body>
 </html>
