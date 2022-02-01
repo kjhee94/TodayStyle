@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/common/adminCommon.css">
 <link rel="stylesheet" href="/resources/common/adminHeader.css">
-<link rel="stylesheet" href="/resources/css/adminNotice.css">
+<link rel="stylesheet" href="/resources/css/admin/adminNotice.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="/resources/js/admin.js"></script>
 </head>
@@ -21,12 +21,28 @@
 	
 	<div id="insertModel">
 		<div class="model-area">
-			<h4>공지사항 작성</h4>
-			<i class="fas fa-times"></i>
+			<div class="model-top">
+				<h4>공지사항 작성</h4>
+				<i class="fas fa-times model-close"></i>
+			</div>
 			<form action="" method="get">
 				<input type="text" class="model-title" placeholder="제목을 입력하세요">
 				<textarea class="model-content" placeholder="내용을 입력하세요"></textarea>
 				<input type="submit" class="btn-style" value="등록">
+			</form>
+		</div>
+	</div>
+	
+	<div id="modifyModel">
+		<div class="model-area">
+			<div class="model-top">
+				<h4>공지사항 수정</h4>
+				<i class="fas fa-times model-close"></i>
+			</div>
+			<form action="" method="get">
+				<input type="text" class="model-title" placeholder="제목을 입력하세요" value="공지사항 제목입니다 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다">
+				<textarea class="model-content" placeholder="내용을 입력하세요">공지사항 내용입니다 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다</textarea>
+				<input type="submit" class="btn-style" value="완료">
 			</form>
 		</div>
 	</div>
@@ -82,12 +98,22 @@
 					<tr>
 						<td><input type="checkbox"></td>
 						<td>12345</td>
-						<td>공지사항 제목입니다 이렇게 길게 들어가고 마지막은 ...</td>
-						<td>공지사항 내용입니다 이렇게 길게 들어가고 마지막은 ...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -100,12 +126,22 @@
 					<tr>
 						<td><input type="checkbox"></td>
 						<td>12345</td>
-						<td>공지사항 제목입니다 이렇게 길게 들어가고 마지막은 ...</td>
-						<td>공지사항 내용입니다 이렇게 길게 들어가고 마지막은 ...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -118,12 +154,22 @@
 					<tr>
 						<td><input type="checkbox"></td>
 						<td>12345</td>
-						<td>공지사항 제목입니다 이렇게 길게 들어가고 마지막은 ...</td>
-						<td>공지사항 내용입니다 이렇게 길게 들어가고 마지막은 ...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -136,12 +182,22 @@
 					<tr>
 						<td><input type="checkbox"></td>
 						<td>12345</td>
-						<td>공지사항 제목입니다 이렇게 길게 들어가고 마지막은 ...</td>
-						<td>공지사항 내용입니다 이렇게 길게 들어가고 마지막은 ...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -154,12 +210,22 @@
 					<tr>
 						<td><input type="checkbox"></td>
 						<td>12345</td>
-						<td>공지사항 제목입니다 이렇게 길게 들어가고 마지막은 ...</td>
-						<td>공지사항 내용입니다 이렇게 길게 들어가고 마지막은 ...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -172,12 +238,22 @@
 					<tr>
 						<td><input type="checkbox"></td>
 						<td>12345</td>
-						<td>공지사항 제목입니다 이렇게 길게 들어가고 마지막은 ...</td>
-						<td>공지사항 내용입니다 이렇게 길게 들어가고 마지막은 ...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -190,12 +266,22 @@
 					<tr>
 						<td><input type="checkbox"></td>
 						<td>12345</td>
-						<td>공지사항 제목입니다 이렇게 길게 들어가고 마지막은 ...</td>
-						<td>공지사항 내용입니다 이렇게 길게 들어가고 마지막은 ...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -208,12 +294,22 @@
 					<tr>
 						<td><input type="checkbox"></td>
 						<td>12345</td>
-						<td>공지사항 제목입니다 이렇게 길게 들어가고 마지막은 ...</td>
-						<td>공지사항 내용입니다 이렇게 길게 들어가고 마지막은 ...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -226,12 +322,50 @@
 					<tr>
 						<td><input type="checkbox"></td>
 						<td>12345</td>
-						<td>공지사항 제목입니다 이렇게 길게 들어가고 마지막은 ...</td>
-						<td>공지사항 내용입니다 이렇게 길게 들어가고 마지막은 ...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
+							<div class="btn-style-icon btn-modify">
+								<i class="fas fa-pencil-alt"></i>
+							</div>
+						</td>
+						<td>
 							<div class="btn-style-icon">
+								<i class="fas fa-trash"></i>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>12345</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
+							</div>
+						</td>
+						<td>admin</td>
+						<td>2022.01.24</td>
+						<td>
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/common/adminCommon.css">
 <link rel="stylesheet" href="/resources/common/adminHeader.css">
-<link rel="stylesheet" href="/resources/css/adminCoordi.css">
+<link rel="stylesheet" href="/resources/css/admin/adminCoordi.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="/resources/js/admin.js"></script>
 </head>
@@ -74,19 +74,78 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>내용이 길텐데 이렇게 밖...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>17˚C~19˚C</td>
 						<td>겨울</td>
 						<td>공용</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-tshirt"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-tshirt"></i>
+								</div>
+								<div class="box-style detail">
+									<div class="style">
+										<div class="img-style">
+											<img alt="상의" src="/resources/images/default/top.png">
+										</div>
+										<div class="txt-style">
+											<p>Top &nbsp·&nbsp 후드</p>
+											<span>꼼파뇨</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="하의" src="/resources/images/default/bottom.png">
+										</div>
+										<div class="txt-style">
+											<p>Bottom &nbsp·&nbsp 슬랙스</p>
+											<span>나인브라더스</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="신발" src="/resources/images/default/shoes.png">
+										</div>
+										<div class="txt-style">
+											<p>Shoes &nbsp·&nbsp 운동화</p>
+											<span>FILA</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="악세사리" src="/resources/images/default/acc.png">
+										</div>
+										<div class="txt-style">
+											<p>Acc &nbsp·&nbsp 안경</p>
+											<span>젠틀몬스터</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리룩</div>
+									<div class="h-wrap">#후드티</div>
+									<div class="h-wrap">#후드</div>
+									<div class="h-wrap">#볼캡</div>
+									<div class="h-wrap">#볼캡코드</div>
+									<div class="h-wrap">#슬랙스</div>
+									<div class="h-wrap">#무채색코디</div>
+									<div class="h-wrap">#휠라운동화</div>
+									<div class="h-wrap">#슬랙스코디</div>
+									<div class="h-wrap">#레이어드</div>
+								</div>
 							</div>
 						</td>
 						<td>
@@ -106,19 +165,78 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>내용이 길텐데 이렇게 밖...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>17˚C~19˚C</td>
 						<td>겨울</td>
 						<td>공용</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-tshirt"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-tshirt"></i>
+								</div>
+								<div class="box-style detail">
+									<div class="style">
+										<div class="img-style">
+											<img alt="상의" src="/resources/images/default/top.png">
+										</div>
+										<div class="txt-style">
+											<p>Top &nbsp·&nbsp 후드</p>
+											<span>꼼파뇨</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="하의" src="/resources/images/default/bottom.png">
+										</div>
+										<div class="txt-style">
+											<p>Bottom &nbsp·&nbsp 슬랙스</p>
+											<span>나인브라더스</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="신발" src="/resources/images/default/shoes.png">
+										</div>
+										<div class="txt-style">
+											<p>Shoes &nbsp·&nbsp 운동화</p>
+											<span>FILA</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="악세사리" src="/resources/images/default/acc.png">
+										</div>
+										<div class="txt-style">
+											<p>Acc &nbsp·&nbsp 안경</p>
+											<span>젠틀몬스터</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리룩</div>
+									<div class="h-wrap">#후드티</div>
+									<div class="h-wrap">#후드</div>
+									<div class="h-wrap">#볼캡</div>
+									<div class="h-wrap">#볼캡코드</div>
+									<div class="h-wrap">#슬랙스</div>
+									<div class="h-wrap">#무채색코디</div>
+									<div class="h-wrap">#휠라운동화</div>
+									<div class="h-wrap">#슬랙스코디</div>
+									<div class="h-wrap">#레이어드</div>
+								</div>
 							</div>
 						</td>
 						<td>
@@ -138,19 +256,78 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>내용이 길텐데 이렇게 밖...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>17˚C~19˚C</td>
 						<td>겨울</td>
 						<td>공용</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-tshirt"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-tshirt"></i>
+								</div>
+								<div class="box-style detail">
+									<div class="style">
+										<div class="img-style">
+											<img alt="상의" src="/resources/images/default/top.png">
+										</div>
+										<div class="txt-style">
+											<p>Top &nbsp·&nbsp 후드</p>
+											<span>꼼파뇨</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="하의" src="/resources/images/default/bottom.png">
+										</div>
+										<div class="txt-style">
+											<p>Bottom &nbsp·&nbsp 슬랙스</p>
+											<span>나인브라더스</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="신발" src="/resources/images/default/shoes.png">
+										</div>
+										<div class="txt-style">
+											<p>Shoes &nbsp·&nbsp 운동화</p>
+											<span>FILA</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="악세사리" src="/resources/images/default/acc.png">
+										</div>
+										<div class="txt-style">
+											<p>Acc &nbsp·&nbsp 안경</p>
+											<span>젠틀몬스터</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리룩</div>
+									<div class="h-wrap">#후드티</div>
+									<div class="h-wrap">#후드</div>
+									<div class="h-wrap">#볼캡</div>
+									<div class="h-wrap">#볼캡코드</div>
+									<div class="h-wrap">#슬랙스</div>
+									<div class="h-wrap">#무채색코디</div>
+									<div class="h-wrap">#휠라운동화</div>
+									<div class="h-wrap">#슬랙스코디</div>
+									<div class="h-wrap">#레이어드</div>
+								</div>
 							</div>
 						</td>
 						<td>
@@ -170,19 +347,78 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>내용이 길텐데 이렇게 밖...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>17˚C~19˚C</td>
 						<td>겨울</td>
 						<td>공용</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-tshirt"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-tshirt"></i>
+								</div>
+								<div class="box-style detail">
+									<div class="style">
+										<div class="img-style">
+											<img alt="상의" src="/resources/images/default/top.png">
+										</div>
+										<div class="txt-style">
+											<p>Top &nbsp·&nbsp 후드</p>
+											<span>꼼파뇨</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="하의" src="/resources/images/default/bottom.png">
+										</div>
+										<div class="txt-style">
+											<p>Bottom &nbsp·&nbsp 슬랙스</p>
+											<span>나인브라더스</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="신발" src="/resources/images/default/shoes.png">
+										</div>
+										<div class="txt-style">
+											<p>Shoes &nbsp·&nbsp 운동화</p>
+											<span>FILA</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="악세사리" src="/resources/images/default/acc.png">
+										</div>
+										<div class="txt-style">
+											<p>Acc &nbsp·&nbsp 안경</p>
+											<span>젠틀몬스터</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리룩</div>
+									<div class="h-wrap">#후드티</div>
+									<div class="h-wrap">#후드</div>
+									<div class="h-wrap">#볼캡</div>
+									<div class="h-wrap">#볼캡코드</div>
+									<div class="h-wrap">#슬랙스</div>
+									<div class="h-wrap">#무채색코디</div>
+									<div class="h-wrap">#휠라운동화</div>
+									<div class="h-wrap">#슬랙스코디</div>
+									<div class="h-wrap">#레이어드</div>
+								</div>
 							</div>
 						</td>
 						<td>
@@ -202,19 +438,78 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>내용이 길텐데 이렇게 밖...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>17˚C~19˚C</td>
 						<td>겨울</td>
 						<td>공용</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-tshirt"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-tshirt"></i>
+								</div>
+								<div class="box-style detail">
+									<div class="style">
+										<div class="img-style">
+											<img alt="상의" src="/resources/images/default/top.png">
+										</div>
+										<div class="txt-style">
+											<p>Top &nbsp·&nbsp 후드</p>
+											<span>꼼파뇨</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="하의" src="/resources/images/default/bottom.png">
+										</div>
+										<div class="txt-style">
+											<p>Bottom &nbsp·&nbsp 슬랙스</p>
+											<span>나인브라더스</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="신발" src="/resources/images/default/shoes.png">
+										</div>
+										<div class="txt-style">
+											<p>Shoes &nbsp·&nbsp 운동화</p>
+											<span>FILA</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="악세사리" src="/resources/images/default/acc.png">
+										</div>
+										<div class="txt-style">
+											<p>Acc &nbsp·&nbsp 안경</p>
+											<span>젠틀몬스터</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리룩</div>
+									<div class="h-wrap">#후드티</div>
+									<div class="h-wrap">#후드</div>
+									<div class="h-wrap">#볼캡</div>
+									<div class="h-wrap">#볼캡코드</div>
+									<div class="h-wrap">#슬랙스</div>
+									<div class="h-wrap">#무채색코디</div>
+									<div class="h-wrap">#휠라운동화</div>
+									<div class="h-wrap">#슬랙스코디</div>
+									<div class="h-wrap">#레이어드</div>
+								</div>
 							</div>
 						</td>
 						<td>
@@ -234,19 +529,78 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>내용이 길텐데 이렇게 밖...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>17˚C~19˚C</td>
 						<td>겨울</td>
 						<td>공용</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-tshirt"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-tshirt"></i>
+								</div>
+								<div class="box-style detail">
+									<div class="style">
+										<div class="img-style">
+											<img alt="상의" src="/resources/images/default/top.png">
+										</div>
+										<div class="txt-style">
+											<p>Top &nbsp·&nbsp 후드</p>
+											<span>꼼파뇨</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="하의" src="/resources/images/default/bottom.png">
+										</div>
+										<div class="txt-style">
+											<p>Bottom &nbsp·&nbsp 슬랙스</p>
+											<span>나인브라더스</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="신발" src="/resources/images/default/shoes.png">
+										</div>
+										<div class="txt-style">
+											<p>Shoes &nbsp·&nbsp 운동화</p>
+											<span>FILA</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="악세사리" src="/resources/images/default/acc.png">
+										</div>
+										<div class="txt-style">
+											<p>Acc &nbsp·&nbsp 안경</p>
+											<span>젠틀몬스터</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리룩</div>
+									<div class="h-wrap">#후드티</div>
+									<div class="h-wrap">#후드</div>
+									<div class="h-wrap">#볼캡</div>
+									<div class="h-wrap">#볼캡코드</div>
+									<div class="h-wrap">#슬랙스</div>
+									<div class="h-wrap">#무채색코디</div>
+									<div class="h-wrap">#휠라운동화</div>
+									<div class="h-wrap">#슬랙스코디</div>
+									<div class="h-wrap">#레이어드</div>
+								</div>
 							</div>
 						</td>
 						<td>
@@ -266,19 +620,78 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>내용이 길텐데 이렇게 밖...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>17˚C~19˚C</td>
 						<td>겨울</td>
 						<td>공용</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-tshirt"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-tshirt"></i>
+								</div>
+								<div class="box-style detail">
+									<div class="style">
+										<div class="img-style">
+											<img alt="상의" src="/resources/images/default/top.png">
+										</div>
+										<div class="txt-style">
+											<p>Top &nbsp·&nbsp 후드</p>
+											<span>꼼파뇨</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="하의" src="/resources/images/default/bottom.png">
+										</div>
+										<div class="txt-style">
+											<p>Bottom &nbsp·&nbsp 슬랙스</p>
+											<span>나인브라더스</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="신발" src="/resources/images/default/shoes.png">
+										</div>
+										<div class="txt-style">
+											<p>Shoes &nbsp·&nbsp 운동화</p>
+											<span>FILA</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="악세사리" src="/resources/images/default/acc.png">
+										</div>
+										<div class="txt-style">
+											<p>Acc &nbsp·&nbsp 안경</p>
+											<span>젠틀몬스터</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리룩</div>
+									<div class="h-wrap">#후드티</div>
+									<div class="h-wrap">#후드</div>
+									<div class="h-wrap">#볼캡</div>
+									<div class="h-wrap">#볼캡코드</div>
+									<div class="h-wrap">#슬랙스</div>
+									<div class="h-wrap">#무채색코디</div>
+									<div class="h-wrap">#휠라운동화</div>
+									<div class="h-wrap">#슬랙스코디</div>
+									<div class="h-wrap">#레이어드</div>
+								</div>
 							</div>
 						</td>
 						<td>
@@ -298,19 +711,78 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>내용이 길텐데 이렇게 밖...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>17˚C~19˚C</td>
 						<td>겨울</td>
 						<td>공용</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-tshirt"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-tshirt"></i>
+								</div>
+								<div class="box-style detail">
+									<div class="style">
+										<div class="img-style">
+											<img alt="상의" src="/resources/images/default/top.png">
+										</div>
+										<div class="txt-style">
+											<p>Top &nbsp·&nbsp 후드</p>
+											<span>꼼파뇨</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="하의" src="/resources/images/default/bottom.png">
+										</div>
+										<div class="txt-style">
+											<p>Bottom &nbsp·&nbsp 슬랙스</p>
+											<span>나인브라더스</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="신발" src="/resources/images/default/shoes.png">
+										</div>
+										<div class="txt-style">
+											<p>Shoes &nbsp·&nbsp 운동화</p>
+											<span>FILA</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="악세사리" src="/resources/images/default/acc.png">
+										</div>
+										<div class="txt-style">
+											<p>Acc &nbsp·&nbsp 안경</p>
+											<span>젠틀몬스터</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리룩</div>
+									<div class="h-wrap">#후드티</div>
+									<div class="h-wrap">#후드</div>
+									<div class="h-wrap">#볼캡</div>
+									<div class="h-wrap">#볼캡코드</div>
+									<div class="h-wrap">#슬랙스</div>
+									<div class="h-wrap">#무채색코디</div>
+									<div class="h-wrap">#휠라운동화</div>
+									<div class="h-wrap">#슬랙스코디</div>
+									<div class="h-wrap">#레이어드</div>
+								</div>
 							</div>
 						</td>
 						<td>
@@ -330,19 +802,78 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>내용이 길텐데 이렇게 밖...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>17˚C~19˚C</td>
 						<td>겨울</td>
 						<td>공용</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-tshirt"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-tshirt"></i>
+								</div>
+								<div class="box-style detail">
+									<div class="style">
+										<div class="img-style">
+											<img alt="상의" src="/resources/images/default/top.png">
+										</div>
+										<div class="txt-style">
+											<p>Top &nbsp·&nbsp 후드</p>
+											<span>꼼파뇨</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="하의" src="/resources/images/default/bottom.png">
+										</div>
+										<div class="txt-style">
+											<p>Bottom &nbsp·&nbsp 슬랙스</p>
+											<span>나인브라더스</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="신발" src="/resources/images/default/shoes.png">
+										</div>
+										<div class="txt-style">
+											<p>Shoes &nbsp·&nbsp 운동화</p>
+											<span>FILA</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="악세사리" src="/resources/images/default/acc.png">
+										</div>
+										<div class="txt-style">
+											<p>Acc &nbsp·&nbsp 안경</p>
+											<span>젠틀몬스터</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리룩</div>
+									<div class="h-wrap">#후드티</div>
+									<div class="h-wrap">#후드</div>
+									<div class="h-wrap">#볼캡</div>
+									<div class="h-wrap">#볼캡코드</div>
+									<div class="h-wrap">#슬랙스</div>
+									<div class="h-wrap">#무채색코디</div>
+									<div class="h-wrap">#휠라운동화</div>
+									<div class="h-wrap">#슬랙스코디</div>
+									<div class="h-wrap">#레이어드</div>
+								</div>
 							</div>
 						</td>
 						<td>
@@ -362,23 +893,82 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>ididwwwwwwww</td>
-						<td>내용이 길텐데 이렇게 밖...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
+							</div>
+						</td>
 						<td>17˚C~19˚C</td>
 						<td>겨울</td>
 						<td>공용</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-tshirt"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-tshirt"></i>
+								</div>
+								<div class="box-style detail">
+									<div class="style">
+										<div class="img-style">
+											<img alt="상의" src="/resources/images/default/top.png">
+										</div>
+										<div class="txt-style">
+											<p>Top &nbsp·&nbsp 후드</p>
+											<span>꼼파뇨</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="하의" src="/resources/images/default/bottom.png">
+										</div>
+										<div class="txt-style">
+											<p>Bottom &nbsp·&nbsp 슬랙스</p>
+											<span>나인브라더스</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="신발" src="/resources/images/default/shoes.png">
+										</div>
+										<div class="txt-style">
+											<p>Shoes &nbsp·&nbsp 운동화</p>
+											<span>FILA</span>
+										</div>
+									</div>
+									<div class="style">
+										<div class="img-style">
+											<img alt="악세사리" src="/resources/images/default/acc.png">
+										</div>
+										<div class="txt-style">
+											<p>Acc &nbsp·&nbsp 안경</p>
+											<span>젠틀몬스터</span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-hashtag"></i>
+							<div class="relative">
+								<div class="btn-style-icon">
+									<i class="fas fa-hashtag"></i>
+								</div>
+								<div class="box-hashtag detail">
+									<div class="h-wrap">#데일리룩</div>
+									<div class="h-wrap">#후드티</div>
+									<div class="h-wrap">#후드</div>
+									<div class="h-wrap">#볼캡</div>
+									<div class="h-wrap">#볼캡코드</div>
+									<div class="h-wrap">#슬랙스</div>
+									<div class="h-wrap">#무채색코디</div>
+									<div class="h-wrap">#휠라운동화</div>
+									<div class="h-wrap">#슬랙스코디</div>
+									<div class="h-wrap">#레이어드</div>
+								</div>
 							</div>
 						</td>
 						<td>
-							<a href="">
+							<a href="/admin/adminCoordiComment.do">
 								<div class="btn-style-icon">
 									<i class="far fa-comment-dots"></i>
 								</div>

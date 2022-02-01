@@ -12,12 +12,62 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/common/adminCommon.css">
 <link rel="stylesheet" href="/resources/common/adminHeader.css">
-<link rel="stylesheet" href="/resources/css/adminFAQ.css">
+<link rel="stylesheet" href="/resources/css/admin/adminFAQ.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="/resources/js/admin.js"></script>
 </head>
 
 <body>
+
+	<div id="insertModel">
+		<div class="model-area">
+			<div class="model-top">
+				<h4>자주 묻는 질문 작성</h4>
+				<i class="fas fa-times model-close"></i>
+			</div>
+			<form action="" method="get">
+				<div class="model-middle">
+					<div class="box-select">
+						<select class="select-style" name="keyword">
+							<option disabled selected>카테고리</option>
+							<option>회원/정보</option>
+							<option>게시글</option>
+							<option>그이상</option>
+						</select>
+						<i class="fas fa-chevron-down"></i>
+					</div>
+					<input type="text" class="model-title" placeholder="제목을 입력하세요">
+				</div>
+				<textarea class="model-content" placeholder="내용을 입력하세요"></textarea>
+				<input type="submit" class="btn-style" value="등록">
+			</form>
+		</div>
+	</div>
+	
+	<div id="modifyModel">
+		<div class="model-area">
+			<div class="model-top">
+				<h4>자주 묻는 질문 수정</h4>
+				<i class="fas fa-times model-close"></i>
+			</div>
+			<form action="" method="get">
+				<div class="model-middle">
+					<div class="box-select">
+						<select class="select-style" name="keyword">
+							<option disabled selected>카테고리</option>
+							<option>회원/정보</option>
+							<option>게시글</option>
+							<option>그이상</option>
+						</select>
+						<i class="fas fa-chevron-down"></i>
+					</div>
+					<input type="text" class="model-title" placeholder="제목을 입력하세요" value="자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다">
+				</div>
+				<textarea class="model-content" placeholder="내용을 입력하세요">질문에 대한 답변입니다 내용이 길면 이렇게 됩니다</textarea>
+				<input type="submit" class="btn-style" value="완료">
+			</form>
+		</div>
+	</div>
 
 	<div id="wrap">
 		<!-- adminHeader -->
@@ -72,12 +122,22 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>회원 / 정보</td>
-						<td>자주 묻는 질문입니다. 제목이 길면 이렇게 됩...</td>
-						<td>질문에 대한 답변입니다 내용이 길면 이렇게...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -91,12 +151,22 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>회원 / 정보</td>
-						<td>자주 묻는 질문입니다. 제목이 길면 이렇게 됩...</td>
-						<td>질문에 대한 답변입니다 내용이 길면 이렇게...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -110,12 +180,22 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>회원 / 정보</td>
-						<td>자주 묻는 질문입니다. 제목이 길면 이렇게 됩...</td>
-						<td>질문에 대한 답변입니다 내용이 길면 이렇게...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -129,12 +209,22 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>회원 / 정보</td>
-						<td>자주 묻는 질문입니다. 제목이 길면 이렇게 됩...</td>
-						<td>질문에 대한 답변입니다 내용이 길면 이렇게...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -148,12 +238,22 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>회원 / 정보</td>
-						<td>자주 묻는 질문입니다. 제목이 길면 이렇게 됩...</td>
-						<td>질문에 대한 답변입니다 내용이 길면 이렇게...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -167,12 +267,22 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>회원 / 정보</td>
-						<td>자주 묻는 질문입니다. 제목이 길면 이렇게 됩...</td>
-						<td>질문에 대한 답변입니다 내용이 길면 이렇게...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -186,12 +296,22 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>회원 / 정보</td>
-						<td>자주 묻는 질문입니다. 제목이 길면 이렇게 됩...</td>
-						<td>질문에 대한 답변입니다 내용이 길면 이렇게...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -205,12 +325,22 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>회원 / 정보</td>
-						<td>자주 묻는 질문입니다. 제목이 길면 이렇게 됩...</td>
-						<td>질문에 대한 답변입니다 내용이 길면 이렇게...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -224,12 +354,22 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>회원 / 정보</td>
-						<td>자주 묻는 질문입니다. 제목이 길면 이렇게 됩...</td>
-						<td>질문에 대한 답변입니다 내용이 길면 이렇게...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -243,12 +383,22 @@
 						<td><input type="checkbox"></td>
 						<td>12345</td>
 						<td>회원 / 정보</td>
-						<td>자주 묻는 질문입니다. 제목이 길면 이렇게 됩...</td>
-						<td>질문에 대한 답변입니다 내용이 길면 이렇게...</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">자주 묻는 질문입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
+						<td>
+							<div class="relative">
+								<div class="ellipsis">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+								<div class="box-hovor detail">질문에 대한 답변입니다. 제목이 길면 이렇게 됩니다.</div>
+							</div>
+						</td>
 						<td>admin</td>
 						<td>2022.01.24</td>
 						<td>
-							<div class="btn-style-icon">
+							<div class="btn-style-icon btn-modify">
 								<i class="fas fa-pencil-alt"></i>
 							</div>
 						</td>
@@ -258,7 +408,6 @@
 							</div>
 						</td>
 					</tr>
-					
 					
 				</table>
 				<div id="page_wrap">

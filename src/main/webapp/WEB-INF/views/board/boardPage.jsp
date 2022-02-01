@@ -78,7 +78,7 @@ border-radius: 10px 10px 10px 10px;
 						<a href="" class="search_icon" style="position:absolute; right:325px; top:225px; color:#707070;"><i class="fas fa-search"></i></a>
 					</div>
 				</div>
-	</div>
+	
 		
 			<table style="text-align: center;
 	line-height: 90px;
@@ -95,34 +95,32 @@ border-radius: 10px 10px 10px 10px;
 			</tr>
 			</thead>
 			
+			<c:choose>
+	<c:when test="${!requestScope.nlist.isEmpty() }">
+			
 			<tbody>
 			
-			
+			<c:forEach items="${requestScope.nlist }" var="n" varStatus="i">
 			<tr style="border-bottom: 1px solid #C8C8C8;
 	font-size:16px;
 	color:#707070;
 	border-top: 1px solid #C8C8C8;">
-				<td>1</td>
-				<td style="text-align:left;"><a href="/board/detailPage.do" style="color:#707070; text-decoration:none;">택배 파업으로 배송 지연</a></td>
-				<td>운영자</td>
-				<td>2022.02.11</td>
+				<td>${n.noticeNo }</td>
+				<td style="text-align:left;"><a href="/board/detailPage.do" style="color:#707070; text-decoration:none;">${n.title }</a></td>
+				<td>${n.userName }</td>
+				<td>${n.regdate}</td>
 			</tr>
 			
+			</c:forEach>
 			
-			<tr>
-				<td>2</td>
-				<td style="text-align:left;" >택배 파업으로 배송 지연</td>
-				<td>운영자</td>
-				<td>2022.02.11</td>
-			</tr>
-			
-			<tr>
-				<td>3</td>
-				<td style="text-align:left;">택배 파업으로 배송 지연</td>
-				<td>운영자</td>
-				<td>2022.02.11</td>
-			</tr>
 			</tbody>
+			</c:when>
+			<c:otherwise>
+			없어
+			</c:otherwise>
+			
+			</c:choose>
+			
 			</table>
 		</div>
 	</div>
@@ -130,6 +128,8 @@ border-radius: 10px 10px 10px 10px;
 
 
 	<div id="tab-2" class="tab-content">
+	
+	
 		<div class="faq">
 		
 		<div id="set">
@@ -138,63 +138,47 @@ border-radius: 10px 10px 10px 10px;
 		<a href="" class="a"><div class="sets">전체</div></a>
 		</div>
 		
+		<c:choose>
+	<c:when test="${!requestScope.list.isEmpty() }">
+		
+		
 		<table style="text-align: center;
 	line-height: 90px;
 	border-top: 1px solid #707070;
 	border-spacing: 0px;
 	width: 100%;">
+	
+	<c:forEach items="${requestScope.list }" var="f" varStatus="i">
+	
+	
 		<tr style="border-bottom: 1px solid #C8C8C8;
 	font-size:16px;
 	color:#707070;
 	border-top: 1px solid #707070;">
-			<td style="font-weight:bold;">회원/변경</td>
-			<td style="text-align:left;"><span style="font-size:18px; color:#A9D4D9; font-weight:bold;">Q</span><span style="margin: 0px 0px 0px 19px;">정보 변경 어떻게 해?</span></td>
+			<td style="font-weight:bold;">${f.category }</td>
+			<td style="text-align:left;"><span style="font-size:18px; color:#A9D4D9; font-weight:bold;">Q</span><span style="margin: 0px 0px 0px 19px;">${f.title }</span></td>
 			<td><span class="glyphicon glyphicon-chevron-down Icon"></span>
 			<span class="glyphicon glyphicon-chevron-up Icon" style="display:none"></span></td>
 		</tr>
 		
-		<tr style="display:none;  background-color:#A9D4D9"">
+		<tr style="display:none;  background-color:#A9D4D9">
    			 <td></td>
-   			 <td style="text-align:left;"><span style="color:#71A4AA; font-weight:bold; font-size:18px;">A</span><span style="margin: 0px 0px 0px 19px;">얼마든지 변경 가능합니다.</span></td>
-   			 <td></td>
-  		</tr>
-  		
-  		
-  		
-  		
-  		<tr>
-			<td>회원/변경</td>
-			<td style="text-align:left;"><span style="font-size:18px; color:#A9D4D9; font-weight:bold;">Q</span><span style="margin: 0px 0px 0px 19px;">정보 변경 어떻게 해?</span></td>
-			<td><span class="glyphicon glyphicon-chevron-down Icon"></span>
-			<span class="glyphicon glyphicon-chevron-up Icon" style="display:none"></span></td>
-		</tr>
-		
-		<tr style="display:none;  background-color:#A9D4D9"">
-   			 <td></td>
-   			 <td style="text-align:left;"><span style="color:#71A4AA; font-weight:bold; font-size:18px;">A</span><span style="margin: 0px 0px 0px 19px;">얼마든지 변경 가능합니다.</span></td>
+   			 <td style="text-align:left;"><span style="color:#71A4AA; font-weight:bold; font-size:18px;">A</span><span style="margin: 0px 0px 0px 19px;">${f.content }</span></td>
    			 <td></td>
   		</tr>
-  		
-  		
-  		<tr>
-			<td>회원/변경</td>
-			<td style="text-align:left;"><span style="font-size:18px; color:#A9D4D9; font-weight:bold;">Q</span><span style="margin: 0px 0px 0px 19px;">정보 변경 어떻게 해?</span></td>
-			<td><span class="glyphicon glyphicon-chevron-down Icon"></span>
-			<span class="glyphicon glyphicon-chevron-up Icon" style="display:none"></span></td>
-		</tr>
-		
-		<tr style="display:none;  background-color:#A9D4D9"">
-   			 <td></td>
-   			 <td style="text-align:left;"><span style="color:#71A4AA; font-weight:bold; font-size:18px;">A</span><span style="margin: 0px 0px 0px 19px;">얼마든지 변경 가능합니다.</span></td>
-   			 <td></td>
-  		</tr>
-  		
-		
+  		</c:forEach>
 
   
 </table>
 
+</c:when>
+		<c:otherwise>
+		일단 비워
+		</c:otherwise>
+		</c:choose>
+
 		</div>
+	
 	</div>
 
 
@@ -230,7 +214,7 @@ border-radius: 10px 10px 10px 10px;
 		});
 	</script>
 	</div>
-	
+	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
