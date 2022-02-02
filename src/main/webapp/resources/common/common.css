@@ -7,7 +7,11 @@
 	text-decoration: none;
 	list-style-type: none;
 	box-sizing: border-box;
+	font-family: 'Noto Sans KR', sans-serif;
+	color: #707070;
+	letter-spacing: -0.3px;
 }
+
 
 /*페이지세로 가변적인 길이 유지*/
 html {
@@ -21,16 +25,12 @@ body {
 	position: relative;
 }
 
-/*푸터 고정*/
-footer {
-	position: absolute;
-	/*bottom: -300px;*/
-}
 
 /*content 기본형식*/
 #content{
 	width: 70%;
-    margin: 100px auto 0;
+    margin: 0 auto;
+    padding-top: 100px;
 }
 
 
@@ -39,10 +39,8 @@ footer {
 .input-style {
 	height: 50px;
 	border: 0.5px solid #C8C8C8;
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 16px;
-	color: #707070;
 	padding: 15px;
+	font-size: 16px;
 }
 input::placeholder,
 textarea::placeholder {
@@ -59,8 +57,31 @@ textarea {
 }
 
 
+/*검색창 디자인*/
+.box-search {
+	float: right;
+	position: relative;
+}
+.search-style {
+	width: 300px;
+	height: 40px;
+	border: 0.5px solid #C8C8C8;
+	padding: 0 40px 0 15px;
+	font-size: 16px;
+}
+.box-search>a {
+	position: absolute;
+	top: 9px;
+	right: 15px;
+	font-size: 15px;
+}
+
+
 /*button 디자인(민트)*/
 /*button 태그에 적용*/
+.box-btn {
+	text-align: center;
+}
 .btn-style-mint {
 	/*width는 개별 css에서 설정해주세요*/
 	height: 50px;
@@ -68,8 +89,8 @@ textarea {
 	border: 0;
 	background-color: #A9D4D9;
 	border-radius: 10px;
-	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 18px;
+	font-weight: 700;
 	color: #fff;
 	cursor: pointer;
 }
@@ -77,11 +98,12 @@ textarea {
 	display: block;
 	width: 100%;
 	height: 100%;
-	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 18px;
+	font-weight: 700;
 	line-height: 50px;
 	color: #fff;
 }
+
 
 /*button 디자인(테두리만)*/
 /*button 태그에 적용*/
@@ -92,20 +114,19 @@ textarea {
 	border: 0.5px solid #C8C8C8;
 	background-color: #fff;
 	border-radius: 10px;
-	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 18px;
-	color: #707070;
+	font-weight: 700;
 	cursor: pointer;
 }
 .btn-style-line>a {
 	display: block;
 	width: 100%;
 	height: 100%;
-	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 18px;
+	font-weight: 700;
 	line-height: 50px;
-	color: #707070;
 }
+
 
 /*button 디자인(회색)*/
 /*button 태그에 적용*/
@@ -116,8 +137,8 @@ textarea {
 	border: 0;
 	background-color: #C8C8C8;
 	border-radius: 10px;
-	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 18px;
+	font-weight: 700;
 	color: #fff;
 	cursor: pointer;
 }
@@ -125,8 +146,8 @@ textarea {
 	display: block;
 	width: 100%;
 	height: 100%;
-	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 18px;
+	font-weight: 700;
 	line-height: 50px;
 	color: #fff;
 }
@@ -147,3 +168,35 @@ textarea {
 	object-fit: cover;
 }
 
+
+/*pageNavi*/
+#page_wrap {
+    width: 100%;
+    padding-top: 40px;
+}
+#page_wrap .page_ul {
+    display: flex;
+    justify-content: center;
+}
+#page_wrap .page_ul li {
+    display: block;
+    width: 35px;
+    height: 35px;
+    float: left;
+    text-align: center;
+    margin: 0 5px;
+    line-height: 15.5px;
+    font-size: 16px;
+}
+#page_wrap .page_ul li a {
+    display: block;
+    font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+    padding: 10px;
+    border-radius: 50%;
+}
+#page_wrap .page_ul li a.page_active {
+    background-color: #A9D4D9;
+    border-radius: 10px;
+    color: #fff;
+}

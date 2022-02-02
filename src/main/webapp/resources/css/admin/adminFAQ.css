@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+#content {
+	text-align: center;
+}
+
 #gnbList ul:last-of-type{
 	display: block;
 }
@@ -47,15 +51,11 @@
 	padding-bottom: 30px;
 }
 .model-top h4 {
-	font-family: 'Noto Sans KR', sans-serif;
 	font-weight: 700;
 	font-size: 18px;
-	color: #707070;
-	letter-spacing: -0.3px;
 }
 .model-top i {
 	font-size: 18px;
-	color: #707070;
 	cursor: pointer;
 }
 .model-middle {
@@ -75,9 +75,6 @@
 	width: 470px;
 	height: 50px;
 	border: 0.5px solid #C8C8C8;
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 16px;
-	color: #707070;
 	padding-left: 15px;
 	margin-left: 20px;
 }
@@ -86,9 +83,6 @@
 	height: 200px;
 	resize: none;
 	border: 0.5px solid #C8C8C8;
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 16px;
-	color: #707070;
 	padding: 15px;
 	margin-bottom: 20px;
 }

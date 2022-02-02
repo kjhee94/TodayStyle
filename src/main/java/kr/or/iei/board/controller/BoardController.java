@@ -21,6 +21,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/boardPage.do", method=RequestMethod.GET)
 	public ModelAndView boardPage(ModelAndView mav)
+//	public String boardPage(ModelAndView mav)
 	{
 		ArrayList<FAQ> list = bService.AllFAQ();
 		ArrayList<Notice> nlist = bService.AllNotice();
@@ -30,6 +31,7 @@ public class BoardController {
 		mav.setViewName("board/boardPage"); 
 		return mav;
 		
+//		return "board/boardPage";
 	}
 	
 	@RequestMapping(value="/board/detailPage.do", method=RequestMethod.GET)

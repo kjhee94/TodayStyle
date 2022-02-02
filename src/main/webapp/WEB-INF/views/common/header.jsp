@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 	<header>
-		<div id="container">
+		<div id="hContainer">
 			<div id="logo">
 				<a href="/"><img alt="오늘 뭐 입지 로고" src="/resources/images/logo.png"></a>
 			</div>

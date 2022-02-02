@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 header {
 	width: 100%;
 	position: fixed;
@@ -9,7 +8,7 @@ header {
 	background-color: #fff;
 	z-index: 999;
 }
-#container {
+#hContainer {
 	width: 70%;
 	height: 100px;
 	margin: 0 auto;
@@ -28,6 +27,7 @@ header {
 	height: 100%;
 }
 
+
 nav {
 	align-items: flex-end;
 }
@@ -43,6 +43,7 @@ nav {
 #gnb-list>li:hover>a {
 	color: #A9D4D9;
 }
+
 
 #member {
 	width: 240px;

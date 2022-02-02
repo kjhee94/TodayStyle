@@ -1,88 +1,156 @@
 @charset "UTF-8";
 
-*
-		{
-		font-family: 'Noto Sans KR', sans-serif;
-		}
-		
-#join{
-           width:400px;
-           height:1000px;
-           margin: 0 auto;
-       }
-       .span
-       {
-           font-weight:bold;
-           font-size:16px;
-           color:#707070;
-           margin: 0px 0px 13px 0px;
-       }
-       .span2
-       {
-           font-size:12px; 
-           float:right;  
-           margin: 0px 0px 13px 0px;
-           color:#707070;
-       }
+#content {
+	width: 100%;
+	padding: 0;
+}
+
+#joinForm{
+    width: 400px;
+    margin: 0 auto;
+    padding: 80px 0;
+}
+
+#logo {
+	width: 180px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+#logo img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.title {
+    font-weight: 700;
+}
+
+.explain {
+    font-size: 12px; 
+    float: right;
+}
+.input-style {
+	width: 100%;
+	margin: 10px 0 30px;
+	clear: both;
+}
+.input-style[name=userPwd] {
+	margin-bottom: 0;
+}
+.input-style[name=userEmail] {
+	margin-bottom: 10px;
+}
+
+.btn-style-mint{
+	width: 100%;
+}
+.btn-certified {
+	margin-bottom: 30px;
+}
+
+.box-radio {
+	width: 100%;
+	margin: 20px 0 30px;
+	display: flex;
+	justify-content: space-between;
+}
+.box-radio input {
+	margin-right: 10px;
+	position: relative;
+	top: 1.5px;
+}
+
+.box-agree {
+	width: 100%;
+	padding: 20px;
+	margin: 10px 0 30px;
+	border: 0.5px solid #D9D9D9;
+}
+.box-agree input {
+	margin-right: 15px;
+	position: relative;
+	top: 1.5px;
+}
+.whole {
+	margin-top: 5px;
+}
+.whole:after {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 0.5px;
+	background-color: #D9D9D9;
+	margin-top: 20px;
+}
+
+.box-checkbox>div {
+	margin: 20px 0;
+}
+.box-checkbox>div:last-child {
+	margin-bottom: 0;
+}
+.small {
+	font-size: 12px;
+	color: #A9D4D9;
+}
+.un {
+	color: #C8C8C8;
+}
+
+
+
        
-        input[type="checkbox"] 
-       {
-        -webkit-appearance: none;
-        position: relative;
-        width: 16px;
-        height: 16px;
-        cursor: pointer;
-        outline: none !important;
-        border: 1px solid #eeeeee;
-        border-radius: 2px;
-        background: #fbfbfb;
-        }
- 
-        input[type="checkbox"]::before 
-       {
-        content: "\2713";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        overflow: hidden;
-        transform: scale(0) translate(-50%, -50%);
-        line-height: 1;
-        }
-       input[type="checkbox"]:hover 
-       {
-        border-color: rgba(170, 170, 170, 0.5);
-        }
- 
-        input[type="checkbox"]:checked 
-       {
-        background-color: #A9D4D9;
-        border-color: #A9D4D9;
-        color: white;
-        }
-          input[type="checkbox"]:checked::before 
-       {
-        border-radius: 2px;
-        transform: scale(1) translate(-50%, -50%)
-        }
-       
-       
-        input[type=radio]{
-            background-color: #FFFF;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            margin-left: 16px;
-            border: 1px solid rgb(216, 216, 216);
-            width: 14px;
-            height: 14px;
-            border-radius: 100%;
-        }
-        input[type=radio]:checked{
-            background-color: #A9D4D9;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            margin-left: 16px;
-            border: none;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-        }
+/*체크박스 커스텀*/
+input[type="checkbox"] {
+	-webkit-appearance: none;
+	position: relative;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	outline: none !important;
+	border: 1px solid #eeeeee;
+	border-radius: 2px;
+	background: #fbfbfb;
+}
+input[type="checkbox"]::before {
+	content: "\2713";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	overflow: hidden;
+	transform: scale(0) translate(-50%, -50%);
+	line-height: 1;
+}
+input[type="checkbox"]:hover {
+	border-color: rgba(170, 170, 170, 0.5);
+}
+input[type="checkbox"]:checked {
+	background-color: #A9D4D9;
+	border-color: #A9D4D9;
+	color: white;
+}
+input[type="checkbox"]:checked::before{
+	border-radius: 2px;
+	transform: scale(1) translate(-50%, -50%)
+}
+
+/*라디오 버튼 커스텀*/
+input[type=radio]{
+	background-color: #FFFF;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: 1px solid rgb(216, 216, 216);
+	width: 16px;
+	height: 16px;
+	border-radius: 100%;
+}
+input[type=radio]:checked{
+	background-color: #A9D4D9;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border: none;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+}
