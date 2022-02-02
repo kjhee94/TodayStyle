@@ -22,32 +22,21 @@
 	<div id="content">
 		<div class="notice-wrap">
 			<div class="notice-info">
-				<span class="title">택배파업으로 인한 배송지연</span>
+				<span class="title">${requestScope.n.title }</span>
 			</div>
 			<div class="notice-info">
 				<div class="info-one">
 					<span>작성자</span>
-					<span>운영자</span>
+					<span>${requestScope.n.userName }</span>
 				</div>
 				<div class="info-one">
 					<span>작성일</span>
-					<span>2022/12/12</span>
+					<span>${requestScope.n.regdate}</span>
 				</div>
 			</div>
 			<div class="notice-content">
 				<p>
-					내용입니다. 내용이에요. 내용이지요.
-					무슨 내용을 적어야 하지
-					내용을 채워야 해
-					채워야해~~~~~~~~~~~~~~
-					화이팅~~~~~~!!
-					이 정도면 됐겠지 ㅎ.ㅎ
-					내용입니다. 내용이에요. 내용이지요.
-					무슨 내용을 적어야 하지
-					내용을 채워야 해
-					채워야해~~~~~~~~~~~~~~
-					화이팅~~~~~~!!
-					이 정도면 됐겠지 ㅎ.ㅎ
+					${requestScope.n.content }
 				</p>
 			</div>
 		</div>

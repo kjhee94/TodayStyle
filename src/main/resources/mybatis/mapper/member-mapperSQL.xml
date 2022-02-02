@@ -25,5 +25,22 @@
       VALUES (MEMBER_SEQ.NEXTVAL, #{userId}, #{userPwd}, #{userName}, #{userEmail}, #{gender},#{nickname}, DEFAULT, DEFAULT, 'N')
    </insert>
 	
-
+	
+	 <select id="findId" parameterType="member" resultType="member">
+   		SELECT
+   		 user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+   		from
+   		 MEMBER
+   		 	where user_name=#{userName} and user_Email=#{userEmail} and end_yn='N'
+   
+   </select>
 </mapper>

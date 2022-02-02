@@ -12,19 +12,66 @@
          end_yn as endYN
       FROM
          faq
+          where end_yn='N'
    </select>
    
    
-   <select id="AllNotice" resultType="Notice">
-          SELECT
-      notice_No as noticeNo,
+   
+    <select id="NoticeList" parameterType="hashmap" resultType="Notice">
+        SELECT 
+notice_No as noticeNo,
          title as title,
          content as content,
          regdate as regdate,
     user_name as username
-      FROM
-         notice n
-         left join member m on(n.user_id=m.user_id)
-         ORDER BY notice_NO DESC
+FROM (SELECT ROW_NUMBER() OVER(order BY notice_no DESC)AS NUM, notice.notice_No,
+notice.title,
+notice.content,
+notice.regdate
+,USER_NAME 
+ FROM notice 
+LEFT JOIN MEMBER ON(notice.user_id=MEMBER.USER_ID)
+ WHERE notice.END_YN='N' 
+ ) 
+WHERE NUM BETWEEN #{start} AND #{end}
+   </select>
+   
+   <select id="totalCount" resultType="int">
+    SELECT COUNT(*) as count FROM notice WHERE end_YN='N'
+   </select>
+   
+   <select id="detailPage" resultType="Notice">
+   SELECT 
+   notice_No as noticeNo,
+    title as title,
+         content as content,
+         regdate as regdate,
+    user_name as username
+   FROM notice 
+LEFT JOIN MEMBER ON(notice.user_id=MEMBER.USER_ID)
+ WHERE  NOTICE_NO =#{notice_no} AND notice.END_YN='N'
+   </select>
+   
+   <select id="noticeSearch" parameterType="hashmap" resultType="Notice">
+           SELECT 
+notice_No as noticeNo,
+         title as title,
+         content as content,
+         regdate as regdate,
+    user_name as username
+FROM (SELECT ROW_NUMBER() OVER(order BY notice_no DESC)AS NUM, notice.notice_No,
+notice.title,
+notice.content,
+notice.regdate
+,USER_NAME 
+ FROM notice 
+LEFT JOIN MEMBER ON(notice.user_id=MEMBER.USER_ID)
+ WHERE notice.END_YN='N' AND TITLE LIKE '%'||#{keyword}||'%'
+ ) 
+WHERE NUM BETWEEN #{start} AND #{end}
+   </select>
+   
+     <select id="totalSearchCount" resultType="int">
+    SELECT COUNT(*) as count FROM notice WHERE end_YN='N' AND TITLE LIKE '%'||#{keyword}||'%'
    </select>
 </mapper>

@@ -39,12 +39,35 @@ margin: 20px 0px 20px 0px;
 			</ul>
 			<br>
 			<div id="tab-1" class="tab-content current">
+			
+			<c:choose>
+			<c:when test="${requestScope.m != null }">
+			<div style="color:#707070; font-size:16px; margin: 0px 0px 20px 0px;">
+	<span style="font-weight:bold; ">${requestScope.m.userName}</span> 님의 정보와 일치하는 아이디 목록입니다.
+	</div>
+	<div style="border: 1px solid #C8C8C8; width:400px; height:73px; margin:0 auto;">
+	<div style="float:left; width:50%; height:100%; line-height:70px; font-size:18px; color:#707070;">
+	${requestScope.m.userId}
+	</div>
+	<div style="float:left; width:50%; height:100%; line-height:70px; font-size:12px; color:#C8C8C8;">
+	 ${requestScope.m.enrollDate} 가입
+	 </div>
+	</div>
+	<input type="button" onclick="location.href='/member/loginPage.do'" value="로그인 하기" id="findId" class="btn-style-mint">
+			</c:when>
+			<c:otherwise>
+			<form action="/member/findId.do" method="post">
 			<input type="text" class="input-style" name="userName" placeholder="이름" style="margin:0px 0px 10px 0px;">
 			<br>
 			<input type="email" class="input-style" name="userEmail" placeholder="이메일">
 			<br>
-			<input type="button" value="아이디 찾기" id="findId" class="btn-style-mint">
+			<input type="submit" value="아이디 찾기" id="findId" class="btn-style-mint"><br>
+			</form>
+			</c:otherwise>
+			</c:choose>
 			</div>
+
+
 
 			<div  id="tab-2" class="tab-content">
 			<input type="text" class="input-style" name="userName" placeholder="이름" style="margin:0px 0px 10px 0px;">
@@ -71,74 +94,6 @@ margin: 20px 0px 20px 0px;
 
 		
 			});
-			
-
-		// 아이디 찾기
-		$(document).ready(function(){
-			$("#findId").click(function() {
-				var userName = $("input[name=userName]").val();
-				var userEmail = $("input[name=userEmail]").val();
-				$.ajax({
-					url : "/member/findId.do",
-					type : "post",
-					data : {
-						"userName" : userName,
-						"userEmail" : userEmail
-					},
-					success : function(id) {
-						var findId = $.trim(id);
-						if (findId != "") {
-							$("#alertModalMSG").html(name + "님 아이디는 " + id + "입니다.");
-							$("#btn").css("display", "none");
-							$("#pwdBtn").css("display", "block");
-							$("#loginBtn").css("display", "block");
-						} else {
-							$("#alertModalMSG").html("입력하신 정보로 아이디를 찾을 수 없습니다." + "<br>"
-													+ "이름과 이메일을 확인해주세요.");
-							$("#btn").css("display", "show");
-							$("#loginBtn").css("display", "none");
-							$("#movePwdBtn").css("display", "none");
-						}
-					}
-				})
-				$("#alertModal").modal("show");
-			})
-
-		
-			});
-		// 비밀번호 찾기
-		$("#findPwd").click(
-				function() {
-					var userId = $("input[name=userId]").val();
-					var email = $("input[name=pwdUserEmail]").val();
-
-					$.ajax({
-						url : "/member/findPwd.do",
-						type : "post",
-						data : {
-							"userId" : userId,
-							"userEmail" : email
-						},
-						success : function(result) {
-							var findPwd = $.trim(result);
-							if (findPwd != "") {
-								$("#alertModalMSG").html( email + " 주소로 임시비밀번호가 발급되었습니다.");
-								$("#btn").css("display", "block");
-								$("#movePwdBtn").css("display", "none");
-								$("#loginBtn").css("display", "block");
-							} else {
-								$("#alertModalMSG").html("입력하신 정보로 비밀번호를 찾을 수 없습니다." + "<br>"
-														+ "아이디와 이메일을 확인해주세요.");
-								$("#movePwdBtn").css("display", "none");
-								$("#loginBtn").css("display", "none");
-								$("#btn").css("display", "show");
-							}
-							$("#alertModal").modal("show");
-						}
-					})
-				})
-
-		
 	</script>
 
 

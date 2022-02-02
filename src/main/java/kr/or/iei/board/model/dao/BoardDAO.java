@@ -1,7 +1,7 @@
 package kr.or.iei.board.model.dao;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +24,151 @@ public class BoardDAO {
 	}
 
 
-	public ArrayList<Notice> AllNotice() {
-		return new ArrayList<Notice> (sqlSession.selectList("board.AllNotice"));
+	public ArrayList<Notice> NoticeList(int currentPage, int recordCountPerPage) {
+		int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
+		int end = currentPage * recordCountPerPage;
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("start", start);
+		map.put("end", end);
+		return new ArrayList<Notice> (sqlSession.selectList("board.NoticeList",map));
 	}
 
-	
 
-	
+	public String getPageNavi(int naviCountPerPage, int recordCountPerPage, int currentPage) {
+		int recordTotalCount = totalCount();//전체 글 갯수
+		int pageTotalCount = 0; //전체 페이지 개수
+		
+
+		if((recordTotalCount % recordCountPerPage)>0)
+		{
+			pageTotalCount = (recordTotalCount / recordCountPerPage) + 1;
+		}else
+		{
+			pageTotalCount = recordTotalCount / recordCountPerPage;
+		}
+
+		int startNavi = (((currentPage-1) / naviCountPerPage) * naviCountPerPage) + 1;
+		int endNavi = startNavi + (naviCountPerPage-1);
+		
+		
+		if(endNavi > pageTotalCount)
+		{
+			endNavi = pageTotalCount;
+		}
+
+		
+		//PageNavi 모양 만들기
+		
+StringBuilder sb = new StringBuilder();
+		
+		if(startNavi!=1)
+		{
+			sb.append("<a href='/board/boardPage.do?currentPage="+(startNavi-1)+"'>< Prev</a>  ");
+		}
+		
+		for(int i = startNavi; i<=endNavi; i++)
+		{
+			if(i==currentPage)
+			{
+				sb.append("<a href='/board/boardPage.do?currentPage="+i+"'><B style='font-size:1.2em'>"+i+"</B></a> ");
+			}
+			else
+			{
+			sb.append("<a href='/board/boardPage.do?currentPage="+i+"'>"+i+"</a> ");
+			}
+		}
+		
+		if(endNavi!=pageTotalCount)
+		{
+			sb.append("<a href='/board/boardPage.do?currentPage="+(endNavi+1)+"'>Next ></a> ");
+		}
+		
+		
+		return sb.toString();
+	}
+
+
+	private int totalCount() {
+		return sqlSession.selectOne("board.totalCount");
+		
+	}
+
+
+	public Notice detailPage(int noticeNo) {
+		return sqlSession.selectOne("board.detailPage",noticeNo);
+	}
+
+
+	public ArrayList<Notice> noticeSearch(int currentPage, int recordCountPerPage, String keyword) {
+		int start = currentPage * recordCountPerPage - (recordCountPerPage-1);
+		int end = currentPage * recordCountPerPage;
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("keyword", keyword);
+		return new ArrayList<Notice> (sqlSession.selectList("board.noticeSearch",map));
+	}
+
+
+	public String getSearchPageNavi(int naviCountPerPage, int recordCountPerPage, int currentPage, String keyword) {
+			
+			int recordTotalCount = totalSearchCount(keyword); //전체 글 갯수
+			
+			int pageTotalCount = 0; //전체 페이지 개수
+		
+			if((recordTotalCount % recordCountPerPage)>0)
+			{
+				pageTotalCount = (recordTotalCount / recordCountPerPage) + 1;
+			}else
+			{
+				pageTotalCount = recordTotalCount / recordCountPerPage;
+			}
+			
+		
+			int startNavi = (((currentPage-1) / naviCountPerPage) * naviCountPerPage) + 1;
+			int endNavi = startNavi + (naviCountPerPage-1);
+		
+			if(endNavi > pageTotalCount)
+			{
+				endNavi = pageTotalCount;
+			}
+
+			
+			// PageNavi 모양 만들기
+			
+					StringBuilder sb = new StringBuilder();
+					
+					if(startNavi!=1)
+					{
+						sb.append("<a href='/board/noticeSearch.do?currentPage="+(startNavi-1)+"&keyword="+keyword+"'>< Prev</a>	");
+					}
+					
+					for(int i=startNavi; i<=endNavi;i++)
+					{
+						if(i==currentPage)
+						{
+							sb.append("<a href='/board/noticeSearch.do?currentPage="+i+"&keyword="+keyword+"'><B style='font-size:1.2em'>"+i+"</B></a> ");
+						}else
+						{
+							sb.append("<a href='/board/noticeSearch.do?currentPage="+i+"&keyword="+keyword+"'>"+i+"</a> ");
+						}
+						
+					}
+					
+					if(endNavi!=pageTotalCount)
+					{
+						sb.append(" <a href='/board/noticeSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"'>Next ></a> ");
+					}
+			
+			
+			return sb.toString();
+		}
+
+
+	private int totalSearchCount(String keyword) {
+		return sqlSession.selectOne("board.totalSearchCount",keyword);
+	}
+
+
 	
 }

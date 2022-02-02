@@ -31,10 +31,17 @@
 			</div>
 		
 			<div id="tab-1" class="tab-content on">
+				<form action="/board/noticeSearch.do" method="get">
 				<div class="box-search">
-					<input class="search-style" type="text" name="" placeholder="검색어를 입력하세요">
+					<input class="search-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
 					<a href=""><i class="fas fa-search"></i></a>
 				</div>
+				</form>
+				
+				
+				
+				
+				
 				
 				<div class="notice">
 					<table id="noticeTable">
@@ -51,7 +58,7 @@
 								<tr>
 									<td>${n.noticeNo }</td>
 									<td>
-										<div class="ellipsis"><a href="/board/detailPage.do">${n.title }</a></div>
+										<div class="ellipsis"><a href="/board/detailPage.do?noticeNo=${n.noticeNo }&currentPage=${requestScope.currentPage}">${n.title }</a></div>
 									</td>
 									<td>${n.userName }</td>
 									<td>${n.regdate}</td>
@@ -64,7 +71,7 @@
 							</c:otherwise>
 						</c:choose>
 					</table>
-					
+					${requestScope.pageNavi }
 					<!-- pageNavi -->
 					<div id="page_wrap">
 						<ul class="page_ul">
@@ -110,7 +117,7 @@
 						</c:when>
 						
 						<c:otherwise>
-							일단 비워
+							
 						</c:otherwise>
 					</c:choose>
 			  	</div>

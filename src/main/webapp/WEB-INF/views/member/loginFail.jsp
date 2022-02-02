@@ -12,7 +12,7 @@
 <body>
 	<script>
 		alert('로그인 실패 (실패 사유: ID 또는 PW를 재확인 해주세요)');
-		location.replace('/');
+		location.replace('/member/loginPage.do');
 		
 	</script>
 </body>
