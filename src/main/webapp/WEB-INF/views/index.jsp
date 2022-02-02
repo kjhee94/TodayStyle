@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/resources/common/footer.css">
 <link rel="stylesheet" href="/resources/css/index.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="/resources/common/common.js"></script>
 <!-- Demo styles -->
 <style>
 
