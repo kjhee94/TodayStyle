@@ -26,5 +26,10 @@ public class MemberDAO {
 		return sqlSession.selectOne("member.selectLoginMember",member);
 	}
 
+	public Member findId(Member member) {
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		return sqlSession.selectOne("member.findId",member);
+	}
+
 	
 }

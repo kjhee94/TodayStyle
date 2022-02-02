@@ -17,6 +17,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -96,6 +97,40 @@ public class MemberController {
 			return "member/loginFail";
 		}
 		
+		
+	}
+	
+
+	@RequestMapping(value="/member/findId.do",method=RequestMethod.POST)
+	public ModelAndView findId(HttpServletRequest request,
+			HttpServletResponse response,
+			 Member member,
+			ModelAndView mav)
+	{
+		
+		Member m = mService.findId(member);
+		
+		
+		if(m!=null)
+		{
+			mav.addObject("m",m);
+			mav.setViewName("member/findIdPage"); 
+		}else
+		{
+			mav.addObject("msg","회원 정보가 없습니다.");
+			mav.addObject("location","/member/findIdPage.do");
+			mav.setViewName("member/msg"); 
+		}
+		return mav;
+	}
+	
+	@RequestMapping(value="/member/logout.do",method=RequestMethod.GET)
+	public String logout(HttpSession session, @SessionAttribute Member member)
+	{
+		
+		session.invalidate();
+		
+		return "redirect:/";
 		
 	}
 	

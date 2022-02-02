@@ -30,6 +30,11 @@ public class MemberServiceImpl implements MemberService {
 		return m;
 	}
 
+	@Override
+	public Member findId(Member member) {
+		return mDAO.findId(member);
+	}
+
 
 	
 
