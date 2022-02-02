@@ -46,7 +46,7 @@
        		<div class="box-radio">
 		        <div><input type="radio" id="female" name="gender" value="여자"><label for="female">여자</label></div>
 		        <div><input type="radio" id="male" name="gender" value="남자"><label for="male">남자</label></div>
-		        <div><input type="radio" id="non" name="gender" value="비공개" checked><label for="non">비공개</label></div>
+		        <div><input type="radio" id="non" name="gender" value="비공개"><label for="non">비공개</label></div>
 			</div>
        
         	<span class="title">약관동의</span>

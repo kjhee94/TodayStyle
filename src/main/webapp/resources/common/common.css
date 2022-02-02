@@ -157,9 +157,13 @@ textarea {
 /*div 태그에 적용(div>a>img의 형태)*/
 .profile {
 	/*width와 height는 개별 css에서 설정해주세요*/
-	border: 1px solid #707070;
+	border: 3px solid #707070;
 	border-radius: 100px;
 	overflow: hidden;
+}
+.profile>a {
+	width: 100%;
+	height: 100%;
 }
 .profile>a>img {
 	display: block;
