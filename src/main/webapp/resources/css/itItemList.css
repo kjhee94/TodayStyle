@@ -133,11 +133,14 @@ select::-ms-expand {
 .itItemImgArea {
 	border-radius: 2px;
 	width: 240px;
-	height: 240px;
 	position: relative;
 	cursor: pointer;
-	background-color:#707070;
 	display:inline-block;
+}
+
+.itItemImg{
+	width:100%;
+	
 }
 .itItemImgWrap{
 	display:inline-block;
