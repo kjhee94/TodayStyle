@@ -19,8 +19,10 @@ public class BoardDAO {
 	private SqlSessionTemplate sqlSession;
 
 	
-	public ArrayList<FAQ> AllFAQ() {
-		return new ArrayList<FAQ> (sqlSession.selectList("board.AllFAQ"));
+	public ArrayList<FAQ> AllFAQ(String type) {
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("type",type);
+		return new ArrayList<FAQ> (sqlSession.selectList("board.buttonFAQ",map));
 	}
 
 
@@ -59,28 +61,34 @@ public class BoardDAO {
 		
 		//PageNavi 모양 만들기
 		
-StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder();
 		
 		if(startNavi!=1)
 		{
-			sb.append("<a href='/board/boardPage.do?currentPage="+(startNavi-1)+"'>< Prev</a>  ");
+		
+			
+			sb.append("<li><a href='/board/NoticePage.do?currentPage="+(startNavi-1)+"'><i class='fas fa-chevron-left'></i></a></li> ");
 		}
 		
 		for(int i = startNavi; i<=endNavi; i++)
 		{
 			if(i==currentPage)
 			{
-				sb.append("<a href='/board/boardPage.do?currentPage="+i+"'><B style='font-size:1.2em'>"+i+"</B></a> ");
+				
+				sb.append("<li><a href='/board/NoticePage.do?currentPage="+i+"' class='page_active'>"+i+"</a></li>");
 			}
 			else
 			{
-			sb.append("<a href='/board/boardPage.do?currentPage="+i+"'>"+i+"</a> ");
+			
+			sb.append("<li><a href='/board/NoticePage.do?currentPage="+i+"'>"+i+"</a></li>");
 			}
 		}
 		
 		if(endNavi!=pageTotalCount)
 		{
-			sb.append("<a href='/board/boardPage.do?currentPage="+(endNavi+1)+"'>Next ></a> ");
+		
+			
+			sb.append("<li><a href='/board/NoticePage.do?currentPage="+(endNavi+1)+"'><i class='fas fa-chevron-right'></i></a></li>");
 		}
 		
 		
@@ -140,24 +148,31 @@ StringBuilder sb = new StringBuilder();
 					
 					if(startNavi!=1)
 					{
-						sb.append("<a href='/board/noticeSearch.do?currentPage="+(startNavi-1)+"&keyword="+keyword+"'>< Prev</a>	");
+				
+						
+						sb.append("<li><a href='/board/noticeSearch.do?currentPage="+(startNavi-1)+"&keyword="+keyword+"'><i class='fas fa-chevron-left'></i></a></li>");
 					}
 					
 					for(int i=startNavi; i<=endNavi;i++)
 					{
 						if(i==currentPage)
 						{
-							sb.append("<a href='/board/noticeSearch.do?currentPage="+i+"&keyword="+keyword+"'><B style='font-size:1.2em'>"+i+"</B></a> ");
+
+							sb.append("<li><a href='/board/noticeSearch.do?currentPage="+i+"&keyword="+keyword+"' class='page_active'>"+i+"</a></li>");
 						}else
 						{
-							sb.append("<a href='/board/noticeSearch.do?currentPage="+i+"&keyword="+keyword+"'>"+i+"</a> ");
+							
+							
+							sb.append("<li><a href='/board/noticeSearch.do?currentPage="+i+"&keyword="+keyword+"'>"+i+"</a></li>");
 						}
 						
 					}
 					
 					if(endNavi!=pageTotalCount)
 					{
-						sb.append(" <a href='/board/noticeSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"'>Next ></a> ");
+						
+						
+						sb.append("<li><a href='/board/noticeSearch.do?currentPage="+(endNavi+1)+"&keyword="+keyword+"'><i class='fas fa-chevron-right'></i></a></li>");
 					}
 			
 			
@@ -167,6 +182,13 @@ StringBuilder sb = new StringBuilder();
 
 	private int totalSearchCount(String keyword) {
 		return sqlSession.selectOne("board.totalSearchCount",keyword);
+	}
+
+
+	public ArrayList<FAQ> buttonFAQ(String type) {
+		HashMap<String,Object> map=new HashMap<String,Object>();
+		map.put("type",type);
+		return new ArrayList<FAQ> (sqlSession.selectList("board.buttonFAQ",map));
 	}
 
 

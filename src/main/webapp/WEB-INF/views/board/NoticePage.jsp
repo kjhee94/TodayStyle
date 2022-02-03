@@ -25,17 +25,18 @@
 		<div id="content">
 			<div class="box-tabs">
 				<ul class="tabs">
-					<li class="tab-link current" data-tab="tab-1">공지사항</li>
-					<li class="tab-link" data-tab="tab-2">자주 묻는 질문</li>
+					<a href="/board/NoticePage.do"><li class="tab-link current" data-tab="tab-1">공지사항</li></a>
+					<a href="/board/FAQPage.do?type=all"><li class="tab-link" data-tab="tab-2">자주 묻는 질문</li></a>
 				</ul>
 			</div>
 		
-			<div id="tab-1" class="tab-content on">
+		
+		<div id="tab-1" class="tab-content on">
 			
 				<form action="/board/noticeSearch.do" method="get">
 				<div class="box-search">
 					<input class="search-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
-					<a href=""><i class="fas fa-search"></i><input type="submit" value="검색"/></a>
+				<button type="submit"><i class="fas fa-search"></i></button>	
 					
 				</div>
 				</form>
@@ -64,92 +65,23 @@
 							</c:when>
 							
 							<c:otherwise>
-								없어(ㅋㅋㅋ)
+								<tr>
+									
+									<td colspan="4">검색하신 결과가 없습니다.</td>
+								</tr>
 							</c:otherwise>
 						</c:choose>
 					</table>
-					${requestScope.pageNavi }
+					
 					<!-- pageNavi -->
 					<div id="page_wrap">
 						<ul class="page_ul">
-							<li><a href=''><i class='fas fa-chevron-left'></i></a></li>
-							<li><a href='' class='page_active'>1</a></li>
-							<li><a href=''>2</a></li>
-							<li><a href=''>3</a></li>
-							<li><a href=''>4</a></li>
-							<li><a href=''>5</a></li>
-							<li><a href=''><i class='fas fa-chevron-right'></i></a></li>
+							${requestScope.pageNavi }
 		 				</ul>
 				    </div>
 				</div>
 			</div>
-	
-	
-			<div id="tab-2" class="tab-content">
-				<div class="box-category">
-					<button>전체</button>
-					<button>회원/정보</button>
-					<button>게시글</button>
-				</div>
-			
-				<div class="faq">
-					<c:choose>
-						<c:when test="${!requestScope.list.isEmpty() }">
-							<c:forEach items="${requestScope.list }" var="f" varStatus="i">
-							<div class="faq-row">
-								<div class="q-box">
-									<span>${f.category }</span>
-									<div>
-										<span>Q</span>
-										<span>${f.title }</span>
-										<i class="fas fa-chevron-down"></i>
-									</div>
-								</div>
-								<div class="a-box">
-									<span>A</span>
-									<p>${f.content }</p>
-								</div>
-							</div>
-							</c:forEach>
-						</c:when>
-						
-						<c:otherwise>
-							일단 비워
-						</c:otherwise>
-					</c:choose>
-			  	</div>
 			</div>
-		</div>
-		
-		<script>
-			$(document).ready(function(){
-				//tab 버튼 전환
-				$("ul.tabs li").click(function() {
-					var tabId = $(this).attr("data-tab");
-	
-					$("ul.tabs li").removeClass("current");
-					$(".tab-content").removeClass("on");
-					
-					$(this).addClass("current");
-					$("#" + tabId).addClass("on");
-				})
-				
-				//FAQ 내려오기
-				$(".q-box").click(function(){
-					if($(this).next(".a-box").css("display") == "none") {
-						$(this).next(".a-box").slideDown(250);
-						$(this).find(".fa-chevron-down").addClass("on");
-						
-						$(".a-box").not($(this).next(".a-box")).slideUp(250);
-						$(".fa-chevron-down").not($(this).find(".fa-chevron-down")).removeClass("on");
-					}
-					else {
-						$(this).next(".a-box").slideUp(250);
-						$(this).find(".fa-chevron-down").removeClass("on");
-					}
-			    });
-			});
-		</script>
 		
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

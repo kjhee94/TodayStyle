@@ -43,7 +43,7 @@
 		
 		<div class="box-btn">
 			<button class="btn-style-mint">
-				<a href="">목록</a>
+				<a href="/board/NoticePage.do?currentPage=${requestScope.currentPage }">목록</a>
 			</button>
 		</div>
 	</div>
