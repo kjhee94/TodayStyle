@@ -6,16 +6,17 @@
 <style>
 
         #profile-wrap {
-            width: 230px;
+            width: 12%;
             height: 430px;
-            float: left;
             margin-right: 2.23%;
+            float: left;
+            position: fixed;
         }
 
         #profile-img {
             width: 150px;
             height: 150px;
-            margin: 55px 45px 30px;
+            margin: 55px auto 30px;
         }
 
         #userName {
@@ -23,7 +24,10 @@
             width: 100%;
             height: 35px;
             text-align: center;
-            font-family: 'Noto Sans KR', sans-serif;
+            
+        }
+        #userName>a{
+           font-family: 'Noto Sans KR', sans-serif;
             font-weight: 700;
             font-size: 24px;
             letter-spacing: -0.03em;
@@ -44,7 +48,7 @@
         .follow {
             font-family: 'Noto Sans KR', sans-serif;
             color: #707070;
-            margin-right: 3px;
+            margin-right: 1.30%;
             display: inline-block;
             letter-spacing: -0.03em;
         }
@@ -58,7 +62,7 @@
 
         #followLine {
             display: inline-block;
-            margin: 0 10px;
+            margin: 0 4.34%;
             height: 15px;
             width: 0px;
             border-left: 0.5px solid #C8C8C8;
@@ -79,18 +83,20 @@
 
         .icon-area {
             display: inline-block;
-            width: 65px;
+            width: 28.26%;
             cursor: pointer;
+            margin-bottom: 20px;
         }
 
         #comments-wrap {
-            margin: 0 10px;
+            margin: 0 4.34%;
         }
 
         .icon-img {
             width: 30px;
             height: 30px;
             margin-bottom: 10px;
+            opacity: 0.7;
         }
 
         .icon-text {
@@ -107,7 +113,7 @@
                     <div id="profile-img" class="profile">
                         <a><img src="/resources/images/default/profile.jpg"></a>
                     </div>
-                    <div id="userName">여니여니</div>
+                    <div id="userName"><a href="/myPage/myStyle.do">여니여니</a></div>
                     <div id="follow-wrap">
                         <div id="follower-modal-btn" class="modal-btn">
                             <div class="follow">팔로워</div>
@@ -127,13 +133,13 @@
                                 <div class="icon-text">스크랩</div>
                             </div>
                         </a>
-                        <a>
+                        <a href="/myPage/comments.do">
                             <div id="comments-wrap" class="icon-area">
                                 <img src="/resources/images/icon/comment.png" class="icon-img">
                                 <div class="icon-text">내댓글</div>
                             </div>
                         </a>
-                        <a>
+                        <a href="/myPage/setting.do">
                             <div class="icon-area">
                                 <img src="/resources/images/icon/setting.png" class="icon-img">
                                 <div class="icon-text">설정</div>
