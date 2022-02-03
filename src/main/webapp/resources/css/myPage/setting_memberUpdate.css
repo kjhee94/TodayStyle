@@ -1,0 +1,273 @@
+@charset "UTF-8";
+
+
+        #body {
+            width: 100%;
+            overflow: hidden;
+            cursor: default;
+        }
+
+
+
+        .contents-wrap {
+            width: 80.59%;
+            border-left: 1px solid #C8C8C8;
+            float: left;
+            margin-left: 20%;
+        }
+
+        .contents-title-wrap {
+            width: 96.24%;
+            height: 40px;
+            margin-left: 2.77%;
+            margin-right: 0.92%;
+        }
+
+        .contents-title {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: #707070;
+            float: left;
+        }
+
+        #memberUpdate {
+            color: #A9D4D9;
+        }
+
+        #line {
+            margin: 0 30px;
+            margin-top: 8px;
+            height: 15px;
+            width: 0px;
+            float: left;
+            border-left: 0.5px solid #C8C8C8;
+        }
+
+        #withDrawBtn {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #withDrawBtn>a {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 16px;
+            letter-spacing: -0.03em;
+            text-decoration: underline;
+            color: #C8C8C8;
+            float: right;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+
+        .rowLine {
+            margin-left: 2.77%;
+            height: 0;
+            width: 100%;
+            border-bottom: 0.5px solid #C8C8C8;
+        }
+
+
+        .contents-area {
+            width: 98.14%;
+            margin-left: 1.38%;
+            overflow: hidden;
+        }
+
+        #contents-data-wrap {
+            width: 50%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #contents-comment {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 16px;
+            letter-spacing: -0.03em;
+            color: #707070;
+            margin: 0 auto;
+        }
+
+        .input-wrap {
+            width: 100%;
+        }
+
+        .titleName {
+            margin-left: 2.77%;
+            display: inline-block;
+            width: 15%;
+            height: 110px;
+            line-height: 110px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            color: #707070;
+        }
+
+        .input-style {
+            width: 400px;
+            height: 50px;
+            margin-top: 30px;
+            /*
+            border-color: #FD8A69;
+            */
+        }
+        .check{
+            margin-left: 18.5%;
+            margin-top: -20px;
+            margin-bottom: 20px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 12px;
+            color: #FD8A69;
+        }
+
+        #emailCheckBtn {
+            width: 120px;
+            height: 50px;
+            text-align: center;
+            display: inline-block;
+            margin-left: 15px;
+        }
+        #emailCheck-area{
+            width: 400px;
+            height: 134px;
+            background-color: #FAFAFA;
+            margin-left: 18.2%;
+            margin-top: -5px;
+            margin-bottom: 20px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 12px;
+            padding: 15px;
+            
+            display: none;
+        }
+        .emailCheck{
+            font-family: 'Noto Sans KR', sans-serif;
+            letter-spacing: -0.03em;
+        }
+        #emailCheck-text{
+            font-size: 12px;
+            color: #707070;
+        }
+        #emailCheck-input{
+            width: 275px;
+            height: 50px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #emailCheck-btn{
+            width: 80px;
+            height: 50px;
+            text-align: center;
+            display: inline-block;
+            margin-left: 15px;
+        }
+        #emailCheck-time{
+            font-size: 12px;
+            color: #FD8A69;
+            display: inline-block;
+        }
+        #emailCheck-resend{
+            font-size: 12px;
+            color: #C8C8C8;
+            display: inline-block;
+            margin-left: 105px;
+        }
+
+        .radioBtn,
+        .radioBtn:checked {
+            margin-right: 5px;
+            border: 0.5px solid #707070;
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
+            vertical-align: middle;
+            appearance: none;
+            border-radius: 100%;
+            padding: 1px;
+        }
+
+        .radioBtn {
+            background-color: white;
+        }
+
+        .radioBtn:checked {
+            background-color: #A9D4D9;
+        }
+
+        .radioLabel {
+            margin-right: 100px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 16px;
+            letter-spacing: -0.03em;
+            color: #707070;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+
+        #selectProfile-wrap {
+            width: 100%;
+            height: 300px;
+            margin-top: -100px;
+        }
+
+        #profileImg-area {
+            width: 200px;
+            height: 200px;
+            border-radius: 100%;
+            border: 2px solid #707070;
+            margin-left: 10%;
+            margin-top: 30px;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        #profileImg-area>img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+        }
+
+        #profileImg-plusBtn {
+            position: relative;
+            top: 85px;
+            left: 85px;
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+            overflow: hidden;
+            line-height: 20px;
+            display: none;
+        }
+
+        #profileImg-plusBtn>label {
+            font-size: 40px;
+            font-weight: bold;
+            color: #C8C8C8;
+            text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+            cursor: pointer;
+        }
+
+        #selectProfileImg {
+            visibility: hidden;
+        }
+
+
+
+        #updateBtn {
+            width: 80px;
+            height: 50px;
+            margin: 0 auto;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+
+        #space {
+            width: 100%;
+            height: 50px;
+        }

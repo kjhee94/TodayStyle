@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/common/common.css">
     <link rel="stylesheet" href="/resources/common/header.css">
+	<link rel="stylesheet" href="/resources/common/footer.css">
+    <script src="/resources/common/common.js"></script>
 
     <style>
         #body {
@@ -22,10 +24,6 @@
             cursor: default;
         }
 
-        #profile-wrap-wrap {
-            width: 17.16%;
-            height: 430px;
-        }
 
         #profile-wrap {
             width: 230px;
