@@ -31,6 +31,32 @@ public class MyPageController {
 		return "myPage/scrap";
 	}
 	
+	@RequestMapping(value = "/myPage/comments.do")
+	public String commentsPage()
+	{
+		return "myPage/comments";
+	}
+	@RequestMapping(value = "/myPage/setting.do")
+	public String setttingPage()
+	{
+		return "myPage/setting_pwdCheck";
+	}
 	
-
+	@RequestMapping(value = "/myPage/memberUpdate.do")
+	public String memberUpdatePage()
+	{
+		return "myPage/setting_memberUpdate";
+	}
+	
+	@RequestMapping(value = "/myPage/pwdUpdate.do")
+	public String pwdPage()
+	{
+		return "myPage/setting_pwdUpdate";
+	}
+	
+	@RequestMapping(value = "/myPage/withdraw.do")
+	public String pwithdrawPage()
+	{
+		return "myPage/setting_withdraw";
+	}
 }

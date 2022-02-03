@@ -13,138 +13,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/resources/common/common.css">
     <link rel="stylesheet" href="/resources/common/header.css">
+	<link rel="stylesheet" href="/resources/common/footer.css">
+	<link rel="stylesheet" href="/resources/css/myPage/scrap.css">
+    <script src="/resources/common/common.js"></script>
 
     <style>
-        #body {
-            width: 100%;
-            overflow: hidden;
-
-            cursor: default;
-        }
-
-        #profile-wrap-wrap {
-            width: 17.16%;
-            height: 430px;
-        }
-
-
-        .contents-wrap {
-            width: 80.59%;
-            height: ;
-            border-left: 1px solid #C8C8C8;
-            float: left;
-        }
-
-        .contents-title-wrap {
-            width: 96.24%;
-            height: 50px;
-            margin-left: 2.77%;
-            margin-right: 0.92%;
-        }
-
-        .contents-title {
-            font-family: 'Noto Sans KR', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            color: #707070;
-            float: left;
-
-        }
-
-        .contents-num {
-            font-family: 'Noto Sans KR', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            color: #A9D4D9;
-            float: left;
-            margin-left: 5px;
-        }
-
-        .contents-plus>a {
-            font-family: 'Noto Sans KR', sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            color: #A9D4D9;
-            float: right;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-
-        .contents-area {
-            width: 98.14%;
-            margin-left: 1.38%;
-            overflow: hidden;
-        }
-
-        .contents {
-            width: 30.5%;
-            margin:1.41%;
-            float: left;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .contents:after {
-            content: "";
-            display: block;
-            padding-bottom: 100%;
-        }
-		.contents>img {
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-		
-        .contents>a>img {
-            position: absolute;
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
         
-        .userData{
-            width: 100%;
-            height: 35px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            line-height: 35px;
-            padding: 20px;
-        }
-        .scrapUserProfile{
-            width: 35px;
-            height: 35px;
-            border: 2px solid white;
-            float: left;
-            margin-right: 15px;
-        }
-        .scrapUserName{
-            font-family: 'Noto Sans KR', sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            color: white;
-            float: left;
-        }
-        .scrapIcon{
-            width: 30px;
-            height: 30px;
-            float: right;
-        }
-        .scrapIcon>img{
-            width: 100%;
-            height: 100%;
-        }
-
-        #space {
-            width: 100%;
-            height: 50px;
-        }
-
-
-
     </style>
 
 </head>
@@ -161,46 +35,112 @@
                 <div class="contents-title-wrap">
                     <div class="contents-title">스크랩북</div>
                     <div class="contents-num">18</div>
-                    <div class="contents-plus"><a href="/myPage/myStyle.do">목록보기</a></div>
+                </div>
+                <div id="btn-wrap">
+                	<div class="btn-style-mint btn" id="allBtn">전체</div>
+                	<div class="btn-style-line btn" id="coordiBtn">코디</div>
+                	<div class="btn-style-line btn" id="ittemBtn">잇템</div>
                 </div>
                 <div class="contents-area">
                     <a>
                         <div class="contents">
                             <img src="/resources/images/default/profile.jpg">
                             <div class="userData">
-                            	<a href="/myPage/userPage.do">
-	                                <div class="profile scrapUserProfile"><a><img src="/resources/images/default/profile.jpg"></a></div>
-	                                <div class="ScrapUserName">연신내핵주먹</div>
+                                <a href="/myPage/userPage.do">
+                                    <div class="profile scrapUserProfile"><a><img src="/resources/images/default/profile.jpg"></a></div>
+                                    <div class="ScrapUserName">연신내핵주먹</div>
                                 </a>
                                 <div class="scrapIcon"><img src="/resources/images/icon/saved_on.png"></div>
                             </div>
-                        </div> 
+                        </div>
+
                     </a>
                     <a>
                         <div class="contents"><img src="/resources/images/default/profile.jpg">
+                            <div class="userData">
+                                <a href="/myPage/userPage.do">
+                                    <div class="profile scrapUserProfile"><a><img src="/resources/images/default/profile.jpg"></a></div>
+                                    <div class="ScrapUserName">연신내핵주먹</div>
+                                </a>
+                                <img class="scrapIcon" src="/resources/images/icon/saved_on.png">
+                            </div>
                         </div>
                     </a>
                     <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
+                        <div class="contents">
+                            <img src="/resources/images/default/profile.jpg">
+                            <div class="userData">
+                                <a href="/myPage/userPage.do">
+                                    <div class="profile scrapUserProfile"><a><img src="/resources/images/default/profile.jpg"></a></div>
+                                    <div class="ScrapUserName">연신내핵주먹</div>
+                                </a>
+                                <div class="scrapIcon"><img src="/resources/images/icon/saved_on.png"></div>
+                            </div>
+                        </div>
                     </a>
                     <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
+                        <div class="contents">
+                            <img src="/resources/images/default/profile.jpg">
+                            <div class="userData">
+                                <a href="/myPage/userPage.do">
+                                    <div class="profile scrapUserProfile"><a><img src="/resources/images/default/profile.jpg"></a></div>
+                                    <div class="ScrapUserName">연신내핵주먹</div>
+                                </a>
+                                <div class="scrapIcon"><img src="/resources/images/icon/saved_on.png"></div>
+                            </div>
+                        </div>
                     </a>
                     <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
+                        <div class="contents">
+                            <img src="/resources/images/default/profile.jpg">
+                            <div class="userData">
+                                <a href="/myPage/userPage.do">
+                                    <div class="profile scrapUserProfile"><a><img src="/resources/images/default/profile.jpg"></a></div>
+                                    <div class="ScrapUserName">연신내핵주먹</div>
+                                </a>
+                                <div class="scrapIcon"><img src="/resources/images/icon/saved_on.png"></div>
+                            </div>
+                        </div>
                     </a>
                     <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
+                        <div class="contents">
+                            <img src="/resources/images/default/profile.jpg">
+                            <div class="userData">
+                                <a href="/myPage/userPage.do">
+                                    <div class="profile scrapUserProfile"><a><img src="/resources/images/default/profile.jpg"></a></div>
+                                    <div class="ScrapUserName">연신내핵주먹</div>
+                                </a>
+                                <div class="scrapIcon"><img src="/resources/images/icon/saved_on.png"></div>
+                            </div>
+                        </div>
                     </a>
                     <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
+                        <div class="contents">
+                            <img src="/resources/images/default/profile.jpg">
+                            <div class="userData">
+                                <a href="/myPage/userPage.do">
+                                    <div class="profile scrapUserProfile"><a><img src="/resources/images/default/profile.jpg"></a></div>
+                                    <div class="ScrapUserName">연신내핵주먹</div>
+                                </a>
+                                <div class="scrapIcon"><img src="/resources/images/icon/saved_on.png"></div>
+                            </div>
+                        </div>
                     </a>
                     <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
+                        <div class="contents">
+                            <img src="/resources/images/default/profile.jpg">
+                            <div class="userData">
+                                <a href="/myPage/userPage.do">
+                                    <div class="profile scrapUserProfile"><a><img src="/resources/images/default/profile.jpg"></a></div>
+                                    <div class="ScrapUserName">연신내핵주먹</div>
+                                </a>
+                                <div class="scrapIcon"><img src="/resources/images/icon/saved_on.png"></div>
+                            </div>
+                        </div>
                     </a>
                 </div>
                 <div id="space"></div>
-                
+
             </div>
 
         </div>
