@@ -18,20 +18,13 @@
         #body {
             width: 100%;
             overflow: hidden;
-
             cursor: default;
         }
-
-        #profile-wrap-wrap {
-            width: 17.16%;
-            height: 430px;
-        }
-
-
+        
         .contents-wrap {
             width: 80.59%;
-            height: ;
             border-left: 1px solid #C8C8C8;
+            margin-left: 20%;
             float: left;
         }
 
@@ -115,9 +108,8 @@
 
     <div id="content">
         <div id="body">
-            <div id="profile-wrapwrap">
-                <jsp:include page="/WEB-INF/views/myPage/include/profile.jsp" />
-            </div>
+            <jsp:include page="/WEB-INF/views/myPage/include/profile.jsp" />
+
             <div class="contents-wrap">
                 <div class="contents-title-wrap">
                     <div class="contents-title">나의 코디</div>

@@ -141,3 +141,55 @@ header {
 .box-write-link>a:hover {
 	background-color: #FAFAFA;
 }
+
+
+/*사이드바*/
+#sideBar {
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	z-index: 999;
+}
+.box-sideBar {
+	width: 60px;
+	height: 60px;
+	background-color: #fff;
+	border: 2px solid #9F9F9F;
+	border-radius: 100px;
+	text-align: center;
+	margin-top: 20px;
+}
+.box-sideBar>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.box-sidebar-img {
+	width: 25px;
+	height: 25px;
+}
+.box-sidebar-img img {
+	width: 100%;
+	height: 100%;
+}
+.box-sideBar span {
+	font-size: 12px;
+	font-weight: 500;
+	letter-spacing: -0.05em;
+}
+.page-top {
+	background-color: #A9D4D9;
+	border: 2px solid #71A4AA;
+}
+.fa-chevron-up {
+	display: block;
+	font-size: 15px;
+	color: #fff;
+}
+.page-top span {
+	color: #fff;
+}
