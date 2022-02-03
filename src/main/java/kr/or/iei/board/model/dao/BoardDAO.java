@@ -65,8 +65,6 @@ public class BoardDAO {
 		
 		if(startNavi!=1)
 		{
-		
-			
 			sb.append("<li><a href='/board/NoticePage.do?currentPage="+(startNavi-1)+"'><i class='fas fa-chevron-left'></i></a></li> ");
 		}
 		
@@ -74,20 +72,16 @@ public class BoardDAO {
 		{
 			if(i==currentPage)
 			{
-				
 				sb.append("<li><a href='/board/NoticePage.do?currentPage="+i+"' class='page_active'>"+i+"</a></li>");
 			}
 			else
 			{
-			
 			sb.append("<li><a href='/board/NoticePage.do?currentPage="+i+"'>"+i+"</a></li>");
 			}
 		}
 		
 		if(endNavi!=pageTotalCount)
 		{
-		
-			
 			sb.append("<li><a href='/board/NoticePage.do?currentPage="+(endNavi+1)+"'><i class='fas fa-chevron-right'></i></a></li>");
 		}
 		

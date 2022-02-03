@@ -98,8 +98,10 @@
                 <div id="cmt-post">
                     <div>
                     	<a>
-                    		<div id="cmt-pic">
-                    			
+                    		<div class="profile" style="position:relative;top:20px; right:35px">
+                    			<a>
+                    				<img src="/resources/images/default/profile.jpg">
+                    			</a>
                     		</div>
                     	</a>
                         <input type="text" name="name" value="" placeholder="댓글입력">
@@ -120,12 +122,12 @@
         <div id="right-wrapper">
            <div id="user">
               <div>
-                  <div class="profile" style="width:40px;height:40px">
+                  <div class="profile" style="width:30px;height:30px;position:relative;top:8px">
                     	  <a>
                     	  	<img src="/resources/images/default/profile.jpg">
                     	  </a>
                   </div>
-                  <div id="user-name">
+                  <div id="user-name" style="width:150px" >
                      	 연신내핵주먹
                   </div>
               </div>
@@ -134,28 +136,61 @@
               </div>
            </div>
            <div id="like-scrap">
-               <div>
+               <div id="like">
                    	<input type="button" name="like">
+                   	<a>
+                   		<img src="/resources/images/icon/heart.png">
+                   	</a>
+                   	<div>
+                   		12
+                   	</div>
                </div>
-               <div>
+           
+               <div id="scrap">
                    	<input type="button" name="scrap">
+                   	<a>
+                   		<img src="/resources/images/icon/saved.png">
+                   	</a>
+                   	<div>
+                   		14
+                   	</div>
                </div>
            </div>
            <div id="cloth-info">
               	 의상정보
            </div>
            <div id="clothes">
-               <div>
-                   	상의
+               <div id="top">
+                   	<div id="top-pic">
+                   		<img src="/resources/images/default/top.png">
+                   	</div>
+                   	<div>
+                   		설명
+                   	</div>
                </div>
-               <div>
-                   	하의
+               <div id="bottom">
+                   	<div id="bottom-pic">
+                   		<img src="/resources/images/default/bottom.png">
+                   	</div>
+                   	<div>
+                   		설명
+                   	</div>
                </div>
-               <div>
-                   	신발
+               <div id="shoes">
+                   	<div id="shoes-pic">
+                   		<img src="/resources/images/default/shoes.png">
+                   	</div>
+                   	<div>
+                   		설명
+                   	</div>
                </div>
-               <div>
-                   	악세서리
+               <div id="acc">
+                   	<div id="acc-pic">
+                   		<img src="/resources/images/default/acc.png">
+                   	</div>
+                   	<div>
+                   		설명
+                   	</div>
                </div>
            </div>       
         </div>
@@ -163,5 +198,10 @@
    	</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+	
+	<script>
+
+	
+	</script>
 </body>
 </html>

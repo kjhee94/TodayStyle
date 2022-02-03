@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/common/header.css">
@@ -16,11 +17,8 @@
 <link rel="stylesheet" href="/resources/css/index.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/resources/common/common.js"></script>
-<!-- Demo styles -->
-<style>
-
-</style>
 </head>
+
 <body>
 
 	<div id="wrap">
@@ -42,7 +40,7 @@
 					<div class="swiper mySwiper coordiSwiper">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
-								<a href="">
+								<a href="/coordi/coordiPost.do">
 									<img class="coordiImg" src="/resources/images/coordi/stylelist29.jpg">
 									<div class="nickNameArea">
 										<div class="profile">
@@ -146,7 +144,7 @@
 					</div>
 				</div>
 				<div class="box-btn"">
-					<button class="btn-style-mint"><a>더 보러 가기</a></button>
+					<button class="btn-style-mint"><a href="/coordi/coordiList.do">더 보러 가기</a></button>
 				</div>
 			</div>
 			
@@ -159,7 +157,7 @@
 						<div class="swiper-wrapper">
 						
 							<div class="swiper-slide">
-								<a href="">
+								<a href="/coordi/ItPost.do">
 									<img class="itItemImg" src="/resources/images/itItem/item1.jpg">
 									<div class="itemInfoArea">
 										<div class="itemInfoCategory">카테고리</div>
@@ -299,7 +297,7 @@
 					</div>
 				</div>
 				<div class="box-btn"">
-					<button class="btn-style-mint"><a>더 보러 가기</a></button>
+					<button class="btn-style-mint"><a href="/itItem/itItemList.do">더 보러 가기</a></button>
 				</div>
 			</div>
 			

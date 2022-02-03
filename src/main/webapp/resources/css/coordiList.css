@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+/* div {
+	border: 1px solid black;
+	box-sizing: border-box;
+}
+ */
 #content {
 	padding-top: 140px;
 	display: flex;

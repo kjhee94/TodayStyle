@@ -69,11 +69,13 @@ textarea {
 	padding: 0 40px 0 15px;
 	font-size: 16px;
 }
-.box-search>a {
+.box-search button {
 	position: absolute;
 	top: 9px;
 	right: 15px;
 	font-size: 15px;
+	border: 0;
+	background-color: #fff;
 }
 
 
