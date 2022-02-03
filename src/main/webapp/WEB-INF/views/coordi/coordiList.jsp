@@ -16,7 +16,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/common/header.css">
-<link rel="stylesheet" href="/resources/css/coordiList.css?ds">
+<link rel="stylesheet" href="/resources/css/coordiList.css?dsaa">
 <style>
 
 </style>
