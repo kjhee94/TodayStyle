@@ -18,6 +18,9 @@
       }
     }
 
+#wrap{
+	height:1500px;
+}
 
 #title{
     border-bottom:solid 3px #707070; 
