@@ -28,7 +28,7 @@
 				<div id="topLink">
 					<span id="topTitle">Home</span>
 				</div>
-				<a href="">로그아웃</a>
+				<a href="/member/logout.do">로그아웃</a>
 			</div>
 			
 			<div id="container">

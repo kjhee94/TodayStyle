@@ -30,7 +30,7 @@
 					<span>Home &nbsp-&nbsp 게시판 관리 &nbsp-&nbsp 오늘의 잇템 관리 &nbsp-&nbsp </span>
 					<span id="topAction">오늘의 잇템 댓글 관리</span>
 				</div>
-				<a href="">로그아웃</a>
+				<a href="/member/logout.do">로그아웃</a>
 			</div>
 			
 			<div id="container">

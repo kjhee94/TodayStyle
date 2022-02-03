@@ -1,48 +1,106 @@
 @charset "UTF-8";
-*{
-    box-sizing: border-box;
-}
- * {
-	
-	font-family: 'Noto Sans KR', sans-serif;
-}     
 
-
-ul.tabs{
-	margin: 0px;
-	padding: 0px;
-	list-style: none;
+.tabs{
+	margin: 40px 0 30px;
 	dispaly:inline-block;
 }
-ul.tabs li{
+.tabs li{
 	display: inline-block;
-	padding: 10px 15px;
+	width:150px;
+	height:60px;
+	line-height: 60px;
+	border:0.5px solid #C8C8C8;
+	text-align:center;
+	font-size: 18px;
+	border-radius: 100px;
+	margin-right: 20px;
 	cursor : pointer;
-	color:#8B8B8B;
-	border:1px solid #C8C8C8;
-	font-size:18px;
-	width:150px;
-	height:60px;
-	text-align:center;
-	border-radius: 30px 30px 30px 30px;
-	margin:40px 20px 30px 0px;
 }
-ul.tabs li.current{
-	font-size:18px;
+.tabs li.current{
 	color: white;
-	border: 1px solid #A9D4D9;
-	background-color:#A9D4D9;
-	width:150px;
-	height:60px;
-	text-align:center;
-	border-radius: 30px 30px 30px 30px;
+	border: 0;
+	background-color: #A9D4D9;
 }
+
 .tab-content{
 	display: none;
 }
 .tab-content.current{
-	display: inherit;
+	display: block;
+	position: relative;
+	padding-bottom: 80px;
+}
+.tab-content>span {
+	position: absolute;
+	top: -40px;
+	right: 0;
 }
 
+.img-coordi-area {
+	width: 100%;
+}
+.img-coordi-box {
+	width: 23.6%;
+	height: 400px;
+	margin : 0 1.5% 20px 0;
+	border-radius: 10px;
+	overflow: hidden;
+	display: inline-block;
+	position: relative;
+}
+.img-coordi-area .img-coordi-box:nth-child(4n) {
+	margin-right: 0;
+}
+.img-coordi-box>img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 
- 
+.rank {
+	position: absolute;
+	top: 0;
+	left: 20px;
+}
+.fa-bookmark {
+	font-size: 40px;
+	color: #C8C8C8;
+	position: relative;
+}
+.img-coordi-box:nth-child(1) .fa-bookmark,
+.img-coordi-box:nth-child(2) .fa-bookmark,
+.img-coordi-box:nth-child(3) .fa-bookmark {
+	color: #A9D4D9;
+}
+
+.rank>span {
+	position: absolute;
+	left: 10px;
+	top: 2px;
+	font-size: 18px;
+	font-weight: 500;
+	color: #fff;
+}
+.likeScrapArea {
+	top: 20px;
+	right: 20px;
+}
+.box-nick {
+	position: absolute;
+	left: 20px;
+	bottom: 20px;
+}
+.profile {
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	border-color: #fff;
+}
+.nickName {
+	position: relative;
+	top: -12px;
+	display: inline-block;
+	color: white;
+	padding-left: 10px;
+}

@@ -30,7 +30,7 @@
 					<span>Home &nbsp-&nbsp 회원 관리 &nbsp-&nbsp </span>
 					<span id="topAction">회원 정보 관리</span>
 				</div>
-				<a href="">로그아웃</a>
+				<a href="/member/logout.do">로그아웃</a>
 			</div>
 			
 			<div id="container">

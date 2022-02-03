@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/resources/common/footer.css">
 <link rel="stylesheet" href="/resources/css/coordiList.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script src="/resources/common/common.js"></script>
 </head>
 
@@ -107,6 +108,9 @@
 					</div>
 				</div>
 			</div>
+			
+			
+			<!-- coordiListAreas -->
 			<div id="coordiListArea">
 				<div id="coordiListNumArea">코디 전체<span>1000개</span></div>
 				<div class="list-top">
@@ -124,7 +128,10 @@
 						<a href=""><i class="fas fa-search"></i></a>
 					</div>
 				</div>
+				
+			
 				<div id="coordiListImgArea">
+					<div class="grid-sizer"></div>
 					<div class="coordiImgArea">
 						<img class="coordiImg" src="/resources/images/coordi/stylelist1.jpg">
 						
@@ -397,6 +404,16 @@
 		},function(){
 			$(this).css('transition','all 0.2s linear');
 			$(this).css('transform','scale(1)');
+		})
+	</script>
+	
+	<script>
+		$('#coordiListImgArea').masonry({
+			// set itemSelector so .grid-sizer is not used in layout
+			itemSelector: '.coordiImgArea',
+			// use element for option
+			columnWidth: '.grid-sizer',
+			percentPosition: true
 		})
 	</script>
 </body>

@@ -112,11 +112,13 @@ select::-ms-expand {
 	font-size:16px;
 }
 
-/* 코디이미지 이미지들어간후에 height 삭제 */
 
+/* 코디이미지 이미지들어간후에 height 삭제 */
+.grid-sizer {
+	width: 25%;
+}
 .coordiImgArea {
-	width: 23.4%;
-	margin-right: 1.7%;
+	width: 23%;
 	border-radius: 10px;
 	margin-bottom: 20px;
 	display: inline-block;
@@ -126,9 +128,6 @@ select::-ms-expand {
 }
 #coordiListImgArea .coordiImgArea:last-child {
 	margin-bottom: 80px;
-}
-#coordiListImgArea .coordiImgArea:nth-child(4n) {
-	margin-right: 0;
 }
 
 .coordiImg {
@@ -162,25 +161,4 @@ select::-ms-expand {
 	display: inline-block;
 	color: white;
 	padding-left: 10px;
-}
-
-.likeScrapArea {
-	position: absolute;
-	top: 15px;
-	right: 15px;
-	width: 30px;
-	height: 80px;
-}
-
-.like {
-	width: 30px;
-	height: 30px;
-	margin-bottom: 20px;
-	cursor: pointer;
-}
-
-.scrap {
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
 }
