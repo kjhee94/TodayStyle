@@ -1,0 +1,466 @@
+@charset "EUC-KR";
+
+
+/*전체 border-box처리*/
+*{box-sizing:border-box;}
+
+/*
+div{border: solid 1px black}
+*/
+
+
+#wrapper{
+ 	width: 100%;
+ 	height:100%;
+    overflow: hidden;
+	cursor: default;
+}
+
+/* 전체 왼쪽 영역*/
+#left-wrapper{
+    width: 70%;
+    height:1625px;
+    float: left;
+    margin: auto;
+    
+    
+}
+
+
+/* 왼쪽 영역의 윗 영역*/
+#left-top-wrapper{
+    height:73%;
+    width:100%;
+    float: left;
+    margin:auto;
+    
+    
+}
+/* 왼쪽 영역의 아랫 영역*/
+#left-bottom-wrapper{
+    height:27%;
+    width:100%;
+    float: left;
+    margin:auto;
+    overflow: hidden;
+    
+}
+/* 전체 오른쪽 영역*/
+#right-wrapper{
+    width: 30%;
+    height:1625px;
+    float:left;
+    margin:auto;
+}
+
+
+/* 기온,겨울,성별 /  날짜 */
+#info-bar{
+    height:3%;
+    color:#707070
+    
+}
+/* 기온,겨울,성별*/
+#info-bar div:nth-child(1){
+    width:35%;
+    height: 100%;
+    float:left;
+
+}
+
+/*기온*/
+#info-bar>div div:nth-child(1){
+    width: 40%;
+    height:100%;
+    float: left;
+    padding:1px 30px 1px 30px;
+    text-align: center;
+}
+/*계절*/
+#info-bar>div div:nth-child(2){
+    width: 30%;
+    height:100%;
+    float: left;
+        padding:1px 30px 1px 30px;
+    text-align: center;
+}
+/*성별*/
+#info-bar>div div:nth-child(3){
+    width: 30%;
+    height:100%;
+    float: left;
+        padding:1px 30px 1px 30px;
+    text-align: center;
+}
+/* 날짜 */
+#info-bar div:nth-child(2){
+    width:15%;
+    height: 100%;
+    padding:1px 30px 1px 30px;
+    text-align: center;
+    float:right;
+    
+}
+#picture{
+    width:100%;
+    height:70%;
+}
+/* 사진 왼쪽 영역*/
+#picture div:nth-child(1){
+    width:85%;
+    height:100%;
+    float: left;
+}
+
+/* 사진 오른쪽 영역*/
+#picture div:nth-child(2){
+    width:15%;
+    height:100%;
+    float:left; 
+}
+
+/* 사이드 사진 1~6 */
+#picture-right>div:nth-child(1){
+    width: 100%;
+    height:15%;
+    float:left;
+    padding: 0px 20px 20px 20px;
+}
+
+#picture-right>div:nth-child(1)>div{
+	width: 100%;
+    height:100%
+    padding: 15px;
+	
+}
+#picture-right>div:nth-child(1)>div>img{
+    width: 100%;
+    height:100%;
+    border-radius: 20px;
+    object-fit:cover;
+    border-radius:20px
+}
+
+#picture-right>div:nth-child(2){
+    width: 100%;
+    height:15%;
+    float:left;
+    padding: 0px 20px 20px 20px;
+}
+
+#picture-right>div:nth-child(2)>div{
+	width: 100%;
+    height:100%
+    padding: 15px;
+	
+}
+#picture-right>div:nth-child(2)>div>img{
+    width: 100%;
+    height:100%;
+    border-radius: 20px;
+    object-fit:cover;
+    border-radius:20px
+}
+
+#picture-right>div:nth-child(3){
+    width: 100%;
+    height:15%;
+    float:left;
+    padding: 0px 20px 20px 20px;
+}
+
+#picture-right>div:nth-child(3)>div{
+	width: 100%;
+    height:100%
+    padding: 15px;
+	
+}
+#picture-right>div:nth-child(3)>div>img{
+    width: 100%;
+    height:100%;
+    border-radius: 20px;
+    object-fit:cover;
+    border-radius:20px
+}
+#picture-right>div:nth-child(4){
+    width: 100%;
+    height:15%;
+    float:left;
+    padding: 0px 20px 20px 20px;
+}
+
+#picture-right>div:nth-child(4)>div{
+	width: 100%;
+    height:100%
+    padding: 15px;
+	
+}
+#picture-right>div:nth-child(4)>div>img{
+    width: 100%;
+    height:100%;
+    border-radius: 20px;
+    object-fit:cover;
+    border-radius:20px
+}
+
+#picture-right>div:nth-child(5){
+    width: 100%;
+    height:15%;
+    float:left;
+    padding: 0px 20px 20px 20px;
+}
+
+#picture-right>div:nth-child(5)>div{
+	width: 100%;
+    height:100%
+    padding: 15px;
+	
+}
+#picture-right>div:nth-child(5)>div>img{
+    width: 100%;
+    height:100%;
+    border-radius: 20px;
+    object-fit:cover;
+    border-radius:20px
+}
+
+#picture-right>div:nth-child(6){
+    width: 100%;
+    height:15%;
+    float:left;
+    padding: 0px 20px 20px 20px;
+}
+
+#picture-right>div:nth-child(6)>div{
+	width: 100%;
+    height:100%
+    padding: 15px;
+	
+}
+#picture-right>div:nth-child(6)>div>img{
+    width: 100%;
+    height:100%;
+    border-radius: 20px;
+    object-fit:cover;
+    border-radius:20px
+}
+
+
+/*사진 설명*/
+#picture-info{
+    width: 100%;
+    height:17%;
+    float:left;
+    padding:30px 20px 0px 0px;
+    color:#707070
+    
+}
+/*해시태그*/
+#hashtag{
+    width: 100%;
+    height:5%;
+    float:left;
+    color:#A9D4D9
+}
+/* 목록,수정 버튼영역*/
+#list-update{
+    height:5%;
+    width: 100%;
+    float:left;
+}
+
+#list-update div:nth-child(1){
+    height:100%;
+    width: 10%;
+    float:right;
+}
+
+.btn-style-mint{
+	width:80px;
+}
+
+.btn-style-gray{
+	width:80px
+}
+
+#list-update div:nth-child(2){
+    height:100%;
+    width:10%;
+    float:right;
+}
+
+/* 댓글 카운팅*/
+#cmt-count{
+    height:10%;
+    width: 100%;
+    line-height: 3;
+    color:#707070
+}
+
+#cmt-count div:nth-child(1){
+	color:#707070;
+	float:left;
+}
+
+#cmt-count div:nth-child(2){
+	color:#A9D4D9;
+	float:left;
+}
+/* 댓글 작성영역*/
+#cmt-post{
+    height:15%;
+    width: 100%;
+    
+}
+
+#cmt-post>div{
+    align-items: center;
+    line-height: 4;
+    margin-left: 20px
+    
+}
+
+#cmt-post input[type="text"]{
+    width:838px;
+    height:50px;
+    border: solid 1px #C8C8C8;
+    display:inline;
+    color:black;
+    padding:10px;
+    
+}
+
+#cmt-post input[type="button"]{
+    width: 50px;
+    height:40px;
+    border:none;
+    background-color:white;
+    outline: none;
+    display: inline;
+    margin-left: -60px;
+    color:#A9D4D9
+}
+
+#cmt-pic{
+	border:solid 1px #707070;
+	border-radius:20px;
+	float:left;
+	width:30px;
+	height:30px;
+	
+}
+/* 댓글 내용 영역*/
+#cmt-content{
+    height:50%;
+    width: 100%;
+    padding:10px;
+}
+
+/* 댓글 페이지네이션*/
+#cmt-page{
+    height:25%;
+    width: 100%;
+}
+
+/* 유저/팔로우 영역*/
+#user{
+    height:5%;
+    border:solid 1px #C8C8C8;
+    border-radius:20px;
+    padding: 20px 10px 20px 10px
+}
+
+
+
+#user-name{
+    width: 150px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/*팔로우*/
+#user div:nth-child(2) button{
+    width: 60px;
+    height:35px;
+    background-color:white;
+    border:solid 1px #C8C8C8;
+    margin:2px 0px 0px 40px;
+    border-radius:20px
+    
+}
+
+#user div:nth-child(1){
+    width:70%;
+    height:100%;
+    float:left
+}
+
+#user div:nth-child(2){
+    width: 30%;
+    height:100%;
+    float:left
+}
+
+/* 좋아요/스크랩 영역*/
+#like-scrap{
+    height:5%
+}
+
+/*좋아요*/
+#like-scrap div:nth-child(1){
+    width:50%;
+    height:100%;
+    padding-top:20px;
+    float:left;
+}
+#like-scrap input[type="button"]{
+	width:185px;
+	height:60px;
+	background-color:background-color:#F5F5F5;
+	border:none;
+	border-radius:20px;
+}
+/*스크랩*/
+#like-scrap div:nth-child(2){
+    width:50%;
+    height:100%;
+    padding-top:20px;
+    padding-left:20px;
+    float:left;  
+}
+/*의상정보제목 영역*/
+#cloth-info{
+    height:5%;
+    margin-top:20px;
+}
+/*의상 영역*/
+#clothes{
+    height:87%
+}
+
+/* 상의리 */
+#clothes div:nth-child(1){
+    width:100%;
+    height:8%;
+    float:left;  
+}
+/* 하의 */
+#clothes div:nth-child(2){
+    width:100%;
+    height:8%;
+    float:left;
+}
+/* 신발 */
+#clothes div:nth-child(3){
+    width:100%;
+    height:8%;
+    float:left;
+}
+/* 악세사리 */
+#clothes div:nth-child(4){
+    width:100%;
+    height:8%;
+    float:left;
+}
