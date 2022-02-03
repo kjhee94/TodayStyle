@@ -25,8 +25,8 @@
 		<div id="content">
 			<div class="box-tabs">
 				<ul class="tabs">
-					<a href="/board/NoticePage.do"><li class="tab-link current" data-tab="tab-1">공지사항</li></a>
-					<a href="/board/FAQPage.do?type=all"><li class="tab-link" data-tab="tab-2">자주 묻는 질문</li></a>
+					<a href="/board/NoticePage.do"><li class="tab-link" data-tab="tab-1">공지사항</li></a>
+					<a href="/board/FAQPage.do?type=all"><li class="tab-link current" data-tab="tab-2">자주 묻는 질문</li></a>
 				</ul>
 			</div>
 		

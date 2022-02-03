@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
-
 #gnbList ul:nth-of-type(2){
 	display: block;
 }

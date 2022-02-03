@@ -10,13 +10,13 @@ public class CoordiPostController {
 	//코디 게시물 개별페이지
 	@RequestMapping(value="/coordi/coordiPost.do",method=RequestMethod.GET)
 	public String coordiPost(){
-		return "postPage/postPage";
+		return "postPage/coordiPost";
 	}
 	
 	//잇템 게시물 개별페이지
 	@RequestMapping(value="/coordi/ItPost.do",method=RequestMethod.GET)
 	public String itPost(){
-		return "postPage/itPostPage";
+		return "postPage/itItemPost";
 	}
 	
 	//코디 작성
