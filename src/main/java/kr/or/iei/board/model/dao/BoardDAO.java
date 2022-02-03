@@ -63,24 +63,24 @@ StringBuilder sb = new StringBuilder();
 		
 		if(startNavi!=1)
 		{
-			sb.append("<a href='/board/boardPage.do?currentPage="+(startNavi-1)+"'>< Prev</a>  ");
+			sb.append("<li><a href='/board/boardPage.do?currentPage="+(startNavi-1)+"'><i class='fas fa-chevron-left'></i></a></li>");
 		}
 		
 		for(int i = startNavi; i<=endNavi; i++)
 		{
 			if(i==currentPage)
 			{
-				sb.append("<a href='/board/boardPage.do?currentPage="+i+"'><B style='font-size:1.2em'>"+i+"</B></a> ");
+				sb.append("<li><a href='/board/boardPage.do?currentPage="+i+"' class='page_active'>"+i+"</a></li>");
 			}
 			else
 			{
-			sb.append("<a href='/board/boardPage.do?currentPage="+i+"'>"+i+"</a> ");
+			sb.append("<li><a href='/board/boardPage.do?currentPage="+i+"'>"+i+"</a></li>");
 			}
 		}
 		
 		if(endNavi!=pageTotalCount)
 		{
-			sb.append("<a href='/board/boardPage.do?currentPage="+(endNavi+1)+"'>Next ></a> ");
+			sb.append("<li><a href='/board/boardPage.do?currentPage="+(endNavi+1)+"'><i class='fas fa-chevron-right'></i></a></li>");
 		}
 		
 		

@@ -17,11 +17,8 @@
 <link rel="stylesheet" href="/resources/css/index.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/resources/common/common.js"></script>
-<!-- Demo styles -->
-<style>
-
-</style>
 </head>
+
 <body>
 
 	<div id="wrap">
@@ -43,7 +40,7 @@
 					<div class="swiper mySwiper coordiSwiper">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
-								<a href="">
+								<a href="/coordi/coordiPost.do">
 									<img class="coordiImg" src="/resources/images/coordi/stylelist29.jpg">
 									<div class="nickNameArea">
 										<div class="profile">
@@ -160,7 +157,7 @@
 						<div class="swiper-wrapper">
 						
 							<div class="swiper-slide">
-								<a href="">
+								<a href="/coordi/ItPost.do">
 									<img class="itItemImg" src="/resources/images/itItem/item1.jpg">
 									<div class="itemInfoArea">
 										<div class="itemInfoCategory">카테고리</div>

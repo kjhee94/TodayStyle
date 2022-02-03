@@ -34,14 +34,9 @@
 				<form action="/board/noticeSearch.do" method="get">
 				<div class="box-search">
 					<input class="search-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
-					<a href=""><i class="fas fa-search"></i></a>
+					<button type="submit"><i class="fas fa-search"></i></button>
 				</div>
 				</form>
-				
-				
-				
-				
-				
 				
 				<div class="notice">
 					<table id="noticeTable">
@@ -71,17 +66,11 @@
 							</c:otherwise>
 						</c:choose>
 					</table>
-					${requestScope.pageNavi }
+					
 					<!-- pageNavi -->
 					<div id="page_wrap">
 						<ul class="page_ul">
-							<li><a href=''><i class='fas fa-chevron-left'></i></a></li>
-							<li><a href='' class='page_active'>1</a></li>
-							<li><a href=''>2</a></li>
-							<li><a href=''>3</a></li>
-							<li><a href=''>4</a></li>
-							<li><a href=''>5</a></li>
-							<li><a href=''><i class='fas fa-chevron-right'></i></a></li>
+							${requestScope.pageNavi }
 		 				</ul>
 				    </div>
 				</div>

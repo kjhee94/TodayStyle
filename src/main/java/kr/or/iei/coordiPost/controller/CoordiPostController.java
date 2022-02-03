@@ -13,6 +13,12 @@ public class CoordiPostController {
 		return "postPage/postPage";
 	}
 	
+	//잇템 게시물 개별페이지
+	@RequestMapping(value="/coordi/ItPost.do",method=RequestMethod.GET)
+	public String itPost(){
+		return "postPage/itPostPage";
+	}
+	
 	//코디 작성
 	@RequestMapping(value="/coordi/coordiInsert.do",method=RequestMethod.GET)
 	public String coordiInsert(){

@@ -133,25 +133,26 @@
 					</div>
 				</div>
 				
-			
 				<div id="coordiListImgArea">
 					<div class="grid-sizer"></div>
 					<div class="coordiImgArea">
-						<img class="coordiImg" src="/resources/images/coordi/stylelist1.jpg">
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="nickNameArea">
-							<div class="profileArea">
-								<div class="profile">
-									<a href=""><img src="/resources/images/default/profile.jpg" /></a>
-								</div>
+						<a href="/coordi/coordiPost.do">
+							<img class="coordiImg" src="/resources/images/coordi/stylelist1.jpg">
+							
+							<div class="likeScrapArea">
+								<img class="like" src="/resources/images/icon/heart_wf.png"> 
+								<img class="scrap" src="/resources/images/icon/saved_wf.png">
 							</div>
-							<span class="nickName">닉네임</span>
-						</div>
+							
+							<div class="nickNameArea">
+								<div class="profileArea">
+									<div class="profile">
+										<a href=""><img src="/resources/images/default/profile.jpg" /></a>
+									</div>
+								</div>
+								<span class="nickName">닉네임</span>
+							</div>
+						</a>
 					</div>
 					<div class="coordiImgArea">
 						<img class="coordiImg" src="/resources/images/coordi/stylelist23.jpg">

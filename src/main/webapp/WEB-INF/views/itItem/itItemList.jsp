@@ -280,26 +280,28 @@
 				
 				<div id="itItemImgArea">
 					<div class="itItemImgWrap">
-						<div class="itItemImgArea">
-							<img class="itItemImg" src="/resources/images/itItem/item1.jpg">
-							
-							<div class="likeScrapArea">
-								<img class="like" src="/resources/images/icon/heart_w.png"> 
-								<img class="scrap" src="/resources/images/icon/saved_w.png">
-							</div>
-						</div>
-						<div class="itItemInfoArea">
-							<div class="itItemInfoCategory"><span>아이템카테고리</span><span>종류</span></div>
-							<div class="itItemInfoTitle">잇템 제목</div>
-							<div class="nickNameArea">
-								<div class="profileArea">
-									<div class="profile">
-										<a href=""><img src="/resources/images/default/profile.jpg" /></a>
-									</div>
+						<a href="/coordi/ItPost.do">
+							<div class="itItemImgArea">
+								<img class="itItemImg" src="/resources/images/itItem/item1.jpg">
+								
+								<div class="likeScrapArea">
+									<img class="like" src="/resources/images/icon/heart_w.png"> 
+									<img class="scrap" src="/resources/images/icon/saved_w.png">
 								</div>
-								<span class="nickName">닉네임</span>
 							</div>
-						</div>
+							<div class="itItemInfoArea">
+								<div class="itItemInfoCategory"><span>아이템카테고리</span><span>종류</span></div>
+								<div class="itItemInfoTitle">잇템 제목</div>
+								<div class="nickNameArea">
+									<div class="profileArea">
+										<div class="profile">
+											<a href=""><img src="/resources/images/default/profile.jpg" /></a>
+										</div>
+									</div>
+									<span class="nickName">닉네임</span>
+								</div>
+							</div>
+						</a>
 					</div>
 					<div class="itItemImgWrap">
 						<div class="itItemImgArea">
