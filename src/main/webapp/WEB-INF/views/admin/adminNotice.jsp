@@ -58,7 +58,7 @@
 					<span>Home &nbsp-&nbsp 공지 관리 &nbsp-&nbsp </span>
 					<span id="topAction">공지사항 관리</span>
 				</div>
-				<a href="">로그아웃</a>
+				<a href="/member/logout.do">로그아웃</a>
 			</div>
 			
 			<div id="container">

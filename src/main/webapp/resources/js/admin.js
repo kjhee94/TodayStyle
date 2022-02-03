@@ -32,6 +32,15 @@ $(document).ready(function(){
 		$("#insertModel").fadeOut();
 		//$("body").css("overflow", "auto");
 	});
+	$(document).mouseup(function (e) {
+		// 팝업 아이디
+		var insertModel = $("#insertModel");
+		var container = $(".model-area");
+
+		if (container.has(e.target).length === 0){
+			insertModel.fadeOut();
+		}
+	});
 	
 	//modify model
 	$(".btn-modify").click(function(){
@@ -42,16 +51,16 @@ $(document).ready(function(){
 		$("#modifyModel").fadeOut();
 		//$("body").css("overflow", "auto");
 	});
+	$(document).mouseup(function (e) {
+		// 팝업 아이디
+		var modifyModel = $("#modifyModel");
+		var container = $(".model-area");
+
+		if (container.has(e.target).length === 0){
+			modifyModel.fadeOut();
+		}
+	});
 	
-	//ellipsis 보여지기
-//	$(".ellipsis").click(function(){
-//		if($(this).next(".box-hovor").css("display")=="none"){
-//			$(".detail").fadeOut(150)
-//			$(this).next(".box-hovor").fadeIn(150);
-//		}else{
-//			$(this).next(".box-hovor").fadeOut(150);
-//		}
-//	});
 	$(".ellipsis").mouseover(function(){
 		$(this).next(".box-hovor").fadeIn(150);
 	});
