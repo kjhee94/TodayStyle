@@ -273,8 +273,10 @@
 						<i class="fas fa-filter"></i>
 					</div>
 					<div class="box-search">
-						<input class="search-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
-						<a href=""><i class="fas fa-search"></i></a>
+						<form action="">
+							<input class="search-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
+							<button type="submit"><i class="fas fa-search"></i></button>
+						</form>
 					</div>
 				</div>
 				

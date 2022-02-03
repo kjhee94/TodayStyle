@@ -74,8 +74,8 @@
 						</div>
 						
 						<div id="boxSearch">
-							<input class="input-style" type="text" name="search">
-							<i class="fas fa-search"></i>
+							<input class="input-style" type="text" name="search" placeholder="검색어를 입력하세요">
+							<button type="submit"><i class="fas fa-search"></i></button>
 						</div>
 					</form>
 					<div id="boxBtn">
