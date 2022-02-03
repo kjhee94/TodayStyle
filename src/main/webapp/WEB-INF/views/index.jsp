@@ -146,7 +146,7 @@
 					</div>
 				</div>
 				<div class="box-btn"">
-					<button class="btn-style-mint"><a>더 보러 가기</a></button>
+					<button class="btn-style-mint"><a href="/coordi/coordiList.do">더 보러 가기</a></button>
 				</div>
 			</div>
 			
@@ -299,7 +299,7 @@
 					</div>
 				</div>
 				<div class="box-btn"">
-					<button class="btn-style-mint"><a>더 보러 가기</a></button>
+					<button class="btn-style-mint"><a href="/itItem/itItemList.do">더 보러 가기</a></button>
 				</div>
 			</div>
 			
