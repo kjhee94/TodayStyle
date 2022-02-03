@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>오늘 뭐 입지?</title>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -15,13 +14,11 @@
 <link rel="stylesheet" href="/resources/common/header.css">
 <link rel="stylesheet" href="/resources/common/footer.css">
 <link rel="stylesheet" href="/resources/css/index.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/resources/common/common.js"></script>
-<!-- Demo styles -->
-<style>
-
-</style>
 </head>
+
 <body>
 
 	<div id="wrap">
@@ -33,7 +30,7 @@
 			<div id="coordiArea">
 				<div class="main-area">이번주 한파가 시작됩니다 한결 따뜻한 코디를 참고하세요.</div>
 				<div class="sub-area">
-					<span>서울특별시 은평구 갈현제2동</span>
+					<span>서울특별시 은평구</span>
 					<span>-13도</span>
 					<span>겨울</span>
 				</div>
@@ -43,7 +40,7 @@
 					<div class="swiper mySwiper coordiSwiper">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
-								<a href="">
+								<a href="/coordi/coordiPost.do">
 									<img class="coordiImg" src="/resources/images/coordi/stylelist29.jpg">
 									<div class="nickNameArea">
 										<div class="profile">
@@ -160,7 +157,7 @@
 						<div class="swiper-wrapper">
 						
 							<div class="swiper-slide">
-								<a href="">
+								<a href="/coordi/ItPost.do">
 									<img class="itItemImg" src="/resources/images/itItem/item1.jpg">
 									<div class="itemInfoArea">
 										<div class="itemInfoCategory">카테고리</div>

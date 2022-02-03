@@ -10,6 +10,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/common/header.css">
+	<link rel="stylesheet" href="/resources/common/footer.css">
+    <script src="/resources/common/common.js"></script>
     
     <style>
         #body{
@@ -132,6 +134,7 @@
             color: #A9D4D9;
             float: right;
             margin-top: 20px;
+            cursor: pointer;
         }
         .contents-area{
             width: 98.14%;
@@ -146,6 +149,7 @@
             font-family: 'Noto Sans KR', sans-serif;
             font-size: 16px;
             color: #C8C8C8;
+            cursor: pointer;
             
         }
         .contents-area:hover{

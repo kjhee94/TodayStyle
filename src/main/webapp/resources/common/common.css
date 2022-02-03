@@ -4,9 +4,12 @@
 *{
 	margin: 0;
 	padding: 0;
+	border: 0;
+	background-color: transparent;
 	text-decoration: none;
 	list-style-type: none;
 	box-sizing: border-box;
+	font-size: 16px;
 	font-family: 'Noto Sans KR', sans-serif;
 	color: #707070;
 	letter-spacing: -0.3px;
@@ -69,7 +72,7 @@ textarea {
 	padding: 0 40px 0 15px;
 	font-size: 16px;
 }
-.box-search>a {
+.box-search button {
 	position: absolute;
 	top: 9px;
 	right: 15px;

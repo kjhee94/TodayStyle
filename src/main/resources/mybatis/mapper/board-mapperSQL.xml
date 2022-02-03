@@ -74,4 +74,50 @@ WHERE NUM BETWEEN #{start} AND #{end}
      <select id="totalSearchCount" resultType="int">
     SELECT COUNT(*) as count FROM notice WHERE end_YN='N' AND TITLE LIKE '%'||#{keyword}||'%'
    </select>
+   
+   
+    <select id="buttonFAQ" parameterType="map" resultType="FAQ">
+      
+          <if test='type.equals("all")'>
+   			 SELECT
+          faq_no as faqNo,
+         category as category,
+         title as title,
+         content as content,
+         user_id as userId,
+       regdate as regdate,
+         end_yn as endYN
+      FROM
+         faq
+          where end_yn='N'
+ 		 </if>
+ 		 
+ 		 <if test='type.equals("member")'>
+   		 SELECT
+          faq_no as faqNo,
+         category as category,
+         title as title,
+         content as content,
+         user_id as userId,
+       regdate as regdate,
+         end_yn as endYN
+      FROM
+         faq
+          where end_yn='N' AND CATEGORY LIKE '회원/정보'
+ 		 </if>
+ 		 
+ 		 <if test='type.equals("write")'>
+   		SELECT
+          faq_no as faqNo,
+         category as category,
+         title as title,
+         content as content,
+         user_id as userId,
+       regdate as regdate,
+         end_yn as endYN
+      FROM
+         faq
+          where end_yn='N' AND CATEGORY LIKE '게시글'
+ 		 </if>
+   </select>
 </mapper>
