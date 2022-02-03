@@ -12,7 +12,6 @@ div{border: solid 1px black}
 #wrapper{
  	width: 100%;
  	height:100%;
-    overflow: hidden;
 	cursor: default;
 }
 
@@ -22,6 +21,8 @@ div{border: solid 1px black}
     height:1625px;
     float: left;
     margin: auto;
+    padding-right:15px;
+    border-right:solid 1px #C8C8C8;
     
     
 }
@@ -51,6 +52,7 @@ div{border: solid 1px black}
     height:1625px;
     float:left;
     margin:auto;
+    padding-left:15px;
 }
 
 
@@ -81,7 +83,7 @@ div{border: solid 1px black}
     width: 30%;
     height:100%;
     float: left;
-        padding:1px 30px 1px 30px;
+    padding:1px 30px 1px 30px;
     text-align: center;
 }
 /*성별*/
@@ -89,7 +91,7 @@ div{border: solid 1px black}
     width: 30%;
     height:100%;
     float: left;
-        padding:1px 30px 1px 30px;
+    padding:1px 30px 1px 30px;
     text-align: center;
 }
 /* 날짜 */
@@ -138,7 +140,6 @@ div{border: solid 1px black}
     height:100%;
     border-radius: 20px;
     object-fit:cover;
-    border-radius:20px
 }
 
 #picture-right>div:nth-child(2){
@@ -159,7 +160,6 @@ div{border: solid 1px black}
     height:100%;
     border-radius: 20px;
     object-fit:cover;
-    border-radius:20px
 }
 
 #picture-right>div:nth-child(3){
@@ -180,7 +180,6 @@ div{border: solid 1px black}
     height:100%;
     border-radius: 20px;
     object-fit:cover;
-    border-radius:20px
 }
 #picture-right>div:nth-child(4){
     width: 100%;
@@ -200,7 +199,6 @@ div{border: solid 1px black}
     height:100%;
     border-radius: 20px;
     object-fit:cover;
-    border-radius:20px
 }
 
 #picture-right>div:nth-child(5){
@@ -221,7 +219,6 @@ div{border: solid 1px black}
     height:100%;
     border-radius: 20px;
     object-fit:cover;
-    border-radius:20px
 }
 
 #picture-right>div:nth-child(6){
@@ -242,7 +239,6 @@ div{border: solid 1px black}
     height:100%;
     border-radius: 20px;
     object-fit:cover;
-    border-radius:20px
 }
 
 
@@ -267,6 +263,7 @@ div{border: solid 1px black}
     height:5%;
     width: 100%;
     float:left;
+    padding-right:20px;
 }
 
 #list-update div:nth-child(1){
@@ -321,7 +318,7 @@ div{border: solid 1px black}
 }
 
 #cmt-post input[type="text"]{
-    width:838px;
+    width:870px;
     height:50px;
     border: solid 1px #C8C8C8;
     display:inline;
@@ -341,12 +338,13 @@ div{border: solid 1px black}
     color:#A9D4D9
 }
 
-#cmt-pic{
+.profile{
 	border:solid 1px #707070;
 	border-radius:20px;
 	float:left;
 	width:30px;
 	height:30px;
+	cursor:pointer;
 	
 }
 /* 댓글 내용 영역*/
@@ -372,12 +370,13 @@ div{border: solid 1px black}
 
 
 
+
 #user-name{
-    width: 150px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 5px;
     padding-right: 5px;
+    color:#707070
 }
 
 /*팔로우*/
@@ -387,8 +386,8 @@ div{border: solid 1px black}
     background-color:white;
     border:solid 1px #C8C8C8;
     margin:2px 0px 0px 40px;
-    border-radius:20px
-    
+    border-radius:20px;
+    cursor:pointer;
 }
 
 #user div:nth-child(1){
@@ -405,42 +404,80 @@ div{border: solid 1px black}
 
 /* 좋아요/스크랩 영역*/
 #like-scrap{
-    height:5%
+    height:5%;
+ 
 }
 
 /*좋아요*/
-#like-scrap div:nth-child(1){
-    width:50%;
+#like{
+    width:200px;
     height:100%;
     padding-top:20px;
     float:left;
+    cursor:pointer;
+
 }
+
+#like>div{
+	width:25px;
+	height:25px;
+	position:relative;
+	left:110px;
+	bottom:82px;
+	font-size:18px;
+	
+}
+
+/*스크랩*/
+#scrap{
+    width:200px;
+    height:100%;
+    padding-top:20px;
+    float:right;
+    cursor:pointer;
+}
+
+/*좋아요,스크랩 버튼*/
 #like-scrap input[type="button"]{
-	width:185px;
+	width:200px;
 	height:60px;
 	background-color:background-color:#F5F5F5;
 	border:none;
 	border-radius:20px;
 }
-/*스크랩*/
-#like-scrap div:nth-child(2){
-    width:50%;
-    height:100%;
-    padding-top:20px;
-    padding-left:20px;
-    float:left;  
+
+#scrap>div{
+	width:25px;
+	height:25px;
+	position:relative;
+	left:110px;
+	bottom:82px;
+	font-size:18px;
 }
+/*좋아요,스크랩 아이콘*/
+#like-scrap img{
+	width:25px;
+	height:25px;
+	position:relative;
+	left:75px;
+	bottom:50px;
+}
+
+
+
+
 /*의상정보제목 영역*/
 #cloth-info{
     height:5%;
     margin-top:20px;
 }
+
 /*의상 영역*/
 #clothes{
     height:87%
 }
 
-/* 상의리 */
+/* 상의 */
 #clothes div:nth-child(1){
     width:100%;
     height:8%;
