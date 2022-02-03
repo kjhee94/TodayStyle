@@ -29,19 +29,19 @@
 }
 
 #info-wrapper{
-	height:70%;
+	height:40%;
 	width: 90%;
 	margin: auto
 }
 
 #picture-wrapper{
-	height:10%
+	height:40%;
 	border-top:solid 1px #C8C8C8; 
 	padding: 15px
 }
 
 #coordi-post{
-	height:50%;
+	height:10%;
     float:left;
     width:100%;
     text-align: center;
@@ -181,13 +181,14 @@ input[id="info-check"]:checked + label + div{
     margin: auto;
 }
 
-.cancel-button{
+#select-category2 input[type="button"]{
     background-color: #D9D9D9;
     border-radius: 10px;
     width: 30px;
     height: 30px;
     color:white;
     border:0;
+    cursor:pointer;
     
 }
 
@@ -207,9 +208,12 @@ input[id="info-check"]:checked + label + div{
     padding:20px;
     margin: 15px;
     padding-bottom: 30px;
-    padding-top: 10px
+    padding-top: 10px;
+    cursor:pointer;
     
 }
+
+
 .togglebox{
     position: relative;
     margin: auto;
@@ -217,8 +221,6 @@ input[id="info-check"]:checked + label + div{
     height: 80px;
     display: block;
 }
-
-
 
 .subject{
     font-size: 18px;
@@ -267,6 +269,7 @@ input[id="info-check"]:checked + label + div{
     display: inline
     
 }
+
 
 
 
