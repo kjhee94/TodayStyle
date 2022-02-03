@@ -21,17 +21,31 @@
 
 #title{
     border-bottom:solid 3px #707070; 
-    height: auto;
+    height: 10%;
     font-weight: 1000;
     color:#707070;
     font-size: 25px;
     margin:10px;
 }
 
-#info-wrapper{height:70%;width: 90%;margin: 15px}
+#info-wrapper{
+	height:70%;
+	width: 90%;
+	margin: auto
+}
 
-#picture-wrapper{border-top:solid 1px #C8C8C8; padding: 15px}
+#picture-wrapper{
+	height:10%
+	border-top:solid 1px #C8C8C8; 
+	padding: 15px
+}
 
+#coordi-post{
+	height:50%;
+    float:left;
+    width:100%;
+    text-align: center;
+}
 
 .select{
 width: 335px;
@@ -177,11 +191,6 @@ input[id="info-check"]:checked + label + div{
     
 }
 
-#coordi-post{
-    float:left;
-    width:100%;
-    text-align: center;
-}
 
 .btn-style-mint{
 	width:120px;
@@ -260,7 +269,6 @@ input[id="info-check"]:checked + label + div{
 }
 
 
-    
 
 
         
