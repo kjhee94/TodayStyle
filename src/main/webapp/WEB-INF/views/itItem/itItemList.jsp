@@ -498,7 +498,7 @@
 		$('.itItemImg').hover(function(){
 			
 			$(this).css('transition','all 0.2s linear');
-			$(this).css('transform','scale(1.01)');
+			$(this).css('transform','scale(1.05)');
 			
 		},function(){
 			$(this).css('transition','all 0.2s linear');
