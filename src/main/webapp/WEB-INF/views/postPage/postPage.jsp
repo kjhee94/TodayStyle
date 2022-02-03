@@ -160,17 +160,37 @@
               	 의상정보
            </div>
            <div id="clothes">
-               <div>
-                   	상의
+               <div id="top">
+                   	<div id="top-pic">
+                   		<img src="/resources/images/default/top.png">
+                   	</div>
+                   	<div>
+                   		설명
+                   	</div>
                </div>
-               <div>
-                   	하의
+               <div id="bottom">
+                   	<div id="bottom-pic">
+                   		<img src="/resources/images/default/bottom.png">
+                   	</div>
+                   	<div>
+                   		설명
+                   	</div>
                </div>
-               <div>
-                   	신발
+               <div id="shoes">
+                   	<div id="shoes-pic">
+                   		<img src="/resources/images/default/shoes.png">
+                   	</div>
+                   	<div>
+                   		설명
+                   	</div>
                </div>
-               <div>
-                   	악세서리
+               <div id="acc">
+                   	<div id="acc-pic">
+                   		<img src="/resources/images/default/acc.png">
+                   	</div>
+                   	<div>
+                   		설명
+                   	</div>
                </div>
            </div>       
         </div>
