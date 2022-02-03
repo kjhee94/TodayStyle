@@ -24,8 +24,8 @@ public class BoardController {
 	@Autowired
 	private BoardService bService;
 	
-	@RequestMapping(value="/board/boardPage.do", method=RequestMethod.GET)
-	public ModelAndView boardPage(HttpServletRequest request, ModelAndView mav)
+	@RequestMapping(value="/board/NoticePage.do", method=RequestMethod.GET)
+	public ModelAndView NoticePage(HttpServletRequest request, ModelAndView mav)
 	{
 		int currentPage;
 		if (request.getParameter("currentPage")==null)
@@ -37,17 +37,16 @@ public class BoardController {
 		}
 		
 		HashMap<String, Object> pageDataMap = bService.NoticeList(currentPage);
-		ArrayList<FAQ> list = bService.AllFAQ();
 
 		ArrayList<Notice> nlist = (ArrayList<Notice>)pageDataMap.get("list");
 		String pageNavi = (String)pageDataMap.get("pageNavi");
 		
-		mav.addObject("list", list);
+
 		mav.addObject("pageDataMap", pageDataMap);
 		mav.addObject("currentPage", currentPage);
 		mav.addObject("nlist", nlist);
 		mav.addObject("pageNavi", pageNavi);
-		mav.setViewName("board/boardPage"); 
+		mav.setViewName("board/NoticePage"); 
 		return mav;
 
 	}
@@ -93,9 +92,34 @@ public class BoardController {
 		mav.addObject("pageDataMap", pageDataMap);
 		mav.addObject("pageNavi", pageNavi);
 		mav.addObject("keyword",keyword);
-		mav.setViewName("board/boardPage");
+		mav.setViewName("board/NoticePage");
 		return mav;
 	}
 	
+	
+	
+	@RequestMapping(value="/board/FAQPage.do", method=RequestMethod.GET)
+	public ModelAndView FAQPage(HttpServletRequest request, ModelAndView mav,@RequestParam String type)
+	{
+		
+		ArrayList<FAQ> list = bService.AllFAQ(type);
+
+		
+		mav.addObject("list", list);
+		mav.setViewName("board/FAQPage"); 
+		return mav;
+	}
+	
+
+	@RequestMapping(value="/board/faqClick.do")
+	public ModelAndView FAQType(HttpServletRequest request, ModelAndView mav,@RequestParam String type)
+	{
+
+		ArrayList<FAQ> list = bService.AllFAQ(type);
+
+		mav.addObject("list", list);
+		mav.setViewName("board/FAQPage"); 
+		return mav;
+	}
 
 }

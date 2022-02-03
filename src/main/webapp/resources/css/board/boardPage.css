@@ -26,9 +26,7 @@
 }
 
 
-.tab-content {
-	display: none;
-}
+
 .tab-content.on {
 	display: block;
 }
@@ -37,6 +35,14 @@
 	top: -20px;
 }
 
+.box-search>button {
+	position:absolute;
+	top:9px;
+	right:15px;
+	font-size:15px;
+	border:0;
+	background-color:#fff;
+}
 /*notice 디자인*/
 .notice {
 	width: 100%;
