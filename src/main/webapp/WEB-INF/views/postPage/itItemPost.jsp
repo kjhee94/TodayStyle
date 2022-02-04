@@ -35,7 +35,7 @@
 			            </div>
 			            
 						<div id="picture">
-							<div id="picture-left">
+							<div id="picture-left" class="img-big">
 								<img src="/resources/images/itItem/item1.jpg">
 							</div>
 							<div id="picture-right">
@@ -61,8 +61,8 @@
 						</div>
 						
 		                <div id="box-post-btn">
-		               	 	<button class="btn-style-line">목록</button>
-		                	<button class="btn-style-mint">수정</button>
+		               	 	<button class="btn-style-line"><a href="/itItem/itItemList.do">목록</a></button>
+		                	<button class="btn-style-mint"><a href="">수정</a></button>
 		                </div>
 					</div>
 		            
@@ -84,10 +84,10 @@
 		                <div id="cmt-list">
 		                	<div class="cmt-one">
 		                		<div class="profile">
-		                   			<a href=""><img src="/resources/images/default/profile.jpg"></a>
+		                   			<a href="/myPage/userPage.do"><img src="/resources/images/default/profile.jpg"></a>
 		                   		</div>
 		                   		<div class="cmt-txt">
-			                   		<span class="cmt-nick">닉네임</span>
+			                   		<span class="cmt-nick"><a href="/myPage/userPage.do">닉네임</a></span>
 			                   		<span class="cmt-content">댓글 내용입니다</span>
 			                   		<div class="cmt-info">
 			                   			<span>2022.01.16</span>
@@ -100,11 +100,11 @@
 		                	<div class="cmt-re">
 		                		<div class="cmt-one ">
 		                   			<div class="profile">
-			                   			<a href=""><img src="/resources/images/default/profile.jpg"></a>
+			                   			<a href="/myPage/userPage.do"><img src="/resources/images/default/profile.jpg"></a>
 			                   		</div>
 			                   		<div class="cmt-txt">
-			                   			<span class="cmt-nick">닉네임</span>
-				                   		<span class="cmt-re-nick"><a href="">@원댓쓴이</a></span>
+			                   			<span class="cmt-nick"><a href="/myPage/userPage.do">닉네임</a></span>
+				                   		<span class="cmt-re-nick"><a href="/myPage/userPage.do">@원댓쓴이</a></span>
 				                   		<span class="cmt-content">댓글 내용입니다</span>
 				                   		<div class="cmt-info">
 				                   			<span>2022.01.16</span>
@@ -135,28 +135,24 @@
 		         <div id="right-wrapper">
 		           <div id="user-info">
 		              <div id="user-box">
-		                  <div class="profile">
-	                    	  <a>
-	                    	  	<img src="/resources/images/default/profile.jpg">
-	                    	  </a>
-		                  </div>
-		                  <span>닉네임</span>
+						<a href="/myPage/userPage.do">
+							<div class="profile">
+								<img src="/resources/images/default/profile.jpg">
+							</div>
+							<span>닉네임</span>
+						</a>
 		              </div>
 		              <button class="btn-style-line">팔로우</button>
 		           </div>
 		           
 		           <div id="like-scrap">
 	                   	<button id="like">
-	                   		<a href="">
-	                   			<img src="/resources/images/icon/heart.png">
-	                   			<span>12</span>
-	                   		</a>
+                   			<img src="/resources/images/icon/heart.png">
+                   			<span>12</span>
 	                   	</button>
 		                <button id="scrap">
-		                	<a>
-		                   		<img src="/resources/images/icon/saved.png">
-		                   		<span>7</span>
-		                   	</a>
+	                   		<img src="/resources/images/icon/saved.png">
+	                   		<span>7</span>
 		                </button>
 					</div>
 		           
@@ -206,6 +202,17 @@
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</div>
+	
+	<script>
+		$(".img-small").click(function() {
+			var img = $(this).html();
+			
+			$(".img-big").html(img);
+			
+			$(this).addClass("focus");
+			$(".img-small").not(this).removeClass("focus");
+		})
+	</script>
 
 </body>
 </html>
