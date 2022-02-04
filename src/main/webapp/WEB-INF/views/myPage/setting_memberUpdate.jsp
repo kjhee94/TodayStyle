@@ -48,21 +48,21 @@
                     <div class="contents-area">
                         <div class="input-wrap">
                             <div class="titleName">이름</div>
-                            <input type="text" class="input-style" value="김연희">
-                            <div class="check">이름을 입력해주세요.</div>
+                            <input type="text" class="input-style" name="userName" value="김연희">
+                            <div class="check" id="userNameCheck"></div>
                         </div>
                         <div class="rowLine"></div>
                         <div class="input-wrap">
                             <div class="titleName">닉네임</div>
-                            <input type="text" class="input-style" value="여니여니">
-                            <div class="check">이름을 입력해주세요.</div>
+                            <input type="text" class="input-style" name="userNickName" value="여니여니">
+                            <div class="check" id="userNickNameCheck"></div>
                         </div>
                         <div class="rowLine"></div>
                         <div class="input-wrap">
                             <div class="titleName">이메일</div>
-                            <input type="email" class="input-style" value="yeonee@naver.com">
+                            <input type="email" class="input-style" name="userEmail" value="yeonee@naver.com">
                             <div id="emailCheckBtn" class="btn-style-mint">인증하기</div>
-                            <div class="check">이름을 입력해주세요.</div>
+                            <div class="check" id="userEmailCheck"></div>
                             <div id="emailCheck-area">
                             	<div id="emailCheck-text" class="emailCheck">이메일로 전송된 인증코드를 입력해주세요</div>
                             	<input type="text" placeholder="인증코드 6자리 입력" id="emailCheck-input" class="emailCheck input-style"><div id="emailCheck-btn" class="emailCheck btn-style-mint">확인</div>
@@ -164,7 +164,45 @@
         
         
         // 유효성 검사
-        
+        <%-- 이름 유효성 검사 --%>
+        $("input[name='userName']").keyup(function() {
+            var regName = /^[가-힣]+$/;
+            if (regName.test($(this).val())) {
+                $('#userNameCheck').css('display', 'none');
+                $("input[name='userName']").css('border-color','#C8C8C8');
+            } else {
+                $('#userNameCheck').css('display', 'block');
+                $('#userNameCheck').css('color', '#FD8A69');
+                $('#userNameCheck').html('한글만 입력이 가능합니다.');
+                $("input[name='userName']").css('border-color','#FD8A69');
+            }
+        });
+        <%-- 닉네임 유효성 검사 --%>
+        $("input[name='userNickName']").keyup(function() {
+            var regName = /^[a-zA-Z0-9가-힣]{2,8}$/;
+            if (regName.test($(this).val())) {
+                $('#userNickNameCheck').css('display', 'none');
+                $("input[name='userNickName']").css('border-color','#C8C8C8');
+            } else {
+                $('#userNickNameCheck').css('display', 'block');
+                $('#userNickNameCheck').css('color', '#FD8A69');
+                $('#userNickNameCheck').html('2-8글자로 입력해주세요');
+                $("input[name='userNickName']").css('border-color','#FD8A69');
+            }
+        });
+        <%-- 이메일 유효성 검사 --%>
+        $("input[name='userEmail']").keyup(function() {
+            var regName = /.+@.+/;
+            if (regName.test($(this).val())) {
+                $('#userEmailCheck').css('display', 'none');
+                $("input[name='userEmail']").css('border-color','#C8C8C8');
+            } else {
+                $('#userEmailCheck').css('display', 'block');
+                $('#userEmailCheck').css('color', '#FD8A69');
+                $('#userEmailCheck').html('올바른 이메일 형식으로 입력해주세요.');
+                $("input[name='userEmail']").css('border-color','#FD8A69');
+            }
+        });
         
 
     </script>

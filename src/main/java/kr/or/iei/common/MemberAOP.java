@@ -52,4 +52,22 @@ public class MemberAOP {
 				
 				m.setUserPwd(encryptData);
 			}
+			
+			// 회원 설정 - 비밀번호 확인 시 암호화 처리
+			@Pointcut("execution(kr.or.iei.member.model.vo.Member kr.or.iei.myPage.model.service.MemberSettingServiceImpl.settingPwdCheck(..))")
+			public void settingPwdCheckPointCut() {}
+			
+			@Before("settingPwdCheckPointCut()")
+			public void settingPwdCheckEncryption(JoinPoint jp) throws Exception
+			{
+				Member m = (Member)jp.getArgs()[0];
+				
+				String userId = m.getUserId();
+				String userPwd = m.getUserPwd();
+				
+				String encryptData = enc.encryptionData(userPwd, userId);
+				
+				m.setUserPwd(encryptData);
+			}
+			
 }

@@ -121,6 +121,7 @@
             font-family: 'Noto Sans KR', sans-serif;
             font-size: 12px;
             color: #FD8A69;
+            display: none;
         }
 
         #emailCheckBtn {

@@ -43,13 +43,15 @@
                     </a>
                 </div>
 
-                <div class="contents-area">
-                    <div id="contents-data-wrap">
-                        <div id="contents-comment">정보 보호를 위해 비밀번호를 다시 한번 입력해주세요 : ) </div>
-                        <input class="input-style" placeholder="비밀번호">
-                        <div class="btn-style-mint" id="pwdCheckBtn"><a>확인</a></div>
-                    </div>
-                </div>
+				<form action="/myPage/setting.do" method="post" id="pwdCheckForm">
+	                <div class="contents-area">
+	                    <div id="contents-data-wrap">
+	                        <div id="contents-comment">정보 보호를 위해 비밀번호를 다시 한번 입력해주세요 : ) </div>
+	                        <input type="password" class="input-style" name="userPwd" placeholder="비밀번호">
+	                        <div class="btn-style-mint" id="pwdCheckBtn"><a>확인</a></div>
+	                    </div>
+	                </div>
+                </form>
 
                 <div id="space"></div>
 
@@ -64,6 +66,13 @@
 
     <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
 
+	<script>
+	
+		$('#pwdCheckBtn').click(function(){
+			$('#pwdCheckForm').submit();
+		});
+		
+	</script>
 
 </body>
 
