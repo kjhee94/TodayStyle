@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="coordi">
+ 	<select id="selectAllList" resultType="coordi">
+ 		
+ 		select 
+		       coordi_img.coordi_no as coordiNo,
+			   filepath as filePath,
+			   coordi.user_Id as userId,
+			   coordi_content as coordiContent,
+			   coordi.gender,
+			   season,
+			   temperature,
+			   reg_date as regDate,
+			   hashtag as hashTag,
+			   coordi.del_yn as delYN,
+			   nickName as nickName
+		from 
+			coordi_img left join coordi on (coordi_img.coordi_no=coordi.coordi_no) left join member on (coordi.user_Id=member.user_Id) 
+		where 
+			top_YN='Y' and season=#{season} and coordi.del_yn='N'
+ 	</select>
+</mapper>

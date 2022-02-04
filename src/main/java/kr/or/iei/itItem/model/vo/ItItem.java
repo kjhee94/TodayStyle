@@ -21,16 +21,20 @@ public class ItItem {
 	private String itItemImgOriginalName;
 	private String itItemImgChangedName;
 	private String filePath;
-	
+	private String nickName;
+	private String itemName;
+	private String profileFilePath;
 	
 	public ItItem() {
 		super();
 	}
 	
+	
+
 	public ItItem(int itItemNo, String userId, String itItemTitle, String itItemContent, String itItemName,
 			String itItemColor, String itItemSize, String itItembrand, String hashTag, String itemCode, String userSize,
 			int userHeight, Date regDate, char delYN, String itItemImgOriginalName, String itItemImgChangedName,
-			String filePath) {
+			String filePath, String nickName, String itemName, String profileFilePath) {
 		super();
 		this.itItemNo = itItemNo;
 		this.userId = userId;
@@ -49,7 +53,44 @@ public class ItItem {
 		this.itItemImgOriginalName = itItemImgOriginalName;
 		this.itItemImgChangedName = itItemImgChangedName;
 		this.filePath = filePath;
+		this.nickName = nickName;
+		this.itemName = itemName;
+		this.profileFilePath = profileFilePath;
 	}
+
+
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	
+	
+	
+	public String getItemName() {
+		return itemName;
+	}
+
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+
+	public String getProfileFilePath() {
+		return profileFilePath;
+	}
+
+
+	public void setProfileFilePath(String profileFilePath) {
+		this.profileFilePath = profileFilePath;
+	}
+
+
 	public int getItItemNo() {
 		return itItemNo;
 	}

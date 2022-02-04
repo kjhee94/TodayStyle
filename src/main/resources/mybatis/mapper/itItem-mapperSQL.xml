@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="itItem">
+	<select id="selectAllList" resultType="itItem">
+		select 
+		    it_img.it_itemno as itItemNo,
+		    it_img.filepath as filePath,
+		    it_item.user_Id as userId,
+		    it_title as itItemTitle,
+		    it_content as itItemContent,
+		    it_name as itItemName,
+		    it_color as itItemColor,
+		    it_size as itItemSize,
+		    brand as itItembrand,
+		    hashTag as hashTag,
+		    it_item.Item_code as itemCode,
+		    user_size as userSize,
+		    user_height as userHeight,
+		    reg_Date as regDate,
+		    it_item.del_yn as delYN,
+		    nickName as nickName,
+		    item_name as itemName,
+		    member_img.filePath as profileFilePath
+		from 
+			it_img 
+		left join 
+			it_item on (it_img.it_itemno=it_item.it_itemno) 
+		left join 
+			member on (it_item.user_Id=member.user_Id) 
+		left join 
+			Item_category on (it_item.item_code=item_category.item_code)
+		left join 
+			member_img on (it_item.user_id=member_img.user_id)
+		where
+			top_YN='Y' and it_item.del_yn='N'
+	</select>
+</mapper>
