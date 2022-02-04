@@ -31,5 +31,13 @@ public class MemberDAO {
 		return sqlSession.selectOne("member.findId",member);
 	}
 
+	public int IdCheck(String userid) {
+		return sqlSession.selectOne("member.IdCheck",userid)!=null?1:0;
+	}
+
+	public int nicknameCheck(String nickname) {
+		return sqlSession.selectOne("member.nicknameCheck",nickname)!=null?1:0;
+	}
+
 	
 }

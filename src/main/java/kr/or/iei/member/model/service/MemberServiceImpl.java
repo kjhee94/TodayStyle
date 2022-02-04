@@ -35,6 +35,16 @@ public class MemberServiceImpl implements MemberService {
 		return mDAO.findId(member);
 	}
 
+	@Override
+	public int IdCheck(String userid) {
+		return mDAO.IdCheck(userid);
+	}
+
+	@Override
+	public int nicknameCheck(String nickname) {
+		return mDAO.nicknameCheck(nickname);
+	}
+
 
 	
 
