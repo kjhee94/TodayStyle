@@ -22,7 +22,68 @@
 </style>
 </head>
 <body>
-
+	<script>
+		            if(navigator.geolocation) {
+		                navigator.geolocation.getCurrentPosition(
+		                    function successCallback(position) {
+		                        var now = new Date(position.timestamp);// 현재 시각
+		                        var latitude = position.coords.latitude;    // 위도
+		                        var longitude = position.coords.longitude;   // 경도
+		                        var acc = position.coords.accuracy;    // 정확도
+		                        var year = now.getFullYear();
+		                        var month = now.getMonth() + 1;
+		                        if(month<10) month = '0' + month;
+		                        var date = now.getDate();
+		                        if(date<10) date = '0' + date;
+								
+								var hour = now.getHours();
+							    if(hour<10) hour = '0' + hour;
+							    
+								
+							    var day=year+month+date;
+								var time=hour-1+"00";
+								console.log(day);
+								console.log(time);
+		                       /*
+		                        alert("현재 시간: " + now.toDateString() + "\n"
+		                            + "현재 위치(위도: " + latitude + "경도: " + longitude + "\n"
+		                            + "정확도: " + acc);
+		                        
+		                        */
+		                        $.get('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?'+
+		                        		'serviceKey=K1qlq9RSjVEacJGS1cYzhmZ6EhmwgRNN2AyQJRBjvJE%2F8uoXAomaHeRsmIe9CHqKyCZdkkAG3DaYH5ZWD2MBIg%3D%3D&'+
+		                        		'pageNo=1&numOfRows=1000&dataType=JSON&base_date='+day+'&base_time='+time+'&nx=55&ny=127',function(data){
+		            				console.log(data);
+		            				console.log(data.response.body.items.item[3].obsrValue);
+		            				$('#temp').text(data.response.body.items.item[3].obsrValue+"도");
+		            			})
+		                        $.ajax({
+		    	                	url:"/rest/setSession.do",
+		    	                	data:{latitude:latitude,longitude:longitude},
+		    	                	type:"post",
+		    	                	success:function (result){
+		    	                		$('#address').text(result);
+		    	                	},
+		    	                	error:function(){
+		    	                		console.log("통신실패");
+		    	                	}
+		    	                	});
+		                      
+		                    }, function errorCallback() {
+		                        alert("실패");
+		                    }, options = {
+		                        enableHighAccuracy: true,
+		                        timeout: 1500,
+		                        maximumAge: 5000
+		                    }
+		                    
+		                )
+		            } else {
+		                alert("Geolocation API를 지원하지 않습니다.");
+		            }
+		        
+   				
+		       </script>
 	<div id="wrap">
 		<!-- header -->
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -32,9 +93,9 @@
 			<div id="coordiArea">
 				<div class="main-area">이번주 한파가 시작됩니다 한결 따뜻한 코디를 참고하세요.</div>
 				<div class="sub-area">
-					<span>서울특별시 은평구 갈현제2동</span>
-					<span>-13도</span>
-					<span>겨울</span>
+					<span id="address">서울특별시 은평구 갈현제2동</span>
+					<span id="temp">-13</span>
+					<span id="season">겨울</span>
 				</div>
 				
 				<div id="coordiImgArea">
@@ -385,6 +446,7 @@
 			$(this).find(".itemInfoArea").fadeOut(200);
 		});
 	</script>
+	
 	
 </body>
 </html>
