@@ -11,14 +11,16 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/common/header.css">
+<link rel="stylesheet" href="/resources/common/footer.css">
 <link rel="stylesheet" href="/resources/css/insertStyle.css?after">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="/resources/js/postInsert.js"></script>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	
-	<div id="content">
+	<div id="wrap" style="height:auto;overflow:auto">
+		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+		<div id="content">
 	
 		<div id="title">
 			<p style="font-size: 25px; color:#707070">잇템작성</p>
@@ -31,12 +33,12 @@
                         <span style="padding:5px"><img src="/resources/images/icon/pen.png" style="width:15px; height:15px"></span><b>필수 입력 정보</b>
                     </span>
                     <span style="color:#C8C8C8">
-                        	코디와 날씨를 연동하기 위한 정보이니 최대한 꼼꼼하게 작성해주세요<img src="/resources/images/icon/down.png" style="width:15px; height:15px; opacity:0.5; float:right">  
+                        		 잇템을 추천하기 위한 정보이니 최대한 꼼꼼하게 작성해주세요<img src="/resources/images/icon/down.png" style="width:15px; height:15px; opacity:0.5; float:right">
                     </span>
                 </label>
-                <div id="coordi-info1">
 				<div class="info-detail">
-					<div class="togglebox">
+                       
+                    <div class="togglebox" style="border-top:solid 1px #D9D9D9;height:140px">
                            <div class="subject">
                                <p>성별</p>
                            </div>
@@ -50,160 +52,36 @@
 	                           <div class="gender">공용</div>
 	                       </a>
                      </div>
-                     
+
+						<div id="coordi-info1" style="height:230px">
                             <div class="subject">
-                               <p>의상정보추가</p>
+                                   <span>
+                                       	의상 정보 추가
+                                   </span>
+                                   <span style="font-size: 14px;color:#C8C8C8">  
+                                       	한 가지만 추가가 가능합니다.
+                                   </span>
                             </div>
 
                             <div class="select-category">
                                <div class="togglebox">
-                        	   <a>
-                                 	<div class="top-btn">상의</div>
- 
-                               </a>
-                               <a>
-                                   <div class="bottom-btn">하의</div>
-
-                               </a>
-                               <a>
-                                   <div class="outer-btn">아우터</div>
-                               </a>
-                               <a>
-                                   <div class="shoes-btn">신발</div>
-                               </a>
-                               <a>
-                                   <div class="acc-btn">악세사리</div>
-                               </a>
-                                </div>
-                            </div>					
-
-                            <div id="select-category2">
-                                <div class="top" style="display:none">
-                                   <span>
-                                        <select class="select">
-                                            <option>상의 카테고리 선택</option>
-                                        </select>
-                                    </span>
-                                    <span>
-                                        <textarea class="textarea2" placeholder="브랜드를 입력하세요" style="margin-bottom:27px"></textarea>
-                                    </span>
-                                    <span>
-                                        <input type="button" class="top-cancel-btn" value="x"></input>
-                                    </span>
-                                </div>
-                                <div class="bottom" style="display:none">
-                                   <span>
-                                        <select class="select">
-                                            <option>하의 카테고리 선택</option>
-                                        </select>
-                                    </span>
-                                    <span>
-                                        <textarea class="textarea2" placeholder="브랜드를 입력하세요" style="margin-bottom:27px"></textarea>
-                                    </span>
-                                    <span>
-                                        <input type="button" class="bottom-cancel-btn" value="x"></input>
-                                    </span>
-                                </div>
-                                <div class="outer" style="display:none">
-                                   <span>
-                                        <select class="select">
-                                            <option>아우터 카테고리 선택</option>
-                                        </select>
-                                    </span>
-                                    <span>
-                                        <textarea class="textarea2" placeholder="브랜드를 입력하세요" style="margin-bottom:27px"></textarea>
-                                    </span>
-                                    <span>
-                                        <input type="button" class="outer-cancel-btn" value="x"></input>
-                                    </span>
-                                </div>
-                                <div class="shoes" style="display:none">
-                                   <span>
-                                        <select class="select">
-                                            <option>신발 카테고리 선택</option>
-                                        </select>
-                                    </span>
-                                    <span>
-                                        <textarea class="textarea2" placeholder="브랜드를 입력하세요" style="margin-bottom:27px"></textarea>
-                                    </span>
-                                    <span>
-                                        <input type="button" class="shoes-cancel-btn" value="x"></input>
-                                    </span>
-                                </div>
-                                <div class="acc" style="display:none">
-                                   <span>
-                                        <select class="select">
-                                            <option>악세사리 카테고리 선택</option>
-                                        </select>
-                                    </span>
-                                    <span>
-                                        <textarea class="textarea2" placeholder="브랜드를 입력하세요" style="margin-bottom:27px"></textarea>
-                                    </span>
-                                    <span>
-                                        <input type="button" class="acc-cancel-btn" value="x"></input>
-                                    </span>
-                                </div>
-                            </div>
-                        
-				    <div id="temperature">
-                        <div class="subject">
-                            <p>기온</p><img src="/resources/images/icon/down.png" style="left:300px; top:46px; opacity:0.5; float:left;position:relative;width:15px;height:15px">
-                         </div>
-                         <select class="select">
-                            <option>기온 선택</option>°
-                               <option>4°이하</option>
-                               <option>5°~8°</option>
-                               <option>9°~11°</option>
-                               <option>12°~16°</option>
-                               <option>17°~19°</option>
-                               <option>20°~22°</option>
-                               <option>23°~27°</option>
-                               <option>28°이상</option>
-                         </select>
-					</div>
-                       
-                    <div class="togglebox">
-                           <div class="subject">
-                               <p>계절</p>
-                           </div>
-	                       <a>
-	                           <div class="weather">봄</div>
-	                       </a>
-	                       <a>
-	                           <div class="weather">여름</div>  
-	                       </a>
-	                        <a>
-	                           <div class="weather">가을</div>
-	                       </a>
-	                        <a>
-	                           <div class="weather">겨울</div>
-	                       </a>
-                     </div>
-                     
-                     <div id="coordi-info1">
-                            <div class="subject">
-                               <p>의상정보추가</p>
-                            </div>
-
-                            <div class="select-category">
-                               <div class="togglebox">
-                        	   <a>
-                                 	<div class="top-btn">상의</div>
- 
-                               </a>
-                               <a>
-                                   <div class="bottom-btn">하의</div>
-
-                               </a>
-                               <a>
-                                   <div class="outer-btn">아우터</div>
-                               </a>
-                               <a>
-                                   <div class="shoes-btn">신발</div>
-                               </a>
-                               <a>
-                                   <div class="acc-btn">악세사리</div>
-                               </a>
+	                        	   <a>
+	                                 	<div id="top-btn" class="clothes-btn">상의</div>
+	 
+	                               </a>
+	                               <a>
+	                                   <div id="bottom-btn"  class="clothes-btn">하의</div>
+	
+	                               </a>
+	                               <a>
+	                                   <div id="outer-btn"  class="clothes-btn">아우터</div>
+	                               </a>
+	                               <a>
+	                                   <div id="shoes-btn"  class="clothes-btn">신발</div>
+	                               </a>
+	                               <a>
+	                                   <div id="acc-btn"  class="clothes-btn">악세사리</div>
+	                               </a>
                                 </div>
                             </div>					
 
@@ -275,28 +153,93 @@
                                 </div>
                             </div>
                         </div>
+ 
+                           
+                           
+                            <div class="togglebox" style="height:300px">
+	                           <div class="subject">
+	                               <p>아이템 상세정보</p>
+	                           </div>
+	                           <div style="height:80%;padding-top:10px">
+		                           	<div class="item-info2">
+		                           		<div>
+		                           			상품명
+		                           		</div>
+		                           		<div>
+		                           			<input type="text" class="textarea2" placeholder="상품명 또는 상품 코드를 입력하세요" style="margin-bottom:27px"></input>
+		                           		</div>
+		                           	</div>
+		                           	<div class="item-info2">
+		                           		<div>
+		                           			색상
+		                           		</div>
+		                           		<div>
+		                           			<input type="text" class="textarea2" placeholder="구매한 색상을 입력하세요" style="margin-bottom:27px"></input>
+		                           		</div>
+		                           	</div>
+		                           	<div class="item-info2">
+		                           		<div>
+		                           			구매사이즈
+		                           		</div>
+		                           		<div>
+		                           			<input type="text" class="textarea2" placeholder="구매한 사이즈를 입력하세요" style="margin-bottom:27px"></input>
+		                           		</div>
+		                           	</div>
+        
+	                           </div>
+                                    
+                     		</div>
+                            
+                            <div class="togglebox" style="height:180px">
+	                           <div class="subject">
+	                               <p>사용자 정보</p>
+	                           </div>
+		                      <div style="padding-top:10px">
+		                           	<div class="item-info2">
+		                           		<div>
+		                           			키
+		                           		</div>
+		                           		<div>
+		                           			<input type="text" class="textarea2" placeholder="키를 입력하세요" style="margin-bottom:27px">
+		                           				<a style="position:relative;bottom: 5px;x">cm</a>
+		                           			
+		                           			
+		                           		</div>
+		                           	</div>
+		                           	<div class="item-info2">
+		                           		<div>
+		                           			정사이즈
+		                           		</div>
+		                           		<div>
+		                           			<input type="text" class="textarea2" placeholder="평소에 착용하는 사이즈를 입력하세요" style="margin-bottom:27px"></input>
+		                           		</div>
+		                           	</div>
+	                           </div>
+                     		</div>	
+
 				    </div> 
-				    </div>
            </div>
 			
 				
 				
 			<div id="picture-wrapper">
 	            <div id="insert-picture">
-                    <input type="file" accept=".jpg, .png id=file-input" id="file-input">
-                    <label for="file-input">
-                        <span class="insert-box">
-                            <em></em>
-                            <p>
-                                <span style="font-size: 15px">
-                                   	 사진을 등록해주세요<br>
-                                </span>
+                    
+                        <div class="input_wrap">
+                        	<a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
+							 <input type="file" id="input_imgs" multiple/>
+
                                 <span style="font-size: 11px">
                                     (*최대 10장까지)
                                 </span>
-                            </p>
-                        </span>
-                    </label>
+                        </div>
+                       	<div class="imgs_wrap">	
+                       		<img id="img"/>
+	                    </div>
+	                    
+	                    <a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
+
+                    
 	            </div>
 	            <div id="insert-info">
 	                <div id="coordi-info2">
@@ -323,46 +266,40 @@
    	</div>
    	
 	<script>
-	/**
-	 * 
-	 */
-
-
-			$('.weather').click(function(){
-				var color = $(this).css('background-color');
-				
-				if(color==='rgba(0, 0, 0, 0)'){
-					$(this).css('background-color','#A9D4D9');
-					$('.weather').not(this).css('background-color','rgba(0, 0, 0, 0)');
-					$(this).css('color','#FFFFFF')
-					
-				}else{
-					$(this).css('background-color','rgba(0, 0, 0, 0)');
-					$(this).css('color','#707070')
-				}
-			})
-			
 			$('.gender').click(function(){
 				var color = $(this).css('background-color');
 				
 				if(color==='rgba(0, 0, 0, 0)'){
 					$(this).css('background-color','#A9D4D9');
 					$('.gender').not(this).css('background-color','rgba(0, 0, 0, 0)');
+					$('.gender').not(this).css('color','#707070');
 					$(this).css('color','#FFFFFF')
 				}else{
 					$(this).css('background-color','rgba(0, 0, 0, 0)')
 					$(this).css('color','#707070')
 				}
 			})
-
-			$('.top-btn').click(function(){
+	
+			$('#top-btn').click(function(){
 				var color = $(this).css('background-color');
 				
 				if(color==='rgba(0, 0, 0, 0)'){
 					$(this).css('background-color','#A9D4D9');
 					$('.top').show(200);
-					$(this).css('color','#FFFFFF')
-					
+					$('.bottom').hide(200);
+					$('.outer').hide(200);
+					$('.shoes').hide(200);
+					$('.acc').hide(200);
+					$(this).css('color','#FFFFFF');
+					$('#bottom-btn').css('background-color','#FFFFFF');
+					$('#bottom-btn').css('color','#707070');
+					$('#outer-btn').css('background-color','#FFFFFF');
+					$('#outer-btn').css('color','#707070');
+					$('#shoes-btn').css('background-color','#FFFFFF');
+					$('#shoes-btn').css('color','#707070');
+					$('#acc-btn').css('background-color','#FFFFFF');
+					$('#acc-btn').css('color','#707070');
+
 				}else{
 					$(this).css('background-color','rgba(0, 0, 0, 0)')
 					$('.top').hide(200);
@@ -370,13 +307,26 @@
 				}
 			})
 			
-			$('.bottom-btn').click(function(){
+			$('#bottom-btn').click(function(){
 				var color = $(this).css('background-color');
 				
 				if(color==='rgba(0, 0, 0, 0)'){
 					$(this).css('background-color','#A9D4D9');
 					$('.bottom').show(200);
-					$(this).css('color','#FFFFFF')
+					$('.top').hide(200);
+					$('.outer').hide(200);
+					$('.shoes').hide(200);
+					$('.acc').hide(200);
+					$(this).css('color','#FFFFFF');
+					$('#top-btn').css('background-color','#FFFFFF');
+					$('#top-btn').css('color','#707070');
+					$('#outer-btn').css('background-color','#FFFFFF');
+					$('#outer-btn').css('color','#707070');
+					$('#shoes-btn').css('background-color','#FFFFFF');
+					$('#shoes-btn').css('color','#707070');
+					$('#acc-btn').css('background-color','#FFFFFF');
+					$('#acc-btn').css('color','#707070');
+
 					
 				}else{
 					$(this).css('background-color','rgba(0, 0, 0, 0)')
@@ -385,13 +335,26 @@
 				}
 			})
 			
-			$('.outer-btn').click(function(){
+			$('#outer-btn').click(function(){
 				var color = $(this).css('background-color');
 				
 				if(color==='rgba(0, 0, 0, 0)'){
 					$(this).css('background-color','#A9D4D9');
 					$('.outer').show(200);
-					$(this).css('color','#FFFFFF')
+					$('.top').hide(200);
+					$('.bottom').hide(200);
+					$('.shoes').hide(200);
+					$('.acc').hide(200);
+					$(this).css('color','#FFFFFF');
+					$('#bottom-btn').css('background-color','#FFFFFF');
+					$('#bottom-btn').css('color','#707070');
+					$('#top-btn').css('background-color','#FFFFFF');
+					$('#top-btn').css('color','#707070');
+					$('#shoes-btn').css('background-color','#FFFFFF');
+					$('#shoes-btn').css('color','#707070');
+					$('#acc-btn').css('background-color','#FFFFFF');
+					$('#acc-btn').css('color','#707070');
+
 					
 				}else{
 					$(this).css('background-color','rgba(0, 0, 0, 0)')
@@ -400,13 +363,26 @@
 				}
 			})
 			
-			$('.shoes-btn').click(function(){
+			$('#shoes-btn').click(function(){
 				var color = $(this).css('background-color');
 				
 				if(color==='rgba(0, 0, 0, 0)'){
 					$(this).css('background-color','#A9D4D9');
 					$('.shoes').show(200);
-					$(this).css('color','#FFFFFF')
+					$('.top').hide(200);
+					$('.bottom').hide(200);
+					$('.outer').hide(200);
+					$('.acc').hide(200);
+					$(this).css('color','#FFFFFF');
+					$('#bottom-btn').css('background-color','#FFFFFF');
+					$('#bottom-btn').css('color','#707070');
+					$('#outer-btn').css('background-color','#FFFFFF');
+					$('#outer-btn').css('color','#707070');
+					$('#top-btn').css('background-color','#FFFFFF');
+					$('#top-btn').css('color','#707070');
+					$('#acc-btn').css('background-color','#FFFFFF');
+					$('#acc-btn').css('color','#707070');
+
 					
 				}else{
 					$(this).css('background-color','rgba(0, 0, 0, 0)')
@@ -415,13 +391,26 @@
 				}
 			})
 			
-			$('.acc-btn').click(function(){
+			$('#acc-btn').click(function(){
 				var color = $(this).css('background-color');
 				
 				if(color==='rgba(0, 0, 0, 0)'){
 					$(this).css('background-color','#A9D4D9');
 					$('.acc').show(200);
-					$(this).css('color','#FFFFFF')
+					$('.top').hide(200);
+					$('.outer').hide(200);
+					$('.shoes').hide(200);
+					$('.bottom').hide(200);
+					$(this).css('color','#FFFFFF');
+					$('#bottom-btn').css('background-color','#FFFFFF');
+					$('#bottom-btn').css('color','#707070');
+					$('#outer-btn').css('background-color','#FFFFFF');
+					$('#outer-btn').css('color','#707070');
+					$('#shoes-btn').css('background-color','#FFFFFF');
+					$('#shoes-btn').css('color','#707070');
+					$('#top-btn').css('background-color','#FFFFFF');
+					$('#top-btn').css('color','#707070');
+
 					
 				}else{
 					$(this).css('background-color','rgba(0, 0, 0, 0)')
@@ -433,35 +422,35 @@
 			//상의 취소버튼
 			$('.top-cancel-btn').click(function(){
 					$('.top-btn').css('background-color','rgba(0, 0, 0, 0)');
-					$('.top').hide();
+					$('.top').hide(200);
 					$('.top-btn').css('color','#707070')
 			})
 			
 			//하의 취소버튼
 			$('.bottom-cancel-btn').click(function(){
 					$('.bottom-btn').css('background-color','rgba(0, 0, 0, 0)');
-					$('.bottom').hide();
+					$('.bottom').hide(200);
 					$('.bottom-btn').css('color','#707070')
 			})
 			
 			//아우터 취소버튼
 			$('.outer-cancel-btn').click(function(){
 					$('.outer-btn').css('background-color','rgba(0, 0, 0, 0)');
-					$('.outer').hide();
+					$('.outer').hide(200);
 					$('.outer-btn').css('color','#707070')
 			})
 			
 			//신발 취소버튼
 			$('.shoes-cancel-btn').click(function(){
 					$('.shoes-btn').css('background-color','rgba(0, 0, 0, 0)');
-					$('.shoes').hide();
+					$('.shoes').hide(200);
 					$('.shoes-btn').css('color','#707070')
 			})
 			
 			//악세사리 취소버튼
 			$('.acc-cancel-btn').click(function(){
 					$('.acc-btn').css('background-color','rgba(0, 0, 0, 0)');
-					$('.acc').hide();
+					$('.acc').hide(200);
 					$('.acc-btn').css('color','#707070')
 			})
 			
@@ -529,9 +518,54 @@
 	            $(this).parent().remove();
 		        });
 			});
+			
+
+			
+			
+			//다중 이미지 업로드 및 출력 
+			var sel_file=[];
+			
+			$(document).ready(function(){
+				$("#input_imgs").on("change",handleImgFileSelect);
+			});
+			
+			function fileUploadAction(){
+				$("#input_imgs").trigger('click');
+			}
+			
+			function handleImgFileSelect(e){
+				sel_files=[];
+				$(".imgs_wrap").empty();
+				
+				var files=e.target.files;
+				var filesArr = Array.prototype.slice.call(files);
+				
+				var index=0;
+				fileArr.forEach(function(f){
+					if(!f.type.match("image.*")){
+						alert("확장자는 이미지 확장자만 가능합니다.");
+						return;
+					}
+					
+					sel_files.push(f);
+					
+					var reader = new FileReader();
+					
+					var reader = new FileReader();
+					reader.onload = function(e){
+						var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\""+e.target.result+"\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>"
+						$(".imgs_wrap").append(html);
+						index++;
+					}
+					reader.readAsDataURL(f);
+				});
+			}
+			
+			
 	</script>
+	<!-- footer -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-	
+	</div>
 
 </body>
 </html>

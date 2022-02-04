@@ -18,10 +18,6 @@
       }
     }
 
-#wrap{
-	height:1500px;
-}
-
 #title{
     border-bottom:solid 3px #707070; 
     height: 10%;
@@ -48,6 +44,7 @@
     float:left;
     width:100%;
     text-align: center;
+    margin:20px
 }
 
 .select{
@@ -56,7 +53,8 @@ height: 38px;
 padding: 5px;
 border: 1px solid #C8C8C8;
 font-family: inherit;
-background: url('arrow.jpg') no-repeat 95% 50%;
+background: url('/resources/images/icon/down.png') no-repeat 95% 50%;
+background-size: 15px;
 border-radius: 0px;
 -webkit-appearance: none;
 -moz-appearance: none;
@@ -99,6 +97,9 @@ float: left
 	display:inline-block;
 	height:30px;
 	margin:15px;
+}
+
+.info-detail{
 }
 .info-detail>div{border-bottom:solid 1px #D9D9D9; height: 120px}
 
@@ -154,7 +155,7 @@ input[id="info-check"]:checked + label + div{
 }
 #coordi-info1{
     width:auto; 
-    height:auto; 
+    height:130px;
     position:relative;
     margin: auto;
 }
@@ -166,15 +167,15 @@ input[id="info-check"]:checked + label + div{
     position:relative;
 }
 
-#insert-picture>input[type="file"]{
+#uploadFile{
     display: none;
 }
 
 
-.insert-box{
+.input_wrap{
     border: solid 1px #C8C8C8; 
-    width: 466px; 
-    height: 466px;
+    width: 450px; 
+    height: 450px;
     margin: 0;
     display:flex;
     align-items: center;
@@ -182,6 +183,9 @@ input[id="info-check"]:checked + label + div{
     text-align: center;
     color:#707070;
     margin: auto;
+    cursor:pointer;
+     text-align: center;
+     display: inline-block;
 }
 
 #select-category2 input[type="button"]{
@@ -195,6 +199,13 @@ input[id="info-check"]:checked + label + div{
     
 }
 
+.imgs_wrap{
+	height:450px;
+	width:150px;
+	border:solid 1px black;
+	float:right;
+	margin-right:20px
+}
 
 .btn-style-mint{
 	width:120px;
@@ -228,7 +239,8 @@ input[id="info-check"]:checked + label + div{
 .subject{
     font-size: 18px;
     color:#707070;
-    margin: 20px;
+    margin: 20px 20px 20px 0px;
+    height:10%;
 }
 
 
@@ -244,6 +256,22 @@ input[id="info-check"]:checked + label + div{
 #item-info{
     height: auto;
     width: auto;
+}
+
+.item-info2{
+	height:70px;
+}
+
+.item-info2 div:nth-child(1){
+	width:15%;
+	height:100%;
+	float:left;
+	line-height:4;
+}
+.item-info2 div:nth-child(2){
+	width:85%;
+	height:100%;
+	float:left;
 }
 #item-info>div span{
     display: inline;
