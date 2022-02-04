@@ -15,15 +15,17 @@ public class Coordi {
 	private String coordiImgOriginalName;
 	private String coordiImgChangedName;
 	private String filePath;
-	
+	private String nickName;
 	
 	public Coordi() {
 		super();
 	}
 	
+	
+	
 	public Coordi(int coordiNo, String userId, String coordiContent, String gender, String season, String temperature,
 			Date regDate, String hashTag, char delYN, String coordiImgOriginalName, String coordiImgChangedName,
-			String filePath) {
+			String filePath, String nickName) {
 		super();
 		this.coordiNo = coordiNo;
 		this.userId = userId;
@@ -37,7 +39,19 @@ public class Coordi {
 		this.coordiImgOriginalName = coordiImgOriginalName;
 		this.coordiImgChangedName = coordiImgChangedName;
 		this.filePath = filePath;
+		this.nickName = nickName;
 	}
+
+	
+	
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
 	public int getCoordiNo() {
 		return coordiNo;
 	}

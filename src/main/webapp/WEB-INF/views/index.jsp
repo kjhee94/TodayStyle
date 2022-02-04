@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,112 +95,27 @@
 					<span id="address">서울특별시 은평구 갈현제2동</span>
 					<span id="temp">-13</span>
 					<span id="season">겨울</span>
-
+					
+					
 				</div>
 				
 				<div id="coordiImgArea">
 					<!-- Swiper -->
 					<div class="swiper mySwiper coordiSwiper">
 						<div class="swiper-wrapper">
+							<c:forEach items="${requestScope.map.get('coordiList')}" var="coordi" varStatus="i">
 							<div class="swiper-slide">
 								<a href="/coordi/coordiPost.do">
-									<img class="coordiImg" src="/resources/images/coordi/stylelist29.jpg">
+									<img class="coordiImg" src="${coordi.filePath}">
 									<div class="nickNameArea">
 										<div class="profile">
 											<a href=""><img src="/resources/images/default/profile.jpg"/></a>
 										</div>
-										<span class="nickName">닉네임</span>
+										<span class="nickName">${coordi.nickName}</span>
 									</div>
 								</a>
 							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="coordiImg" src="/resources/images/coordi/stylelist3.jpg">
-									<div class="nickNameArea">
-										<div class="profile">
-											<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-										</div>
-										<span class="nickName">닉네임</span>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="coordiImg" src="/resources/images/coordi/stylelist27.jpg">
-									<div class="nickNameArea">
-										<div class="profile">
-											<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-										</div>
-										<span class="nickName">닉네임</span>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="coordiImg" src="/resources/images/coordi/stylelist28.jpg">
-									<div class="nickNameArea">
-										<div class="profile">
-											<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-										</div>
-										<span class="nickName">닉네임</span>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="coordiImg" src="/resources/images/coordi/stylelist1_2.jpg">
-									<div class="nickNameArea">
-										<div class="profile">
-											<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-										</div>
-										<span class="nickName">닉네임</span>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="coordiImg" src="/resources/images/coordi/stylelist2.jpg">
-									<div class="nickNameArea">
-										<div class="profile">
-											<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-										</div>
-										<span class="nickName">닉네임</span>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="coordiImg" src="/resources/images/coordi/stylelist10.jpg">
-									<div class="nickNameArea">
-										<div class="profile">
-											<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-										</div>
-										<span class="nickName">닉네임</span>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="coordiImg" src="/resources/images/coordi/stylelist31.jpg">
-									<div class="nickNameArea">
-										<div class="profile">
-											<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-										</div>
-										<span class="nickName">닉네임</span>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="coordiImg" src="/resources/images/coordi/stylelist23.jpg">
-									<div class="nickNameArea">
-										<div class="profile">
-											<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-										</div>
-										<span class="nickName">닉네임</span>
-									</div>
-								</a>
-							</div>
+							</c:forEach>
 						</div>
 						<div class="swiper-button-next"></div>
 						<div class="swiper-button-prev"></div>
@@ -217,142 +133,24 @@
 					<!-- Swiper -->
 					<div class="swiper mySwiper itemSwiper">
 						<div class="swiper-wrapper">
-						
+							<c:forEach items="${requestScope.map.get('itItemList')}" var="itItem" varStatus="i">
 							<div class="swiper-slide">
 								<a href="/coordi/ItPost.do">
-									<img class="itItemImg" src="/resources/images/itItem/item1.jpg">
+									<img class="itItemImg" src="${itItem.filePath}">
 									<div class="itemInfoArea">
-										<div class="itemInfoCategory">카테고리</div>
-										<div class="itemInfoTitle">제목</div>
+										<div class="itemInfoCategory">${itItem.itemName}</div>
+										<div class="itemInfoTitle">${itItem.itItemTitle}</div>
 										<div class="itemInfoNickNameArea">
 											<div class="profile">
-												<a href=""><img src="/resources/images/default/profile.jpg"/></a>
+												<a href=""><img src="${itItem.profileFilePath}"/></a>
 											</div>
-											<span class="nickName">닉네임</span>
+											<span class="nickName">${itItem.nickName}</span>
 										</div>
 									</div>
 								</a>
 							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="itItemImg" src="/resources/images/itItem/item3.jpg">
-									<div class="itemInfoArea">
-										<div class="itemInfoCategory">카테고리</div>
-										<div class="itemInfoTitle">제목</div>
-										<div class="itemInfoNickNameArea">
-											<div class="profile">
-												<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-											</div>
-											<span class="nickName">닉네임</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="itItemImg" src="/resources/images/itItem/item6.jpg">
-									<div class="itemInfoArea">
-										<div class="itemInfoCategory">카테고리</div>
-										<div class="itemInfoTitle">제목</div>
-										<div class="itemInfoNickNameArea">
-											<div class="profile">
-												<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-											</div>
-											<span class="nickName">닉네임</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="itItemImg" src="/resources/images/itItem/item8.jpg">
-									<div class="itemInfoArea">
-										<div class="itemInfoCategory">카테고리</div>
-										<div class="itemInfoTitle">제목</div>
-										<div class="itemInfoNickNameArea">
-											<div class="profile">
-												<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-											</div>
-											<span class="nickName">닉네임</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="itItemImg" src="/resources/images/itItem/item11.jpg">
-									<div class="itemInfoArea">
-										<div class="itemInfoCategory">카테고리</div>
-										<div class="itemInfoTitle">제목</div>
-										<div class="itemInfoNickNameArea">
-											<div class="profile">
-												<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-											</div>
-											<span class="nickName">닉네임</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="itItemImg" src="/resources/images/itItem/item12.jpg">
-									<div class="itemInfoArea">
-										<div class="itemInfoCategory">카테고리</div>
-										<div class="itemInfoTitle">제목</div>
-										<div class="itemInfoNickNameArea">
-											<div class="profile">
-												<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-											</div>
-											<span class="nickName">닉네임</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="itItemImg" src="/resources/images/itItem/item5.jpg">
-									<div class="itemInfoArea">
-										<div class="itemInfoCategory">카테고리</div>
-										<div class="itemInfoTitle">제목</div>
-										<div class="itemInfoNickNameArea">
-											<div class="profile">
-												<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-											</div>
-											<span class="nickName">닉네임</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="itItemImg" src="/resources/images/itItem/item4.jpg">
-									<div class="itemInfoArea">
-										<div class="itemInfoCategory">카테고리</div>
-										<div class="itemInfoTitle">제목</div>
-										<div class="itemInfoNickNameArea">
-											<div class="profile">
-												<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-											</div>
-											<span class="nickName">닉네임</span>
-										</div>
-									</div>
-								</a>
-							</div>
-							<div class="swiper-slide">
-								<a href="">
-									<img class="itItemImg" src="/resources/images/itItem/item7.jpg">
-									<div class="itemInfoArea">
-										<div class="itemInfoCategory">카테고리</div>
-										<div class="itemInfoTitle">제목</div>
-										<div class="itemInfoNickNameArea">
-											<div class="profile">
-												<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-											</div>
-											<span class="nickName">닉네임</span>
-										</div>
-									</div>
-								</a>
-							</div>
+							</c:forEach>
+							
 						</div>
 						<div class="swiper-button-next"></div>
 						<div class="swiper-button-prev"></div>
