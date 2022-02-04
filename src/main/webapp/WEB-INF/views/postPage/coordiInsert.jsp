@@ -18,7 +18,7 @@
 </head>
 <body>
 	
-	<div id="wrap">
+	<div id="wrap" style="overflow:auto">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div id="content">
 	
@@ -39,10 +39,13 @@
 				<div class="info-detail">
 				    <div id="temperature">
                         <div class="subject">
-                            <p>기온</p><img src="/resources/images/icon/down.png" style="left:300px; top:46px; opacity:0.5; float:left;position:relative;width:15px;height:15px">
+                            <p>기온</p>
                          </div>
                          <select class="select">
-                            <option>기온 선택</option>°
+                            <option>
+                            	기온 선택             
+                           	</option>
+                            
                                <option>4°이하</option>
                                <option>5°~8°</option>
                                <option>9°~11°</option>
@@ -87,7 +90,7 @@
                      </div>
                      <div id="coordi-info1">
                             <div class="subject">
-                               <p>의상정보추가</p>
+                               <p>의상 정보 추가</p>
                             </div>
 
                             <div class="select-category">
@@ -187,20 +190,22 @@
 				
 			<div id="picture-wrapper">
 	            <div id="insert-picture">
-                    <input type="file" accept=".jpg, .png id=file-input" id="file-input">
-                    <label for="file-input">
-                        <span class="insert-box">
-                            <em></em>
-                            <p>
-                                <span style="font-size: 15px">
-                                   	 사진을 등록해주세요<br>
-                                </span>
+                    
+                        <div class="input_wrap">
+                        	<a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
+							 <input type="file" id="input_imgs" multiple/>
+
                                 <span style="font-size: 11px">
                                     (*최대 10장까지)
                                 </span>
-                            </p>
-                        </span>
-                    </label>
+                        </div>
+                       	<div class="imgs_wrap">	
+                       		<img id="img"/>
+	                    </div>
+	                    
+	                    <a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
+
+                    
 	            </div>
 	            <div id="insert-info">
 	                <div id="coordi-info2">
@@ -227,17 +232,13 @@
    	</div>
    	
 	<script>
-	/**
-	 * 
-	 */
-
-
 			$('.weather').click(function(){
 				var color = $(this).css('background-color');
 				
 				if(color==='rgba(0, 0, 0, 0)'){
 					$(this).css('background-color','#A9D4D9');
 					$('.weather').not(this).css('background-color','rgba(0, 0, 0, 0)');
+					$('.weather').not(this).css('color','#707070');
 					$(this).css('color','#FFFFFF')
 					
 				}else{
@@ -252,6 +253,7 @@
 				if(color==='rgba(0, 0, 0, 0)'){
 					$(this).css('background-color','#A9D4D9');
 					$('.gender').not(this).css('background-color','rgba(0, 0, 0, 0)');
+					$('.gender').not(this).css('color','#707070');
 					$(this).css('color','#FFFFFF')
 				}else{
 					$(this).css('background-color','rgba(0, 0, 0, 0)')
@@ -337,35 +339,35 @@
 			//상의 취소버튼
 			$('.top-cancel-btn').click(function(){
 					$('.top-btn').css('background-color','rgba(0, 0, 0, 0)');
-					$('.top').hide();
+					$('.top').hide(200);
 					$('.top-btn').css('color','#707070')
 			})
 			
 			//하의 취소버튼
 			$('.bottom-cancel-btn').click(function(){
 					$('.bottom-btn').css('background-color','rgba(0, 0, 0, 0)');
-					$('.bottom').hide();
+					$('.bottom').hide(200);
 					$('.bottom-btn').css('color','#707070')
 			})
 			
 			//아우터 취소버튼
 			$('.outer-cancel-btn').click(function(){
 					$('.outer-btn').css('background-color','rgba(0, 0, 0, 0)');
-					$('.outer').hide();
+					$('.outer').hide(200);
 					$('.outer-btn').css('color','#707070')
 			})
 			
 			//신발 취소버튼
 			$('.shoes-cancel-btn').click(function(){
 					$('.shoes-btn').css('background-color','rgba(0, 0, 0, 0)');
-					$('.shoes').hide();
+					$('.shoes').hide(200);
 					$('.shoes-btn').css('color','#707070')
 			})
 			
 			//악세사리 취소버튼
 			$('.acc-cancel-btn').click(function(){
 					$('.acc-btn').css('background-color','rgba(0, 0, 0, 0)');
-					$('.acc').hide();
+					$('.acc').hide(200);
 					$('.acc-btn').css('color','#707070')
 			})
 			
@@ -433,6 +435,49 @@
 	            $(this).parent().remove();
 		        });
 			});
+			
+
+			
+			//다중 이미지 업로드 및 출력 
+			var sel_file=[];
+			
+			$(document).ready(function(){
+				$("#input_imgs").on("change",handleImgFileSelect);
+			});
+			
+			function fileUploadAction(){
+				$("#input_imgs").trigger('click');
+			}
+			
+			function handleImgFileSelect(e){
+				sel_files=[];
+				$(".imgs_wrap").empty();
+				
+				var files=e.target.files;
+				var filesArr = Array.prototype.slice.call(files);
+				
+				var index=0;
+				fileArr.forEach(function(f){
+					if(!f.type.match("image.*")){
+						alert("확장자는 이미지 확장자만 가능합니다.");
+						return;
+					}
+					
+					sel_files.push(f);
+					
+					var reader = new FileReader();
+					
+					var reader = new FileReader();
+					reader.onload = function(e){
+						var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\""+e.target.result+"\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>"
+						$(".imgs_wrap").append(html);
+						index++;
+					}
+					reader.readAsDataURL(f);
+				});
+			}
+			
+			
 	</script>
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
