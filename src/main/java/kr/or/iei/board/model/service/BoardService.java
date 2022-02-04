@@ -8,7 +8,7 @@ import kr.or.iei.board.model.vo.Notice;
 
 public interface BoardService {
 
-	ArrayList<FAQ> AllFAQ();
+	ArrayList<FAQ> AllFAQ(String type);
 
 
 	HashMap<String, Object> NoticeList(int currentPage);
@@ -18,6 +18,7 @@ public interface BoardService {
 
 
 	HashMap<String, Object> noticeSearch(int currentPage, String keyword);
+
 
 	
 

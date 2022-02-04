@@ -5,22 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>오늘 뭐 입지?</title>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/common/header.css">
 <link rel="stylesheet" href="/resources/common/footer.css">
 <link rel="stylesheet" href="/resources/css/index.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="/resources/common/common.js"></script>
-<!-- Demo styles -->
-<style>
-
-</style>
 </head>
+
 <body>
 	<script>
 		            if(navigator.geolocation) {
@@ -96,6 +94,7 @@
 					<span id="address">서울특별시 은평구 갈현제2동</span>
 					<span id="temp">-13</span>
 					<span id="season">겨울</span>
+
 				</div>
 				
 				<div id="coordiImgArea">
@@ -103,7 +102,7 @@
 					<div class="swiper mySwiper coordiSwiper">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
-								<a href="">
+								<a href="/coordi/coordiPost.do">
 									<img class="coordiImg" src="/resources/images/coordi/stylelist29.jpg">
 									<div class="nickNameArea">
 										<div class="profile">
@@ -220,7 +219,7 @@
 						<div class="swiper-wrapper">
 						
 							<div class="swiper-slide">
-								<a href="">
+								<a href="/coordi/ItPost.do">
 									<img class="itItemImg" src="/resources/images/itItem/item1.jpg">
 									<div class="itemInfoArea">
 										<div class="itemInfoCategory">카테고리</div>

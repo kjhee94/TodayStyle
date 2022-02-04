@@ -18,8 +18,8 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO bDAO;
 
 	@Override
-	public ArrayList<FAQ> AllFAQ() {
-		return bDAO.AllFAQ();
+	public ArrayList<FAQ> AllFAQ(String type) {
+		return bDAO.AllFAQ(type);
 	}
 
 

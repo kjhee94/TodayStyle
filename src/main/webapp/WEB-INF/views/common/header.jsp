@@ -12,7 +12,7 @@
 						<li><a href="/coordi/coordiList.do">오늘의 코디</a></li>
 						<li><a href="/beststyle/bestPage.do">베스트 코디</a></li>
 						<li><a href="/itItem/itItemList.do">오늘의 잇템</a></li>
-						<li><a href="/board/boardPage.do">고객센터</a></li>
+						<li><a href="/board/NoticePage.do">고객센터</a></li>
 						<li><a href="/admin/adminMain.do">관리자</a></li>
 					</ul>
 				</nav>
@@ -27,16 +27,16 @@
 									<div class="box-mypage-link">
 										<a href="/myPage/myStyle.do">나의 코디</a>
 										<a href="/myPage/scrap.do">스크랩북</a>
-										<a href="">나의 댓글</a>
-										<a href="">설정</a>
+										<a href="/myPage/comments.do">나의 댓글</a>
+										<a href="/myPage/setting.do">설정</a>
 										<a href="/member/logout.do">로그아웃</a>
 									</div>
 								</div>
 								<div class="box-write">
 									<button class="btn-style-mint">글 작성</button>
 									<div class="box-write-link">
-										<a href="">코디 작성</a>
-										<a href="">잇템 작성</a>
+										<a href="/coordi/coordiInsert.do">코디 작성</a>
+										<a href="/coordi/ItInsert.do">잇템 작성</a>
 									</div>
 								</div>
 							</c:when>
@@ -49,6 +49,30 @@
 				</div>
 			</div>
 		</div>
-		
 	</header>
+	
+	<div id="sideBar">
+		<div class="box-sideBar">
+			<a href="">
+				<div class="box-sidebar-img">
+					<img alt="" src="/resources/images/icon/location.png">
+				</div>
+				<span>VIEW</span>
+			</a>
+		</div>
+		<div class="box-sideBar">
+			<a href="">
+				<div class="box-sidebar-img">
+					<img alt="" src="/resources/images/icon/chat.png">
+				</div>
+				<span>CHAT</span>
+			</a>
+		</div>
+		<div class="box-sideBar page-top">
+			<a style="cursor:pointer;" onclick="window.scrollTo(0,0);">
+				<i class="fas fa-chevron-up"></i>
+				<span>TOP</span>
+			</a>
+		</div>
+	</div>
 	
