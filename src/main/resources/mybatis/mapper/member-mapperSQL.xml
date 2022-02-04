@@ -43,4 +43,38 @@
    		 	where user_name=#{userName} and user_Email=#{userEmail} and end_yn='N'
    
    </select>
+   
+   <select id="IdCheck" resultType="member">
+   	SELECT
+   		 user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+   		from
+   		 MEMBER
+   		WHERE USER_ID= #{value}
+   </select>
+   
+   <select id="nicknameCheck" resultType="member">
+   SELECT
+   		 user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+   		from
+   		 MEMBER
+   		WHERE nickname= #{value}
+   </select>
 </mapper>

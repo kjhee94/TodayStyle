@@ -13,6 +13,10 @@ public interface MemberService {
 
 	Member findId(Member member);
 
+	int IdCheck(String userid);
+
+	int nicknameCheck(String nickname);
+
 	
 
 	
