@@ -191,20 +191,27 @@
 			<div id="picture-wrapper">
 	            <div id="insert-picture">
                     
-                        <div class="input_wrap">
-                        	<a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
-							 <input type="file" id="input_imgs" multiple/>
-
-                                <span style="font-size: 11px">
-                                    (*최대 10장까지)
-                                </span>
+                        
+                        <div class="input_wrap" onclick="onclick=document.all.file.click()">
+		                    <div style="vertical-align:middle;padding:180px 0px 180px 0px">
+			                    <span style="color:#707070;">
+			                        <span style="padding:5px"><img src="/resources/images/icon/camera.png" style="width:15px; height:15px">
+			                    </span>
+			                    <span>
+		                        	사진을 등록해주세요<pre>
+		                        	</pre>(*최대 10장까지)
+	                        	</span>
+	                        </div>
                         </div>
                        	<div class="imgs_wrap">	
-                       		<img id="img"/>
+                       		<div id="multipleContainer">
+                       		
+                       		</div>
 	                    </div>
-	                    
-	                    <a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
-
+	                   
+						<input style="display: block;display:none" type="file" name="file" id="file" id="inputMultipleImage" multiple>
+							
+                    
                     
 	            </div>
 	            <div id="insert-info">
@@ -436,47 +443,14 @@
 		        });
 			});
 			
+			
+			
+			
+			
+			
 
 			
-			//다중 이미지 업로드 및 출력 
-			var sel_file=[];
-			
-			$(document).ready(function(){
-				$("#input_imgs").on("change",handleImgFileSelect);
-			});
-			
-			function fileUploadAction(){
-				$("#input_imgs").trigger('click');
-			}
-			
-			function handleImgFileSelect(e){
-				sel_files=[];
-				$(".imgs_wrap").empty();
-				
-				var files=e.target.files;
-				var filesArr = Array.prototype.slice.call(files);
-				
-				var index=0;
-				fileArr.forEach(function(f){
-					if(!f.type.match("image.*")){
-						alert("확장자는 이미지 확장자만 가능합니다.");
-						return;
-					}
-					
-					sel_files.push(f);
-					
-					var reader = new FileReader();
-					
-					var reader = new FileReader();
-					reader.onload = function(e){
-						var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\""+e.target.result+"\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>"
-						$(".imgs_wrap").append(html);
-						index++;
-					}
-					reader.readAsDataURL(f);
-				});
-			}
-			
+
 			
 	</script>
 	<!-- footer -->
