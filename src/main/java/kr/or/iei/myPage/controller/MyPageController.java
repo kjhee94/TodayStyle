@@ -1,13 +1,20 @@
 package kr.or.iei.myPage.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.iei.member.model.vo.Member;
 import kr.or.iei.myPage.model.service.MemberSettingService;
@@ -88,17 +95,97 @@ public class MyPageController {
 		
 	}
 	
-	@RequestMapping(value = "/myPage/memberUpdate.do")
-	public String memberUpdatePage()
-	{
+	// 회원정보 수정 페이지 이동 
+	@RequestMapping(value = "/myPage/memberUpdatePage.do")
+	public String memberUpdatePage() {
 		return "myPage/setting_memberUpdate";
 	}
 	
-	@RequestMapping(value = "/myPage/pwdUpdate.do")
+	// 회원정보 수정 - 닉네임 중복 확인 ajax
+	@RequestMapping(value = "/myPage/nickNameCheck.do")
+	public void nickNameCheck(@RequestParam String nickname, HttpServletResponse response) throws IOException
+	{
+		//System.out.println(nickname);
+		int result = msService.nicknameCheck(nickname);
+		
+		if(result>0) {
+			response.getWriter().print(true); // 사용중
+		}else
+		{
+			response.getWriter().print(false); // 미사용중
+		}
+	}
+	
+	// 회원 정보 수정
+	@RequestMapping(value = "/myPage/memberUpdate.do")
+	public String memberUpdatePage(@RequestParam String userName, @RequestParam String nickname, @RequestParam String gender, HttpServletRequest request)
+	{
+		System.out.println(userName);
+		System.out.println(nickname);
+		System.out.println(gender);
+		String radio = request.getParameter("gender");
+		System.out.println("radio: " +radio);
+		
+		
+		return null;
+	}
+
+	// 비밀번호 수정 페이지로 이동
+	@RequestMapping(value = "/myPage/pwdUpdatePage.do")
 	public String pwdPage()
 	{
 		return "myPage/setting_pwdUpdate";
 	}
+	
+	// 비밀번호 수정 - 현재 비밀번호 확인 ajax
+	@RequestMapping(value = "/myPage/userPwdCheck.do")
+	public void userPwdCheck(@RequestParam String userPwd, 
+							@SessionAttribute Member member, 
+							HttpServletResponse response) throws IOException 
+	{
+		//System.out.println(userPwd);
+		String userId = member.getUserId();
+		member.setUserPwd(userPwd);
+		Member m = msService.settingPwdCheck(member);
+		
+		if(m!=null) {
+			response.getWriter().print(true); // 회원 있음 == 비밀번호 일치
+		}else
+		{
+			response.getWriter().print(false); // 회원 없음 == 비밀번호 불일치
+		}
+		
+	}
+	
+	// 비밀번호 수정
+	@RequestMapping(value = "/myPage/pwdUpdate.do", method=RequestMethod.POST)
+	public ModelAndView pwdUpdate(@RequestParam String userPwd, @RequestParam String newUserPwd, 
+							@SessionAttribute Member member,
+							ModelAndView mav) 
+	{
+		String userId = member.getUserId();
+		
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("userId", userId);
+		map.put("userPwd", userPwd);
+		map.put("newUserPwd", newUserPwd);
+		
+		int result = msService.pwdUpdate(map);
+		
+		if(result>0)
+		{
+			mav.addObject("msg","비밀번호가 변경되었습니다.");
+			mav.addObject("location","/myPage/setting.do");
+		}else
+		{
+			mav.addObject("msg","비밀번호 변경에 실패하였습니다. -지속적인 문제 발생시 관리자에게 문의해주세요.");
+			mav.addObject("location","/myPage/setting.do");
+		}
+		mav.setViewName("common/msg");
+		
+		return mav;
+	}
+	
 	
 	@RequestMapping(value = "/myPage/withdraw.do")
 	public String pwithdrawPage()

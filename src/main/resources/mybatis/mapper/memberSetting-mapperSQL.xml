@@ -19,6 +19,34 @@
       WHERE user_Id = #{userId} and user_Pwd = #{userPwd} and end_yn='N'
       
    </select>
+   
+   <select id="nicknameCheck" resultType="member">
+      SELECT
+         user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+      FROM
+         member
+      WHERE nickname = #{value} 
+      
+   </select>
+   
+   <update id="pwdUpdate" parameterType="hashmap">
+   	UPDATE
+   		MEMBER
+   	SET
+   		user_pwd = #{newUserPwd}
+   	WHERE
+   		user_id = #{userId} AND user_pwd = #{userPwd}
+   
+   </update>
   
   
 </mapper>
