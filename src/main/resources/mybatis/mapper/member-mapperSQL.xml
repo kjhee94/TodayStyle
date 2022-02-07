@@ -77,4 +77,21 @@
    		 MEMBER
    		WHERE nickname= #{value}
    </select>
+   
+   <select id="mailCheck" resultType="member">
+    SELECT
+   		 user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+   		from
+   		 MEMBER
+   		WHERE user_Email= #{value}
+   </select>
 </mapper>

@@ -17,6 +17,8 @@ public interface MemberService {
 
 	int nicknameCheck(String nickname);
 
+	int mailCheck(String userEmail);
+
 	
 
 	
