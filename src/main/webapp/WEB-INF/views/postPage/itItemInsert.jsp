@@ -227,7 +227,7 @@
                     
                         <div class="input_wrap" onclick="onclick=document.all.file.click()">
 		                    <div style="vertical-align:middle;padding:180px 0px 180px 0px">
-			                    <span style="color:#707070;">
+			                    <span style="color:#707070">
 			                        <span style="padding:5px"><img src="/resources/images/icon/camera.png" style="width:15px; height:15px">
 			                    </span>
 			                    <span>
@@ -237,14 +237,13 @@
 	                        </div>
                         </div>
                        	<div class="imgs_wrap">	
-                       		<div id="multipleContainer">
+                       		<div id="preview">
                        		
                        		</div>
 	                    </div>
 	                   
-						<input style="display: block;display:none" type="file" name="file" id="file" id="inputMultipleImage" multiple>
-							
-                    	
+						<input style="display: block" type="file" name="uploadFile" id="uploadFile"  multiple/>
+				              	
                     
 	            </div>
 	            <div id="insert-info">
@@ -526,50 +525,75 @@
 			});
 			
 
-			function readMultipleImage(input) {
-			    const multipleContainer = document.getElementById('multipleContainer');
-			    
-			    if(input.files) {
-			        console.log(input.files);
-			        const fileArr = Array.from(input.files);
-			        const $colDiv1 = document.createElement('div');
-			        const $colDiv2 = document.createElement('div');
-			        $colDiv1.classList.add('column');
-			        $colDiv2.classList.add('column');
-			        fileArr.forEach((file, index) => {
-			            const reader = new FileReader();
-			            const $imgDiv = document.createElement('div'); 
-			            const $img = document.createElement('img');
-			            $img.classList.add('image');
-			            
-			            const $label = document.createElement('label');
-			            $label.classList.add('image-label');
-			            $label.textContent = file.name;
-			            $imgDiv.appendChild($img);
-			            $imgDiv.appendChild($label);
-			            reader.onload = e => {
-			                $img.src = e.target.result;
-			                
-			            }
-			            
-			            console.log(file.name)
-			            if(index % 2 == 0) {
-			                $colDiv1.appendChild($imgDiv);
-			            } else {
-			                $colDiv2.appendChild($imgDiv);
-			            }
-			            
-			            reader.readAsDataURL(file);
-			        });
-			        multipleContainer.appendChild($colDiv1);
-			        multipleContainer.appendChild($colDiv2);
-			    }
-			};
-			// 이벤트 리스너
-			document.getElementById('inputMultipleImage').addEventListener('change', (e) => {
-			    readMultipleImage(e.target);
-			})
-			
+			 $(document).ready(function (e){
+				    $("input[type='file']").change(function(e){
+
+				      //div 내용 비워주기
+				      $('#preview').empty();
+
+				      var files = e.target.files;
+				      var arr =Array.prototype.slice.call(files);
+				      
+				      //업로드 가능 파일인지 체크
+				      for(var i=0;i<files.length;i++){
+				        if(!checkExtension(files[i].name,files[i].size)){
+				          return false;
+				        }
+				      }
+				      
+				      preview(arr);
+				      
+				      
+				    });//file change
+				    
+				    function checkExtension(fileName,fileSize){
+
+				      var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+				      var maxSize = 20971520;  //20MB
+				      
+				      if(fileSize >= maxSize){
+				        alert('파일 사이즈 초과');
+				        $("input[type='file']").val("");  //파일 초기화
+				        return false;
+				      }
+				      
+				      if(regex.test(fileName)){
+				        alert('업로드 불가능한 파일이 있습니다.');
+				        $("input[type='file']").val("");  //파일 초기화
+				        return false;
+				      }
+				      return true;
+				    }
+				    
+				    function preview(arr){
+				      arr.forEach(function(f){
+				        
+				        //파일명이 길면 파일명...으로 처리
+				        var fileName = f.name;
+				        if(fileName.length > 10){
+				          fileName = fileName.substring(0,7)+"...";
+				        }
+				        
+				        //div에 이미지 추가
+				        var str = '<div style="display: inline-flex; padding: 10px;"><li>';
+				        
+				        //이미지 파일 미리보기
+				        if(f.type.match('image.*')){
+				          var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+				          reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+				            //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+				            str += '<img src="'+e.target.result+'" title="'+f.name+'" width=100 height=100 />';
+				            str += '</li></div>';
+				            $(str).appendTo('#preview');
+				          } 
+				          reader.readAsDataURL(f);
+				        }else{
+				          str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=100 height=100 />';
+				          $(str).appendTo('#preview');
+				        }
+				      });//arr.forEach
+				    }
+				  });
 	</script>
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
