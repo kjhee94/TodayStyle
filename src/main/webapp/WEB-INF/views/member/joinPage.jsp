@@ -163,7 +163,7 @@
     	
     $("#mail_check_button").click(function(){// 이메일 인증 입력창 나타나기
     	 var email = $("#userEmail").val();  // 입력한 이메일
-    	if(email!=""){
+    	if(email!="" && ($('#userEmail').css("border-color")=="rgb(200, 200, 200)")){
     	 $('#emailCheck-area').css('display','block');
        
         var cehckBox = $("#emailCheck-input");        // 인증번호 입력란
@@ -180,10 +180,14 @@
 	             }         
         }) 
     	}else if(email==""){
-    		alert("이메일을 확인해주세요")
-    	}else if(($('#userEmail').css("border-color")=="rgb(253, 138, 105)")){//문제점: 이메일 유효성이 제대로 되어있지 않아도 이메일인증보냄
-    	 alert("이메일");
+    		alert("이메일을 작성해주세요.")
+    		return false;
     	}
+    	 
+    	 if($('#userEmail').css("border-color")=="rgb(253, 138, 105)"){
+       	 alert("잘못된 이메일입니다.");
+    	 return false;
+       	}
     })  
     	 
     $("#emailCheck-resend").click(function(){
@@ -231,9 +235,9 @@
 		  $('#mail_check_button').click(function(){
 		    var display = $("#emailCheck-time");
 		    // 유효시간 설정
-		    var leftSec = 30;
+		    var leftSec = 600;
 
-		    // 버튼 클릭 시 시간 연장
+		    // 버튼 클릭 시 시간 연장(은 안돼요~)
 		    if (isRunning){
 		      clearInterval(timer);
 		      display.html("");
@@ -501,8 +505,14 @@
 	    	  var name =  $('#userName').css("border-color")=="rgb(200, 200, 200)";
 	    	 var nickname =  $('#nickname').css("border-color")=="rgb(200, 200, 200)";
 	    	 var email =  $('#userEmail').css("border-color")=="rgb(200, 200, 200)";
-	    	
-	    	 if(id&&pwd&&pwdRe&&name&&nickname&&email){
+	    	var emailBtn= $('#mail_check_button').css('background-color')=="rgb(200, 200, 200)";
+
+	    	if($('#mail_check_button').css('background-color')=="rgb(169, 212, 217)")
+	    		{
+	    		alert('이메일 인증을 해주세요');
+	    		return false;
+	    		}
+	    	 if(id&&pwd&&pwdRe&&name&&nickname&&email&&emailBtn){
 	    		 $('#joinForm').attr("action","/member/joinMember.do");
 	             $('#joinDo').submit();
 	          }else{

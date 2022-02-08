@@ -94,4 +94,21 @@
    		 MEMBER
    		WHERE user_Email= #{value}
    </select>
+   
+   <select id="findPwd" parameterType="hashmap" resultType="member">
+   SELECT
+   		 user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+   		from
+   		 MEMBER
+   		WHERE user_name= #{userName} and user_email=#{userEmail}
+   </select>
 </mapper>
