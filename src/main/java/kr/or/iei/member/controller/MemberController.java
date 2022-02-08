@@ -94,12 +94,14 @@ public class MemberController {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", m);
 			
+			if(m.getRoll().substring(0,2).equals("AD")) {
+				return "admin/adminLogin";
+			}
+			
 			return "redirect:/";
 		}else {
 			return "member/loginFail";
 		}
-		
-		
 	}
 	
 

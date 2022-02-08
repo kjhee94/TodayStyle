@@ -3,6 +3,19 @@
  */
 
 $(document).ready(function(){
+
+	//탈퇴버튼 아이콘
+//	var $test = $(".btn-style-icon");
+//	
+//	$.each($test,function(index,item){
+//		if($(item).attr("endyn")=='N'){
+//			$(item).children('i').addClass("fa-trash");
+//			
+//		}else if($(item).attr("endyn")=='Y'){
+//			$(item).children('i').addClass("fa-trash-restore");
+//		}
+//	});
+	
 	//adminHeader slide
 	$("#gnbList>li").click(function() {
     	if($(this).next(".lnb-list").css("display")=="none"){
@@ -75,4 +88,42 @@ $(document).ready(function(){
 	$(".btn-style-icon").mouseleave(function(){
 		$(this).next(".detail").fadeOut(150);
 	});
+	
+	
+	//개별탈퇴처리 ajax
+	$(".btn-one-withdraw").click(function() {
+		
+		var userId = $(this).attr("user");
+		var endYN = $(this).attr("endyn");
+		var $this = $(this);
+		
+		$.ajax({
+			url:"/admin/memberOneEndYNChange.do",
+			data:{"userId":userId,"endYN":endYN},
+			type:"post",
+			success: function(result){
+				if(result!=false){
+					$this.attr("endyn",result);
+					if(endYN=='N') {
+						$this.children("i").removeClass("fa-trash");
+						$this.children("i").addClass("fa-trash-restore");
+					}else if(endYN=='Y') {
+						$this.children("i").removeClass("fa-trash-restore");
+						$this.children("i").addClass("fa-trash");
+					}
+				}
+			},
+			error: function(){
+				console.log("ajax 통신 실패");
+			}
+		})
+			
+	})
+
+	//단체 탈퇴 처리 ajax
+	
+	
+	
+	
+	
 });

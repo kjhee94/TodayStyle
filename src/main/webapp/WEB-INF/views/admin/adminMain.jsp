@@ -34,19 +34,25 @@
 			<div id="container">
 				<div class="box-counts">
 					<div class="box-count">
-						<span class="tit-count">가입한 회원 수</span>
-						<span class="date-count">22.01.29 기준</span>
-						<span class="result-count">23</span>
+						<a href="/admin/adminMember.do">
+							<span class="tit-count">가입한 회원 수</span>
+							<span class="date-count">${requestScope.date } 기준</span>
+							<span class="result-count count-member"></span>
+						</a>
 					</div>
 					<div class="box-count">
-						<span class="tit-count"><span class="top-count">오늘의 코디</span>작성된 피드 수</span>
-						<span class="date-count">22.01.29 기준</span>
-						<span class="result-count">46</span>
+						<a href="/admin/adminCoordi.do">
+							<span class="tit-count"><span class="top-count">오늘의 코디</span>작성된 피드 수</span>
+							<span class="date-count">${requestScope.date } 기준</span>
+							<span class="result-count count-coordi"></span>
+						</a>
 					</div>
 					<div class="box-count">
-						<span class="tit-count"><span class="top-count">오늘의 잇템</span>작성된 피드 수</span>
-						<span class="date-count">22.01.29 기준</span>
-						<span class="result-count">27</span>
+						<a href="/admin/adminIttem.do">
+							<span class="tit-count"><span class="top-count">오늘의 잇템</span>작성된 피드 수</span>
+							<span class="date-count">${requestScope.date } 기준</span>
+							<span class="result-count count-ittem"></span>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -56,5 +62,54 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<!-- 숫자 카운팅 모션 -->
+	<script>
+		var countMember= ${requestScope.map.get("countMember")};
+		var countCoordi= ${requestScope.map.get("countCoordi")};
+		var countIttem= ${requestScope.map.get("countIttem")};
+	  
+		$({ val : 0 }).animate({ val : countMember }, {
+			duration: 1000,
+			step: function() {
+				var num = numberWithCommas(Math.floor(this.val));
+				$(".count-member").text(num);
+			},
+			complete: function() {
+				var num = numberWithCommas(Math.floor(this.val));
+				$(".count-member").text(num);
+			}
+		});
+		
+		$({ val : 0 }).animate({ val : countCoordi }, {
+			duration: 1000,
+			step: function() {
+				var num = numberWithCommas(Math.floor(this.val));
+				$(".count-coordi").text(num);
+			},
+			complete: function() {
+				var num = numberWithCommas(Math.floor(this.val));
+				$(".count-coordi").text(num);
+			}
+		});
+		
+		$({ val : 0 }).animate({ val : countIttem }, {
+			duration: 1000,
+			step: function() {
+				var num = numberWithCommas(Math.floor(this.val));
+				$(".count-ittem").text(num);
+			},
+			complete: function() {
+				var num = numberWithCommas(Math.floor(this.val));
+				$(".count-ittem").text(num);
+			}
+		});
+		
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+	</script>
+	 
 </body>
 </html>
