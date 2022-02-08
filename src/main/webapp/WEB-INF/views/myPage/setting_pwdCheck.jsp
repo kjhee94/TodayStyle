@@ -34,11 +34,11 @@
             </div>
             <div class="contents-wrap">
                 <div class="contents-title-wrap">
-                    <a href="/myPage/memberUpdate.do">
+                    <a >
                         <div class="contents-title" id="memberUpdate">회원정보 수정</div>
                     </a>
                     <div id="line"></div>
-                    <a href="/myPage/pwdUpdate.do">
+                    <a >
                         <div class="contents-title">비밀번호 수정</div>
                     </a>
                 </div>

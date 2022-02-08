@@ -45,6 +45,11 @@ public class MemberServiceImpl implements MemberService {
 		return mDAO.nicknameCheck(nickname);
 	}
 
+	@Override
+	public int mailCheck(String userEmail) {
+		return mDAO.mailCheck(userEmail);
+	}
+
 
 	
 

@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%-- jQuery 라이브러리 --%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -24,6 +26,12 @@
 </head>
 
 <body>
+
+	
+	
+
+	<c:if test="${sessionScope.member!=null }">
+
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
     <div id="content">
@@ -33,34 +41,34 @@
             </div>
             <div class="contents-wrap">
                 <div class="contents-title-wrap">
-                    <a href="/myPage/memberUpdate.do">
+                    <a href="/myPage/memberUpdatePage.do">
                         <div class="contents-title" id="memberUpdate">회원정보 수정</div>
                     </a>
                     <div id="line"></div>
-                    <a href="/myPage/pwdUpdate.do">
+                    <a href="/myPage/pwdUpdatePage.do">
                         <div class="contents-title">비밀번호 수정</div>
                     </a>
                 </div>
                 <div id="withDrawBtn"><a href="/myPage/withdraw.do">탈퇴하기</a></div>
                 <div class="rowLine"></div>
 
-                <form>
+                <form action="/myPage/memberUpdate.do" method="post" id="memberUpdateForm" enctype="multipart/form-data">
                     <div class="contents-area">
                         <div class="input-wrap">
                             <div class="titleName">이름</div>
-                            <input type="text" class="input-style" name="userName" value="김연희">
+                            <input type="text" class="input-style" name="userName" value="${sessionScope.member.userName }">
                             <div class="check" id="userNameCheck"></div>
                         </div>
                         <div class="rowLine"></div>
                         <div class="input-wrap">
                             <div class="titleName">닉네임</div>
-                            <input type="text" class="input-style" name="userNickName" value="여니여니">
+                            <input type="text" class="input-style" id="nickName" name="nickname" value="${sessionScope.member.nickname }">
                             <div class="check" id="userNickNameCheck"></div>
                         </div>
                         <div class="rowLine"></div>
                         <div class="input-wrap">
                             <div class="titleName">이메일</div>
-                            <input type="email" class="input-style" name="userEmail" value="yeonee@naver.com">
+                            <input type="email" class="input-style" name="userEmail" value="${sessionScope.member.userEmail }">
                             <div id="emailCheckBtn" class="btn-style-mint">인증하기</div>
                             <div class="check" id="userEmailCheck"></div>
                             <div id="emailCheck-area">
@@ -72,12 +80,33 @@
                         <div class="rowLine"></div>
                         <div class="input-wrap">
                             <div class="titleName">성별</div>
-                            <input type="radio" name="gender" class="radioBtn" id="f_radioBtn">
-                            <label for="f_radioBtn" class="radioLabel">여자</label>
-                            <input type="radio" name="gender" class="radioBtn" id="m_radioBtn">
-                            <label for="m_radioBtn" class="radioLabel">남자</label>
-                            <input type="radio" name="gender" class="radioBtn" id="n_radioBtn">
-                            <label for="n_radioBtn" class="radioLabel">비공개</label>
+                            
+                            <c:if test="${sessionScope.member.gender=='여자' }">
+	                            <input type="radio" name="gender" value="여자" class="radioBtn" id="female" checked>
+	                            <label for="female" class="radioLabel">여자</label>
+	                            <input type="radio" name="gender" value="남자" class="radioBtn" id="male">
+	                            <label for="male" class="radioLabel">남자</label>
+	                            <input type="radio" name="gender" value="비공개" class="radioBtn" id="non">
+	                            <label for="non" class="radioLabel">비공개</label>
+                            </c:if>
+                            <c:if test="${sessionScope.member.gender=='남자' }">
+	                            <input type="radio" name="gender" value="여자" class="radioBtn" id="female">
+	                            <label for="f_femaleradioBtn" class="radioLabel">여자</label>
+	                            <input type="radio" name="gender" value="남자" class="radioBtn" id="male" checked>
+	                            <label for="male" class="radioLabel">남자</label>
+	                            <input type="radio" name="gender" value="비공개" class="radioBtn" id="non">
+	                            <label for="non" class="radioLabel">비공개</label>
+                            </c:if>
+                            <c:if test="${sessionScope.member.gender=='비공개' }">
+	                            <input type="radio" name="gender" value="여자" class="radioBtn" id="female">
+	                            <label for="female" class="radioLabel">여자</label>
+	                            <input type="radio" name="gender" value="남자" class="radioBtn" id="male">
+	                            <label for="male" class="radioLabel">남자</label>
+	                            <input type="radio" name="gender" value="비공개" class="radioBtn" id="non" checked> 
+	                            <label for="non" class="radioLabel">비공개</label>
+                            </c:if>
+                            
+                            
                         </div>
                         <div class="rowLine"></div>
                         <div class="input-wrap">
@@ -85,14 +114,21 @@
                         </div>
                         <div id="selectProfile-wrap">
                             <div id="profileImg-area">
-                                <img src="/resources/images/default/profile.jpg" id="profileImg">
+                            	<c:choose>
+	                            	<c:when test="${requestScope.ProfileImg!=null}">
+	                            		<img src="${requestScope.ProfileImg.filePath}" id="profileImg">
+	                            	</c:when>
+	                            	<c:otherwise>
+	                            		<img src="/resources/images/default/profile.jpg" id="profileImg">
+	                            	</c:otherwise>
+                            	</c:choose>
+                                
                                 <div id="profileImg-plusBtn">
                                     <label for="selectProfileImg">+</label>
-                                    <input type="file" id="selectProfileImg" accept="image/*" onchange="loadFile(this)">
+                                    <input type="file" name="profileImg" id="selectProfileImg" accept="image/*" onchange="loadFile(this)">
 
                                 </div>
                             </div>
-
                         </div>
                         <div class="rowLine"></div>
 
@@ -109,10 +145,14 @@
 
 
     </div>
+    
+    
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
     <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
+
+	</c:if>
 
     <script>
         
@@ -163,7 +203,7 @@
         
         
         
-        // 유효성 검사
+        // 유효성 검사, 중복 검사(ajax)
         <%-- 이름 유효성 검사 --%>
         $("input[name='userName']").keyup(function() {
             var regName = /^[가-힣]+$/;
@@ -178,18 +218,50 @@
             }
         });
         <%-- 닉네임 유효성 검사 --%>
-        $("input[name='userNickName']").keyup(function() {
+        $("input[name='nickname']").keyup(function() {
             var regName = /^[a-zA-Z0-9가-힣]{2,8}$/;
             if (regName.test($(this).val())) {
                 $('#userNickNameCheck').css('display', 'none');
-                $("input[name='userNickName']").css('border-color','#C8C8C8');
+                $("input[name='nickname']").css('border-color','#C8C8C8');
             } else {
                 $('#userNickNameCheck').css('display', 'block');
                 $('#userNickNameCheck').css('color', '#FD8A69');
                 $('#userNickNameCheck').html('2-8글자로 입력해주세요');
-                $("input[name='userNickName']").css('border-color','#FD8A69');
+                $("input[name='nickname']").css('border-color','#FD8A69');
             }
         });
+        <%-- 닉네임 중복 검사 --%>
+        $("input[name='nickname']").blur(function(){
+        	
+        	var nickNameBorderColor = $("input[name='nickname']").css('border-color');
+        	if(nickNameBorderColor=='rgb(200, 200, 200)'){
+        		var nickname = $("input[name='nickname']").val();
+        		$.ajax({	
+                    url:"/myPage/nickNameCheck.do",
+                    data:{"nickname":nickname},
+                    type:"get",
+                    success:function(result){
+                       if(result=="true"){
+                           $('#userNickNameCheck').css('display', 'block');
+                           $('#userNickNameCheck').css('color', '#FD8A69');
+                           $('#userNickNameCheck').html('중복된 닉네임입니다.');
+                           $("input[name='nickname']").css('border-color','#FD8A69');
+                       }else{
+                           $('#userNickNameCheck').css('display', 'none');
+                           $("input[name='nickname']").css('border-color','#C8C8C8');
+                       }
+                    },
+                    error:function(){
+                       alert("오류가 발생하였습니다. 관리자에게 문의바랍니다.");
+                    }
+                 });
+        	}
+        	
+        	
+        });
+        
+        
+        
         <%-- 이메일 유효성 검사 --%>
         $("input[name='userEmail']").keyup(function() {
             var regName = /.+@.+/;
@@ -202,6 +274,21 @@
                 $('#userEmailCheck').html('올바른 이메일 형식으로 입력해주세요.');
                 $("input[name='userEmail']").css('border-color','#FD8A69');
             }
+        });
+        
+        
+        
+        <%-- 전체 항목 검사 --%>
+        $('#updateBtn').click(function(){
+        	var name = $("input[name='userName']").css("border-color")=="rgb(200, 200, 200)";
+        	var nickname = $("input[name='nickname']").css("border-color")=="rgb(200, 200, 200)";
+        	var name = $("input[name='userEmail']").css("border-color")=="rgb(200, 200, 200)";
+        	if(name&&nickname&&name){
+        		$('#memberUpdateForm').submit();
+        	}else
+        	{
+        		alert('모든 항목을 바르게 입력해주세요.');
+        	}
         });
         
 
