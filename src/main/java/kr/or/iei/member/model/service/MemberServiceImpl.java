@@ -50,6 +50,11 @@ public class MemberServiceImpl implements MemberService {
 		return mDAO.mailCheck(userEmail);
 	}
 
+	@Override
+	public int findPwd(String userName, String userEmail) {
+		return mDAO.findPwd(userName,userEmail);
+	}
+
 
 	
 

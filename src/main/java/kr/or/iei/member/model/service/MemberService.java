@@ -19,6 +19,8 @@ public interface MemberService {
 
 	int mailCheck(String userEmail);
 
+	int findPwd(String userName, String userEmail);
+
 	
 
 	

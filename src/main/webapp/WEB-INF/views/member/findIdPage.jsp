@@ -27,6 +27,7 @@ width:400px;
 width:400px;
 margin: 20px 0px 20px 0px;
 }
+
 </style>
 
 <div id="content">
@@ -35,7 +36,7 @@ margin: 20px 0px 20px 0px;
 			
 			<br>
 			<ul class="tabs">
-				<li class="tab-link current" data-tab="tab-1">아이디 찾기</li><span style="color:#C8C8C8;">l</span><li class="tab-link" data-tab="tab-2" id="pwdTab">비밀번호 찾기</li>
+				<a href="/member/findIdPage.do"><li class="tab-link current" data-tab="tab-1">아이디 찾기</li></a><span style="color:#C8C8C8;">l</span><a href="/member/findPwdPage.do"><li class="tab-link" data-tab="tab-2" id="pwdTab">비밀번호 찾기</li></a>
 			</ul>
 			<br>
 			<div id="tab-1" class="tab-content current">
@@ -56,10 +57,12 @@ margin: 20px 0px 20px 0px;
 	<input type="button" onclick="location.href='/member/loginPage.do'" value="로그인 하기" id="findId" class="btn-style-mint">
 			</c:when>
 			<c:otherwise>
-			<form action="/member/findId.do" method="post">
-			<input type="text" class="input-style" name="userName" placeholder="이름" style="margin:0px 0px 10px 0px;">
+			<form  method="post" id="findIdForm" style="width:400px; margin:0 auto;">
+			<input type="text" class="input-style" id="userName" name="userName" placeholder="이름" style="margin:0px 0px 10px 0px;">
+			<span id="name" style="text-align:left;"></span>
 			<br>
-			<input type="email" class="input-style" name="userEmail" placeholder="이메일">
+			<input type="email" class="input-style" id="userEmail" name="userEmail" placeholder="이메일">
+			<span id="email" style="text-align:left;"></span>
 			<br>
 			<input type="submit" value="아이디 찾기" id="findId" class="btn-style-mint"><br>
 			</form>
@@ -67,33 +70,71 @@ margin: 20px 0px 20px 0px;
 			</c:choose>
 			</div>
 
-
-
-			<div  id="tab-2" class="tab-content">
-			<input type="text" class="input-style" name="userName" placeholder="이름" style="margin:0px 0px 10px 0px;">
-			<br>
-			<input type="email" class="input-style" name="userEmail" placeholder="이메일">
-				<br>
-					<input type="button" value="비밀번호 찾기" id="findPwd" class="btn-style-mint">
-			</div>
 			<a href="/">메인으로 이동</a>
 		</div>
+		<script>
+		 <%-- 이름 유효성 검사 --%>
+	       $("input[name='userName']").keyup(function(){
+	          var regName=/^[가-힣]+$/;
+	          if(regName.test($(this).val())){
+	        	  $('#name').css("display","none");
+	        	  $('#userName').css("border-color","#C8C8C8");
+	          }else{
+	        	  $('#name').css("color",'#FD8A69');
+		          $('#name').html("한글만 가능합니다.");
+		          $('#name').css("display","block");
+		          $('#userName').css("border-color","#FD8A69");
+	          }
+	       });
+	       <%--이메일 유효성 검사 --%>
+	       $("input[name='userEmail']").keyup(function(){
+		          var regName=/.+@.+/;
+		          if(regName.test($(this).val())){
+		        	  $('#email').css("display","none");
+		        	  $('#userEmail').css("border-color","#C8C8C8");
+		        	 
+		          }else{
+		        	  $('#email').css("color",'#FD8A69');
+			          $('#email').html("이메일 형식이 올바르지 않습니다.");
+			          $('#email').css("display","block");
+			          $('#userEmail').css("border-color","#FD8A69");
+		          }
+		       });
+		</script>
 
 	<script>
-	
-	$(document).ready(function(){
-			$("ul.tabs li").click(function() {
-				var tabId = $(this).attr("data-tab");
-
-				$("ul.tabs li").removeClass("current");
-				$(".tab-content").removeClass("current");
-
-				$(this).addClass("current");
-				$("#" + tabId).addClass("current");
-			})
-
+	/*마지막 테스트*/
+	$('#findId').click(function(){
+		/*아이디작성칸이 빈칸일때*/
+		if(($('#userName').val())=="")
+		{
+		alert('이름을 작성해주세요');
+		 // $('#name').css("color",'#FD8A69');
+		 // $('#name').html("이름을 입력해주세요.");
+		 // $('#name').css("display","block");
+		  $('#userName').css("border-color","#FD8A69");
+		return false;
+		}
 		
-			});
+		if(($('#userEmail').val())=="")
+		{
+		alert('이메일을 작성해주세요');
+		$('#userEmail').css("border-color","#FD8A69");
+		return false;
+		}
+		  var name =  $('#userName').css("border-color")=="rgb(200, 200, 200)";
+		 var email =  $('#userEmail').css("border-color")=="rgb(200, 200, 200)";
+		 if(name&&email){
+    		 $('#findIdForm').attr("action","/member/findId.do");
+             $('#findId').submit();
+          }else{
+       
+             alert("아이디 조회 실패");
+             return false;
+          }
+	});
+	
+	
 	</script>
 
 

@@ -43,17 +43,17 @@ public class MemberController {
 		return "member/findIdPage";
 	}
 	
-	@RequestMapping(value="/member/findPwdPage.do", method=RequestMethod.GET)
-	public String findPwdPage()
-	{
-		return "member/findPwdPage";
-	}
-	
 	
 	@RequestMapping(value="/member/joinPage.do", method=RequestMethod.GET)
 	public String joinPage()
 	{
 		return "member/joinPage";
+	}
+	
+	@RequestMapping(value="/member/findPwdPage.do",method=RequestMethod.GET)
+	public String findPwdPage()
+	{
+		return "member/findPwdPage";
 	}
 	
 	@RequestMapping(value="/member/joinMember.do", method=RequestMethod.POST)
@@ -224,6 +224,86 @@ public class MemberController {
     }
     
     
+    @RequestMapping(value="/member/findPwdRe.do",method=RequestMethod.GET)
+    @ResponseBody
+    public String findPwdRe(@RequestParam String email)
+    {
+    	System.out.println(email);
+    	  /* 인증번호(난수) 생성 */
+        Random random = new Random();
+        int checkNum = random.nextInt(888888) + 111111;
+        System.out.println(checkNum);
+        
+        /* 이메일 보내기 */
+        String setFrom = "hyeonji149@gmail.com";
+        String toMail = email;
+        String title = "비밀번호 재설정 인증 이메일 입니다.";
+        String content = 
+                "인증 번호는 " + checkNum + "입니다." + 
+                "<br>" + 
+                "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+        try {
+            
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+            helper.setFrom(setFrom);
+            helper.setTo(toMail);
+            helper.setSubject(title);
+            helper.setText(content,true);
+            mailSender.send(message);
+            
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        String num = Integer.toString(checkNum);
+        return num;
+       }
     
-    
+    @RequestMapping(value="/member/findPwd.do",method=RequestMethod.POST)
+    @ResponseBody
+    public void findPwd(HttpServletRequest request,
+			HttpServletResponse response,
+			@RequestParam String userName,
+			@RequestParam String userEmail
+			) throws IOException
+    {
+    	int result = mService.findPwd(userName,userEmail);
+    	
+    	
+    	 Random random = new Random();
+         int checkNum = random.nextInt(888888) + 111111;
+         System.out.println(checkNum);
+         
+         /* 이메일 보내기 */
+         String setFrom = "hyeonji149@gmail.com";
+         String toMail = userEmail;
+         String title = "비밀번호 재설정 인증 이메일 입니다.";
+         String content = 
+                 "인증 번호는 " + checkNum + "입니다." + 
+                 "<br>" + 
+                 "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+         try {
+             
+             MimeMessage message = mailSender.createMimeMessage();
+             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+             helper.setFrom(setFrom);
+             helper.setTo(toMail);
+             helper.setSubject(title);
+             helper.setText(content,true);
+             mailSender.send(message);
+             
+         }catch(Exception e) {
+             e.printStackTrace();
+         }
+         String num = Integer.toString(checkNum);
+		
+    	if(result>0)
+		{
+			response.getWriter().print(true);//true면 사용 중이다는 라는 의미	
+		}else
+		{
+			response.getWriter().print(false);//false면 미사용중이다라는 의미 
+		}
+		;
+    }
 }
