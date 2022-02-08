@@ -225,20 +225,25 @@
 			<div id="picture-wrapper">
 	            <div id="insert-picture">
                     
-                        <div class="input_wrap">
-                        	<a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
-							 <input type="file" id="input_imgs" multiple/>
-
-                                <span style="font-size: 11px">
-                                    (*최대 10장까지)
-                                </span>
+                        <div class="input_wrap" onclick="onclick=document.all.file.click()">
+		                    <div style="vertical-align:middle;padding:180px 0px 180px 0px">
+			                    <span style="color:#707070">
+			                        <span style="padding:5px"><img src="/resources/images/icon/camera.png" style="width:15px; height:15px">
+			                    </span>
+			                    <span>
+		                        	사진을 등록해주세요<pre>
+		                        	</pre>(*최대 10장까지)
+	                        	</span>
+	                        </div>
                         </div>
                        	<div class="imgs_wrap">	
-                       		<img id="img"/>
+                       		<div id="preview">
+                       		
+                       		</div>
 	                    </div>
-	                    
-	                    <a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
-
+	                   
+						<input style="display: block" type="file" name="uploadFile" id="uploadFile"  multiple/>
+				              	
                     
 	            </div>
 	            <div id="insert-info">
@@ -520,48 +525,75 @@
 			});
 			
 
-			
-			
-			//다중 이미지 업로드 및 출력 
-			var sel_file=[];
-			
-			$(document).ready(function(){
-				$("#input_imgs").on("change",handleImgFileSelect);
-			});
-			
-			function fileUploadAction(){
-				$("#input_imgs").trigger('click');
-			}
-			
-			function handleImgFileSelect(e){
-				sel_files=[];
-				$(".imgs_wrap").empty();
-				
-				var files=e.target.files;
-				var filesArr = Array.prototype.slice.call(files);
-				
-				var index=0;
-				fileArr.forEach(function(f){
-					if(!f.type.match("image.*")){
-						alert("확장자는 이미지 확장자만 가능합니다.");
-						return;
-					}
-					
-					sel_files.push(f);
-					
-					var reader = new FileReader();
-					
-					var reader = new FileReader();
-					reader.onload = function(e){
-						var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\""+e.target.result+"\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>"
-						$(".imgs_wrap").append(html);
-						index++;
-					}
-					reader.readAsDataURL(f);
-				});
-			}
-			
-			
+			 $(document).ready(function (e){
+				    $("input[type='file']").change(function(e){
+
+				      //div 내용 비워주기
+				      $('#preview').empty();
+
+				      var files = e.target.files;
+				      var arr =Array.prototype.slice.call(files);
+				      
+				      //업로드 가능 파일인지 체크
+				      for(var i=0;i<files.length;i++){
+				        if(!checkExtension(files[i].name,files[i].size)){
+				          return false;
+				        }
+				      }
+				      
+				      preview(arr);
+				      
+				      
+				    });//file change
+				    
+				    function checkExtension(fileName,fileSize){
+
+				      var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+				      var maxSize = 20971520;  //20MB
+				      
+				      if(fileSize >= maxSize){
+				        alert('파일 사이즈 초과');
+				        $("input[type='file']").val("");  //파일 초기화
+				        return false;
+				      }
+				      
+				      if(regex.test(fileName)){
+				        alert('업로드 불가능한 파일이 있습니다.');
+				        $("input[type='file']").val("");  //파일 초기화
+				        return false;
+				      }
+				      return true;
+				    }
+				    
+				    function preview(arr){
+				      arr.forEach(function(f){
+				        
+				        //파일명이 길면 파일명...으로 처리
+				        var fileName = f.name;
+				        if(fileName.length > 10){
+				          fileName = fileName.substring(0,7)+"...";
+				        }
+				        
+				        //div에 이미지 추가
+				        var str = '<div style="display: inline-flex; padding: 10px;"><li>';
+				        
+				        //이미지 파일 미리보기
+				        if(f.type.match('image.*')){
+				          var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+				          reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+				            //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
+				            str += '<img src="'+e.target.result+'" title="'+f.name+'" width=100 height=100 />';
+				            str += '</li></div>';
+				            $(str).appendTo('#preview');
+				          } 
+				          reader.readAsDataURL(f);
+				        }else{
+				          str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=100 height=100 />';
+				          $(str).appendTo('#preview');
+				        }
+				      });//arr.forEach
+				    }
+				  });
 	</script>
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
