@@ -10,7 +10,7 @@
 				<nav>
 					<ul id="gnb-list">
 						<li><a href="/coordi/coordiList.do">오늘의 코디</a></li>
-						<li><a href="/beststyle/bestPage.do">베스트 코디</a></li>
+						<li><a href="/beststyle/weekBestPage.do">베스트 코디</a></li>
 						<li><a href="/itItem/itItemList.do">오늘의 잇템</a></li>
 						<li><a href="/board/NoticePage.do">고객센터</a></li>
 					</ul>
