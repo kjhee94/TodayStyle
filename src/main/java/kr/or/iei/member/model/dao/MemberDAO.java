@@ -39,5 +39,9 @@ public class MemberDAO {
 		return sqlSession.selectOne("member.nicknameCheck",nickname)!=null?1:0;
 	}
 
+	public int mailCheck(String userEmail) {
+		return sqlSession.selectOne("member.mailCheck",userEmail)!=null?1:0;
+	}
+
 	
 }

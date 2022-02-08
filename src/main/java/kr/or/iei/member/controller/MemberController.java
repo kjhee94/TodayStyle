@@ -82,25 +82,27 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="/member/login.do", method=RequestMethod.POST)
-	public String login(HttpServletRequest request,
-					Member member
-				)
-	{	
-		Member m = mService.selectLoginMember(member);
-		
-		if(m!=null)
-		{
-			System.out.println("로그인 성공");
-			HttpSession session = request.getSession();
-			session.setAttribute("member", m);
-			
-			return "redirect:/";
-		}else {
-			return "member/loginFail";
-		}
-		
-		
-	}
+	   public String login(HttpServletRequest request,
+	               Member member
+	            )
+	   {   
+	      Member m = mService.selectLoginMember(member);
+	      
+	      if(m!=null)
+	      {
+	         System.out.println("로그인 성공");
+	         HttpSession session = request.getSession();
+	         session.setAttribute("member", m);
+	         
+	         if(m.getRoll().substring(0,2).equals("AD")) {
+	            return "admin/adminLogin";
+	         }
+	         
+	         return "redirect:/";
+	      }else {
+	         return "member/loginFail";
+	      }
+	   }
 	
 
 	@RequestMapping(value="/member/findId.do",method=RequestMethod.POST)
@@ -157,6 +159,7 @@ public class MemberController {
 	public void nicknameCheck(@RequestParam String nickname, HttpServletResponse response) throws IOException
 	{
 		
+		
 		int result = mService.nicknameCheck(nickname);
 		
 		
@@ -175,7 +178,6 @@ public class MemberController {
     @ResponseBody
     public String mailCheckGET(@RequestParam String email) throws Exception{
         
-     System.out.println(email);
      /* 인증번호(난수) 생성 */
      Random random = new Random();
      int checkNum = random.nextInt(888888) + 111111;
@@ -205,4 +207,23 @@ public class MemberController {
      String num = Integer.toString(checkNum);
      return num;
     }
+   
+    
+    @RequestMapping(value="/member/mailCheck.do", method=RequestMethod.GET)
+    public void mailCheck(@RequestParam String userEmail,HttpServletResponse response)throws IOException
+    {
+    	
+    	int result = mService.mailCheck(userEmail);
+    	if(result>0)
+		{
+			response.getWriter().print(true);//true면 사용 중이다는 라는 의미
+		}else
+		{
+			response.getWriter().print(false);//false면 미사용중이다라는 의미 
+		}
+    }
+    
+    
+    
+    
 }

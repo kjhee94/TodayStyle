@@ -62,7 +62,7 @@
        </style>
 
 	<div id="content">
-		<form id="joinForm" action="/member/joinMember.do" method="post">
+		<form id="joinForm"  method="post">
 		
 			<div id="logo">
 				<a href="/" id="logo"><img alt="오늘 뭐 입지 로고" src="/resources/images/logo.png"></a>
@@ -119,15 +119,20 @@
 	        
 	        </div>
 	        
+	       
+	        
+             
+	        <button type="button" class="btn-style-mint btn-certified" id="mail_check_button"><a>이메일 인증</a></button>
+	        
 	        <div id="emailCheck-area">
                   <div id="emailCheck-text" class="emailCheck">이메일로 전송된 인증코드를 입력해주세요</div>
                   <div class="mail_check_input_box" id="mail_check_input_box_false">
+                 
                    	<input type="text" placeholder="인증코드 6자리 입력" id="emailCheck-input"  class="emailCheck input-style"><div id="emailCheck-btn" class="emailCheck btn-style-mint">확인</div>
+                  
                   </div>
-                  	<div id="emailCheck-time" class="emailCheck">9분 30초 남았습니다.</div>
+                  	<div id="emailCheck-time" class="emailCheck"></div><button type="button" id="emailCheck-resend" class="emailCheck">이메일 재전송</button>
              </div>
-             
-	        <div class="btn-style-mint btn-certified" id="mail_check_button"><a>이메일 인증</a></div>
         
        		<span class="title">성별</span>
        		<div class="box-radio">
@@ -148,13 +153,19 @@
 	        <button class="btn-style-mint btn-certified" id="joinBtn">가입 하기</button>
     	</form>
     </div>
+    
     <script>
-    var code = "";  //이메일전송 인증번호 저장위한 코드
+     //이메일전송 인증번호 저장위한 코드
     /* 인증번호 이메일 전송 */
-    $("#mail_check_button").click(function(){
-    	// 이메일 인증 입력창 나타나기
+    var code;
+    $(document).ready(function() {
+    	
+    	
+    $("#mail_check_button").click(function(){// 이메일 인증 입력창 나타나기
+    	 var email = $("#userEmail").val();  // 입력한 이메일
+    	if(email!=""){
     	 $('#emailCheck-area').css('display','block');
-        var email = $("#userEmail").val();  // 입력한 이메일
+       
         var cehckBox = $("#emailCheck-input");        // 인증번호 입력란
         var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
         
@@ -163,26 +174,105 @@
 	             data:{"email":email},
 	             type:"GET",
 	             success:function(data){
-	            	 //console.log("data : " + data);
 	            	
 	            	 code = data;
+	            	 
 	             }         
-        });
+        }) 
+    	}else if(email==""){
+    		alert("이메일을 확인해주세요")
+    	}else if(($('#userEmail').css("border-color")=="rgb(253, 138, 105)")){//문제점: 이메일 유효성이 제대로 되어있지 않아도 이메일인증보냄
+    	 alert("이메일");
+    	}
+    })  
+    	 
+    $("#emailCheck-resend").click(function(){
+    	 var email = $("#userEmail").val();  // 입력한 이메일
+         var cehckBox = $("#emailCheck-input");        // 인증번호 입력란
+         var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
+         
+         $.ajax({
+         	   url:"/member/emailCheck.do",
+ 	             data:{"email":email},
+ 	             type:"GET",
+ 	             success:function(data){
+ 	            	
+ 	            	 code = data;
+ 	            	 
+ 	             }         
+         }) 
     });
     /* 인증번호 비교 */
     $("#emailCheck-btn").click(function(){
-    	var inputCode = $("#userEmail").val();       // 입력코드    
-        
-        if(inputCode == code){                            // 일치할 경우
-        	 $('#userEmail').css("border-color","#FD8A69");  
+    	var inputCode = $("#emailCheck-input").val();       // 입력코드    
+    
+    	
+        if(inputCode==code){                            // 일치할 경우
+        	 $('#userEmail').css("border-color","#C8C8C8");  
+        	$('#emailCheck-area').css("display","none");
+        	$('#mail_check_button').attr('disabled','disabled');
+        	
+        	$('#mail_check_button').css('background-color','#C8C8C8');
+        	
         } else {                                            // 일치하지 않을 경우
-        	$('#userEmail').css("border-color","black");
+        	$('#userEmail').css("border-color","#FD8A69");
         }    
         
         
     });
+    });
     
     </script>
+    <script>
+	
+		  var timer = null;
+		  var isRunning = false;
+
+		  $('#mail_check_button').click(function(){
+		    var display = $("#emailCheck-time");
+		    // 유효시간 설정
+		    var leftSec = 30;
+
+		    // 버튼 클릭 시 시간 연장
+		    if (isRunning){
+		      clearInterval(timer);
+		      display.html("");
+		      startTimer(leftSec, display);
+		    }else{
+		    	startTimer(leftSec, display);
+		    }
+			
+		  });
+		      
+		  function startTimer(count, display) {  
+			  
+		    var minutes, seconds;
+		    timer = setInterval(function () {
+		      minutes = parseInt(count / 60, 10);
+		      seconds = parseInt(count % 60, 10);
+
+		      minutes = minutes < 10 ? "0" + minutes : minutes;
+		      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+		      display.html(minutes + "분" + seconds+"초 남았습니다.");
+		    
+		      
+		      // 타이머 끝
+		      if (--count < 0) {
+		        clearInterval(timer);
+		       
+		        display.html("시간초과");
+		        $('#emailCheck-area').css("display","none");
+		        return;
+		        $("button").attr("disabled", true);
+		        isRunning = false;
+		      }
+		    
+		    }, 1000);
+		    isRunning = true;
+		  }
+	
+	</script>
     <script>
 		$('#allcheckbox').click(function() {
 			if ($(this).prop('checked')) {
@@ -272,6 +362,7 @@
 		          if(regName.test($(this).val())){
 		        	  $('#email').css("display","none");
 		        	  $('#userEmail').css("border-color","#C8C8C8");
+		        	 
 		          }else{
 		        	  $('#email').css("color",'#FD8A69');
 			          $('#email').html("이메일 형식이 올바르지 않습니다.");
@@ -305,6 +396,28 @@
 	          
 	       });
 		
+	       <%--이메일 중복검사--%>
+	       $('#userEmail').blur(function(){
+	    	  var userEmail = $('#userEmail').val();
+	    	  $.ajax({
+	    		 url:"/member/mailCheck.do",
+	    		 data:{"userEmail":userEmail},
+	    		 type:"get",
+	    		 success:function(result){
+	    			 if(result=="true"){
+	    				 alert('중복된 이메일입니다. 다른 이메일을 입력해주세요.');
+	    				 $('#email').css("color",'#FD8A69');
+				          $('#email').html("중복된 이메일입니다. 다른 이메일을 입력해주세요.");
+				          $('#email').css("display","block");
+				          $('#userEmail').css('border-color',"#FD8A69")
+	    			 }
+	    		 },
+	    		 error:function(){
+	    			 console.log("ajax통신 실패");
+	    			 
+	    		 }
+	    	  });
+	       });
 		
 	       
 	       <%-- 닉네임 중복 검사 --%>
@@ -334,12 +447,61 @@
 	       
 	       <%-- 전체 항목 검사 --%>
 	       $("#joinBtn").click(function(){
+	    	   var userId = $('#userid').val();
+				var userPwd = $('#userpwd').val();
+				var userPwdRe = $('#userpwd_re').val();
+				var userName = $('#userName').val();
+				var userEmail = $('#userEmail').val();
+				var userNickname = $('#nickname').val();
+	            if(userId == ""){
+	                alert("아이디를 입력해주세요."); 
+	                $('#userid').css("border-color","#FD8A69");
+	                return false; 
+	            }
+	            if(userPwd==""){
+	            	alert("비밀번호를 입력해주세요.");
+	            	$('#userpwd').css("border-color","#FD8A69");
+	            	return false;
+	            }
+	            if(userPwdRe==""){
+	            	alert("비밀번호 확인을 입력해주세요.")
+	            	$('#userPwdRe').css("border-color","#FD8A69");
+	            	return false;
+	            }
+	            if(userName==""){
+	            	alert('이름을 입력하세요.')
+	            	$('#userName').css("border-color","#FD8A69");
+	            	return false;
+	            }
+	            if(userNickname == ""){
+	            	alert("닉네임을 입력하세요.")
+	            	$('#nickname').css("border-color","#FD8A69");
+	            	return false;
+	            }
+	            
+	            if(userEmail==""){
+	            	alert("이메일을 입력하세요.");
+	            	$('#userEmail').css("border-color","#FD8A69");
+	            	return false;
+	            }
+	            if($('input:checkbox[id="agree1"]').is(':checked')==false){
+	            	alert("이용약관을 체크해주세요");
+	            	return false;
+	            	
+	            	
+	            }
+	            if($('input:checkbox[id="agree2"]').is(':checked')==false){
+	            	alert("개인정보 처리방침을 체크해주세요");
+	            	return false;
+	            }
+	            
 	    	  var id = $('#userid').css("border-color")=="rgb(200, 200, 200)";
 	    	   var pwd= $('#userpwd').css("border-color")=="rgb(200, 200, 200)";
 	    	   var pwdRe =  $('#userpwd_re').css("border-color")=="rgb(200, 200, 200)";
 	    	  var name =  $('#userName').css("border-color")=="rgb(200, 200, 200)";
 	    	 var nickname =  $('#nickname').css("border-color")=="rgb(200, 200, 200)";
 	    	 var email =  $('#userEmail').css("border-color")=="rgb(200, 200, 200)";
+	    	
 	    	 if(id&&pwd&&pwdRe&&name&&nickname&&email){
 	    		 $('#joinForm').attr("action","/member/joinMember.do");
 	             $('#joinDo').submit();
