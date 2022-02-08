@@ -43,5 +43,12 @@ public class MemberDAO {
 		return sqlSession.selectOne("member.mailCheck",userEmail)!=null?1:0;
 	}
 
+	public int findPwd(String userName, String userEmail) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("userName", userName);
+		map.put("userEmail", userEmail);
+		return sqlSession.selectOne("member.findPwd",map)!=null?1:0;
+	}
+
 	
 }
