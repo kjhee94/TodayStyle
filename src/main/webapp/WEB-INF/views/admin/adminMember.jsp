@@ -35,23 +35,23 @@
 			
 			<div id="container">
 				<div id="searchAndBtn">
-					<form action="" method="get">
+					<form action="/admin/memberSearch.do" method="get">
 						<div id="boxSelect">
-							<select class="select-style" name="keyword">
+							<select class="select-style" name="type">
 								<option disabled selected>필터선택</option>
 								<option value="userId">아이디</option>
-								<option value="nick">닉네임</option>
+								<option value="nickname">닉네임</option>
 							</select>
 							<i class="fas fa-chevron-down"></i>
 						</div>
 						
 						<div id="boxSearch">
-							<input class="input-style" type="text" name="search" placeholder="검색어를 입력하세요">
+							<input class="input-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
 							<button type="submit"><i class="fas fa-search"></i></button>
 						</div>
 					</form>
 					<div id="boxBtn">
-						<button id="allWithDrawBtn" class="btn-style">탈퇴</button>
+						<button id="checkedWithDrawBtn" class="btn-style">탈퇴</button>
 					</div>
 				</div>
 				
@@ -72,8 +72,22 @@
 							</tr>
 						
 							<c:forEach items="${requestScope.map.list }" var="m">
-								<tr>
-									<td><input type="checkbox" class="one-check" name="" value="${m.userId}"></td>
+								<c:if test="${m.endYN eq 'N'.charAt(0)}">
+									<tr>
+								</c:if>
+								<c:if test="${m.endYN eq 'Y'.charAt(0)}">
+									<tr class="deactivate">
+								</c:if>
+									<td>
+										<c:if test="${m.endYN eq 'N'.charAt(0)}">
+											<c:if test="${m.roll eq 'UR-1'}">
+												<input type="checkbox" name="userId" value="${m.userId}">
+											</c:if>
+										</c:if>
+										<c:if test="${m.endYN eq 'Y'.charAt(0)}">
+											<input type="checkbox" name="userId" value="${m.userId}" disabled>
+										</c:if>
+									</td>
 									<td>${m.userNo}</td>
 									<td>${m.userId}</td>
 									<td>${m.userName}</td>
@@ -83,25 +97,19 @@
 									<td>${m.roll}</td>
 									<td>${m.enrollDate}</td>
 									<td>
-										<div class="btn-style-icon btn-one-withdraw" endyn="${m.endYN}" user="${m.userId}">
-											<c:if test="${m.endYN eq 'N'.charAt(0)}">
-												<i class="fas fa-trash"></i>
-											</c:if>
-											<c:if test="${m.endYN eq 'Y'.charAt(0)}">
-												<i class="fas fa-trash-restore"></i>
-											</c:if>
-										</div>
-										
-										<!-- 
-										제이쿼리로 아이콘 넣기
-										<div class="btn-style-icon" endyn="${m.endYN}" user="${m.userId}">
-											<i class="fas"></i>
-										</div>
-										 -->
+										<c:if test="${m.roll eq 'UR-1'}">
+											<div class="btn-style-icon btn-one-withdraw" endyn="${m.endYN}" user="${m.userId}">
+												<c:if test="${m.endYN eq 'N'.charAt(0)}">
+													<i class="fas fa-trash"></i>
+												</c:if>
+												<c:if test="${m.endYN eq 'Y'.charAt(0)}">
+													<i class="fas fa-trash-restore"></i>
+												</c:if>
+											</div>
+										</c:if>
 									</td>
 								</tr>
 							</c:forEach>
-							
 						</table>
 					</c:when>	
 					<c:otherwise>

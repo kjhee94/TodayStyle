@@ -13,4 +13,8 @@ public interface AdminService {
 
 	int updateMemberOneEndYNChange(String userId, char endYN);
 
+	int updateMemberCheckedEndYNChange(String userId);
+
+	HashMap<String, Object> selectSearchMember(int currentPage, String type, String keyword);
+
 }

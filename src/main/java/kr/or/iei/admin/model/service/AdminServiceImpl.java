@@ -58,4 +58,30 @@ public class AdminServiceImpl implements AdminService {
 		return aDAO.updateMemberOneEndYNChange(userId, endYN);
 	}
 
+	@Override
+	public int updateMemberCheckedEndYNChange(String userId) {
+		
+		return aDAO.updateMemberCheckedEndYNChange(userId);
+	}
+
+	@Override
+	public HashMap<String, Object> selectSearchMember(int currentPage, String type, String keyword) {
+		//한 페이지에 보여줄 게시물의 수 
+		int recordCountPerPage = 10;
+		
+		ArrayList<Member> list = aDAO.selectSearchMember(recordCountPerPage,currentPage,type,keyword);
+		
+		//페이지 네비
+		int naviCountPerPage = 5;
+		
+		String pageNavi = aDAO.getSearchMemberPageNavi(recordCountPerPage,currentPage,naviCountPerPage,type,keyword);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+			
+		return map;
+	}
+
 }

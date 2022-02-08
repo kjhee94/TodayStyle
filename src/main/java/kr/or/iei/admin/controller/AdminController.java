@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,7 +68,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin/memberOneEndYNChange.do", method = RequestMethod.POST)
-	private void memberOneEndYNChange(@RequestParam String userId, @RequestParam char endYN, HttpServletResponse response) throws IOException {
+	public void memberOneEndYNChange(@RequestParam String userId, @RequestParam char endYN, HttpServletResponse response) throws IOException {
 		
 		//삼항연상자
 		endYN = (endYN == 'Y')?'N':'Y';
@@ -81,6 +82,38 @@ public class AdminController {
 		}
 	}
 	
+	@RequestMapping(value = "/admin/memberCheckedEndYNChange.do", method = RequestMethod.POST)
+	public void memberCheckedEndYNChange(@RequestParam String userId, HttpServletResponse response) throws IOException {
+		
+		int result = aService.updateMemberCheckedEndYNChange(userId);
+		
+		if(result>0) {
+			response.getWriter().print(true);
+		}else {
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value = "/admin/memberSearch.do", method = RequestMethod.GET)
+	public ModelAndView memberSearch(@RequestParam String type, @RequestParam String keyword, HttpServletRequest request, ModelAndView mav) {
+		
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		HashMap<String, Object> map = aService.selectSearchMember(currentPage,type,keyword);
+		
+		mav.addObject("map", map);
+		mav.setViewName("admin/adminMember");
+		
+		return mav;
+	}
+	
 	
 	@RequestMapping(value = "/admin/adminCoordi.do")
 	public String adminCoordi() {
@@ -89,7 +122,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin/adminCoordiComment.do")
-	private String adminCoordiComment() {
+	public String adminCoordiComment() {
 		
 		return "admin/adminCoordiComment";
 	}
@@ -101,7 +134,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/admin/adminIttemComment.do")
-	private String adminIttemComment() {
+	public String adminIttemComment() {
 		
 		return "admin/adminIttemComment";
 	}

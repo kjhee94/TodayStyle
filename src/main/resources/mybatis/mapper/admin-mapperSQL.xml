@@ -51,4 +51,50 @@
 		UPDATE MEMBER SET END_YN=#{endYN} WHERE USER_ID=#{userId}
 	</update>
 	
+	<update id="updateMemberCheckedEndYNChange" parameterType="string">
+		UPDATE MEMBER SET END_YN='Y' WHERE USER_ID IN 
+		<foreach collection="array" index="index" item="arr" open="(" separator="," close=")">
+		#{arr}
+		</foreach>
+	</update>
+	
+	<select id="selectSearchMemberListPage" parameterType="hashmap" resultType="member">
+		SELECT
+			user_No as userNo,
+			user_Id as userId,
+			user_Pwd as userPwd,
+			user_Name as userName,
+			user_Email as userEmail,
+			gender as gender,
+			nickname as nickname,
+			enroll_Date as enrollDate,
+			roll as roll,
+			end_YN as endYN
+		FROM 
+		(SELECT ROW_NUMBER() OVER(ORDER BY USER_NO ASC) AS NUM, MEMBER.* 
+		FROM MEMBER 
+		WHERE
+		<choose>
+			<when test="type.equals('userId')">
+				USER_ID LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="type.equals('nickname')">
+				NICKNAME Like '%'||#{keyword}||'%'
+			</when>
+		</choose>
+		)
+		WHERE NUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectSearchMemberTotalCount" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE 
+		<choose>
+			<when test="type.equals('userId')">
+				USER_ID LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="type.equals('nickname')">
+				NICKNAME Like '%'||#{keyword}||'%'
+			</when>
+		</choose>
+	</select>
 </mapper>
