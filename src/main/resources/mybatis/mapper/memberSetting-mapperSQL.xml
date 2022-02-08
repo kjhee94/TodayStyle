@@ -3,50 +3,89 @@
 <mapper namespace="memberSetting">
 
 	<select id="settingPwdCheck" parameterType="member" resultType="member">
-      SELECT
-         user_No as userNo,
-         user_Id as userId,
-         user_Pwd as userPwd,
-         user_Name as userName,
-         user_Email as userEmail,
-         gender as gender,
-         nickname as nickname,
-         enroll_Date as enrollDate,
-         roll as roll,
-         end_YN as endYN
-      FROM
-         member
-      WHERE user_Id = #{userId} and user_Pwd = #{userPwd} and end_yn='N'
-      
-   </select>
-   
-   <select id="nicknameCheck" resultType="member">
-      SELECT
-         user_No as userNo,
-         user_Id as userId,
-         user_Pwd as userPwd,
-         user_Name as userName,
-         user_Email as userEmail,
-         gender as gender,
-         nickname as nickname,
-         enroll_Date as enrollDate,
-         roll as roll,
-         end_YN as endYN
-      FROM
-         member
-      WHERE nickname = #{value} 
-      
-   </select>
-   
-   <update id="pwdUpdate" parameterType="hashmap">
-   	UPDATE
-   		MEMBER
-   	SET
-   		user_pwd = #{newUserPwd}
-   	WHERE
-   		user_id = #{userId} AND user_pwd = #{userPwd}
-   
-   </update>
-  
-  
+		SELECT
+			user_No as userNo,
+			user_Id as userId,
+			user_Pwd as userPwd,
+			user_Name as userName,
+			user_Email as userEmail,
+			gender as gender,
+			nickname as nickname,
+			enroll_Date as enrollDate,
+			roll as roll,
+			end_YN as endYN
+		FROM
+			member
+		WHERE
+			user_Id = #{userId} and user_Pwd = #{userPwd} and end_yn='N'
+
+	</select>
+
+	<select id="nicknameCheck" resultType="member">
+		SELECT
+			user_No as userNo,
+			user_Id as userId,
+			user_Pwd as userPwd,
+			user_Name as userName,
+			user_Email as userEmail,
+			gender as gender,
+			nickname as nickname,
+			enroll_Date as enrollDate,
+			roll as roll,
+			end_YN as endYN
+		FROM
+			member
+		WHERE
+			nickname = #{value}
+
+	</select>
+
+	<update id="pwdUpdate" parameterType="hashmap">
+		UPDATE
+			MEMBER
+		SET
+			user_pwd = #{newUserPwd}
+		WHERE
+			user_id = #{userId} AND user_pwd = #{userPwd}
+
+	</update>
+
+	<select id="profileImgCheck" resultType="profileImg">
+		SELECT
+			user_id as userId,
+			img_name as imgName,
+			FILEPATH as filePath 
+		FROM
+			member_img
+		WHERE
+			user_id = #{userId}
+
+	</select>
+	
+	<update id="updateProfileImg" parameterType="profileImg">
+		MERGE INTO member_img
+			USING DUAL ON (user_id = #{userId})
+			WHEN MATCHED THEN
+				UPDATE SET 
+					img_name = #{imgName},
+					FILEPATH = #{filePath}
+			WHEN NOT MATCHED THEN
+				INSERT(user_id, img_name, FILEPATH)
+				VALUES(#{userId}, #{imgName}, #{filePath})
+			
+	</update>
+	
+	<update id="memberUpdate" parameterType="member">
+		UPDATE
+			MEMBER
+		SET
+			user_Name = #{userName},
+			nickname = #{nickname},
+			user_Email = #{userEmail},
+			gender = #{gender}
+		WHERE
+			user_id = #{userId}
+	</update>
+
+
 </mapper>

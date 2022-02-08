@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%-- jQuery 라이브러리 --%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -28,7 +30,7 @@
 	
 	
 
-	<c:if text="${sessionScope.member!=null }">
+	<c:if test="${sessionScope.member!=null }">
 
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
@@ -50,7 +52,7 @@
                 <div id="withDrawBtn"><a href="/myPage/withdraw.do">탈퇴하기</a></div>
                 <div class="rowLine"></div>
 
-                <form action="/myPage/memberUpdate.do" method="post" id="memberUpdateForm">
+                <form action="/myPage/memberUpdate.do" method="post" id="memberUpdateForm" enctype="multipart/form-data">
                     <div class="contents-area">
                         <div class="input-wrap">
                             <div class="titleName">이름</div>
@@ -80,74 +82,30 @@
                             <div class="titleName">성별</div>
                             
                             <c:if test="${sessionScope.member.gender=='여자' }">
-	                            <input type="radio" name="gender" class="radioBtn" id="female" checked>
+	                            <input type="radio" name="gender" value="여자" class="radioBtn" id="female" checked>
 	                            <label for="female" class="radioLabel">여자</label>
+	                            <input type="radio" name="gender" value="남자" class="radioBtn" id="male">
+	                            <label for="male" class="radioLabel">남자</label>
+	                            <input type="radio" name="gender" value="비공개" class="radioBtn" id="non">
+	                            <label for="non" class="radioLabel">비공개</label>
                             </c:if>
                             <c:if test="${sessionScope.member.gender=='남자' }">
-	                            <input type="radio" name="gender" class="radioBtn" id="male" checked>
-	                            <label for=""male"" class="radioLabel">남자</label>
+	                            <input type="radio" name="gender" value="여자" class="radioBtn" id="female">
+	                            <label for="f_femaleradioBtn" class="radioLabel">여자</label>
+	                            <input type="radio" name="gender" value="남자" class="radioBtn" id="male" checked>
+	                            <label for="male" class="radioLabel">남자</label>
+	                            <input type="radio" name="gender" value="비공개" class="radioBtn" id="non">
+	                            <label for="non" class="radioLabel">비공개</label>
                             </c:if>
                             <c:if test="${sessionScope.member.gender=='비공개' }">
-	                            <input type="radio" name="gender" class="radioBtn" id="non" checked>
+	                            <input type="radio" name="gender" value="여자" class="radioBtn" id="female">
+	                            <label for="female" class="radioLabel">여자</label>
+	                            <input type="radio" name="gender" value="남자" class="radioBtn" id="male">
+	                            <label for="male" class="radioLabel">남자</label>
+	                            <input type="radio" name="gender" value="비공개" class="radioBtn" id="non" checked> 
 	                            <label for="non" class="radioLabel">비공개</label>
                             </c:if>
                             
-                            <%-- 
-                            <c:if test="${sessionScope.member.gender=='여자' }">
-	                            <input type="radio" name="gender" class="radioBtn" id="f_radioBtn" checked>
-	                            <label for="f_radioBtn" class="radioLabel">여자</label>
-	                            <input type="radio" name="gender" class="radioBtn" id="m_radioBtn">
-	                            <label for="m_radioBtn" class="radioLabel">남자</label>
-	                            <input type="radio" name="gender" class="radioBtn" id="n_radioBtn">
-	                            <label for="n_radioBtn" class="radioLabel">비공개</label>
-                            
-                            </c:if>
-                            <c:if test="${sessionScope.member.gender=='남자' }">
-	                            <input type="radio" name="gender" class="radioBtn" id="f_radioBtn">
-	                            <label for="f_radioBtn" class="radioLabel">여자</label>
-	                            <input type="radio" name="gender" class="radioBtn" id="m_radioBtn" checked>
-	                            <label for="m_radioBtn" class="radioLabel">남자</label>
-	                            <input type="radio" name="gender" class="radioBtn" id="n_radioBtn">
-	                            <label for="n_radioBtn" class="radioLabel">비공개</label>
-                            
-                            </c:if>
-                            <c:if test="${sessionScope.member.gender=='비공개' }">
-	                            <input type="radio" name="gender" class="radioBtn" id="f_radioBtn">
-	                            <label for="f_radioBtn" class="radioLabel">여자</label>
-	                            <input type="radio" name="gender" class="radioBtn" id="m_radioBtn">
-	                            <label for="m_radioBtn" class="radioLabel">남자</label>
-	                            <input type="radio" name="gender" class="radioBtn" id="n_radioBtn" checked> 
-	                            <label for="n_radioBtn" class="radioLabel">비공개</label>
-                            
-                            </c:if>--%>
-                            
-                            <%--
-                            <c:choose>
-	                            <c:when test="${sessionScope.member.gender=='여자' }">
-		                            <input type="radio" name="gender" class="radioBtn" id="f_radioBtn" checked>
-		                            <label for="f_radioBtn" class="radioLabel">여자</label>
-		                            <input type="radio" name="gender" class="radioBtn" id="m_radioBtn">
-		                            <label for="m_radioBtn" class="radioLabel">남자</label>
-		                            <input type="radio" name="gender" class="radioBtn" id="n_radioBtn">
-		                            <label for="n_radioBtn" class="radioLabel">비공개</label>
-	                            </c:when>
-	                            <c:when test="${sessionScope.member.gender=='남자' }">
-		                            <input type="radio" name="gender" class="radioBtn" id="f_radioBtn">
-		                            <label for="f_radioBtn" class="radioLabel">여자</label>
-		                            <input type="radio" name="gender" class="radioBtn" id="m_radioBtn" checked>
-		                            <label for="m_radioBtn" class="radioLabel">남자</label>
-		                            <input type="radio" name="gender" class="radioBtn" id="n_radioBtn">
-		                            <label for="n_radioBtn" class="radioLabel">비공개</label>
-	                            </c:when>
-	                            <c:when test="${sessionScope.member.gender=='비공개' }">
-		                            <input type="radio" name="gender" class="radioBtn" id="f_radioBtn">
-		                            <label for="f_radioBtn" class="radioLabel">여자</label>
-		                            <input type="radio" name="gender" class="radioBtn" id="m_radioBtn">
-		                            <label for="m_radioBtn" class="radioLabel">남자</label>
-		                            <input type="radio" name="gender" class="radioBtn" id="n_radioBtn" checked>
-		                            <label for="n_radioBtn" class="radioLabel">비공개</label>
-	                            </c:when>
-                            </c:choose> --%>
                             
                         </div>
                         <div class="rowLine"></div>
@@ -156,14 +114,21 @@
                         </div>
                         <div id="selectProfile-wrap">
                             <div id="profileImg-area">
-                                <img src="/resources/images/default/profile.jpg" id="profileImg">
+                            	<c:choose>
+	                            	<c:when test="${requestScope.ProfileImg!=null}">
+	                            		<img src="${requestScope.ProfileImg.filePath}" id="profileImg">
+	                            	</c:when>
+	                            	<c:otherwise>
+	                            		<img src="/resources/images/default/profile.jpg" id="profileImg">
+	                            	</c:otherwise>
+                            	</c:choose>
+                                
                                 <div id="profileImg-plusBtn">
                                     <label for="selectProfileImg">+</label>
-                                    <input type="file" id="selectProfileImg" accept="image/*" onchange="loadFile(this)">
+                                    <input type="file" name="profileImg" id="selectProfileImg" accept="image/*" onchange="loadFile(this)">
 
                                 </div>
                             </div>
-
                         </div>
                         <div class="rowLine"></div>
 

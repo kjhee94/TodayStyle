@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%-- jQuery 라이브러리 --%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -24,6 +26,7 @@
 </head>
 
 <body>
+<div id="wrap">
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
     <div id="content">
@@ -104,6 +107,8 @@
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
     <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
+    
+</div>
 
 
 </body>

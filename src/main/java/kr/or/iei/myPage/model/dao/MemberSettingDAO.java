@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import kr.or.iei.member.model.vo.Member;
+import kr.or.iei.myPage.model.vo.ProfileImg;
 
 @Repository
 public class MemberSettingDAO {
@@ -32,8 +33,23 @@ public class MemberSettingDAO {
 
 	public int pwdUpdate(HashMap<String, Object> map) {
 		
-		System.out.println(map);
+		//System.out.println(map);
 		
 		return sqlSession.update("memberSetting.pwdUpdate", map);
+	}
+
+	public ProfileImg profileImgCheck(String userId) {
+		
+		return sqlSession.selectOne("memberSetting.profileImgCheck", userId);
+	}
+
+	public int updateProfileImg(ProfileImg pI) {
+		
+		return sqlSession.update("memberSetting.updateProfileImg", pI);
+	}
+
+	public int memberUpdate(Member m) {
+		
+		return sqlSession.update("memberSetting.memberUpdate", m);
 	}
 }
