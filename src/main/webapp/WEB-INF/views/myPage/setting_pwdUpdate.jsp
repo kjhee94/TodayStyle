@@ -33,40 +33,40 @@
             </div>
             <div class="contents-wrap">
                 <div class="contents-title-wrap">
-                    <a href="/myPage/memberUpdate.do">
+                    <a href="/myPage/memberUpdatePage.do">
                         <div class="contents-title" id="memberUpdate">회원정보 수정</div>
                     </a>
                     <div id="line"></div>
-                    <a href="/myPage/pwdUpdate.do">
+                    <a href="/myPage/pwdUpdatePage.do">
                         <div class="contents-title" id="pwdUpdate">비밀번호 수정</div>
                     </a>
                 </div>
                 <div id="floatSpace"></div>
                 <div class="rowLine"></div>
 
-                <form>
+                <form action="/myPage/pwdUpdate.do" method="post">
                     <div class="contents-area">
                         <div class="input-wrap">
                             <div class="titleName">현재 비밀번호</div>
-                            <input type="text" class="input-style" placeholder="현재 비밀번호">
-                            <div class="check">비밀번호가 일치하지 않습니다.</div>
+                            <input type="password" name="userPwd" class="input-style" id="userPwd" placeholder="현재 비밀번호">
+                            <div class="check" id="userPwdCheck"></div>
                         </div>
                         <div class="rowLine"></div>
                         <div class="input-wrap">
                             <div class="titleName">새 비밀번호</div>
-                            <input type="text" class="input-style" placeholder="새 비밀번호">
-                            <div class="check">비밀번호는 영문, 숫자를 포함하여 8자리 이상이어야 합니다.</div>
+                            <input type="password" name="newUserPwd" id="newUserPwd" class="input-style" placeholder="새 비밀번호">
+                            <div class="check" id="newUserPwdCheck"></div>
                         </div>
                         <div class="rowLine"></div>
                         <div class="input-wrap">
                             <div class="titleName">새 비밀번호 확인</div>
-                            <input type="text" class="input-style" placeholder="새 비밀번호 확인">
-                            <div class="check">비밀번호가 일치하지 않습니다.</div>
+                            <input type="password" name="newUserPwd_re" id="newUserPwd_re" class="input-style" placeholder="새 비밀번호 확인">
+                            <div class="check" id="newUserPwdCheck_re"></div>
                         </div>
                         <div class="rowLine"></div>
 
 
-                        <div class="btn-style-mint" id="updateBtn"><a>변경</a></div>
+                        <input type="submit" class="btn-style-mint" id="updateBtn" value="변경">
 
                     </div>
                 </form>
@@ -85,9 +85,119 @@
 
     <script>
      
+        // 현재 비밀번호 확인 (ajax)
+        $('#userPwd').blur(function(){
+        	
+        	var userPwd = $('#userPwd').val();
+    		$.ajax({	
+                url:"/myPage/userPwdCheck.do",
+                data:{"userPwd":userPwd},
+                type:"post",
+                success:function(result){
+                
+                   if(result=="false"){
+                       $('#userPwdCheck').css('display', 'block');
+                       $('#userPwdCheck').css('color', '#FD8A69');
+                       $('#userPwdCheck').html('비밀번호가 일치하지 않습니다.');
+                       $("input[name='userPwd']").css('border-color','#FD8A69');
+                   }else{
+                       $('#userPwdCheck').css('display', 'none');
+                       $("input[name='userPwd']").css('border-color','#C8C8C8');
+                   }
+                
+                },
+                error:function(){
+                   alert("오류가 발생하였습니다. 관리자에게 문의바랍니다.");
+                }
+             });
+        	
+        });
         
         
-        // 유효성 검사
+        <%-- 새 비밀번호 유효성 검사 --%>
+        $("input[name='newUserPwd']").keyup(function(){
+          	var regPwd= /^(?=.*[!@#$%^&*()])(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/;
+         	if(regPwd.test($(this).val())){
+        	  	$('#newUserPwdCheck').css("display","none");
+        	  	$("input[name='newUserPwd']").css("border-color","#C8C8C8");
+          	}else{
+        	  	$('#newUserPwdCheck').css("color",'#FD8A69');
+	          	$('#newUserPwdCheck').html("비밀번호는 영문,숫자,특수부호를 포함하여 8자 이상이어야 합니다.");
+	          	$('#newUserPwdCheck').css("display","block");
+	          	$("input[name='newUserPwd']").css("border-color","#FD8A69");
+         	}
+	    });
+        
+        <%-- 새 비밀번호(re) 일치 검사 --%>
+        $("input[name='newUserPwd_re']").keyup(function(){
+        	var newUserPwd = $("input[name='newUserPwd']").val();
+        	var newUserPwd_re = $("input[name='newUserPwd_re']").val();
+        	
+         	if(newUserPwd == newUserPwd_re){
+        	  	$('#newUserPwdCheck_re').css("display","none");
+        	  	$("input[name='newUserPwd_re']").css("border-color","#C8C8C8");
+          	}else{
+        	  	$('#newUserPwdCheck_re').css("color",'#FD8A69');
+	          	$('#newUserPwdCheck_re').html("비밀번호가 일치하지 않습니다.");
+	          	$('#newUserPwdCheck_re').css("display","block");
+	          	$("input[name='newUserPwd_re']").css("border-color","#FD8A69");
+         	}
+	    });
+        
+        
+        $('#updateBtn').click(function(){
+        	var $userPwd = $("input[name='userPwd']");
+        	var $newUserPwd =  $("input[name='newUserPwd']");
+        	var $newUserPwd_re =  $("input[name='newUserPwd_re']");
+        	
+        	if($userPwd.val() == ""){
+        		$userPwd.focus();
+        		$('#userPwdCheck').css('display', 'block');
+                $('#userPwdCheck').css('color', '#FD8A69');
+                $('#userPwdCheck').html('비밀번호를 입력해주세요.');
+                $("input[name='userPwd']").css('border-color','#FD8A69');
+                return false;
+        	}
+        	if($newUserPwd.val() == ""){
+        		$newUserPwd.focus();
+        		$('#newUserPwdCheck').css('display', 'block');
+                $('#newUserPwdCheck').css('color', '#FD8A69');
+                $('#newUserPwdCheck').html('새비밀번호를 입력해주세요.');
+                $("input[name='newUserPwd']").css('border-color','#FD8A69');
+                return false;
+        	}
+        	if($newUserPwd_re.val() == ""){
+        		$newUserPwd_re.focus();
+        		$('#newUserPwdCheck_re').css('display', 'block');
+                $('#newUserPwdCheck_re').css('color', '#FD8A69');
+                $('#newUserPwdCheck_re').html('새비밀번호 확인을 입력해주세요.');
+                $("input[name='newUserPwd_re']").css('border-color','#FD8A69');
+                return false;
+        	}
+        	
+        	
+        	
+        	// 전체 항목 검사
+           	var pwd = $("input[name='userPwd']").css("border-color")=="rgb(200, 200, 200)";
+           	var n_pwd = $("input[name='newUserPwd']").css("border-color")=="rgb(200, 200, 200)";
+           	var n_pwd_re = $("input[name='newUserPwd_re']").css("border-color")=="rgb(200, 200, 200)";
+           	if(pwd && n_pwd && n_pwd_re){
+           		
+           	   	if (window.confirm("비밀번호를 수정하시겠습니까?")) 
+           	   	{
+               		return true;
+           	   	}
+           	   	else{
+               		return false;
+           	   	}
+           	}else
+           	{
+           		alert('모든 항목을 바르게 입력해주세요.');
+           		return false;
+           	}
+        	
+        });
+        
         
         
 
