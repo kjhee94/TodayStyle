@@ -111,4 +111,30 @@
    		 MEMBER
    		WHERE user_name= #{userName} and user_email=#{userEmail}
    </select>
+   
+    <update id="findNewPwd" parameterType="hashmap">
+    UPDATE
+         MEMBER
+      SET
+         user_Pwd = #{num}
+      WHERE
+         user_id = #{userId} AND USER_EMAIL = #{userEmail}
+    </update>
+    
+    <select id="findMemberPwd" parameterType="hashmap" resultType="member">
+    	SELECT
+   		 user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+   		from
+   		 MEMBER
+   		WHERE USER_ID= #{userId} AND USER_EMAIL = #{userEmail}
+    </select>
 </mapper>

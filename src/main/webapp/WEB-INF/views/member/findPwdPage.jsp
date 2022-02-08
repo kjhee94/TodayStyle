@@ -40,11 +40,15 @@ margin: 20px 0px 20px 0px;
 			<br>
 
 			<div  id="tab-1" class="tab-content current">
-			<input type="text" class="input-style" id="userName" name="userName" placeholder="이름" style="margin:0px 0px 10px 0px;">
+			<form  method="post" id="findPwdForm" style="width:400px; margin:0 auto;">
+			<input type="text" class="input-style" id="userId" name="userId" placeholder="아이디" style="margin:0px 0px 10px 0px;">
+			<span id=id style="text-align:left;"></span>
 			<br>
 			<input type="email" class="input-style" id="userEmail" name="userEmail" placeholder="이메일">
+			<span id="email" style="text-align:left;"></span>
 			<br>
-			<button value="비밀번호 찾기" id="findPwd" class="btn-style-mint">비밀번호 찾기</button>
+			<input type="submit" value="비밀번호 찾기" id="findPwdBtn" class="btn-style-mint">
+			</form>
 			</div>
 			<a href="/">메인으로 이동</a>
  </div>
@@ -53,31 +57,71 @@ margin: 20px 0px 20px 0px;
 </div>
 
 <script>
-$('#findPwd').click(function(){
-	var userName = $('#userName').val();
-	var userEmail = $('#userEmail').val();
-	
-	$.ajax({
-		url:"/member/findPwd.do",
-		data:{"userName":userName,"userEmail":userEmail},
-		type:"POST",
-		success:function(result){
-			
-			if(result=="true")
-				{
-				alert("dd")
-				}else
-					{
-					alert("회원 정보가 없습니다.");
-					}
-		},
-		error:function(){
-			console.log("ajax 통신 실패");
+<%-- ID 유효성 검사 --%>
+$("input[name='userId']").keyup(function(){
+     var regId=/^[a-zA-Z0-9]{5,15}$/;
+     if(regId.test($(this).val())){
+   	  $('#id').css("display","none");
+   	  $('#userId').css("border-color","#C8C8C8");
+   	 
+     }else{
+        $('#id').css("color",'#FD8A69');
+        $('#id').html("아이디는 영문, 숫자를 포함하여 5자 이상이어야 합니다.");
+        $('#id').css("display","block");
+        $('#userId').css("border-color","#FD8A69");
+     }
+  });
+
+	       <%--이메일 유효성 검사 --%>
+	       $("input[name='userEmail']").keyup(function(){
+		          var regName=/.+@.+/;
+		          if(regName.test($(this).val())){
+		        	  $('#email').css("display","none");
+		        	  $('#userEmail').css("border-color","#C8C8C8");
+		        	 
+		          }else{
+		        	  $('#email').css("color",'#FD8A69');
+			          $('#email').html("이메일 형식이 올바르지 않습니다.");
+			          $('#email').css("display","block");
+			          $('#userEmail').css("border-color","#FD8A69");
+		          }
+		       });
+		</script>
+
+<script>
+	/*마지막 테스트*/
+	$('#findPwdBtn').click(function(){
+		/*아이디작성칸이 빈칸일때*/
+		if(($('#userId').val())=="")
+		{
+		alert('아이디를 작성해주세요');
+		 // $('#name').css("color",'#FD8A69');
+		 // $('#name').html("이름을 입력해주세요.");
+		 // $('#name').css("display","block");
+		  $('#userId').css("border-color","#FD8A69");
+		return false;
 		}
+		
+		if(($('#userEmail').val())=="")
+		{
+		alert('이메일을 작성해주세요');
+		$('#userEmail').css("border-color","#FD8A69");
+		return false;
+		}
+		  var id =  $('#userId').css("border-color")=="rgb(200, 200, 200)";
+		 var email =  $('#userEmail').css("border-color")=="rgb(200, 200, 200)";
+		 if(name&&email){
+    		 $('#findPwdForm').attr("action","/member/findPwd.do");
+             $('#findPwdBtn').submit();
+          }else{
+       
+             alert("실패");
+             return false;
+          }
 	});
 	
-});
-</script>
+	
+	</script>
 
 
 

@@ -2,6 +2,8 @@ package kr.or.iei.member.model.service;
 
 
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,9 +53,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int findPwd(String userName, String userEmail) {
-		return mDAO.findPwd(userName,userEmail);
+	public int findNewPwd(HashMap<String, Object> map) {
+		return mDAO.findNewPwd(map);
 	}
+
+	
+
+	
+
+	
 
 
 	
