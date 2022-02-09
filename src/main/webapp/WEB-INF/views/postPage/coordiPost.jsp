@@ -228,6 +228,7 @@
 	<script>
 		$(".img-small").click(function() {
 			var img = $(this).html();
+			var img2 = $(".img-big").html();
 			
 			$(".img-big").html(img);
 			

@@ -257,6 +257,23 @@ public class MyPageController {
 		String defaultImg = multi.getParameter("defaultImg");
 		if(defaultImg.equals("o"))
 		{
+			// 기존 이미지가 있을 경우 서버에서 삭제 작업
+			// 서버에 프로필 사진이 있을 경우 삭제
+			ProfileImg pIresult = msService.profileImgCheck(userId);
+			// System.out.println(pIresult);
+			if (pIresult != null) {
+				// 서버 사진 삭제
+				File file = new File(uploadFilePath + "/" + pIresult.getImgName());
+				if (file.exists()) {
+					// 파일이 서버에 존재하면 삭제
+					file.delete();
+					// System.out.println("deleteName : " +file.getName());
+					// System.out.println("서버 파일 삭제");
+
+				}
+			}
+			
+			
 			// 디비에 파일 경로를 default 이미지 경로로 변경
 			String defaultName = "profile.jpg";
 			String defaultPath = "/resources/images/default/profile.jpg";

@@ -3,21 +3,15 @@
 #topTitle:after {
 	display: none;
 }
-#content {
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
+
 #container {
-	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background-color: transparent;
-	border-radius: 0px;
+	margin: -100px auto -80px;
 }
 
-#bottom {
-	width: 100%;
-}
 .box-counts {
 	width: 100%;
 	display: flex;
@@ -32,6 +26,11 @@
 	position: relative;
 	font-size: 20px;
 	transition: all 0.2s;
+}
+.box-count>a {
+	display: block;
+	width: 100%;
+	height: 100%;	
 }
 .top-count {
 	display: block;

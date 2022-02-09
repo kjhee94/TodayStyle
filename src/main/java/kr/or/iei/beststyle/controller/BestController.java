@@ -18,5 +18,16 @@ public class BestController {
 	{
 		return "beststyle/bestPage";
 	}
-
+	
+	@RequestMapping(value="/beststyle/weekBestPage.do", method=RequestMethod.GET)
+	public String weekbestPage()
+	{
+		return "beststyle/weekBestPage";
+	}
+	
+	@RequestMapping(value="/beststyle/bestOfbestPage.do",method=RequestMethod.GET)
+	public String bestOfbestPage()
+	{
+		return "beststyle/bestOfbestPage";
+	}
 }

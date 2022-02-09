@@ -27,6 +27,7 @@ body {
 
 /*content 기본형식*/
 #content{
+	min-height: 100%;
 	width: 85%;
 	float: right;
 }
@@ -62,9 +63,25 @@ body {
 	font-size: 16px;
 }
 
+/*bottom*/
+#bottom {
+	width: 85%;
+	height: 80px;
+	background-color: #fff;
+	display: flex;
+	align-items: center;
+	padding-left: 30px;
+	position: absolute;
+	right: 0;
+}
+#bottom p{
+	font-size: 14px;
+}
+
 /*container 영역*/
 #container {
 	width: 80%;
+	min-height: 100vh;
 	margin: 30px auto;
 	padding: 30px;
 	background-color: #fff;
@@ -138,6 +155,7 @@ textarea {
 	right: 15px;
 	border: 0;
 	background-color: #fff;
+	cursor: pointer;
 }
 .fa-search {
 	font-size: 18px;
@@ -174,9 +192,17 @@ input[type="checkbox"]:checked {
 	border-color: #A9D4D9;
 	color: white;
 }
-input[type="checkbox"]:checked::before{
+input[type="checkbox"]:checked::before {
 	border-radius: 2px;
 	transform: scale(1) translate(-50%, -50%)
+}
+input[type="checkbox"]:disabled {
+	background-color: #F5F5F5;
+	border-color: #F5F5F5;
+	cursor: default;
+}
+input[type="checkbox"]:disabled:hover {
+	border-color: #F5F5F5;
 }
 
 /*button 디자인*/
@@ -239,6 +265,9 @@ table>tbody>tr>td {
 table>tbody>tr>th {
 	font-weight: 700;
 }
+.deactivate>td {
+	color: #C8C8C8;
+}
 
 /*page navi*/
 #page_wrap {
@@ -271,18 +300,6 @@ table>tbody>tr>th {
     border-radius: 10px;
     color: #fff;
 }
-
-#bottom {
-	height: 80px;
-	background-color: #fff;
-	display: flex;
-	align-items: center;
-	padding-left: 30px;
-}
-#bottom p{
-	font-size: 14px;
-}
-
 
 /*ellipsis 설정*/
 .relative {

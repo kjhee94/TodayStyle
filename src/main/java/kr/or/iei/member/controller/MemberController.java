@@ -1,6 +1,7 @@
 package kr.or.iei.member.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Random;
 
 import javax.mail.internet.MimeMessage;
@@ -82,27 +83,27 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="/member/login.do", method=RequestMethod.POST)
-	   public String login(HttpServletRequest request,
-	               Member member
-	            )
-	   {   
-	      Member m = mService.selectLoginMember(member);
-	      
-	      if(m!=null)
-	      {
-	         System.out.println("로그인 성공");
-	         HttpSession session = request.getSession();
-	         session.setAttribute("member", m);
-	         
-	         if(m.getRoll().substring(0,2).equals("AD")) {
-	            return "admin/adminLogin";
-	         }
-	         
-	         return "redirect:/";
-	      }else {
-	         return "member/loginFail";
-	      }
-	   }
+	public String login(HttpServletRequest request,
+					Member member
+				)
+	{	
+		Member m = mService.selectLoginMember(member);
+		
+		if(m!=null)
+		{
+			System.out.println("로그인 성공");
+			HttpSession session = request.getSession();
+			session.setAttribute("member", m);
+			
+			if(m.getRoll().substring(0,2).equals("AD")) {
+				return "admin/adminLogin";
+			}
+			
+			return "redirect:/";
+		}else {
+			return "member/loginFail";
+		}
+	}
 	
 
 	@RequestMapping(value="/member/findId.do",method=RequestMethod.POST)
@@ -261,49 +262,65 @@ public class MemberController {
     
     @RequestMapping(value="/member/findPwd.do",method=RequestMethod.POST)
     @ResponseBody
-    public void findPwd(HttpServletRequest request,
+    public ModelAndView findPwd(HttpServletRequest request,
 			HttpServletResponse response,
-			@RequestParam String userName,
-			@RequestParam String userEmail
+			@RequestParam String userId,
+			@RequestParam String userEmail,
+			Member m,
+			ModelAndView mav
 			) throws IOException
     {
-    	int result = mService.findPwd(userName,userEmail);
     	
+    	  Random random = new Random();
+          int checkNum = random.nextInt(888888) + 111111;
+          System.out.println(checkNum);
+          
+          /* 이메일 보내기 */
+          String setFrom = "hyeonji149@gmail.com";
+          String toMail = userEmail;
+          String title = "임시 비밀번호 발급 이메일 입니다.";
+          String content = 
+                  "비밀번호는 " + checkNum + "입니다." + 
+                  "<br>" + 
+                  "해당 비밀번호를 마이페이지 내 비밀번호 변경에서 변경해주세요.";
+          try {
+              
+              MimeMessage message = mailSender.createMimeMessage();
+              MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+              helper.setFrom(setFrom);
+              helper.setTo(toMail);
+              helper.setSubject(title);
+              helper.setText(content,true);
+              mailSender.send(message);
+              
+          }catch(Exception e) {
+              e.printStackTrace();
+          }
+          String num = Integer.toString(checkNum);
+  
+          
+          HashMap<String, Object> map = new HashMap<String,Object>();
+          map.put("num", num);
+          map.put("userId",userId);
+          map.put("userEmail",userEmail);
     	
-    	 Random random = new Random();
-         int checkNum = random.nextInt(888888) + 111111;
-         System.out.println(checkNum);
-         
-         /* 이메일 보내기 */
-         String setFrom = "hyeonji149@gmail.com";
-         String toMail = userEmail;
-         String title = "비밀번호 재설정 인증 이메일 입니다.";
-         String content = 
-                 "인증 번호는 " + checkNum + "입니다." + 
-                 "<br>" + 
-                 "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
-         try {
-             
-             MimeMessage message = mailSender.createMimeMessage();
-             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
-             helper.setFrom(setFrom);
-             helper.setTo(toMail);
-             helper.setSubject(title);
-             helper.setText(content,true);
-             mailSender.send(message);
-             
-         }catch(Exception e) {
-             e.printStackTrace();
-         }
-         String num = Integer.toString(checkNum);
-		
-    	if(result>0)
-		{
-			response.getWriter().print(true);//true면 사용 중이다는 라는 의미	
-		}else
-		{
-			response.getWriter().print(false);//false면 미사용중이다라는 의미 
-		}
-		;
+          int newPwd = mService.findNewPwd(map);
+        
+          if(newPwd>0)
+          {
+        	  mav.addObject("msg","입력하신 이메일로 임시비밀번호를 발급했습니다");
+  			  mav.addObject("location","/member/loginPage.do");//아이디 이메일 같을때
+          }else
+          {
+        	  mav.addObject("msg","회원 정보가 없습니다.");
+  			mav.addObject("location","/member/findPwdPage.do");//아이디 이메일 다를때
+          }
+  		
+        
+          mav.setViewName("member/msg"); 
+  		
+  		return mav;
+       
+    	
     }
 }

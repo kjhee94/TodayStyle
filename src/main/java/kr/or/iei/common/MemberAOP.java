@@ -93,5 +93,26 @@ public class MemberAOP {
 		map.put("newUserPwd", data);
 		
 	}
+	
+	// 회원 설정현지 - 비밀번호 변경 암호화
+		@Pointcut("execution(int kr.or.iei.member.model.service.MemberServiceImpl.findNewPwd(..))")
+		public void findNewPwdPointCut() {
+		}
+
+		@Before("findNewPwdPointCut()")
+		public void findNewPwdEncryption(JoinPoint jp) throws Exception {
+			
+			HashMap<String,Object> map = (HashMap<String,Object>)jp.getArgs()[0];
+			
+			String userId = map.get("userId").toString();
+			String num = map.get("num").toString();
+			
+			
+			
+			// 새 비밀번호 암호화 처리
+			String data = enc.encryptionData(num, userId);
+			map.put("num", data);
+			
+		}
 
 }
