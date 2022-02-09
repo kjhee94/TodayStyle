@@ -31,11 +31,16 @@
 			</ul>
 			<div id="tab-2" class="tab-content current">
 				<div class="img-coordi-area">
+				
+				<c:choose>
+						<c:when test="${!requestScope.list.isEmpty() }">
+							<c:forEach items="${requestScope.list }" var="b" varStatus="i">
+							
 					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist31.jpg">
+						<img src="${b.coordifilepath}">
 						<div class="rank">
 							<i class="fas fa-bookmark"></i>
-							<span>1</span>
+							<span>${i.count }</span>
 						</div>
 						
 						<div class="likeScrapArea">
@@ -45,151 +50,29 @@
 						
 						<div class="box-nick">
 							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
+								<a href="">
+								
+								<c:choose>
+                                    <c:when test="${b.profilefilepath!=null}">
+                                        <img src="${b.profilefilepath}" id="profileImg">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="/resources/images/default/profile.jpg" id="profileImg">
+                                    </c:otherwise>
+                               </c:choose>
+								
+								</a>
 							</div>
-							<span class="nickName">닉네임</span>
+							<span class="nickName">${b.nickname }</span>
 						</div>
 					</div>
+					</c:forEach>
+					</c:when>
+					</c:choose>
 					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist2.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>2</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
 					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist19.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>3</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
 					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist20.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>4</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
-					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist32.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>5</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
-					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist29.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>6</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
-					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist28.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>7</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
-					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist27.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>8</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
+				
 				</div>
 			</div>
 

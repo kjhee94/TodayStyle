@@ -119,5 +119,19 @@ WHERE NUM BETWEEN #{start} AND #{end}
          faq
           where end_yn='N' AND CATEGORY LIKE '게시글'
  		 </if>
+ 		 
+ 		  <if test='type.equals("etc")'>
+   		SELECT
+          faq_no as faqNo,
+         category as category,
+         title as title,
+         content as content,
+         user_id as userId,
+       regdate as regdate,
+         end_yn as endYN
+      FROM
+         faq
+          where end_yn='N' AND CATEGORY LIKE '기타'
+ 		 </if>
    </select>
 </mapper>
