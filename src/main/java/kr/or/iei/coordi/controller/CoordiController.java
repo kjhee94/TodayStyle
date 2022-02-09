@@ -3,22 +3,41 @@ package kr.or.iei.coordi.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+
+import kr.or.iei.HomeController;
+import kr.or.iei.coordi.model.service.CoordiService;
+import kr.or.iei.coordi.model.vo.Coordi;
+import kr.or.iei.member.model.vo.Member;
 
 @Controller
 public class CoordiController {
+	
+	@Autowired
+	private CoordiService coService;
 	
 	@RequestMapping(value="/rest/setSession.do",method = RequestMethod.POST)
 	public void test(HttpServletRequest request,HttpServletResponse response) throws IOException{
@@ -140,9 +159,116 @@ public class CoordiController {
 	}
 	
 	@RequestMapping(value="/coordi/coordiList.do",method=RequestMethod.GET)
-	public String coordiList() {
+	public ModelAndView coordiList(ModelAndView mav,HttpServletRequest request) {
+		
+		HttpSession session=request.getSession();
+		Member m=(Member)session.getAttribute("member");
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		HashMap<String, String> pMap =new HashMap<String, String>();
+		ArrayList<Coordi> coordiList=coService.getCoordiList(pMap);
+		
+		//팔로우리스트와 좋아요 리스트 가져오기(로그인 한경우)
+		if(m!=null) {
+			String userId=m.getUserId();
+			ArrayList<Integer> likeList=coService.selectLikeList(userId);
+			ArrayList<Integer> scrapList=coService.selectScrapList(userId);
+			map.put("likeList", likeList);
+			map.put("scrapList", scrapList);
+		}
+
+		map.put("coordiList", coordiList);
+		mav.addObject("map", map);
+		mav.setViewName("coordi/coordiList");
+		return mav;
+	}
+	
+	@RequestMapping(value="/coordi/categoryCoordiList.do",method=RequestMethod.GET)
+	public String seasonList(HttpServletRequest request,HttpServletResponse response,Model model){
+		String seasons=request.getParameter("season");
+		String genders=request.getParameter("gender");
+		String temp=request.getParameter("temp");
+		String items=request.getParameter("item");
+		HttpSession session=request.getSession();
+		Member m=(Member)session.getAttribute("member");
+		
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		if(m!=null) {
+			String userId=m.getUserId();
+			ArrayList<Integer> likeList=coService.selectLikeList(userId);
+			ArrayList<Integer> scrapList=coService.selectScrapList(userId);
+			model.addAttribute("likeList",likeList);
+			model.addAttribute("scrapList",scrapList);
+		}
+		
+		if(seasons!=""&&seasons!=null) {
+			String [] seasonArray=seasons.split("/");
+			map.put("season", seasonArray);
+		}
+		if(genders!=""&&genders!=null) {
+			String [] genderArray=genders.split("/");
+			map.put("gender", genderArray);
+		}
+		if(items!=""&&items!=null) {
+			String [] itemArray=items.split("/");
+			map.put("item", itemArray);
+		}
+		if(temp!=null&&temp!="") {
+			map.put("temp", temp);
+		}
+		
+		ArrayList<Coordi> list =coService.selectCategoryCoordiList(map);
+		
+		model.addAttribute("list", list);
+		return "coordi/categoryList";
+		
+		
+ 	}
+	
+	@RequestMapping(value="/coordi/unlikeCoordi.do",method = RequestMethod.GET)
+	public String unlikeCoordi(@RequestParam int coordiNo,@SessionAttribute Member member) {
+		
+		String userId= member.getUserId();
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("coordiNo", coordiNo);
+		map.put("userId", userId);
+		
+		int result=coService.deleteLikeCoordi(map);
 		return "coordi/coordiList";
 	}
 	
+	@RequestMapping(value="/coordi/likeCoordi.do",method=RequestMethod.GET)
+	public String likeCoordi(@RequestParam int coordiNo,@SessionAttribute Member member) {
+		String userId= member.getUserId();
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("coordiNo", coordiNo);
+		map.put("userId", userId);
+		
+		int result=coService.insertLikeCoordi(map);
+		
+		return "coordi/coordiList";
+	}
 	
+	@RequestMapping(value="/coordi/unscrapCoordi.do",method = RequestMethod.GET)
+	public String unscrapCoordi(@RequestParam int coordiNo,@SessionAttribute Member member) {
+		
+		String userId= member.getUserId();
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("coordiNo", coordiNo);
+		map.put("userId", userId);
+		
+		int result=coService.deletescrapCoordi(map);
+		return "coordi/coordiList";
+	}
+	
+	@RequestMapping(value="/coordi/scrapCoordi.do",method=RequestMethod.GET)
+	public String scrapCoordi(@RequestParam int coordiNo,@SessionAttribute Member member) {
+		String userId= member.getUserId();
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("coordiNo", coordiNo);
+		map.put("userId", userId);
+		
+		int result=coService.insertScrapCoordi(map);
+		
+		return "coordi/coordiList";
+	}
 }
