@@ -28,7 +28,7 @@
 			<form action="" method="get">
 				<div class="model-middle">
 					<div class="box-select">
-						<select class="select-style" name="keyword">
+						<select class="select-style" name="type">
 							<option disabled selected>카테고리</option>
 							<option>회원/정보</option>
 							<option>게시글</option>
@@ -36,9 +36,9 @@
 						</select>
 						<i class="fas fa-chevron-down"></i>
 					</div>
-					<input type="text" class="model-title" placeholder="제목을 입력하세요">
+					<input type="text" class="model-title" name="title" placeholder="제목을 입력하세요">
 				</div>
-				<textarea class="model-content" placeholder="내용을 입력하세요"></textarea>
+				<textarea class="model-content" name="content" placeholder="내용을 입력하세요"></textarea>
 				<input type="submit" class="btn-style" value="등록">
 			</form>
 		</div>

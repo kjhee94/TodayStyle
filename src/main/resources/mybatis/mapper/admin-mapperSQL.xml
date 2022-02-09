@@ -25,8 +25,8 @@
 		GROUP BY REG_DATE
 	</select>
 	
+	
 	<!-- Member -->
-	<!-- 리스트 페이징 처리 -->
 	<select id="selectAllMemberListPage" parameterType="hashmap" resultType="member">
 		SELECT
 			user_No as userNo,
@@ -97,4 +97,85 @@
 			</when>
 		</choose>
 	</select>
+	
+	
+	<!-- Notice -->
+	<select id="selectAllNoticeListPage" parameterType="hashmap" resultType="Notice">
+		SELECT
+			notice_No as noticeNo,
+         	title as title,
+         	content as content,
+         	user_Id as userId,
+         	regdate as regdate,
+   			end_YN as endYN,
+   			user_name as username
+		FROM 
+		(SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC) AS NUM, 
+				N.NOTICE_NO, N.TITLE, N.CONTENT, N.USER_ID, N.REGDATE, N.END_YN, M.USER_NAME 
+		FROM NOTICE N
+		LEFT JOIN MEMBER M ON (M.USER_ID=N.USER_ID))
+		WHERE NUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectNoticeTotalCount" resultType="int">
+		SELECT COUNT(*) FROM NOTICE
+	</select>
+	
+	<update id="updateNoticeOneEndYNChange" parameterType="hashmap">
+		UPDATE NOTICE SET END_YN=#{endYN} WHERE NOTICE_NO=#{noticeNo}
+	</update>
+	
+	<update id="updateNoticeCheckedEndYNChange" parameterType="string">
+		UPDATE NOTICE SET END_YN='Y' WHERE NOTICE_NO IN 
+		<foreach collection="array" index="index" item="arr" open="(" separator="," close=")">
+		#{arr}
+		</foreach>
+	</update>
+	
+	<select id="selectSearchNoticeListPage" parameterType="hashmap" resultType="Notice">
+		SELECT
+			notice_No as noticeNo,
+         	title as title,
+         	content as content,
+         	user_Id as userId,
+         	regdate as regdate,
+   			end_YN as endYN,
+   			user_name as username
+		FROM 
+		(SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC) AS NUM, 
+				N.NOTICE_NO, N.TITLE, N.CONTENT, N.USER_ID, N.REGDATE, N.END_YN, M.USER_NAME 
+		FROM NOTICE N
+		LEFT JOIN MEMBER M ON (M.USER_ID=N.USER_ID)
+		WHERE
+		<choose>
+			<when test="type.equals('title')">
+				TITLE LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="type.equals('content')">
+				CONTENT Like '%'||#{keyword}||'%'
+			</when>
+		</choose>
+		)
+		WHERE NUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectSearchNoticeTotalCount" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) FROM NOTICE WHERE 
+		<choose>
+			<when test="type.equals('title')">
+				TITLE LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="type.equals('content')">
+				CONTENT Like '%'||#{keyword}||'%'
+			</when>
+		</choose>
+	</select>
+	
+	<insert id="insertNotice" parameterType="hashmap">
+		INSERT INTO NOTICE VALUES(NOTICE_SEQ.NEXTVAL,#{title},#{content},'admin',DEFAULT,'N')
+	</insert>
+	
+	<update id="updateNotice" parameterType="hashmap">
+		UPDATE NOTICE SET TITLE=#{title}, CONTENT=#{content} WHERE NOTICE_NO=#{noticeNo}
+	</update>
 </mapper>

@@ -235,10 +235,22 @@ input[type="checkbox"]:disabled:hover {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	cursor: pointer;
 }
 .btn-style-icon>i {
 	font-size: 15px;
+}
+.deactivate .fas {
+	color: #C8C8C8;
+}
+.deactivate .fa-trash, .deactivate .fa-trash-restore {
+	color: #707070;
+}
+
+.btn-modify {
+	cursor: pointer;
+}
+.btn-one-withdraw,.btn-one-notice-delete {
+	cursor: pointer;
 }
 
 /*table 디자인*/
@@ -324,7 +336,12 @@ table>tbody>tr>th {
 	right: 10px;
 	z-index: 999;
 }
-
+.deactivate .ellipsis {
+	color: #C8C8C8;
+}
+.deactivate .relative>div:last-child {
+	display: none;
+}
 
 /*의상 정보*/
 .box-style {

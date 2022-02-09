@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -114,6 +115,126 @@ public class AdminController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/admin/adminNotice.do")
+	public ModelAndView adminNotice(ModelAndView mav, HttpServletRequest request) {
+		
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		HashMap<String, Object> map = aService.selectAllNotice(currentPage);
+		
+		mav.addObject("map", map);
+		mav.setViewName("admin/adminNotice");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/admin/noticeOneEndYNChange.do", method = RequestMethod.POST)
+	public void noticeOneEndYNChange(@RequestParam int noticeNo, @RequestParam char endYN, HttpServletResponse response) throws IOException {
+		
+		//삼항연상자
+		endYN = (endYN == 'Y')?'N':'Y';
+		
+		int result = aService.updateNoticeOneEndYNChange(noticeNo, endYN);
+		
+		if(result>0) {
+			response.getWriter().print(endYN);
+		}else {
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value = "/admin/noticeCheckedEndYNChange.do", method = RequestMethod.POST)
+	public void noticeCheckedEndYNChange(@RequestParam String noticeNo, HttpServletResponse response) throws IOException {
+		
+		int result = aService.updateNoticeCheckedEndYNChange(noticeNo);
+		
+		if(result>0) {
+			response.getWriter().print(true);
+		}else {
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value = "/admin/noticeSearch.do", method = RequestMethod.GET)
+	public ModelAndView noticeSearch(@RequestParam String type, @RequestParam String keyword, HttpServletRequest request, ModelAndView mav) {
+		
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		HashMap<String, Object> map = aService.selectSearchNotice(currentPage,type,keyword);
+		
+		mav.addObject("map", map);
+		mav.setViewName("admin/adminNotice");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/admin/noticeInsert.do", method = RequestMethod.POST)
+	public ModelAndView noticeInsert(@RequestParam String title, @RequestParam String content, ModelAndView mav) {
+		
+		//textarea 줄개행 치환
+		content = content.replace("\r\n","<br>");
+		
+		int result = aService.insertNotice(title, content);
+		
+		if(result>0) {
+			mav.addObject("msg","등록이 완료되었습니다");
+		}else {
+			mav.addObject("msg","등록에 실패했습니다");
+			
+		}
+		mav.addObject("location", "/admin/adminNotice.do");
+		mav.setViewName("common/msg");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/admin/noticeUpdate.do", method = RequestMethod.POST)
+	public ModelAndView noticeUpdate(@RequestParam String title, @RequestParam String content, @RequestParam int noticeNo,
+									ModelAndView mav) {
+		
+		//textarea 줄개행 치환
+		content = content.replace("\r\n","<br>");
+		
+		int result = aService.updateNotice(title, content, noticeNo);
+		
+		if(result>0) {
+			mav.addObject("msg","수정이 완료되었습니다");
+		}else {
+			mav.addObject("msg","수정에 실패했습니다");
+			
+		}
+		mav.addObject("location", "/admin/adminNotice.do");
+		mav.setViewName("common/msg");
+		
+		return mav;
+	}
+	
+	
+	
+	
+	@RequestMapping(value = "/admin/adminFAQ.do")
+	public String adminFAQ() {
+		
+		return "admin/adminFAQ";
+	}
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/admin/adminCoordi.do")
 	public String adminCoordi() {
@@ -139,15 +260,5 @@ public class AdminController {
 		return "admin/adminIttemComment";
 	}
 	
-	@RequestMapping(value = "/admin/adminNotice.do")
-	public String adminNotice() {
-		
-		return "admin/adminNotice";
-	}
 	
-	@RequestMapping(value = "/admin/adminFAQ.do")
-	public String adminFAQ() {
-		
-		return "admin/adminFAQ";
-	}
 }
