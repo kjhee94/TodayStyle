@@ -109,7 +109,7 @@
 									<img class="coordiImg" src="${coordi.filePath}">
 									<div class="nickNameArea">
 										<div class="profile">
-											<a href=""><img src="/resources/images/default/profile.jpg"/></a>
+											<a href=""><img src="${coordi.profileFilePath}"/></a>
 										</div>
 										<span class="nickName">${coordi.nickName}</span>
 									</div>

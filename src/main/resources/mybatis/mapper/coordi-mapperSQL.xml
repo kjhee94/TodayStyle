@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="coordi">
- 	<select id="selectAllList" resultType="coordi">
+ 	<select id="selectAllList" parameterType="hashmap" resultType="coordi">
  		
  		select 
 		       coordi_img.coordi_no as coordiNo,
-			   filepath as filePath,
+			   coordi_img.filepath as filePath,
 			   coordi.user_Id as userId,
 			   coordi_content as coordiContent,
 			   coordi.gender,
@@ -14,10 +14,105 @@
 			   reg_date as regDate,
 			   hashtag as hashTag,
 			   coordi.del_yn as delYN,
-			   nickName as nickName
+			   nickName as nickName,
+			   member_img.filePath as profileFilePath
 		from 
-			coordi_img left join coordi on (coordi_img.coordi_no=coordi.coordi_no) left join member on (coordi.user_Id=member.user_Id) 
+			coordi_img 
+		left join 
+			coordi on (coordi_img.coordi_no=coordi.coordi_no) 
+		left join 
+			member on (coordi.user_Id=member.user_Id) 
+		left join 
+			member_img on (coordi.user_id=member_img.user_id)
 		where 
-			top_YN='Y' and season=#{season} and coordi.del_yn='N'
+			top_YN='Y' and coordi.del_yn='N'
+		<if test="season!=null">
+			and season=#{season} 
+		</if>
  	</select>
+ 	<select id="selectCategoryList" parameterType="hashmap" resultType="coordi">
+ 		select 
+		       coordi_img.coordi_no as coordiNo,
+			   coordi_img.filepath as filePath,
+			   coordi.user_Id as userId,
+			   coordi_content as coordiContent,
+			   coordi.gender,
+			   season,
+			   temperature,
+			   reg_date as regDate,
+			   hashtag as hashTag,
+			   coordi.del_yn as delYN,
+			   nickName as nickName,
+			   member_img.filePath as profileFilePath
+		from 
+			coordi_img 
+		left join 
+			coordi on (coordi_img.coordi_no=coordi.coordi_no) 
+		left join 
+			member on (coordi.user_Id=member.user_Id) 
+		left join 
+			member_img on (coordi.user_id=member_img.user_id)
+		where 
+			top_YN='Y' and coordi.del_yn='N'
+		<if test="season!=null">
+			and season in
+			<foreach item="item" index="index" collection="season"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<if test="gender!=null">
+			and gender in
+			<foreach item="item" index="index" collection="season"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<!-- <if test="items!=null">
+			and gender in
+			<foreach item="item" index="index" collection="season"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if> -->
+		<if test="temp!=null">
+			and temperature =#{temp}
+		</if>
+ 	</select>
+ 	<select id="selectLikeList" resultType="int">
+ 		select
+ 			coordi_no as coordiNo 
+ 		from 
+ 			coordi_like 
+ 		where 
+ 			user_id=#{userId}
+ 		
+ 	</select>
+ 	<select id="selectScrapList" resultType="int">
+ 		select
+ 			coordi_no as coordiNo 
+ 		from 
+ 			coordi_scrap 
+ 		where 
+ 			user_id=#{userId}
+ 			
+ 	</select>
+ 	<delete id="deleteLikeCoordi" parameterType="hashmap">
+ 		delete from
+ 			coordi_like
+ 		where
+ 			user_Id=#{userId} and coordi_No=#{coordiNo}
+ 	</delete>
+ 	<insert id="insertLikeCoordi">
+ 		insert into coordi_like values(#{userId},#{coordiNo})
+ 	</insert>
+ 	<delete id="deleteScrapCoordi">
+ 		delete from
+ 			coordi_scrap
+ 		where
+ 			user_Id=#{userId} and coordi_No=#{coordiNo}
+ 	</delete>
+ 	<insert id="insertScrapCoordi">
+ 		insert into coordi_scrap values(#{userId},#{coordiNo})
+ 	</insert>
 </mapper>
