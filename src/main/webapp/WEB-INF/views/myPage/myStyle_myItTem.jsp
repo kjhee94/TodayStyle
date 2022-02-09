@@ -40,9 +40,9 @@
                 </div>
                 <div class="contents-area">
                 
-                	<c:forEach items="${requestScope.myCoordiList }" var="mcList" varStatus="i">
+                	<c:forEach items="${requestScope.myItTemList }" var="mITList" varStatus="i">
              			<a>
-                        	<div class="contents"><img src="${mcList.filepath }"></div>
+                        	<div class="contents"><img src="${mITList.filepath }"></div>
                     	</a>
               		</c:forEach>
               		

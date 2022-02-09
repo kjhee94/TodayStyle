@@ -11,18 +11,27 @@
     
     <div id="profile-wrap">
                     <div id="profile-img" class="profile">
-                        <a><img src="/resources/images/default/profile.jpg"></a>
+                        <a>
+                        	<c:choose>
+	                            <c:when test="${requestScope.filepath!=null}">
+	                            	<img src="${requestScope.filepath}">
+	                            </c:when>
+	                            <c:otherwise>
+	                            	<img src="/resources/images/default/profile.jpg">
+	                            </c:otherwise>
+                            </c:choose>
+                        </a>
                     </div>
-                    <div id="userName"><a href="/myPage/myStyle.do">여니여니</a></div>
+                    <div id="userName"><a href="/myPage/myStyle.do">${requestScope.nickname }</a></div>
                     <div id="follow-wrap">
                         <div id="follower-modal-btn" class="modal-btn">
                             <div class="follow">팔로워</div>
-                            <div class="followNum">3</div>
+                            <div class="followNum">${requestScope.followerNum }</div>
                         </div>
                         <div id="followLine"> </div>
                         <div id="following-modal-btn" class="modal-btn">
                             <div class="follow">팔로잉</div>
-                            <div class="followNum">7</div>
+                            <div class="followNum">${requestScope.followingNum }</div>
                         </div>
                     </div>
                     <div id="profileLine"></div>

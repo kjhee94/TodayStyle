@@ -1,4 +1,4 @@
-package kr.or.iei.myPage.controller;
+package kr.or.iei.memberSetting.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,24 +28,15 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.or.iei.member.model.vo.Member;
-import kr.or.iei.myPage.model.service.MemberSettingService;
-import kr.or.iei.myPage.model.vo.ProfileImg;
+import kr.or.iei.memberSetting.model.service.MemberSettingService;
+import kr.or.iei.memberSetting.model.vo.ProfileImg;
 
 @Controller
-public class MyPageController {
+public class MemberSettingController {
 
 	@Autowired
 	private MemberSettingService msService;
 
-	@RequestMapping(value = "/myPage/myStyle.do")
-	public String myPage() {
-		return "myPage/myStyle";
-	}
-
-	@RequestMapping(value = "/mypage/myCoordi.do")
-	public String myCoordiPage() {
-		return "myPage/myStyle_myCoordi";
-	}
 
 	@RequestMapping(value = "/myPage/userPage.do")
 	public String userPage() {
@@ -210,7 +201,7 @@ public class MyPageController {
 
 	// 회원 정보 수정
 	@RequestMapping(value = "/myPage/memberUpdate.do")
-	public String memberUpdatePage(@SessionAttribute Member member, HttpServletRequest request, Model model)
+	public String memberUpdatePage(@SessionAttribute Member member, HttpServletRequest request, Model model, HttpSession session)
 			throws IOException {
 		
 		
@@ -367,6 +358,7 @@ public class MyPageController {
 			int memberUpdateResult = msService.memberUpdate(m);
 
 			if (memberUpdateResult > 0) {
+				session.setAttribute("member", m); // 회원정보(세션) 갱신
 				model.addAttribute("msg", "회원정보가 수정되었습니다.");
 				model.addAttribute("location", "/myPage/setting.do");
 				return "common/msg";
@@ -387,6 +379,7 @@ public class MyPageController {
 			int memberUpdateResult = msService.memberUpdateNoMail(m);
 
 			if (memberUpdateResult > 0) {
+				session.setAttribute("member", m); // 회원정보(세션) 갱신
 				model.addAttribute("msg", "회원정보가 수정되었습니다.");
 				model.addAttribute("location", "/myPage/setting.do");
 				return "common/msg";
