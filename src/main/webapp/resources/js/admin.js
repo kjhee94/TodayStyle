@@ -172,7 +172,14 @@ $(document).ready(function(){
 	
 	//검색시 필터 선택 안함
 	$(".fa-search").click(function() {
-		if($("select option:first-child").is(":selected")){
+		if($("#boxSelect select option:first-child").is(":selected")){
+			alert("검색 필터를 선택해주세요");
+			return false;
+		}
+	});
+	
+	$("#insertModel input[type=submit]").click(function() {
+		if($("#insertModel select option:first-child").is(":selected")){
 			alert("검색 필터를 선택해주세요");
 			return false;
 		}
@@ -274,10 +281,111 @@ $(document).ready(function(){
 		}else {
 			return false;
 		}
+	});
+	
+	//개별 삭제 처리(faq)
+	$(".btn-one-faq-delete").click(function() {
 		
+		var faqNo = $(this).attr("faqNo");
+		var endYN = $(this).attr("endyn");
+		var $this = $(this);
 		
+		$.ajax({
+			url:"/admin/faqOneEndYNChange.do",
+			data:{"faqNo":faqNo,"endYN":endYN},
+			type:"post",
+			success: function(result){
+				if(result!=false){
+					$this.attr("endyn",result);
+					if(endYN=='N') {
+						$this.children("i").attr("class", "fas fa-trash-restore");
+						$this.parent().siblings().css("color","#C8C8C8");
+						$this.parent().siblings().find(".ellipsis").css("color","#C8C8C8");
+						$this.parent().siblings().find(".ellipsis").next().removeClass("box-hovor");
+						$this.parent().siblings().find(".ellipsis").next().css("display", "none")
+						$this.parent().siblings().find("input").attr("disabled", true);
+						$this.parent().siblings().find("input").prop("checked", false);
+						$this.parent().siblings().find(".fa-pencil-alt").css("color","#C8C8C8");
+						$this.parent().siblings().find(".fa-pencil-alt").parent().removeClass("btn-modify")
+					}else if(endYN=='Y') {
+						$this.children("i").attr("class", "fas fa-trash");
+						$this.parent().siblings().css("color","#707070");
+						$this.parent().siblings().find(".ellipsis").css("color","#707070");
+						$this.parent().siblings().find(".ellipsis").next().addClass("box-hovor");
+						$this.parent().siblings().find("input").attr("disabled", false);
+						$this.parent().siblings().find("input").prop("checked", false);
+						$this.parent().siblings().find(".fa-pencil-alt").css("color","#707070");
+						$this.parent().siblings().find(".fa-pencil-alt").parent().addClass("btn-modify");
+					}
+				}
+			},
+			error: function(){
+				console.log("ajax 통신 실패");
+			}
+		})
+	})
+	
+	//단체 삭제 처리 ajax(faq)
+	$("#checkedDeleteFAQBtn").click(function() {
+		var faqNo = "";
+		
+		$("input[name='faqNo']:checked").each(function() {
+			faqNo = faqNo+$(this).val()+",";
+		})
+		
+		//맨끝 콤마 지우기
+		faqNo = faqNo.substring(0,faqNo.lastIndexOf(",")); 
+		
+		if(faqNo == ""){
+			alert("탈퇴할 대상을 선택하세요.");
+			return false;
+		}
+		
+		if(confirm("글번호 "+faqNo+" 을(를)\n삭제처리 하시겠습니까?")){
+			$.ajax({
+				url:"/admin/faqCheckedEndYNChange.do",
+				data:{"faqNo":faqNo},
+				type:"post",
+				success: function(result){
+					if(result!=false){
+						$("input:checked").parent().siblings().find(".fa-trash").attr("class", "fas fa-trash-restore");
+						$("input:checked").parent().siblings().find(".btn-one-faq-delete").attr("endYN", "Y");
+						$("input:checked").parent().siblings().css("color","#C8C8C8");
+						$("input:checked").parent().siblings().find(".ellipsis").css("color","#C8C8C8");
+						$("input:checked").parent().siblings().find(".ellipsis").next().removeClass("box-hovor");
+						$("input:checked").parent().siblings().find(".ellipsis").next().css("display", "none");
+						$("input:checked").parent().siblings().find(".fa-pencil-alt").css("color","#C8C8C8");
+						$("input:checked").parent().siblings().find(".fa-pencil-alt").parent().removeClass("btn-modify")
+						$("input:checked").attr("disabled", true);
+						$("input:checked").prop("checked", false);
+						
+						alert("삭제가 완료되었습니다.");
+					}
+				},
+				error: function(){
+					console.log("ajax 통신 실패");
+				}
+			})
+		}else {
+			return false;
+		}
 	});
 	
 	
+	//자주 묻는 질문 수정시 카테고리 설정
+	var $modifySelect = $(".modify-model select");
+	
+	$.each($modifySelect,function(index,item){
+		
+		if($(item).attr("categoty")=="회원/정보"){
+			$(item).children().first().prop("selected", true);
+		}else if ($(item).attr("categoty")=="게시글"){
+			$(item).children().first().next().prop("selected", true);
+		}else if($(item).attr("categoty")=="기타"){
+			$(item).children().last().prop("selected", true);
+		}
+		
+			
+	});
 	
 });

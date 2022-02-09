@@ -102,7 +102,7 @@
 									<td>${n.noticeNo}</td>
 									<td>
 										<div class="relative">
-											<div class="ellipsis">${n.title}</div>
+											<div class="ellipsis unenter">${n.title}</div>
 											<c:if test="${n.endYN eq 'N'.charAt(0)}">
 												<div class="box-hovor">${n.title}</div>
 											</c:if>
@@ -165,7 +165,7 @@
 						</table>
 					</c:when>
 					<c:otherwise>
-						<h1>현재 회원이 없습니다</h1>
+						<h1>현재 공지가 없습니다</h1>
 					</c:otherwise>
 				</c:choose>
 				

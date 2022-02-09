@@ -224,13 +224,118 @@ public class AdminController {
 	}
 	
 	
-	
-	
 	@RequestMapping(value = "/admin/adminFAQ.do")
-	public String adminFAQ() {
+	public ModelAndView adminFAQ(ModelAndView mav, HttpServletRequest request) {
 		
-		return "admin/adminFAQ";
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		HashMap<String, Object> map = aService.selectAllFAQ(currentPage);
+		
+		mav.addObject("map", map);
+		mav.setViewName("admin/adminFAQ");
+		
+		return mav;
 	}
+	
+	@RequestMapping(value = "/admin/faqOneEndYNChange.do")
+	public void faqOneEndYNChange(@RequestParam int faqNo, @RequestParam char endYN, HttpServletResponse response) throws IOException {
+		
+		//삼항연상자
+		endYN = (endYN == 'Y')?'N':'Y';
+		
+		int result = aService.updateFAQOneEndYNChange(faqNo, endYN);
+		
+		if(result>0) {
+			response.getWriter().print(endYN);
+		}else {
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value = "/admin/faqCheckedEndYNChange.do", method = RequestMethod.POST)
+	public void faqCheckedEndYNChange(@RequestParam String faqNo, HttpServletResponse response) throws IOException {
+		
+		int result = aService.updateFAQCheckedEndYNChange(faqNo);
+		
+		if(result>0) {
+			response.getWriter().print(true);
+		}else {
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value = "/admin/faqSearch.do", method = RequestMethod.GET)
+	public ModelAndView faqSearch(@RequestParam String category, @RequestParam String keyword, HttpServletRequest request, ModelAndView mav) {
+		
+		System.out.println(category);
+		System.out.println(keyword);
+		
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		HashMap<String, Object> map = aService.selectSearchFAQ(currentPage,category,keyword);
+		
+		mav.addObject("map", map);
+		mav.setViewName("admin/adminFAQ");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/admin/faqInsert.do", method = RequestMethod.POST)
+	public ModelAndView faqInsert(@RequestParam String category, @RequestParam String title, @RequestParam String content, ModelAndView mav) {
+
+		//textarea 줄개행 치환
+		content = content.replace("\r\n","<br>");
+		
+		int result = aService.insertFAQ(category, title, content);
+		
+		if(result>0) {
+			mav.addObject("msg","등록이 완료되었습니다");
+		}else {
+			mav.addObject("msg","등록에 실패했습니다");
+			
+		}
+		mav.addObject("location", "/admin/adminFAQ.do");
+		mav.setViewName("common/msg");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/admin/faqUpdate.do", method = RequestMethod.POST)
+	public ModelAndView faqUpdate(@RequestParam String category, @RequestParam String title, @RequestParam String content, @RequestParam int faqNo,
+									ModelAndView mav) {
+		
+		//textarea 줄개행 치환
+		content = content.replace("\r\n","<br>");
+		
+		int result = aService.updateFAQ(category, title, content, faqNo);
+		
+		if(result>0) {
+			mav.addObject("msg","수정이 완료되었습니다");
+		}else {
+			mav.addObject("msg","수정에 실패했습니다");
+			
+		}
+		mav.addObject("location", "/admin/adminFAQ.do");
+		mav.setViewName("common/msg");
+		
+		return mav;
+	}
+	
+	
 	
 	
 	

@@ -150,4 +150,70 @@ public class AdminServiceImpl implements AdminService {
 		return aDAO.updateNotice(title,content,noticeNo);
 	}
 
+	@Override
+	public HashMap<String, Object> selectAllFAQ(int currentPage) {
+
+		//한 페이지에 보여줄 게시물의 수 
+		int recordCountPerPage = 10;
+		
+		ArrayList<Member> list = aDAO.selectAllFAQ(recordCountPerPage,currentPage);
+		
+		//페이지 네비
+		int naviCountPerPage = 5;
+		
+		String pageNavi = aDAO.getFAQPageNavi(recordCountPerPage,currentPage,naviCountPerPage);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+		
+		return map;
+	}
+
+	@Override
+	public int updateFAQOneEndYNChange(int faqNo, char endYN) {
+		
+		return aDAO.updateFAQOneEndYNChange(faqNo,endYN);
+	}
+
+	@Override
+	public int updateFAQCheckedEndYNChange(String faqNo) {
+		
+		return aDAO.updateFAQCheckedEndYNChange(faqNo);
+	}
+
+	@Override
+	public HashMap<String, Object> selectSearchFAQ(int currentPage, String category, String keyword) {
+		
+		//한 페이지에 보여줄 게시물의 수 
+		int recordCountPerPage = 10;
+		
+		ArrayList<Member> list = aDAO.selectSearchFAQ(recordCountPerPage,currentPage,category,keyword);
+		
+		//페이지 네비
+		int naviCountPerPage = 5;
+		
+		String pageNavi = aDAO.getSearchFAQPageNavi(recordCountPerPage,currentPage,naviCountPerPage,category,keyword);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+			
+		return map;
+	}
+
+	@Override
+	public int insertFAQ(String category, String title, String content) {
+		
+		return aDAO.insertFAQ(category,title,content);
+	}
+
+	@Override
+	public int updateFAQ(String category, String title, String content, int faqNo) {
+		
+		return aDAO.updateFAQ(category,title,content,faqNo);
+	}
+
 }
