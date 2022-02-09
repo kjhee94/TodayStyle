@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.iei.coordi.model.service.CoordiService;
+import kr.or.iei.coordi.model.vo.Coordi;
 import kr.or.iei.itItem.model.service.ItItemService;
 
 /**
@@ -36,6 +37,20 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, ModelAndView mav) {
+		String season=getSeason();
+		HashMap<String, String> pMap=new HashMap<String, String>();
+		pMap.put("season", season);
+		ArrayList<Coordi> coordiList=coService.getCoordiList(pMap);
+		ArrayList<Object> itItemList=itService.getItItemList();
+		HashMap<String, Object> map=new HashMap<String, Object>();
+		map.put("coordiList", coordiList);
+		map.put("itItemList", itItemList);
+		mav.addObject("map", map);
+		mav.setViewName("index");
+		return mav;
+	}
+	
+	public String getSeason() {
 		Date today = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("MM");
 		String todayStr = sdf.format(today);
@@ -49,14 +64,8 @@ public class HomeController {
 		}else {
 			season="가을";
 		}
-		ArrayList<Object> coordiList=coService.getCoordiList(season);
-		ArrayList<Object> itItemList=itService.getItItemList();
-		HashMap<String, ArrayList<Object>> map=new HashMap<String, ArrayList<Object>>();
-		map.put("coordiList", coordiList);
-		map.put("itItemList", itItemList);
-		mav.addObject("map", map);
-		mav.setViewName("index");
-		return mav;
+		
+		return season;
 	}
 	
 }
