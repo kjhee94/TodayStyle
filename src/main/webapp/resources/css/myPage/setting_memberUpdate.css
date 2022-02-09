@@ -175,6 +175,7 @@
             color: #C8C8C8;
             display: inline-block;
             margin-left: 105px;
+            cursor: pointer;
         }
 
         .radioBtn,
@@ -255,6 +256,23 @@
 
         #selectProfileImg {
             visibility: hidden;
+        }
+        
+        #defaultImg{
+        	width: 100px;
+        	heigit: 10px;
+        	border-radius: 5px;
+        	background-color: white;
+        	color: #C8C8C8;
+        	font-family: 'Noto Sans KR', sans-serif;
+            font-size: 12px;
+            text-align: center;
+            cursor: pointer;
+            
+        	position: relative;
+            top: 120px;
+            left: 50px;
+            display: none;
         }
 
 

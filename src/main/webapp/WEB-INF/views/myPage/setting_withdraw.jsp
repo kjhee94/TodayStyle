@@ -50,7 +50,7 @@
                 </div>
                 <input type="checkbox" id="checkbox"> <label for="checkbox">위 내용을 모두 확인하였습니다.</label>
                 <div id="essential">필수</div>
-                <div class="btn-style-mint btn" id="cancelBtn"><a>취소</a></div>
+                <div class="btn-style-mint btn" id="cancelBtn"><a href="/myPage/setting.do">취소</a></div>
                 <div class="btn-style-line btn" id="withdrawBtn"><a>탈퇴</a></div>
 
             </div>
@@ -69,7 +69,31 @@
     <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
 
     <script>
-        // 유효성 검사
+        $('#withdrawBtn').click(function(){
+        	
+        	var checked = $('#checkbox').is(':checked');
+        	if(checked==false)
+        	{
+        		$('#essential').html('필수 동의 항목입니다.');
+        		$('#essential').css('color','#FD8A69');
+        		$('#withdrawTitle').css('color','#FD8A69');
+        		$('#checkbox').css('border-color','#FD8A69');
+        	}
+        	if(checked==true)
+        	{
+        		$('#essential').html('필수');
+        		$('#essential').css('color','#A9D4D9');
+        		$('#withdrawTitle').css('color','#707070');
+        		$('#checkbox').css('border-color','#C8C8C8');
+        		
+        		if(window.confirm('회원 탈퇴시 복구가 불가능함을 알려드립니다.') && window.confirm('탈퇴를 진행하시겠습니까?'))
+        		{
+        			location.replace('/myPage/withdraw.do');
+        		}
+        		
+        	}
+        	
+        });
 
     </script>
 
