@@ -31,11 +31,25 @@ public class MemberSettingServiceImpl implements MemberSettingService{
 	}
 
 	@Override
+	public int userNicknameCheck(String userId, String nickname) {
+		
+		return msDAO.userNicknameCheck(userId, nickname);
+	}
+	
+	
+	@Override
 	public int pwdUpdate(HashMap<String, Object> map) {
 		
 		return msDAO.pwdUpdate(map);
 	}
+	
+	
+	@Override
+	public int updateProfiledDefaultImg(HashMap<String, Object> map) {
 
+		return msDAO.updateProfiledDefaultImg(map);
+	}
+	
 	@Override
 	public ProfileImg profileImgCheck(String userId) {
 		
@@ -53,6 +67,27 @@ public class MemberSettingServiceImpl implements MemberSettingService{
 		
 		return msDAO.memberUpdate(m);
 	}
+
+	@Override
+	public int emailCheck(String email) {
+		
+		return msDAO.emailCheck(email);
+	}
+
+	@Override
+	public int memberUpdateNoMail(Member m) {
+
+		return msDAO.memberUpdateNoMail(m);
+	}
+
+	@Override
+	public int memberWithdraw(Member m) {
+
+		return msDAO.memberWithdraw(m);
+	}
+
+	
+
 
 
 }

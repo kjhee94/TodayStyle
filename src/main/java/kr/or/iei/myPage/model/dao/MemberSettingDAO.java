@@ -29,6 +29,17 @@ public class MemberSettingDAO {
 		
 		return sqlSession.selectOne("memberSetting.nicknameCheck", nickname)!=null?1:0;
 	}
+	public int userNicknameCheck(String userId, String nickname) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("nickname", nickname);
+		
+		//Member m = sqlSession.selectOne("memberSetting.userNicknameCheck", map);
+		//System.out.println(m);
+
+		return sqlSession.selectOne("memberSetting.userNicknameCheck", map)!=null?1:0;
+	}
 
 
 	public int pwdUpdate(HashMap<String, Object> map) {
@@ -38,6 +49,11 @@ public class MemberSettingDAO {
 		return sqlSession.update("memberSetting.pwdUpdate", map);
 	}
 
+	public int updateProfiledDefaultImg(HashMap<String, Object> map) {
+
+		return sqlSession.update("memberSetting.updateProfiledDefaultImg", map);
+	}
+	
 	public ProfileImg profileImgCheck(String userId) {
 		
 		return sqlSession.selectOne("memberSetting.profileImgCheck", userId);
@@ -52,4 +68,22 @@ public class MemberSettingDAO {
 		
 		return sqlSession.update("memberSetting.memberUpdate", m);
 	}
+
+	public int emailCheck(String email) {
+		
+		return sqlSession.selectOne("memberSetting.emailCheck", email)!=null?1:0;
+	}
+
+	public int memberUpdateNoMail(Member m) {
+
+		return sqlSession.update("memberSetting.memberUpdateNoMail", m);
+	}
+
+	public int memberWithdraw(Member m) {
+
+		return sqlSession.update("memberSetting.memberWithdraw", m);
+	}
+
+
+	
 }

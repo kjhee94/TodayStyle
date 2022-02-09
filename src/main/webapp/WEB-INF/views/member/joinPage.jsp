@@ -23,7 +23,7 @@
           
             font-family: 'Noto Sans KR', sans-serif;
             font-size: 12px;
-          
+          	padding: 15px;
             
             display: none;
         }
@@ -58,6 +58,7 @@
             color: #C8C8C8;
             display: inline-block;
             margin-left: 105px;
+            cursor: pointer;
         }
        </style>
 
@@ -201,7 +202,8 @@
  	             type:"GET",
  	             success:function(data){
  	            	
- 	            	 code = data;
+ 	            	alert('이메일이 재전송 되었습니다.');
+ 	            	code = data;
  	            	 
  	             }         
          }) 
@@ -235,9 +237,9 @@
 		  $('#mail_check_button').click(function(){
 		    var display = $("#emailCheck-time");
 		    // 유효시간 설정
-		    var leftSec = 600;
+		    var leftSec = 180;
 
-		    // 버튼 클릭 시 시간 연장(은 안돼요~)
+		    
 		    if (isRunning){
 		      clearInterval(timer);
 		      display.html("");
