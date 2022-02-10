@@ -258,10 +258,39 @@
 					</div>
 				</div>
 			</div>
-			
+			<script>
+			var itemArray=new Array();
+				$('.box').click(function(){
+					if($(this).prop("checked")==true){
+						itemArray.push($(this).next().text());
+						item=itemArray.join("/");
+					}else{
+						for(var i = 0; i < itemArray.length; i++) {
+							  if(itemArray[i] === $(this).next().text())  {
+								  itemArray.splice(i, 1);
+								
+							  }
+							}
+						item=itemArray.join("/");
+					}
+					$.ajax({
+						url:"/itItem/categoryItItemList.do",
+	                	data:{item:item},
+	                	type:"get",
+	                	success:function (result){
+	                		$('#itItemListArea').html(result);
+	                	},
+	                	error:function(){
+	                		console.log("통신실패");
+	                	}
+					
+					});
+				
+				});
+			</script>
 			
 			<div id="itItemListArea">
-				<div id="itItemListNumArea">잇템 전체 <span>1000개</span></div>
+				<div id="itItemListNumArea">잇템 전체 <span>${map.get('itItemList').size()}개</span></div>
 				<div class="list-top">
 					<div id="itItemListFilterArea">
 						<select id="filter">
@@ -281,184 +310,34 @@
 				</div>
 				
 				<div id="itItemImgArea">
+				<c:forEach items="${map.get('itItemList') }" var="itItem" varStatus="i">
 					<div class="itItemImgWrap">
-						<a href="/coordi/ItPost.do">
+						
 							<div class="itItemImgArea">
-								<img class="itItemImg" src="/resources/images/itItem/item1.jpg">
-								
-								<div class="likeScrapArea">
+								<a href="/coordi/ItPost.do">
+								<img class="itItemImg" src="${itItem.filePath}">
+								</a>
+								<div id="${itItem.itItemNo}" class="likeScrapArea">
 									<img class="like" src="/resources/images/icon/heart_w.png"> 
 									<img class="scrap" src="/resources/images/icon/saved_w.png">
 								</div>
 							</div>
 							<div class="itItemInfoArea">
-								<div class="itItemInfoCategory"><span>아이템카테고리</span><span>종류</span></div>
-								<div class="itItemInfoTitle">잇템 제목</div>
+								<div class="itItemInfoCategory"><span>${itItem.itemName}</span><span>${itItem.itItemName }</span></div>
+								<div class="itItemInfoTitle">${itItem.itItemTitle }</div>
 								<div class="nickNameArea">
 									<div class="profileArea">
 										<div class="profile">
-											<a href=""><img src="/resources/images/default/profile.jpg" /></a>
+											<a href=""><img src="${itItem.profileFilePath }" /></a>
 										</div>
 									</div>
-									<span class="nickName">닉네임</span>
+									<span class="nickName">${itItem.nickName }</span>
 								</div>
 							</div>
-						</a>
+						
 					</div>
-					<div class="itItemImgWrap">
-						<div class="itItemImgArea">
-							<img class="itItemImg" src="/resources/images/itItem/item3.jpg">
-							
-							<div class="likeScrapArea">
-								<img class="like" src="/resources/images/icon/heart_w.png"> 
-								<img class="scrap" src="/resources/images/icon/saved_w.png">
-							</div>
-						</div>
-						<div class="itItemInfoArea">
-							<div class="itItemInfoCategory"><span>아이템카테고리</span><span>종류</span></div>
-							<div class="itItemInfoTitle">잇템 제목</div>
-							<div class="nickNameArea">
-								<div class="profileArea">
-									<div class="profile">
-										<a href=""><img src="/resources/images/default/profile.jpg" /></a>
-									</div>
-								</div>
-								<span class="nickName">닉네임</span>
-							</div>
-						</div>
-					</div>	
-					<div class="itItemImgWrap">
-						<div class="itItemImgArea">
-							<img class="itItemImg" src="/resources/images/itItem/item11.jpg">
-							
-							<div class="likeScrapArea">
-								<img class="like" src="/resources/images/icon/heart_w.png"> 
-								<img class="scrap" src="/resources/images/icon/saved_w.png">
-							</div>
-						</div>
-						<div class="itItemInfoArea">
-							<div class="itItemInfoCategory"><span>아이템카테고리</span><span>종류</span></div>
-							<div class="itItemInfoTitle">잇템 제목</div>
-							<div class="nickNameArea">
-								<div class="profileArea">
-									<div class="profile">
-										<a href=""><img src="/resources/images/default/profile.jpg" /></a>
-									</div>
-								</div>
-								<span class="nickName">닉네임</span>
-							</div>
-						</div>
-					</div>	
-					<div class="itItemImgWrap">
-						<div class="itItemImgArea">
-							<img class="itItemImg" src="/resources/images/itItem/item4.jpg">
-							
-							<div class="likeScrapArea">
-								<img class="like" src="/resources/images/icon/heart_w.png"> 
-								<img class="scrap" src="/resources/images/icon/saved_w.png">
-							</div>
-						</div>
-						<div class="itItemInfoArea">
-							<div class="itItemInfoCategory"><span>아이템카테고리</span><span>종류</span></div>
-							<div class="itItemInfoTitle">잇템 제목</div>
-							<div class="nickNameArea">
-								<div class="profileArea">
-									<div class="profile">
-										<a href=""><img src="/resources/images/default/profile.jpg" /></a>
-									</div>
-								</div>
-								<span class="nickName">닉네임</span>
-							</div>
-						</div>
-					</div>	
-					<div class="itItemImgWrap">
-						<div class="itItemImgArea">
-							<img class="itItemImg" src="/resources/images/itItem/item5.jpg">
-							
-							<div class="likeScrapArea">
-								<img class="like" src="/resources/images/icon/heart_w.png"> 
-								<img class="scrap" src="/resources/images/icon/saved_w.png">
-							</div>
-						</div>
-						<div class="itItemInfoArea">
-							<div class="itItemInfoCategory"><span>아이템카테고리</span><span>종류</span></div>
-							<div class="itItemInfoTitle">잇템 제목</div>
-							<div class="nickNameArea">
-								<div class="profileArea">
-									<div class="profile">
-										<a href=""><img src="/resources/images/default/profile.jpg" /></a>
-									</div>
-								</div>
-								<span class="nickName">닉네임</span>
-							</div>
-						</div>
-					</div>	
-					<div class="itItemImgWrap">
-						<div class="itItemImgArea">
-							<img class="itItemImg" src="/resources/images/itItem/item6.jpg">
-							
-							<div class="likeScrapArea">
-								<img class="like" src="/resources/images/icon/heart_w.png"> 
-								<img class="scrap" src="/resources/images/icon/saved_w.png">
-							</div>
-						</div>
-						<div class="itItemInfoArea">
-							<div class="itItemInfoCategory"><span>아이템카테고리</span><span>종류</span></div>
-							<div class="itItemInfoTitle">잇템 제목</div>
-							<div class="nickNameArea">
-								<div class="profileArea">
-									<div class="profile">
-										<a href=""><img src="/resources/images/default/profile.jpg" /></a>
-									</div>
-								</div>
-								<span class="nickName">닉네임</span>
-							</div>
-						</div>
-					</div>	
-					<div class="itItemImgWrap">
-						<div class="itItemImgArea">
-							<img class="itItemImg" src="/resources/images/itItem/item12.jpg">
-							
-							<div class="likeScrapArea">
-								<img class="like" src="/resources/images/icon/heart_w.png"> 
-								<img class="scrap" src="/resources/images/icon/saved_w.png">
-							</div>
-						</div>
-						<div class="itItemInfoArea">
-							<div class="itItemInfoCategory"><span>아이템카테고리</span><span>종류</span></div>
-							<div class="itItemInfoTitle">잇템 제목</div>
-							<div class="nickNameArea">
-								<div class="profileArea">
-									<div class="profile">
-										<a href=""><img src="/resources/images/default/profile.jpg" /></a>
-									</div>
-								</div>
-								<span class="nickName">닉네임</span>
-							</div>
-						</div>
-					</div>	
-					<div class="itItemImgWrap">
-						<div class="itItemImgArea">
-							<img class="itItemImg" src="/resources/images/itItem/item7.jpg">
-							
-							<div class="likeScrapArea">
-								<img class="like" src="/resources/images/icon/heart_w.png"> 
-								<img class="scrap" src="/resources/images/icon/saved_w.png">
-							</div>
-						</div>
-						<div class="itItemInfoArea">
-							<div class="itItemInfoCategory"><span>아이템카테고리</span><span>종류</span></div>
-							<div class="itItemInfoTitle">잇템 제목</div>
-							<div class="nickNameArea">
-								<div class="profileArea">
-									<div class="profile">
-										<a href=""><img src="/resources/images/default/profile.jpg" /></a>
-									</div>
-								</div>
-								<span class="nickName">닉네임</span>
-							</div>
-						</div>
-					</div>	
+				</c:forEach>
+					
 				
 				</div>
 			</div>
@@ -469,25 +348,95 @@
 	</div>
 	
 	<script>
+		var likeList=new Array();
+		var scrapList=new Array();
+		<c:forEach items="${requestScope.map.get('likeList')}" var="itItemNo" varStatus="i">
+			likeList.push(${itItemNo});
+		</c:forEach>
+		for(var i=0;i<likeList.length;i++){
+			$('#'+likeList[i]).children().eq(0).attr("src","/resources/images/icon/heart_on.png");
+			
+		};
+		<c:forEach items="${requestScope.map.get('scrapList')}" var="itItemNo" varStatus="i">
+		scrapList.push(${itItemNo});
+		</c:forEach>
+		for(var i=0;i<scrapList.length;i++){
+			$('#'+scrapList[i]).children().eq(1).attr("src","/resources/images/icon/saved_on.png");
+			
+		};
+	</script>
+	<script>
 		$('.categoryName').click(function(){
 			$(this).next().slideToggle();
 		})
 
 		$('.like').click(function() {
 			if ($(this).attr('src') === "/resources/images/icon/heart_on.png") {
-				$(this).attr('src', "/resources/images/icon/heart_w.png");
+				var itItemNo=$(this).parent().attr('id');
+				console.log(itItemNo);
+				$(this).attr('src', "/resources/images/icon/heart_wf.png");
+				$.ajax({
+					url:"/itItem/unlikeItItem.do",
+                	data:{itItemNo:itItemNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		console.log("통신실패");
+                	}
+					
+				});
 			} else {
+				var itItemNo=$(this).parent().attr('id');			
 				$(this).attr('src', "/resources/images/icon/heart_on.png");
+				$.ajax({
+					url:"/itItem/likeItItem.do",
+                	data:{itItemNo:itItemNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		/* location.replace('/member/loginPage.do'); */
+                	}
+					
+				});
 			}
-
 		});
 		$('.scrap').click(function() {
 			if ($(this).attr('src') === "/resources/images/icon/saved_on.png") {
-				$(this).attr('src', "/resources/images/icon/saved_w.png");
+				var itItemNo=$(this).parent().attr('id');
+				$(this).attr('src', "/resources/images/icon/saved_wf.png");
+				$.ajax({
+					url:"/itItem/unscrapItItem.do",
+                	data:{itItemNo:itItemNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		console.log("통신실패");
+                	}
+					
+				});
 			} else {
+				var itItemNo=$(this).parent().attr('id');
 				$(this).attr('src', "/resources/images/icon/saved_on.png");
+				$.ajax({
+					url:"/itItem/scrapItItem.do",
+                	data:{itItemNo:itItemNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		
+                		/* location.replace('/member/loginPage.do'); */
+                	}
+					
+				});
 			}
-
 		});
 		$('.categoryBtnImg').click(function() {
 			if ($(this).attr('src') === "/resources/images/icon/up.png") {
@@ -507,7 +456,7 @@
 		},function(){
 			$(this).css('transition','all 0.2s linear');
 			$(this).css('transform','scale(1.0)');
-		})
+		});
 	</script>
 </body>
 </html>

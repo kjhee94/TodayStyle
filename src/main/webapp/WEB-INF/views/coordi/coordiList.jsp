@@ -216,7 +216,6 @@
 							}else{
 								temp="";
 							}
-							console.log(temp);
 							$('.items').prop("checked",false);
 							item="";
 							$.ajax({

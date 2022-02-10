@@ -18,6 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.or.iei.coordi.model.service.CoordiService;
 import kr.or.iei.coordi.model.vo.Coordi;
 import kr.or.iei.itItem.model.service.ItItemService;
+import kr.or.iei.itItem.model.vo.ItItem;
+import kr.or.iei.member.model.service.MemberService;
+import kr.or.iei.member.model.vo.Member;
 
 /**
  * Handles requests for the application home page.
@@ -32,6 +35,8 @@ public class HomeController {
 	
 	@Autowired
 	private ItItemService itService;
+	
+	private MemberService mService;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -41,10 +46,12 @@ public class HomeController {
 		HashMap<String, String> pMap=new HashMap<String, String>();
 		pMap.put("season", season);
 		ArrayList<Coordi> coordiList=coService.getCoordiList(pMap);
-		ArrayList<Object> itItemList=itService.getItItemList();
+		ArrayList<ItItem> itItemList=itService.getItItemList();
+		ArrayList<Member> topFollowList=mService.selectTopFollowList();
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		map.put("coordiList", coordiList);
 		map.put("itItemList", itItemList);
+		map.put("topFollowList",topFollowList);
 		mav.addObject("map", map);
 		mav.setViewName("index");
 		return mav;

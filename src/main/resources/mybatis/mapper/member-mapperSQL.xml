@@ -137,4 +137,27 @@
    		 MEMBER
    		WHERE USER_ID= #{userId} AND USER_EMAIL = #{userEmail}
     </select>
+    <select id="selectTopFollowList" resultType="member">
+    	select 
+			rownum,userId, userName,nickname,follow
+		from
+			(
+			select user_Id as userId,
+			         user_Name as userName,
+			         nickname as nickname,
+			        follow
+		from 
+			member
+		left join
+			(select count(*) as follow , following_ID from follow group by FOLLoWING_ID) f
+		on 
+			(member.USER_ID =f.following_ID)
+		where
+			follow>0
+		order by
+			follow desc)
+		WHERE 
+			rownum <= 4
+		
+    </select>
 </mapper>

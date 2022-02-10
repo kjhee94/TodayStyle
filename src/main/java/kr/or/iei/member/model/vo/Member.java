@@ -14,6 +14,7 @@ public class Member {
 	private Date enrollDate;
 	private String roll;
 	private char endYN;
+	private int follow;
 	
 
 	@Override
@@ -26,8 +27,10 @@ public class Member {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	public Member(int userNo, String userId, String userPwd, String userName, String userEmail, String gender,
-			String nickname, Date enrollDate, String roll, char endYN) {
+			String nickname, Date enrollDate, String roll, char endYN, int follow) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
@@ -39,6 +42,13 @@ public class Member {
 		this.enrollDate = enrollDate;
 		this.roll = roll;
 		this.endYN = endYN;
+		this.follow = follow;
+	}
+	public int getFollow() {
+		return follow;
+	}
+	public void setFollow(int follow) {
+		this.follow = follow;
 	}
 	public int getUserNo() {
 		return userNo;
