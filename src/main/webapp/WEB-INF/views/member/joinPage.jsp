@@ -71,7 +71,7 @@
 		
 			<div>
 	        <span class="title">아이디</span>
-	        <span class="explain">영문,숫자를 포함한 12자 이상의 아이디를 입력해주세요</span>
+	        <span class="explain">영문,숫자 5자 이상의 아이디를 입력해주세요</span>
 	        </div>
 	        <div>
 	        <input type="text" id="userid" class="input-style" name="userId" placeholder="아이디"/>
@@ -124,7 +124,7 @@
 	        
              
 	        <button type="button" class="btn-style-mint btn-certified" id="mail_check_button"><a>이메일 인증</a></button>
-	        
+	         <button type="button" class="btn-style-mint btn-certified" id="mail_check_button2" style="display:none"><a>인증 완료</a></button>
 	        <div id="emailCheck-area">
                   <div id="emailCheck-text" class="emailCheck">이메일로 전송된 인증코드를 입력해주세요</div>
                   <div class="mail_check_input_box" id="mail_check_input_box_false">
@@ -216,9 +216,11 @@
         if(inputCode==code){                            // 일치할 경우
         	 $('#userEmail').css("border-color","#C8C8C8");  
         	$('#emailCheck-area').css("display","none");
-        	$('#mail_check_button').attr('disabled','disabled');
-        	
-        	$('#mail_check_button').css('background-color','#C8C8C8');
+        	$('#mail_check_button2').attr('disabled','disabled');
+        	$('#mail_check_button').css('display','none');
+        	$('#mail_check_button2').css('display','block');
+        	  $("input[name='userEmail']").attr('readonly','true');  // 이메일 입력창 비활성화
+        	$('#mail_check_button2').css('background-color','#C8C8C8');
         	
         } else {                                            // 일치하지 않을 경우
         	$('#userEmail').css("border-color","#FD8A69");
