@@ -110,8 +110,7 @@
    			end_YN as endYN,
    			user_name as username
 		FROM 
-		(SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC) AS NUM, 
-				N.NOTICE_NO, N.TITLE, N.CONTENT, N.USER_ID, N.REGDATE, N.END_YN, M.USER_NAME 
+		(SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC) AS NUM, N.*, USER_NAME 
 		FROM NOTICE N
 		LEFT JOIN MEMBER M ON (M.USER_ID=N.USER_ID))
 		WHERE NUM BETWEEN #{start} AND #{end}
@@ -142,8 +141,7 @@
    			end_YN as endYN,
    			user_name as username
 		FROM 
-		(SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC) AS NUM, 
-				NOTICE_NO, TITLE, CONTENT, N.USER_ID, REGDATE, N.END_YN, USER_NAME 
+		(SELECT ROW_NUMBER() OVER(ORDER BY NOTICE_NO DESC) AS NUM, N.*, USER_NAME 
 		FROM NOTICE N
 		LEFT JOIN MEMBER M ON (M.USER_ID=N.USER_ID)
 		WHERE
@@ -192,8 +190,7 @@
 			end_yn as endYN,
 			user_name as userName
 		FROM
-		(SELECT ROW_NUMBER() OVER(ORDER BY FAQ_NO DESC)AS NUM, 
-				FAQ_NO, CATEGORY, TITLE, CONTENT, F.USER_ID, REGDATE, F.END_YN, USER_NAME
+		(SELECT ROW_NUMBER() OVER(ORDER BY FAQ_NO DESC)AS NUM, F.*, USER_NAME
 		FROM FAQ F
 		LEFT JOIN MEMBER M ON (F.USER_ID=M.USER_ID))
 		WHERE NUM BETWEEN #{start} AND #{end}
@@ -225,8 +222,7 @@
 			end_yn as endYN,
 			user_name as userName
 		FROM
-		(SELECT ROW_NUMBER() OVER(ORDER BY FAQ_NO DESC)AS NUM, 
-				FAQ_NO, CATEGORY, TITLE, CONTENT, F.USER_ID, REGDATE, F.END_YN, USER_NAME
+		(SELECT ROW_NUMBER() OVER(ORDER BY FAQ_NO DESC)AS NUM, F.*, USER_NAME
 		FROM FAQ F
 		LEFT JOIN MEMBER M ON (F.USER_ID=M.USER_ID)
 		WHERE
@@ -266,5 +262,33 @@
 	
 	<update id="updateFAQ" parameterType="hashmap">
 		UPDATE FAQ SET CATEGORY=#{category}, TITLE=#{title}, CONTENT=#{content} WHERE FAQ_NO=#{faqNo}
+	</update>
+	
+	<!-- Coordi -->
+	<select id="selectAllCoordiListPage" parameterType="hashmap" resultType="coordi">
+		SELECT 
+			coordi_no as coordiNo,
+			user_id as userId,
+			coordi_content as coordiContent,
+			gender as gender,
+			season as season,
+			temperature as temperature,
+			reg_date as regDate,
+			hashtag as hashTag,
+			del_YN as delYN,
+			nickname as nickName
+		FROM (
+		SELECT ROW_NUMBER() OVER (ORDER BY COORDI_NO DESC)AS NUM, C.*, nickname
+		FROM COORDI C
+		LEFT JOIN MEMBER M ON (M.USER_ID=C.USER_ID))
+		WHERE NUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectCoordiTotalCount" resultType="int">
+		SELECT COUNT(*) FROM COORDI
+	</select>
+	
+	<update id="updateCoordiOneDelYNChange">
+		UPDATE COORDI SET DEL_YN=#{delYN} WHERE COORDI_NO=#{coordiNo}
 	</update>
 </mapper>

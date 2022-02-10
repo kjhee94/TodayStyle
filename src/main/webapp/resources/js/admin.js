@@ -218,7 +218,7 @@ $(document).ready(function(){
 						$this.parent().siblings().find("input").attr("disabled", true);
 						$this.parent().siblings().find("input").prop("checked", false);
 						$this.parent().siblings().find(".fa-pencil-alt").css("color","#C8C8C8");
-						$this.parent().siblings().find(".fa-pencil-alt").parent().removeClass("btn-modify")
+						$this.parent().siblings().find(".fa-pencil-alt").parent().off("click");
 					}else if(endYN=='Y') {
 						$this.children("i").attr("class", "fas fa-trash");
 						$this.parent().siblings().css("color","#707070");
@@ -227,7 +227,9 @@ $(document).ready(function(){
 						$this.parent().siblings().find("input").attr("disabled", false);
 						$this.parent().siblings().find("input").prop("checked", false);
 						$this.parent().siblings().find(".fa-pencil-alt").css("color","#707070");
-						$this.parent().siblings().find(".fa-pencil-alt").parent().addClass("btn-modify");
+						$this.parent().siblings().find(".fa-pencil-alt").parent().click(function(){
+							$(this).next(".modify-model").fadeIn();
+						});
 					}
 				}
 			},
@@ -267,7 +269,7 @@ $(document).ready(function(){
 						$("input:checked").parent().siblings().find(".ellipsis").next().removeClass("box-hovor");
 						$("input:checked").parent().siblings().find(".ellipsis").next().css("display", "none");
 						$("input:checked").parent().siblings().find(".fa-pencil-alt").css("color","#C8C8C8");
-						$("input:checked").parent().siblings().find(".fa-pencil-alt").parent().removeClass("btn-modify")
+						$("input:checked").parent().siblings().find(".fa-pencil-alt").parent().off("click");
 						$("input:checked").attr("disabled", true);
 						$("input:checked").prop("checked", false);
 						
@@ -306,7 +308,7 @@ $(document).ready(function(){
 						$this.parent().siblings().find("input").attr("disabled", true);
 						$this.parent().siblings().find("input").prop("checked", false);
 						$this.parent().siblings().find(".fa-pencil-alt").css("color","#C8C8C8");
-						$this.parent().siblings().find(".fa-pencil-alt").parent().removeClass("btn-modify")
+						$this.parent().siblings().find(".fa-pencil-alt").parent().off("click");
 					}else if(endYN=='Y') {
 						$this.children("i").attr("class", "fas fa-trash");
 						$this.parent().siblings().css("color","#707070");
@@ -315,7 +317,10 @@ $(document).ready(function(){
 						$this.parent().siblings().find("input").attr("disabled", false);
 						$this.parent().siblings().find("input").prop("checked", false);
 						$this.parent().siblings().find(".fa-pencil-alt").css("color","#707070");
-						$this.parent().siblings().find(".fa-pencil-alt").parent().addClass("btn-modify");
+						$this.parent().siblings().find(".fa-pencil-alt").parent().click(function(){
+							$(this).next(".modify-model").fadeIn();
+						});
+						
 					}
 				}
 			},
@@ -355,7 +360,7 @@ $(document).ready(function(){
 						$("input:checked").parent().siblings().find(".ellipsis").next().removeClass("box-hovor");
 						$("input:checked").parent().siblings().find(".ellipsis").next().css("display", "none");
 						$("input:checked").parent().siblings().find(".fa-pencil-alt").css("color","#C8C8C8");
-						$("input:checked").parent().siblings().find(".fa-pencil-alt").parent().removeClass("btn-modify")
+						$("input:checked").parent().siblings().find(".fa-pencil-alt").parent().off("click");
 						$("input:checked").attr("disabled", true);
 						$("input:checked").prop("checked", false);
 						
@@ -383,9 +388,49 @@ $(document).ready(function(){
 			$(item).children().first().next().prop("selected", true);
 		}else if($(item).attr("categoty")=="기타"){
 			$(item).children().last().prop("selected", true);
-		}
-		
-			
+		}	
 	});
 	
+	
+	//개별 이미지 삭제
+	$(".btn-one-coordi-delete").click(function(){
+		
+		var coordiNo = $(this).attr("coordiNo");
+		var delYN = $(this).attr("delyn");
+		var $this = $(this);
+		
+		$.ajax({
+			url:"/admin/coordiOneDelYNChange.do",
+			data:{"coordiNo":coordiNo,"delYN":delYN},
+			type:"post",
+			success: function(result){
+				if(result!=false){
+					$this.attr("delyn",result);
+					if(delYN=='N') {
+						
+						$this.children("i").attr("class", "fas fa-trash-restore");
+						$this.parent().siblings().css("color","#C8C8C8");
+						$this.parent().siblings().find(".ellipsis").css("color","#C8C8C8");
+						$this.parent().siblings().find(".ellipsis").next().removeClass("box-hovor");
+						$this.parent().siblings().find(".ellipsis").next().css("display", "none")
+						$this.parent().siblings().find("input").attr("disabled", true);
+						$this.parent().siblings().find("input").prop("checked", false);
+						$this.parent().siblings().find(".fa-pencil-alt").css("color","#C8C8C8");
+					}else if(delYN=='Y') {
+						$this.children("i").attr("class", "fas fa-trash");
+						$this.parent().siblings().css("color","#707070");
+						$this.parent().siblings().find(".ellipsis").css("color","#707070");
+						$this.parent().siblings().find(".ellipsis").next().addClass("box-hovor");
+						$this.parent().siblings().find("input").attr("disabled", false);
+						$this.parent().siblings().find("input").prop("checked", false);
+						$this.parent().siblings().find(".fa-pencil-alt").css("color","#707070");
+						
+					}
+				}
+			},
+			error: function(){
+				console.log("ajax 통신 실패");
+			}
+		})
+	})
 });

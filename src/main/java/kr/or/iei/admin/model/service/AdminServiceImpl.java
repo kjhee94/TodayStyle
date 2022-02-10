@@ -216,4 +216,31 @@ public class AdminServiceImpl implements AdminService {
 		return aDAO.updateFAQ(category,title,content,faqNo);
 	}
 
+	@Override
+	public HashMap<String, Object> selectAllCoordi(int currentPage) {
+		
+		//한 페이지에 보여줄 게시물의 수 
+		int recordCountPerPage = 10;
+		
+		ArrayList<Member> list = aDAO.selectAllCoordi(recordCountPerPage,currentPage);
+		
+		//페이지 네비
+		int naviCountPerPage = 5;
+		
+		String pageNavi = aDAO.getCoordiPageNavi(recordCountPerPage,currentPage,naviCountPerPage);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+		
+		return map;
+	}
+
+	@Override
+	public int updateCoordiOneDelYNChange(int coordiNo, char delYN) {
+		
+		return aDAO.updateCoordiOneDelYNChange(coordiNo,delYN);
+	}
+
 }
