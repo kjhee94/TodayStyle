@@ -14,6 +14,7 @@ import kr.or.iei.myPage.model.service.MyPageService;
 import kr.or.iei.myPage.model.vo.MyCoordiList;
 import kr.or.iei.myPage.model.vo.MyItTemList;
 import kr.or.iei.myPage.model.vo.ScrapCoordiList;
+import kr.or.iei.myPage.model.vo.ScrapItTemList;
 
 @Controller
 public class MyPageController {
@@ -124,7 +125,15 @@ public class MyPageController {
 	
 	// 스크랩(잇템) 페이지
 	@RequestMapping(value = "/myPage/scrapItTem.do")
-	public String scrapItTem() {
+	public String scrapItTem(@SessionAttribute Member member, Model model) {
+
+		String userId = member.getUserId();
+
+		ArrayList<ScrapItTemList> siList = mpService.scrapItTemList(userId);
+		//System.out.println("siList"+siList);
+		
+		model.addAttribute("ScrapItTemList", siList);
+		
 		
 		return "myPage/scrap_itTem";
 	}

@@ -71,13 +71,37 @@
 		        left join member on (coordi.user_id = member.user_id)
 		WHERE
 			coordi_scrap.user_id = #{userId}
-		    and
+		    AND
 		    coordi_img.top_yn = 'Y'
-		    and
+		    AND
 		    coordi.del_yn='N'
 		ORDER BY
-			coordiScrapNo
+			coordiScrapNo DESC
 	</select>
 	
+	<!-- 사용자 스크랩 잇템 리스트 -->
+	<select id="scrapItTemList" resultType="kr.or.iei.myPage.model.vo.ScrapItTemList">
+		SELECT
+		    item_scrap.item_scrap_no as itTemScrapNo,
+		    item_scrap.it_itemno as itTemNo,
+		    it_item.user_id as itTemUserId,
+		    it_img.filepath as itTemFilepath,
+		    member_img.filepath as profileFilepath,
+		    member.nickname as itTemNickname
+		FROM
+		    item_scrap
+		        left join it_item on (item_scrap.it_itemno = it_item.it_itemno)
+		        left join it_img on (item_scrap.it_itemno = it_img.it_itemno)
+		        left join member_img on (it_item.user_id = member_img.user_id)
+		        left join member on (it_item.user_id = member.user_id)
+		WHERE
+			item_scrap.user_id = #{userId}
+		    AND
+		    it_img.top_yn = 'Y'
+		    AND
+		    it_item.del_yn='N'
+		ORDER BY
+			itTemScrapNo DESC
+	</select>
 	
 </mapper>
