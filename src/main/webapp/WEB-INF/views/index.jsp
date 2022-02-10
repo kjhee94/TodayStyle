@@ -165,7 +165,7 @@
 				<div class="main-area">인기 계정 랭킹</div>
 				<div id="ranking">
 					<c:forEach items="${map.get('topFollowList') }" var="member" varStatus="i">
-					<div class="userRank">
+					<div class="userRank" id="${member.userId }">
 						<div class="rank">${i.count }</div>
 						<div class="rankProfile">
 							<div class="profile">
@@ -192,6 +192,9 @@
 	</div>
 	
 	<!-- Initialize Swiper -->
+	<script>
+		
+	</script>
 	<script>
 		var swiper = new Swiper(".mySwiper", {
 			slidesPerView : 3,

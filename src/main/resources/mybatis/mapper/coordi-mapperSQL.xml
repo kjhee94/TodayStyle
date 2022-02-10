@@ -134,6 +134,6 @@
  			user_Id=#{userId} and coordi_No=#{coordiNo}
  	</delete>
  	<insert id="insertScrapCoordi">
- 		insert into coordi_scrap values(#{userId},#{coordiNo})
+ 		insert into coordi_scrap values(COORDI_SCRAP_SEQ.NEXTVAL,#{userId},#{coordiNo})
  	</insert>
 </mapper>

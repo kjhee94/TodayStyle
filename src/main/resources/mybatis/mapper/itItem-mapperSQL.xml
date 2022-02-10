@@ -69,7 +69,7 @@
  			user_Id=#{userId} and it_ItemNo=#{itItemNo}
  	</delete>
  	<insert id="insertScrapItItem" parameterType="hashmap">
- 		insert into Item_scrap values(#{userId},#{itItemNo})
+ 		insert into Item_scrap values(ITEM_SCRAP_SEQ.NEXTVAL,#{userId},#{itItemNo})
  	</insert>
  	
  	<select id="selectCategoryItItemList" parameterType="hashmap" resultType="itItem">
