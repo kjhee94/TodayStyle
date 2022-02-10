@@ -72,6 +72,9 @@
             cursor: pointer;
             
         }
+        .contents-area-null:hover{
+            color: #A9D4D9;
+        }
 
         .contents {
             width: 23.11%;

@@ -24,6 +24,7 @@
 </head>
 
 <body>
+<div id="wrap">
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
     <div id="content">
@@ -37,9 +38,8 @@
                     <div class="contents-num">18</div>
                 </div>
                 <div id="btn-wrap">
-                	<a><div class="btn-style-mint btn" id="allBtn">전체</div></a>
-                	<div class="btn-style-line btn" id="coordiBtn">코디</div>
-                	<div class="btn-style-line btn" id="ittemBtn">잇템</div>
+                	<a href = "/myPage/scrapCoordi.do"><div class="btn-style-line btn" id="coordiBtn">코디</div></a>
+                	<a href = "/myPage/scrapItTem.do"><div class="btn-style-mint btn" id="ittemBtn">잇템</div></a>
                 </div>
                 <div class="contents-area">
                     <a>
@@ -151,6 +151,9 @@
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
     <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
+
+   
+</div>
 
 
 </body>

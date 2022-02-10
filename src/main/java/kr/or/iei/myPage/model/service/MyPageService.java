@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import kr.or.iei.myPage.model.vo.MyCoordiList;
 import kr.or.iei.myPage.model.vo.MyItTemList;
+import kr.or.iei.myPage.model.vo.ScrapCoordiList;
 
 public interface MyPageService {
 
@@ -20,6 +21,9 @@ public interface MyPageService {
 	ArrayList<MyCoordiList> myCoordiList(String userId);
 	// myStyle - 사용자의 잇템 리스트 (번호, 경로)
 	ArrayList<MyItTemList> myItTemList(String userId);
+
+	// scrapCoordi
+	ArrayList<ScrapCoordiList> scrapCoordiList(String userId);
 
 
 }

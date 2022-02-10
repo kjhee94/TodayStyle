@@ -13,6 +13,7 @@ import kr.or.iei.memberSetting.model.service.MemberSettingService;
 import kr.or.iei.myPage.model.service.MyPageService;
 import kr.or.iei.myPage.model.vo.MyCoordiList;
 import kr.or.iei.myPage.model.vo.MyItTemList;
+import kr.or.iei.myPage.model.vo.ScrapCoordiList;
 
 @Controller
 public class MyPageController {
@@ -105,10 +106,26 @@ public class MyPageController {
 		return "myPage/myStyle_myItTem";
 	}
 	
-	@RequestMapping(value = "/myPage/scrapAll.do")
-	public String scrapAllPage() {
-		
-		return "myPage/scrapAll";
-	}
+	// 스크랩(코디) 페이지
+	@RequestMapping(value = "/myPage/scrapCoordi.do")
+	public String scrapCoordi(@SessionAttribute Member member, Model model) {
 
+		String userId = member.getUserId();
+
+		ArrayList<ScrapCoordiList> scList = mpService.scrapCoordiList(userId);
+		//System.out.println(scList);
+		
+		model.addAttribute("ScrapCoordiList", scList);
+		
+		
+		return "myPage/scrap_coordi";
+	}
+	
+	
+	// 스크랩(잇템) 페이지
+	@RequestMapping(value = "/myPage/scrapItTem.do")
+	public String scrapItTem() {
+		
+		return "myPage/scrap_itTem";
+	}
 }
