@@ -104,5 +104,11 @@ public class MyPageController {
 
 		return "myPage/myStyle_myItTem";
 	}
+	
+	@RequestMapping(value = "/myPage/scrapAll.do")
+	public String scrapAllPage() {
+		
+		return "myPage/scrapAll";
+	}
 
 }

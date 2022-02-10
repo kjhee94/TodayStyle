@@ -43,10 +43,7 @@ public class MemberSettingController {
 		return "myPage/userPage";
 	}
 
-	@RequestMapping(value = "/myPage/scrap.do")
-	public String scrapPage() {
-		return "myPage/scrap";
-	}
+	
 
 	@RequestMapping(value = "/myPage/comments.do")
 	public String commentsPage() {

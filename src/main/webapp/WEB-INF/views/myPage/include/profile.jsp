@@ -36,7 +36,7 @@
                     </div>
                     <div id="profileLine"></div>
                     <div id="icon-wrap">
-                        <a href="/myPage/scrap.do">
+                        <a href="/myPage/scrapAll.do">
                             <div class="icon-area">
                                 <img src="/resources/images/icon/saved.png" class="icon-img">
                                 <div class="icon-text">스크랩</div>
