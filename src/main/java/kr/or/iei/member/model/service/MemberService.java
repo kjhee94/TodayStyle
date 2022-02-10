@@ -1,5 +1,6 @@
 package kr.or.iei.member.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import kr.or.iei.member.model.vo.Member;
@@ -20,6 +21,8 @@ public interface MemberService {
 	int mailCheck(String userEmail);
 
 	int findNewPwd(HashMap<String, Object> map);
+
+	ArrayList<Member> selectTopFollowList();
 
 	
 

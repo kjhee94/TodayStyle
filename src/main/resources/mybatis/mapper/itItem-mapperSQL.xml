@@ -34,4 +34,103 @@
 		where
 			top_YN='Y' and it_item.del_yn='N'
 	</select>
+	<select id="selectLikeList" resultType="int">
+ 		select
+ 			it_ItemNo as itItemNo 
+ 		from 
+ 			Item_like 
+ 		where 
+ 			user_id=#{userId}
+ 		
+ 	</select>
+ 	<select id="selectScrapList" resultType="int">
+ 		select
+ 			it_ItemNo as itItemNo 
+ 		from 
+ 			Item_scrap 
+ 		where 
+ 			user_id=#{userId}
+ 			
+ 	</select>
+	
+	<delete id="deleteLikeItItem" parameterType="hashmap">
+ 		delete from
+ 			Item_like
+ 		where
+ 			user_Id=#{userId} and it_ItemNo=#{itItemNo}
+ 	</delete>
+ 	<insert id="insertLikeItItem" parameterType="hashmap">
+ 		insert into Item_like values(#{userId},#{itItemNo})
+ 	</insert>
+ 	<delete id="deletescrapItItem" parameterType="hashmap">
+ 		delete from
+ 			Item_scrap
+ 		where
+ 			user_Id=#{userId} and it_ItemNo=#{itItemNo}
+ 	</delete>
+ 	<insert id="insertScrapItItem" parameterType="hashmap">
+ 		insert into Item_scrap values(ITEM_SCRAP_SEQ.NEXTVAL,#{userId},#{itItemNo})
+ 	</insert>
+ 	
+ 	<select id="selectCategoryItItemList" parameterType="hashmap" resultType="itItem">
+ 		select 
+		    it_img.it_itemno as itItemNo,
+		    it_img.filepath as filePath,
+		    it_item.user_Id as userId,
+		    it_title as itItemTitle,
+		    it_content as itItemContent,
+		    it_name as itItemName,
+		    it_color as itItemColor,
+		    it_size as itItemSize,
+		    brand as itItembrand,
+		    hashTag as hashTag,
+		    it_item.Item_code as itemCode,
+		    user_size as userSize,
+		    user_height as userHeight,
+		    reg_Date as regDate,
+		    it_item.del_yn as delYN,
+		    nickName as nickName,
+		    item_name as itemName,
+		    member_img.filePath as profileFilePath,
+		    heart,
+		    scrap
+		from 
+			it_img 
+		left join 
+			it_item on (it_img.it_itemno=it_item.it_itemno) 
+		left join 
+			member on (it_item.user_Id=member.user_Id) 
+		left join 
+			Item_category on (it_item.item_code=item_category.item_code)
+		left join 
+			member_img on (it_item.user_id=member_img.user_id)
+		left join
+				(select count(*) as heart , it_itemNo from item_like group by it_itemNo) h
+			on 
+				(it_img.it_itemNo =h.it_itemNo)
+		left join
+				(select count(*) as scrap , it_itemNo from item_scrap group by it_itemNo) s
+			on 
+				(it_img.it_itemNo =s.it_itemNo)
+		where
+			top_YN='Y' and it_item.del_yn='N' and heart>0 and scrap>0
+ 		<if test="item!=null">
+			and item_name in
+			<foreach item="item" index="index" collection="item"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		<choose>
+			<when test="filter=='최신순'">
+				order by reg_Date desc
+			</when>
+			<when test="filter=='좋아요순'">
+				order by heart desc
+			</when>
+			<otherwise>
+				order by scrap desc
+			</otherwise>
+		</choose>
+ 	</select>
 </mapper>
