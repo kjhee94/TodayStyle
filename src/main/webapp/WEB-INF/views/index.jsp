@@ -164,46 +164,19 @@
 			<div id="rankingArea">
 				<div class="main-area">인기 계정 랭킹</div>
 				<div id="ranking">
+					<c:forEach items="${map.get('topFollowList') }" var="member" varStatus="i">
 					<div class="userRank">
-						<div class="rank">1</div>
+						<div class="rank">${i.count }</div>
 						<div class="rankProfile">
 							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
+								<a href=""><img src="${member.filePath }"/></a>
 							</div>
-							<span class="rankNickName">닉네임 ·</span>
-							<span class="rankFollowing">팔로잉 <span>468</span></span>
+							<span class="rankNickName">${member.nickname } ·</span>
+							<span class="rankFollowing">팔로잉 <span>${member.follow }</span></span>
 						</div>
 					</div>
-					<div class="userRank">
-						<div class="rank">2</div>
-						<div class="rankProfile">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="rankNickName">닉네임 ·</span>
-							<span class="rankFollowing">팔로잉 <span>468</span></span>
-						</div>
-					</div>
-					<div class="userRank">
-						<div class="rank">3</div>
-						<div class="rankProfile">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="rankNickName">닉네임 ·</span>
-							<span class="rankFollowing">팔로잉 <span>468</span></span>
-						</div>
-					</div>
-					<div class="userRank">
-						<div class="rank">4</div>
-						<div class="rankProfile">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="rankNickName">닉네임 ·</span>
-							<span class="rankFollowing">팔로잉 <span>468</span></span>
-						</div>
-					</div>
+					</c:forEach>
+					
 				</div>
 				<div id="rankingImgArea">
 					<div class="rankCoordiImg"><img alt="" src="/resources/images/coordi/stylelist1.jpg"></div>

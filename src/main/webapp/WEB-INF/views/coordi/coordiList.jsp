@@ -199,7 +199,7 @@
 							
 							$.ajax({
 			                	url:"/coordi/categoryCoordiList.do",
-			                	data:{item:item,temp:temp,gender:gender,season:season},
+			                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter},
 			                	type:"get",
 			                	success:function (result){
 			                		$('#coordiListArea').html(result);
@@ -220,7 +220,7 @@
 							item="";
 							$.ajax({
 			                	url:"/coordi/categoryCoordiList.do",
-			                	data:{item:item,temp:temp,gender:gender,season:season},
+			                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter},
 			                	type:"get",
 			                	success:function (result){
 			                		$('#coordiListArea').html(result);
@@ -249,7 +249,7 @@
 							
 							$.ajax({
 			                	url:"/coordi/categoryCoordiList.do",
-			                	data:{item:item,temp:temp,gender:gender,season:season},
+			                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter},
 			                	type:"get",
 			                	success:function (result){
 			                		$('#coordiListArea').html(result);
@@ -277,7 +277,7 @@
 							
 							$.ajax({
 	    	                	url:"/coordi/categoryCoordiList.do",
-	    	                	data:{item:item,temp:temp,gender:gender,season:season},
+	    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter},
 	    	                	type:"get",
 	    	                	success:function (result){
 			                		$('#coordiListArea').html(result);
@@ -295,13 +295,31 @@
 				<div class="list-top">
 					<div id="coordiListFilterArea">
 						<select id="filter">
-							<option>최신순</option>
-							<option>최근 인기순</option>
-							<option>역대 인기순</option>
-							<option>팔로잉</option>
+							<option value="최신순">최신순</option>
+							<option value="좋아요순">좋아요순</option>
+							<option value="스크랩순">스크랩순</option>
 						</select>
 						<i class="fas fa-filter"></i>
 					</div>
+					<script>
+					var filter="최신순";
+						$('#filter').change(function(){
+							var filter=$('#filter option:selected').text();
+							$.ajax({
+								url:"/coordi/categoryCoordiList.do",
+	    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter},
+	    	                	type:"get",
+	    	                	success:function (result){
+			                		$('#coordiListArea').html(result);
+			                	},
+	    	                	error:function(){
+	    	                		console.log("통신실패");
+	    	                	}
+								
+							});
+							
+						})
+					</script>
 					<div class="box-search">
 						<form action="">
 							<input class="search-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
@@ -346,10 +364,6 @@
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
-	<script>
-		var a=${sessionScope.member.userId}
-		console.log(a);
-	</script>
 	
 	
 	<script>

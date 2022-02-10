@@ -49,7 +49,7 @@
                         <div class="contents-title">비밀번호 수정</div>
                     </a>
                 </div>
-                <div id="withDrawBtn"><a href="/myPage/withdraw.do">탈퇴하기</a></div>
+                <div id="withDrawBtn"><a href="/myPage/withdrawPage.do">탈퇴하기</a></div>
                 <div class="rowLine"></div>
 
                 <form action="/myPage/memberUpdate.do" method="post" id="memberUpdateForm" enctype="multipart/form-data">
@@ -69,12 +69,13 @@
                         <div class="input-wrap">
                             <div class="titleName">이메일</div>
                             <input type="email" class="input-style" name="userEmail" value="${sessionScope.member.userEmail }">
+                            <input type="hidden" name="emailCheckData" value="인증하기">
                             <div id="emailCheckBtn" class="btn-style-mint">인증하기</div>
                             <div class="check" id="userEmailCheck"></div>
                             <div id="emailCheck-area">
                             	<div id="emailCheck-text" class="emailCheck">이메일로 전송된 인증코드를 입력해주세요</div>
                             	<input type="text" placeholder="인증코드 6자리 입력" id="emailCheck-input" class="emailCheck input-style"><div id="emailCheck-btn" class="emailCheck btn-style-mint">확인</div>
-                            	<div id="emailCheck-time" class="emailCheck">9분 30초 남았습니다.</div><div id="emailCheck-resend" class="emailCheck">이메일 재전송</div>
+                            	<div id="emailCheck-time" class="emailCheck"></div><div id="emailCheck-resend" class="emailCheck">이메일 재전송</div>
                             </div>
                         </div>
                         <div class="rowLine"></div>
@@ -126,8 +127,9 @@
                                 <div id="profileImg-plusBtn">
                                     <label for="selectProfileImg">+</label>
                                     <input type="file" name="profileImg" id="selectProfileImg" accept="image/*" onchange="loadFile(this)">
-
                                 </div>
+                                <div id="defaultImg">기본 이미지로 변경</div>
+                                <input type="hidden" name="defaultImg" value="x">
                             </div>
                         </div>
                         <div class="rowLine"></div>
@@ -155,30 +157,159 @@
 	</c:if>
 
     <script>
-        
-        // 이메일 인증 입력창 나타나기
-        $('#emailCheckBtn').click(function(){
-           $('#emailCheck-area').css('display','block');
-        });
-        $('#emailCheck-btn').click(function(){
-           $('#emailCheck-area').css('display','none');
-        });
-        
-        
-        
+    
+    	var code = "";	// 이메일 인증번호 저장
+    	
+    	
+    	
+    	if($("input[name='emailCheckData']").val()=="인증하기"){  // 인증을 안 했을 경우 클릭 이벤트
+		   	// 이메일 인증
+		   	// 중복 검사 후 인증 번호 전송
+		   	$('#emailCheckBtn').click(function(){
+		   		
+		   		if($("input[name='emailCheckData']").val()=="인증하기")
+		   		{
+		   			var email = $("input[name='userEmail']").val(); // 입력한 이메일
+		       		
+		       		$.ajax({	
+		                   url:"/myPage/emailCheck.do",
+		                   data:{"email":email},
+		                   type:"post",
+		                   success:function(data){
+		                   	
+		                   	if(data=="0") // 이메일 중복 체크 (중복일 경우==0)
+		                   	{
+		                   		$('#userEmailCheck').css('display', 'block');
+		                           $('#userEmailCheck').css('color', '#FD8A69');
+		                           $('#userEmailCheck').html('사용중인 이메일 입니다.');
+		                           $("input[name='userEmail']").css('border-color','#FD8A69');
+		                   	}
+		                   	else
+		                   	{
+		                   		$('#userEmailCheck').css('display', 'none');
+		                           $("input[name='userEmail']").css('border-color','#C8C8C8');
+		                           
+		                   		// 인증번호 전송에 성공했다면 인증번호 입력창 열기
+		                           $('#emailCheck-area').css('display','block'); 
+		                           code = data;
+		                           //alert(code);
+		                   	}
+		                   	
+		                   },
+		                   error:function(){
+		                      alert("오류가 발생하였습니다. 관리자에게 문의바랍니다.");
+		                   }
+		                });
+		   		}
+		   		
+		   	});
+    	
+    		// 이메일 재전송
+    		$('#emailCheck-resend').click(function(){
+    			var email = $("input[name='userEmail']").val(); // 입력한 이메일
+	       		
+	       		$.ajax({	
+	                   url:"/myPage/emailCheck.do",
+	                   data:{"email":email},
+	                   type:"post",
+	                   success:function(data){
+	                   	
+	                   	if(data!="0")
+	                   	{
+	                   		alert('이메일이 재전송 되었습니다.');
+	                   		code = data;
+	                   		//alert('data : ' +code);
+	                   	}
+	                   },
+	                   error:function(){
+	                      alert("오류가 발생하였습니다. 관리자에게 문의바랍니다.");
+	                   }
+	                });
+    		});
+    	
+    	}
+    	
+    	// 인증번호 확인 
+    	$('#emailCheck-btn').click(function(){
+    		var inputCode = $('#emailCheck-input').val();
+    		if(inputCode == code)
+    		{
+    			// 인증번호와 입력한 번호가 일치 하면 
+    			$('#emailCheck-area').css('display','none');  // 인증번호 입력창 닫기
+    			$('#emailCheckBtn').html('인증완료');  //  버튼 내용 변경
+    			$('#emailCheckBtn').attr('class','btn-style-line');  // 버튼 스타일 변경
+    			$('#emailCheckBtn').css('cursor','default');  // 커서 변경
+    			$("input[name='userEmail']").attr('readonly','true');  // 이메일 입력창 비활성화
+    			$("input[name='emailCheckData']").attr('value','인증완료');  // hidden 인풋 value 변경
+    		}else
+    		{
+    			// 일치하지 않을 경우 알림창
+    			alert('인증번호가 일치하지 않습니다.');
+    		}
+    	});
+    	
+    	// 이메일 인증 시간 설정
+    	var timer = null;
+		var isRunning = false;
+
+		$('#emailCheckBtn').click(function(){
+			var display = $("#emailCheck-time");
+		    // 유효시간 설정
+		    var leftSec = 180;
+
+		    if (isRunning){
+		    	clearInterval(timer);
+		      	display.html("");
+		      	startTimer(leftSec, display);
+		    }else{
+		    	startTimer(leftSec, display);
+		    }
+			
+		  });
+		      
+		  function startTimer(count, display) {  
+			  var minutes, seconds;
+			  timer = setInterval(function () {
+				  minutes = parseInt(count / 60, 10);
+				  seconds = parseInt(count % 60, 10);
+
+				  minutes = minutes < 10 ? "0" + minutes : minutes;
+				  seconds = seconds < 10 ? "0" + seconds : seconds;
+
+				  display.html(minutes + "분" + seconds+"초 남았습니다.");
+		    
+		      
+				  // 타이머 끝
+				  if (--count < 0) {
+					  clearInterval(timer);
+		       
+					  display.html("시간초과");
+					  $('#emailCheck-area').css('display','none');  // 인증번호 입력창 닫기
+					  return;
+					  $("button").attr("disabled", true); // 이건 뭘까?
+					  sRunning = false;
+					  }
+		    
+			  }, 1000);
+			  isRunning = true;
+		}
+    	
+    	
+    	
+    	
         // 프로필 사진 추가 : 마우스 hover시 추가 버튼 나오기
         $(function() {
             $('#profileImg-area').hover(function() {
                 $('#profileImg-area>img').css('filter', 'blur(1px)');
                 $('#profileImg-area>img').css('opacity', '0.7');
                 $('#profileImg-plusBtn').css('display','block');
-
+				$('#defaultImg').css('display','block');
 
             }, function() {
                 $('#profileImg-area>img').css('filter', '');
                 $('#profileImg-area>img').css('opacity', '');
                 $('#profileImg-plusBtn').css('display','none');
-
+                $('#defaultImg').css('display','none');
             });
         });
         
@@ -196,10 +327,19 @@
                var reader = new FileReader();
                reader.onload = function (e) {
                   $('#profileImg').attr('src', e.target.result);
+                  $("input[name='defaultImg']").attr('value','x');
                }
                reader.readAsDataURL(input.files[0]);
             }
         }
+        
+        // 프로필 기본 이미지로 변경
+        $(function(){
+        	$('#defaultImg').click(function(){
+        		$('#profileImg').attr('src', '/resources/images/default/profile.jpg');
+        		$("input[name='defaultImg']").attr('value','o');
+        	});
+        });
         
         
         

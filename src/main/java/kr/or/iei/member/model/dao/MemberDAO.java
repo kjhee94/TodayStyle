@@ -50,6 +50,7 @@ public class MemberDAO {
 
 	public ArrayList<Member> selectTopFollowList() {
 		ArrayList<Member> list=new ArrayList(sqlSession.selectList("member.selectTopFollowList"));
+		
 		return list;
 	}
 

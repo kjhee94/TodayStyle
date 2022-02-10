@@ -17,6 +17,8 @@ public class Coordi {
 	private String filePath;
 	private String nickName;
 	private String profileFilePath;
+	private int heart;
+	private int scrap;
 	
 	public Coordi() {
 		super();
@@ -24,11 +26,9 @@ public class Coordi {
 	
 	
 	
-	
-	
 	public Coordi(int coordiNo, String userId, String coordiContent, String gender, String season, String temperature,
 			Date regDate, String hashTag, char delYN, String coordiImgOriginalName, String coordiImgChangedName,
-			String filePath, String nickName, String profileFilePath) {
+			String filePath, String nickName, String profileFilePath, int heart, int scrap) {
 		super();
 		this.coordiNo = coordiNo;
 		this.userId = userId;
@@ -44,24 +44,31 @@ public class Coordi {
 		this.filePath = filePath;
 		this.nickName = nickName;
 		this.profileFilePath = profileFilePath;
+		this.heart = heart;
+		this.scrap = scrap;
 	}
 
 
 
+	public int getHeart() {
+		return heart;
+	}
 
-
+	public void setHeart(int heart) {
+		this.heart = heart;
+	}
+	public int getScrap() {
+		return scrap;
+	}
+	public void setScrap(int scrap) {
+		this.scrap = scrap;
+	}
 	public String getProfileFilePath() {
 		return profileFilePath;
 	}
-
-
-
 	public void setProfileFilePath(String profileFilePath) {
 		this.profileFilePath = profileFilePath;
 	}
-
-
-
 	public String getNickName() {
 		return nickName;
 	}

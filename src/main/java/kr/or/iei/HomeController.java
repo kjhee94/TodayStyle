@@ -36,6 +36,7 @@ public class HomeController {
 	@Autowired
 	private ItItemService itService;
 	
+	@Autowired
 	private MemberService mService;
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -49,6 +50,7 @@ public class HomeController {
 		ArrayList<ItItem> itItemList=itService.getItItemList();
 		ArrayList<Member> topFollowList=mService.selectTopFollowList();
 		HashMap<String, Object> map=new HashMap<String, Object>();
+		
 		map.put("coordiList", coordiList);
 		map.put("itItemList", itItemList);
 		map.put("topFollowList",topFollowList);

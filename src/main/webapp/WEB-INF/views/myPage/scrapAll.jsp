@@ -37,7 +37,7 @@
                     <div class="contents-num">18</div>
                 </div>
                 <div id="btn-wrap">
-                	<div class="btn-style-mint btn" id="allBtn">전체</div>
+                	<a><div class="btn-style-mint btn" id="allBtn">전체</div></a>
                 	<div class="btn-style-line btn" id="coordiBtn">코디</div>
                 	<div class="btn-style-line btn" id="ittemBtn">잇템</div>
                 </div>

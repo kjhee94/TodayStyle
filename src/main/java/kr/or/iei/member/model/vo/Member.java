@@ -15,8 +15,7 @@ public class Member {
 	private String roll;
 	private char endYN;
 	private int follow;
-	
-
+	private String filePath;
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
@@ -29,8 +28,11 @@ public class Member {
 	}
 	
 	
+	
+	
+	
 	public Member(int userNo, String userId, String userPwd, String userName, String userEmail, String gender,
-			String nickname, Date enrollDate, String roll, char endYN, int follow) {
+			String nickname, Date enrollDate, String roll, char endYN, int follow, String filePath) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
@@ -43,6 +45,13 @@ public class Member {
 		this.roll = roll;
 		this.endYN = endYN;
 		this.follow = follow;
+		this.filePath = filePath;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 	public int getFollow() {
 		return follow;

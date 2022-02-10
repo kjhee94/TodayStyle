@@ -24,17 +24,18 @@ public class ItItem {
 	private String nickName;
 	private String itemName;
 	private String profileFilePath;
+	private int heart;
+	private int scrap;
 	
 	public ItItem() {
 		super();
 	}
 	
 	
-
 	public ItItem(int itItemNo, String userId, String itItemTitle, String itItemContent, String itItemName,
 			String itItemColor, String itItemSize, String itItembrand, String hashTag, String itemCode, String userSize,
 			int userHeight, Date regDate, char delYN, String itItemImgOriginalName, String itItemImgChangedName,
-			String filePath, String nickName, String itemName, String profileFilePath) {
+			String filePath, String nickName, String itemName, String profileFilePath, int heart, int scrap) {
 		super();
 		this.itItemNo = itItemNo;
 		this.userId = userId;
@@ -56,6 +57,30 @@ public class ItItem {
 		this.nickName = nickName;
 		this.itemName = itemName;
 		this.profileFilePath = profileFilePath;
+		this.heart = heart;
+		this.scrap = scrap;
+	}
+
+	public int getHeart() {
+		return heart;
+	}
+
+
+
+	public void setHeart(int heart) {
+		this.heart = heart;
+	}
+
+
+
+	public int getScrap() {
+		return scrap;
+	}
+
+
+
+	public void setScrap(int scrap) {
+		this.scrap = scrap;
 	}
 
 

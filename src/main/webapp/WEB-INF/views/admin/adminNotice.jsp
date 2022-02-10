@@ -25,24 +25,10 @@
 				<h4>공지사항 작성</h4>
 				<i class="fas fa-times model-close"></i>
 			</div>
-			<form action="" method="get">
-				<input type="text" class="model-title" placeholder="제목을 입력하세요">
-				<textarea class="model-content" placeholder="내용을 입력하세요"></textarea>
+			<form action="/admin/noticeInsert.do" method="post">
+				<input type="text" class="model-title" name="title" placeholder="제목을 입력하세요">
+				<textarea class="model-content" name="content" placeholder="내용을 입력하세요"></textarea>
 				<input type="submit" class="btn-style" value="등록">
-			</form>
-		</div>
-	</div>
-	
-	<div id="modifyModel">
-		<div class="model-area">
-			<div class="model-top">
-				<h4>공지사항 수정</h4>
-				<i class="fas fa-times model-close"></i>
-			</div>
-			<form action="" method="get">
-				<input type="text" class="model-title" placeholder="제목을 입력하세요" value="공지사항 제목입니다 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다">
-				<textarea class="model-content" placeholder="내용을 입력하세요">공지사항 내용입니다 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다</textarea>
-				<input type="submit" class="btn-style" value="완료">
 			</form>
 		</div>
 	</div>
@@ -63,328 +49,129 @@
 			
 			<div id="container">
 				<div id="searchAndBtn">
-					<form action="" method="get">
+					<form action="/admin/noticeSearch.do" method="get">
 						<div id="boxSelect">
-							<select class="select-style" name="keyword">
+							<select class="select-style" name="type">
 								<option disabled selected>필터선택</option>
-								<option value="subject">제목</option>
+								<option value="title">제목</option>
 								<option value="content">내용</option>
 							</select>
 							<i class="fas fa-chevron-down"></i>
 						</div>
 						
 						<div id="boxSearch">
-							<input class="input-style" type="text" name="search" placeholder="검색어를 입력하세요">
+							<input class="input-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
 							<button type="submit"><i class="fas fa-search"></i></button>
 						</div>
 					</form>
 					<div id="boxBtn">
-						<button id="allWithDrawBtn" class="btn-style">삭제</button>
+						<button id="checkedDeleteNoticeBtn" class="btn-style">삭제</button>
 						<button id="writeBtn" class="btn-style">글쓰기</button>
 					</div>
 				</div>
 				
-				<table>
-					<tr>
-						<th><input type="checkbox" id="Allcheck"></th>
-						<th>글번호</th>
-						<th>제목</th>
-						<th>내용</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th>수정</th>
-						<th>삭제</th>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>admin</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon btn-modify">
-								<i class="fas fa-pencil-alt"></i>
-							</div>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>admin</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon btn-modify">
-								<i class="fas fa-pencil-alt"></i>
-							</div>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>admin</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon btn-modify">
-								<i class="fas fa-pencil-alt"></i>
-							</div>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>admin</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon btn-modify">
-								<i class="fas fa-pencil-alt"></i>
-							</div>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>admin</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon btn-modify">
-								<i class="fas fa-pencil-alt"></i>
-							</div>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>admin</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon btn-modify">
-								<i class="fas fa-pencil-alt"></i>
-							</div>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>admin</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon btn-modify">
-								<i class="fas fa-pencil-alt"></i>
-							</div>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>admin</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon btn-modify">
-								<i class="fas fa-pencil-alt"></i>
-							</div>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>admin</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon btn-modify">
-								<i class="fas fa-pencil-alt"></i>
-							</div>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 제목입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-								<div class="box-hovor detail">공지사항 내용입니다. 이렇게 길게 들어가고 마지막은 줄여서 들어갑니다.</div>
-							</div>
-						</td>
-						<td>admin</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon btn-modify">
-								<i class="fas fa-pencil-alt"></i>
-							</div>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-				</table>
+				<c:choose>
+					<c:when test="${!requestScope.map.isEmpty() }">
+						<table>
+							<tr>
+								<th><input type="checkbox" id="Allcheck"></th>
+								<th>글번호</th>
+								<th>제목</th>
+								<th>내용</th>
+								<th>작성자</th>
+								<th>작성일</th>
+								<th>수정</th>
+								<th>삭제</th>
+							</tr>
+							
+							<c:forEach items="${requestScope.map.list }" var="n">
+								<c:if test="${n.endYN eq 'N'.charAt(0)}">
+									<tr>
+								</c:if>
+								<c:if test="${n.endYN eq 'Y'.charAt(0)}">
+									<tr class="deactivate">
+								</c:if>
+									<td>
+										<c:if test="${n.endYN eq 'N'.charAt(0)}">
+											<input type="checkbox" name="noticeNo" value="${n.noticeNo}">
+										</c:if>
+										<c:if test="${n.endYN eq 'Y'.charAt(0)}">
+											<input type="checkbox" name="noticeNo" value="${n.noticeNo}" disabled>
+										</c:if>
+									</td>
+									<td>${n.noticeNo}</td>
+									<td>
+										<div class="relative">
+											<div class="ellipsis unenter">${n.title}</div>
+											<c:if test="${n.endYN eq 'N'.charAt(0)}">
+												<div class="box-hovor">${n.title}</div>
+											</c:if>
+											<c:if test="${n.endYN eq 'Y'.charAt(0)}">
+												<div>${n.title}</div>
+											</c:if>
+										</div>
+									</td>
+									<td>
+										<div class="relative">
+											<div class="ellipsis unenter">${n.content}</div>
+											<c:if test="${n.endYN eq 'N'.charAt(0)}">
+												<div class="box-hovor">${n.content}</div>
+											</c:if>
+											<c:if test="${n.endYN eq 'Y'.charAt(0)}">
+												<div>${n.content}</div>
+											</c:if>
+										</div>
+									</td>
+									<td>${n.userName}</td>
+									<td>${n.regdate}</td>
+									<td>
+										<c:if test="${n.endYN eq 'N'.charAt(0)}">
+											<div class="btn-style-icon btn-modify">
+												<i class="fas fa-pencil-alt"></i>
+											</div>
+										</c:if>
+										<c:if test="${n.endYN eq 'Y'.charAt(0)}">
+											<div class="btn-style-icon">
+												<i class="fas fa-pencil-alt"></i>
+											</div>
+										</c:if>
+										<div class="modify-model">
+											<div class="model-area">
+												<div class="model-top">
+													<h4>공지사항 수정</h4>
+													<i class="fas fa-times model-close"></i>
+												</div>
+												<form action="/admin/noticeUpdate.do" method="post">
+													<input type="text" class="model-title" name="title" placeholder="제목을 입력하세요" value="${n.title}">
+													<textarea class="model-content  unenter" name="content" placeholder="내용을 입력하세요">${n.content}</textarea>
+													<input type="hidden" name="noticeNo" value="${n.noticeNo}">
+													<input type="submit" class="btn-style" value="완료">
+												</form>
+											</div>
+										</div>
+									</td>
+									<td>
+										<div class="btn-style-icon btn-one-notice-delete" endyn="${n.endYN}" noticeNo="${n.noticeNo}">
+											<c:if test="${n.endYN eq 'N'.charAt(0)}">
+												<i class="fas fa-trash"></i>
+											</c:if>
+											<c:if test="${n.endYN eq 'Y'.charAt(0)}">
+												<i class="fas fa-trash-restore"></i>
+											</c:if>
+										</div>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:when>
+					<c:otherwise>
+						<h1>현재 공지가 없습니다</h1>
+					</c:otherwise>
+				</c:choose>
+				
 				<div id="page_wrap">
 					<ul class="page_ul">
-						<li><a href=''><i class='fas fa-chevron-left'></i></a></li>
-						<li><a href='' class='page_active'>1</a></li>
-						<li><a href=''>2</a></li>
-						<li><a href=''>3</a></li>
-						<li><a href=''>4</a></li>
-						<li><a href=''>5</a></li>
-						<li><a href=''><i class='fas fa-chevron-right'></i></a></li>
+						${requestScope.map.pageNavi}
 	 				</ul>
 			    </div>
 			</div>

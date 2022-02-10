@@ -100,6 +100,7 @@ public class ItItemController {
 	@RequestMapping(value="/itItem/categoryItItemList.do",method=RequestMethod.GET)
 	public String categoryItItemList(HttpServletRequest request,Model model) {
 		String item=request.getParameter("item");
+		String filter=request.getParameter("filter");
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		HttpSession session=request.getSession();
 		Member m=(Member)session.getAttribute("member");
@@ -116,8 +117,10 @@ public class ItItemController {
 			String [] itemArray=item.split("/");
 			map.put("item", itemArray);
 		}
-		
+		map.put("filter", filter);
+		System.out.println(map.get("filter"));
 		ArrayList<ItItem> list=itService.selectCategoryItItemList(map);
+		model.addAttribute("filter",filter);
 		model.addAttribute("list",list);
 		return "itItem/categoryList";
 	}

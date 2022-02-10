@@ -7,9 +7,12 @@
 		<typeAlias type="kr.or.iei.member.model.vo.Member" alias="member"/>
 		<typeAlias type="kr.or.iei.board.model.vo.FAQ" alias="FAQ"/>
 		<typeAlias type="kr.or.iei.board.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="kr.or.iei.beststyle.model.vo.Beststyle" alias="beststyle"/>
 		<typeAlias type="kr.or.iei.coordi.model.vo.Coordi" alias="coordi"/>
 		<typeAlias type="kr.or.iei.itItem.model.vo.ItItem" alias="itItem"/>
-		<typeAlias type="kr.or.iei.myPage.model.vo.ProfileImg" alias="profileImg"/>
+		<typeAlias type="kr.or.iei.memberSetting.model.vo.ProfileImg" alias="profileImg"/>
+		<typeAlias type="kr.or.iei.myPage.model.vo.MyCoordiList" alias="myCoordiList"/>
+		<typeAlias type="kr.or.iei.myPage.model.vo.MyItTemList" alias="myItTemList"/>
 	</typeAliases>
 
 </configuration>

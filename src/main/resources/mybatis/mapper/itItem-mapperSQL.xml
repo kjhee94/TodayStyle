@@ -91,7 +91,9 @@
 		    it_item.del_yn as delYN,
 		    nickName as nickName,
 		    item_name as itemName,
-		    member_img.filePath as profileFilePath
+		    member_img.filePath as profileFilePath,
+		    heart,
+		    scrap
 		from 
 			it_img 
 		left join 
@@ -102,8 +104,16 @@
 			Item_category on (it_item.item_code=item_category.item_code)
 		left join 
 			member_img on (it_item.user_id=member_img.user_id)
+		left join
+				(select count(*) as heart , it_itemNo from item_like group by it_itemNo) h
+			on 
+				(it_img.it_itemNo =h.it_itemNo)
+		left join
+				(select count(*) as scrap , it_itemNo from item_scrap group by it_itemNo) s
+			on 
+				(it_img.it_itemNo =s.it_itemNo)
 		where
-			top_YN='Y' and it_item.del_yn='N'
+			top_YN='Y' and it_item.del_yn='N' and heart>0 and scrap>0
  		<if test="item!=null">
 			and item_name in
 			<foreach item="item" index="index" collection="item"
@@ -111,5 +121,16 @@
 				#{item}
 			</foreach>
 		</if>
+		<choose>
+			<when test="filter=='최신순'">
+				order by reg_Date desc
+			</when>
+			<when test="filter=='좋아요순'">
+				order by heart desc
+			</when>
+			<otherwise>
+				order by scrap desc
+			</otherwise>
+		</choose>
  	</select>
 </mapper>

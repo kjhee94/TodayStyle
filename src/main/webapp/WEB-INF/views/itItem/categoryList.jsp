@@ -19,13 +19,46 @@
 				<div class="list-top">
 					<div id="itItemListFilterArea">
 						<select id="filter">
-							<option>최신순</option>
-							<option>최근 인기순</option>
-							<option>역대 인기순</option>
-							<option>팔로잉</option>
+							<c:choose>
+								<c:when test="${filter eq '최신순' }">
+									<option value="최신순" selected>최신순</option>
+									<option value="좋아요순" >좋아요순</option>
+									<option value="스크랩순">스크랩순</option>
+								</c:when>
+								<c:when test="${filter eq '스크랩순' }">
+									<option value="최신순">최신순</option>
+									<option value="좋아요순">좋아요순</option>
+									<option value="스크랩순" selected>스크랩순</option>
+								</c:when>
+								<c:otherwise>
+									<option value="최신순" >최신순</option>
+									<option value="좋아요순" selected>좋아요순</option>
+									<option value="스크랩순">스크랩순</option>
+								</c:otherwise>
+							</c:choose>
 						</select>
 						<i class="fas fa-filter"></i>
 					</div>
+					
+					<script>
+					var filter="최신순";
+						$('#filter').change(function(){
+							var filter=$('#filter option:selected').text();
+							$.ajax({
+								url:"/itItem/categoryItItemList.do",
+	    	                	data:{item:item,filter:filter},
+	    	                	type:"get",
+	    	                	success:function (result){
+			                		$('#itItemListArea').html(result);
+			                	},
+	    	                	error:function(){
+	    	                		console.log("통신실패");
+	    	                	}
+								
+							});
+							
+						})
+					</script>
 					<div class="box-search">
 						<form action="">
 							<input class="search-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
@@ -116,7 +149,7 @@
                 		
                 	},
                 	error:function(){
-                		/* location.replace('/member/loginPage.do'); */
+                		location.replace('/member/loginPage.do');
                 	}
 					
 				});
@@ -150,7 +183,7 @@
                 	},
                 	error:function(){
                 		
-                		/* location.replace('/member/loginPage.do'); */
+                		location.replace('/member/loginPage.do');
                 	}
 					
 				});
