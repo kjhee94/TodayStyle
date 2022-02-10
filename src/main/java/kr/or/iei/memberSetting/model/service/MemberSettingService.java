@@ -1,9 +1,9 @@
-package kr.or.iei.myPage.model.service;
+package kr.or.iei.memberSetting.model.service;
 
 import java.util.HashMap;
 
 import kr.or.iei.member.model.vo.Member;
-import kr.or.iei.myPage.model.vo.ProfileImg;
+import kr.or.iei.memberSetting.model.vo.ProfileImg;
 
 public interface MemberSettingService {
 

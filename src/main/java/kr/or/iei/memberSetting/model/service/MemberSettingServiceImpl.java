@@ -1,4 +1,4 @@
-package kr.or.iei.myPage.model.service;
+package kr.or.iei.memberSetting.model.service;
 
 import java.util.HashMap;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.iei.member.model.vo.Member;
-import kr.or.iei.myPage.model.dao.MemberSettingDAO;
-import kr.or.iei.myPage.model.vo.ProfileImg;
+import kr.or.iei.memberSetting.model.dao.MemberSettingDAO;
+import kr.or.iei.memberSetting.model.vo.ProfileImg;
 
 @Service
 public class MemberSettingServiceImpl implements MemberSettingService{

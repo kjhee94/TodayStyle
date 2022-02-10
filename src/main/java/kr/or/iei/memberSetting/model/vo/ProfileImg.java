@@ -1,4 +1,4 @@
-package kr.or.iei.myPage.model.vo;
+package kr.or.iei.memberSetting.model.vo;
 
 public class ProfileImg {
 	

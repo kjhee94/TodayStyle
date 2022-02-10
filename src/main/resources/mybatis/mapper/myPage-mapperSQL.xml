@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myPage">
+	
+	
+	<!-- 프로필 이미지 경로 -->
+	<select id="profileFilePath" resultType="string">
+		SELECT
+			filepath 
+		FROM
+			member_img
+		WHERE
+			user_id = #{userId}
+	</select>
+	
+	<!-- 팔로잉 수 -->
+	<select id="followingNum" resultType="string">
+		SELECT
+			count(*) AS following
+		FROM
+			follow
+		WHERE
+			user_id = #{userId}
+	</select>
+	<!-- 팔로워 수 -->
+	<select id="followerNum" resultType="string">
+		SELECT
+			count(*) AS following
+		FROM
+			follow
+		WHERE
+			following_id = #{userId}
+	</select>
+	
+	<!-- 사용자 코디 리스트 -->
+	<select id="myCoordiList" resultType="kr.or.iei.myPage.model.vo.MyCoordiList">
+		SELECT
+			coordi.coordi_no as coordiNo, filepath as filepath
+		FROM
+			coordi
+			LEFT JOIN coordi_img ON (coordi.coordi_no = coordi_img.coordi_no)
+		WHERE
+			user_id = #{userId} and top_yn='Y'
+	</select>
+	
+	<!-- 사용자 잇템 리스트 -->
+	<select id="myItTemList" resultType="kr.or.iei.myPage.model.vo.MyItTemList">
+		SELECT
+			it_item.it_itemno as itTemNo, filepath as filepath
+		FROM
+			it_item
+			LEFT JOIN it_img ON (it_item.it_itemno = it_img.it_itemno)
+		WHERE
+			user_id = #{userId} and top_yn='Y'
+	</select>
+	
+	
+	
+</mapper>
