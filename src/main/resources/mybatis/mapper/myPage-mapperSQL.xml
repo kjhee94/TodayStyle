@@ -33,7 +33,7 @@
 	</select>
 	
 	<!-- 사용자 코디 리스트 -->
-	<select id="myCoordiList" resultType="kr.or.iei.myPage.model.vo.MyCoordiList">
+	<select id="myCoordiList" resultType="myCoordiList">
 		SELECT
 			coordi.coordi_no as coordiNo, filepath as filepath
 		FROM
@@ -44,7 +44,7 @@
 	</select>
 	
 	<!-- 사용자 잇템 리스트 -->
-	<select id="myItTemList" resultType="kr.or.iei.myPage.model.vo.MyItTemList">
+	<select id="myItTemList" resultType="myItTemList">
 		SELECT
 			it_item.it_itemno as itTemNo, filepath as filepath
 		FROM
@@ -54,6 +54,54 @@
 			user_id = #{userId} and top_yn='Y'
 	</select>
 	
+	<!-- 사용자 스크랩 코디 리스트 -->
+	<select id="scrapCoordiList" resultType="kr.or.iei.myPage.model.vo.ScrapCoordiList">
+		SELECT
+		    coordi_scrap.coordi_scrap_no as coordiScrapNo,
+		    coordi_scrap.coordi_no as CoordiNo,
+		    coordi.user_id as coordiUserId,
+		    coordi_img.filepath as coordiFilepath,
+		    member_img.filepath as profileFilepath,
+		    member.nickname as coordiNickname
+		FROM
+		    coordi_scrap
+		        left join coordi on (coordi_scrap.coordi_no = coordi.coordi_no)
+		        left join coordi_img on (coordi_scrap.coordi_no = coordi_img.coordi_no)
+		        left join member_img on (coordi.user_id = member_img.user_id)
+		        left join member on (coordi.user_id = member.user_id)
+		WHERE
+			coordi_scrap.user_id = #{userId}
+		    AND
+		    coordi_img.top_yn = 'Y'
+		    AND
+		    coordi.del_yn='N'
+		ORDER BY
+			coordiScrapNo DESC
+	</select>
 	
+	<!-- 사용자 스크랩 잇템 리스트 -->
+	<select id="scrapItTemList" resultType="kr.or.iei.myPage.model.vo.ScrapItTemList">
+		SELECT
+		    item_scrap.item_scrap_no as itTemScrapNo,
+		    item_scrap.it_itemno as itTemNo,
+		    it_item.user_id as itTemUserId,
+		    it_img.filepath as itTemFilepath,
+		    member_img.filepath as profileFilepath,
+		    member.nickname as itTemNickname
+		FROM
+		    item_scrap
+		        left join it_item on (item_scrap.it_itemno = it_item.it_itemno)
+		        left join it_img on (item_scrap.it_itemno = it_img.it_itemno)
+		        left join member_img on (it_item.user_id = member_img.user_id)
+		        left join member on (it_item.user_id = member.user_id)
+		WHERE
+			item_scrap.user_id = #{userId}
+		    AND
+		    it_img.top_yn = 'Y'
+		    AND
+		    it_item.del_yn='N'
+		ORDER BY
+			itTemScrapNo DESC
+	</select>
 	
 </mapper>

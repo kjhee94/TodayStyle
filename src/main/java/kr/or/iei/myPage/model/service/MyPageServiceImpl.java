@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import kr.or.iei.myPage.model.dao.MyPageDAO;
 import kr.or.iei.myPage.model.vo.MyCoordiList;
 import kr.or.iei.myPage.model.vo.MyItTemList;
+import kr.or.iei.myPage.model.vo.ScrapCoordiList;
+import kr.or.iei.myPage.model.vo.ScrapItTemList;
 
 @Service
 public class MyPageServiceImpl implements MyPageService{
@@ -43,6 +45,18 @@ public class MyPageServiceImpl implements MyPageService{
 	public ArrayList<MyItTemList> myItTemList(String userId) {
 
 		return mpDAO.myItTemList(userId);
+	}
+
+	@Override
+	public ArrayList<ScrapCoordiList> scrapCoordiList(String userId) {
+
+		return mpDAO.scrapCoordiList(userId);
+	}
+
+	@Override
+	public ArrayList<ScrapItTemList> scrapItTemList(String userId) {
+
+		return mpDAO.scrapItTemList(userId);
 	}
 
 }
