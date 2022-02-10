@@ -335,17 +335,33 @@ public class AdminController {
 		return mav;
 	}
 	
-	
-	
-	
-	
-	
-	
 	@RequestMapping(value = "/admin/adminCoordi.do")
-	public String adminCoordi() {
+	public ModelAndView adminCoordi(HttpServletRequest request, ModelAndView mav) {
 		
-		return "admin/adminCoordi";
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		HashMap<String, Object> map = aService.selectAllMember(currentPage);
+		
+		mav.addObject("map", map);
+		mav.setViewName("admin/adminMember");
+		
+		return mav;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/admin/adminCoordiComment.do")
 	public String adminCoordiComment() {

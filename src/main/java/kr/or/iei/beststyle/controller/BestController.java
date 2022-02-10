@@ -15,8 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.or.iei.beststyle.model.service.BestService;
 import kr.or.iei.beststyle.model.vo.Beststyle;
 import kr.or.iei.member.model.vo.Member;
-import kr.or.iei.myPage.model.service.MemberSettingService;
-import kr.or.iei.myPage.model.vo.ProfileImg;
 
 @Controller
 public class BestController {
