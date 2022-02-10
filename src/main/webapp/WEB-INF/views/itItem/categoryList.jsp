@@ -6,18 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+<link rel="stylesheet" href="/resources/css/itItem/itItemList.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="/resources/common/common.css">
-<link rel="stylesheet" href="/resources/css/coordi/coordiList.css">
 <script src="/resources/common/common.js"></script>
-<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 </head>
 <body>
-		<div id="coordiListNumArea">코디 전체<span>${list.size()}개</span></div>
+	<div id="itItemListNumArea">잇템 전체 <span>${list.size()}개</span></div>
 				<div class="list-top">
-					<div id="coordiListFilterArea">
+					<div id="itItemListFilterArea">
 						<select id="filter">
 							<c:choose>
 								<c:when test="${filter eq '최신순' }">
@@ -39,17 +39,17 @@
 						</select>
 						<i class="fas fa-filter"></i>
 					</div>
+					
 					<script>
 					var filter="최신순";
 						$('#filter').change(function(){
 							var filter=$('#filter option:selected').text();
-							console.log(filter);
 							$.ajax({
-								url:"/coordi/categoryCoordiList.do",
-	    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter},
+								url:"/itItem/categoryItItemList.do",
+	    	                	data:{item:item,filter:filter},
 	    	                	type:"get",
 	    	                	success:function (result){
-			                		$('#coordiListArea').html(result);
+			                		$('#itItemListArea').html(result);
 			                	},
 	    	                	error:function(){
 	    	                		console.log("통신실패");
@@ -67,63 +67,68 @@
 					</div>
 				</div>
 				
-				<div id="coordiListImgArea">
-					<div class="grid-sizer"></div>
-					<div id="coordiListWrap">
-		<c:forEach items="${requestScope.list}" var="coordi" varStatus="i">
-					<div class="coordiImgArea">
-						<a href="/coordi/coordiPost.do">
-							<img class="coordiImg" src="${coordi.filePath}">
-						</a>	
-							<div id="${coordi.coordiNo}" class="likeScrapArea">
-								<img class="like" src="/resources/images/icon/heart_wf.png"> 
-								<img class="scrap" src="/resources/images/icon/saved_wf.png">
-							</div>
-							
-							<div class="nickNameArea">
-								<div class="profileArea">
-									<div class="profile">
-										<a href=""><img src="${coordi.profileFilePath}" /></a>
-									</div>
+				<div id="itItemImgArea">
+				<c:forEach items="${list }" var="itItem" varStatus="i">
+					<div class="itItemImgWrap">
+						
+							<div class="itItemImgArea">
+								<a href="/coordi/ItPost.do">
+								<img class="itItemImg" src="${itItem.filePath}">
+								</a>
+								<div id="${itItem.itItemNo}" class="likeScrapArea">
+									<img class="like" src="/resources/images/icon/heart_w.png"> 
+									<img class="scrap" src="/resources/images/icon/saved_w.png">
 								</div>
-								<span class="nickName">${coordi.nickName}</span>
+							</div>
+							<div class="itItemInfoArea">
+								<div class="itItemInfoCategory"><span>${itItem.itemName}</span><span>${itItem.itItemName }</span></div>
+								<div class="itItemInfoTitle">${itItem.itItemTitle }</div>
+								<div class="nickNameArea">
+									<div class="profileArea">
+										<div class="profile">
+											<a href=""><img src="${itItem.profileFilePath }" /></a>
+										</div>
+									</div>
+									<span class="nickName">${itItem.nickName }</span>
+								</div>
 							</div>
 						
 					</div>
-		</c:forEach>
-		</div>
+				</c:forEach>
 					
-				</div>
-		<script>
-		var likeList=new Array();
-		var scrapList=new Array();
-		<c:forEach items="${requestScope.likeList}" var="coordiNo" varStatus="i">
-			likeList.push(${coordiNo});
-		</c:forEach>
-		for(var i=0;i<likeList.length;i++){
-			$('#'+likeList[i]).children().eq(0).attr("src","/resources/images/icon/heart_on.png");
-			
-		};
-		<c:forEach items="${requestScope.scrapList}" var="coordiNo" varStatus="i">
-		scrapList.push(${coordiNo});
-		</c:forEach>
-		for(var i=0;i<scrapList.length;i++){
-			$('#'+scrapList[i]).children().eq(1).attr("src","/resources/images/icon/saved_on.png");
-			
-		};
-		</script>
-		<script>
+				
+		</div>
+			<script>
+				var likeList=new Array();
+				var scrapList=new Array();
+				<c:forEach items="${likeList}" var="itItemNo" varStatus="i">
+					likeList.push(${itItemNo});
+				</c:forEach>
+				for(var i=0;i<likeList.length;i++){
+					$('#'+likeList[i]).children().eq(0).attr("src","/resources/images/icon/heart_on.png");
+					
+				};
+				<c:forEach items="${scrapList}" var="itItemNo" varStatus="i">
+				scrapList.push(${itItemNo});
+				</c:forEach>
+				for(var i=0;i<scrapList.length;i++){
+					$('#'+scrapList[i]).children().eq(1).attr("src","/resources/images/icon/saved_on.png");
+					
+				};
+	</script>
+	<script>
 		$('.categoryName').click(function(){
 			$(this).next().slideToggle();
-		});
-	
+		})
+
 		$('.like').click(function() {
 			if ($(this).attr('src') === "/resources/images/icon/heart_on.png") {
-				var coordiNo=$(this).parent().attr('id');	
+				var itItemNo=$(this).parent().attr('id');
+				console.log(itItemNo);
 				$(this).attr('src', "/resources/images/icon/heart_wf.png");
 				$.ajax({
-					url:"/coordi/unlikeCoordi.do",
-                	data:{coordiNo:coordiNo},
+					url:"/itItem/unlikeItItem.do",
+                	data:{itItemNo:itItemNo},
                 	type:"get",
                 	success:function (){
                 		
@@ -134,11 +139,11 @@
 					
 				});
 			} else {
-				var coordiNo=$(this).parent().attr('id');			
+				var itItemNo=$(this).parent().attr('id');			
 				$(this).attr('src', "/resources/images/icon/heart_on.png");
 				$.ajax({
-					url:"/coordi/likeCoordi.do",
-                	data:{coordiNo:coordiNo},
+					url:"/itItem/likeItItem.do",
+                	data:{itItemNo:itItemNo},
                 	type:"get",
                 	success:function (){
                 		
@@ -152,11 +157,11 @@
 		});
 		$('.scrap').click(function() {
 			if ($(this).attr('src') === "/resources/images/icon/saved_on.png") {
-				var coordiNo=$(this).parent().attr('id');
+				var itItemNo=$(this).parent().attr('id');
 				$(this).attr('src', "/resources/images/icon/saved_wf.png");
 				$.ajax({
-					url:"/coordi/unscrapCoordi.do",
-                	data:{coordiNo:coordiNo},
+					url:"/itItem/unscrapItItem.do",
+                	data:{itItemNo:itItemNo},
                 	type:"get",
                 	success:function (){
                 		
@@ -167,36 +172,42 @@
 					
 				});
 			} else {
-				var coordiNo=$(this).parent().attr('id');
+				var itItemNo=$(this).parent().attr('id');
 				$(this).attr('src', "/resources/images/icon/saved_on.png");
 				$.ajax({
-					url:"/coordi/scrapCoordi.do",
-                	data:{coordiNo:coordiNo},
+					url:"/itItem/scrapItItem.do",
+                	data:{itItemNo:itItemNo},
                 	type:"get",
                 	success:function (){
                 		
                 	},
                 	error:function(){
+                		
                 		location.replace('/member/loginPage.do');
                 	}
 					
 				});
 			}
 		});
-		$('.coordiImg').hover(function(){
+		$('.categoryBtnImg').click(function() {
+			if ($(this).attr('src') === "/resources/images/icon/up.png") {
+				$(this).attr('src', "/resources/images/icon/down.png");
+			} else {
+				$(this).attr('src', "/resources/images/icon/up.png");
+			}
+
+		});
+	</script>
+	<script>
+		$('.itItemImg').hover(function(){
+			
 			$(this).css('transition','all 0.2s linear');
 			$(this).css('transform','scale(1.05)');
+			
 		},function(){
 			$(this).css('transition','all 0.2s linear');
-			$(this).css('transform','scale(1)');
+			$(this).css('transform','scale(1.0)');
 		});
-		$('#coordiListImgArea').masonry({
-			// set itemSelector so .grid-sizer is not used in layout
-			itemSelector: '.coordiImgArea',
-			// use element for option
-			columnWidth: '.grid-sizer',
-			percentPosition: true
-		});
-		</script>
+	</script>
 </body>
 </html>

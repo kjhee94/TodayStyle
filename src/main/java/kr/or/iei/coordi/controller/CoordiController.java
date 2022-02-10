@@ -188,9 +188,10 @@ public class CoordiController {
 		String genders=request.getParameter("gender");
 		String temp=request.getParameter("temp");
 		String items=request.getParameter("item");
+		String filter=request.getParameter("filter");
 		HttpSession session=request.getSession();
 		Member m=(Member)session.getAttribute("member");
-		
+		System.out.println(filter);
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		if(m!=null) {
 			String userId=m.getUserId();
@@ -215,9 +216,10 @@ public class CoordiController {
 		if(temp!=null&&temp!="") {
 			map.put("temp", temp);
 		}
+		map.put("filter", filter);
 		
 		ArrayList<Coordi> list =coService.selectCategoryCoordiList(map);
-		
+		model.addAttribute("filter",filter);
 		model.addAttribute("list", list);
 		return "coordi/categoryList";
 		

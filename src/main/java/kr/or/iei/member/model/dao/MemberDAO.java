@@ -1,5 +1,6 @@
 package kr.or.iei.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -45,6 +46,12 @@ public class MemberDAO {
 
 	public int findNewPwd(HashMap<String, Object> map) {
 		return sqlSession.update("member.findNewPwd",map);
+	}
+
+	public ArrayList<Member> selectTopFollowList() {
+		ArrayList<Member> list=new ArrayList(sqlSession.selectList("member.selectTopFollowList"));
+		
+		return list;
 	}
 
 	
