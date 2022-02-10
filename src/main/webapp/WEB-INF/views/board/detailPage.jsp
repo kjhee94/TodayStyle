@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="/resources/common/header.css">
 <link rel="stylesheet" href="/resources/common/footer.css">
 <link rel="stylesheet" href="/resources/css/board/detailPage.css">
+<script src="/resources/common/common.js"></script>
 </head>
 
 <body>

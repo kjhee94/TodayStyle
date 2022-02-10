@@ -129,7 +129,7 @@ margin: 20px 0px 20px 0px;
              $('#findId').submit();
           }else{
        
-             alert("아이디 조회 실패");
+             
              return false;
           }
 	});

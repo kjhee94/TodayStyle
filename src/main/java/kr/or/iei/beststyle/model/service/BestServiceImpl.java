@@ -20,4 +20,22 @@ public class BestServiceImpl implements BestService {
 	public ArrayList<Beststyle> AllBest() {
 		return sDAO.AllBest();
 	}
+
+	@Override
+	public ArrayList<Integer> selectLikeList(String userId) {
+		ArrayList<Integer> list=sDAO.selectLikeList(userId);
+		
+		return list;
+	}
+
+	@Override
+	public ArrayList<Integer> selectScrapList(String userId) {
+		ArrayList<Integer> list =sDAO.selectScrapList(userId);
+		return list;
+	}
+
+	@Override
+	public ArrayList<Beststyle> weekBest() {
+		return sDAO.weekBest();
+	}
 }
