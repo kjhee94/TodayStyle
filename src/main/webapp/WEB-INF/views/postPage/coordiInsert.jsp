@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/common/header.css">
 <link rel="stylesheet" href="/resources/common/footer.css">
+<script src="/resources/API/talk.js"></script>
 <link rel="stylesheet" href="/resources/css/insertStyle.css?ver=1">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="/resources/js/postInsert.js"></script>
@@ -21,7 +22,7 @@
 	<div id="wrap" style="overflow:auto">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div id="content">
-	
+		<form id="insertForm" name="insertForm" method="post">
 		<div id="title">
 			<p style="font-size: 25px; color:#707070">코디작성</p>
 		</div>
@@ -36,11 +37,13 @@
                         	코디와 날씨를 연동하기 위한 정보이니 최대한 꼼꼼하게 작성해주세요<img src="/resources/images/icon/down.png" style="width:15px; height:15px; opacity:0.5; float:right">  
                     </span>
                 </label>
+                
 				<div class="info-detail">
 				    <div id="temperature">
                         <div class="subject">
                             <p>기온</p>
                          </div>
+                         
                          <select class="select">
                             <option>
                             	기온 선택             
@@ -62,16 +65,24 @@
                                <p>계절</p>
                            </div>
 	                       <a>
-	                           <div class="weather">봄</div>
+	                           <div class="weather">
+	                           	  <input type="button" value="봄"/>
+	                           </div>
 	                       </a>
 	                       <a>
-	                           <div class="weather">여름</div>  
+	                           <div class="weather">
+	                           	  <input type="button" value="여름"/>
+	                           </div>  
 	                       </a>
 	                        <a>
-	                           <div class="weather">가을</div>
+	                           <div class="weather">
+	                           	  <input type="button" value="가을"/>
+	                           </div>
 	                       </a>
 	                        <a>
-	                           <div class="weather">겨울</div>
+	                           <div class="weather">
+	                           	  <input type="button" value="겨울"/>
+	                           </div>
 	                       </a>
                      </div>
                      <div class="togglebox">
@@ -79,13 +90,19 @@
                                <p>성별</p>
                            </div>
 	                       <a>
-	                          <div class="gender">여자</div>
+	                          <div class="gender">
+	                          	<input type="button" value="여자"/>
+	                          </div>
 	                       </a>
 	                        <a>
-	                           <div class="gender">남자</div>
+	                           <div class="gender">
+	                           		<input type="button" value="남자"/>
+	                           </div>
 	                        </a>
 	                        <a>
-	                           <div class="gender">공용</div>
+	                           <div class="gender">
+	                           		<input type="button" value="공용"/>
+	                           </div>
 	                       </a>
                      </div>
                      <div id="coordi-info1">
@@ -96,21 +113,31 @@
                             <div class="select-category">
                                <div class="togglebox">
                         	   <a>
-                                 	<div class="top-btn">상의</div>
+                                 	<div class="top-btn">
+                                 		<input type="button" value="상의"/>
+                                 	</div>
  
                                </a>
                                <a>
-                                   <div class="bottom-btn">하의</div>
+                                   <div class="bottom-btn">
+                                   		<input type="button" value="하의"/>
+                                   </div>
 
                                </a>
                                <a>
-                                   <div class="outer-btn">아우터</div>
+                                   <div class="outer-btn">
+                                   		<input type="button" value="아우터"/>
+                                   </div>
                                </a>
                                <a>
-                                   <div class="shoes-btn">신발</div>
+                                   <div class="shoes-btn">
+                                   		<input type="button" value="신발"/>
+                                   </div>
                                </a>
                                <a>
-                                   <div class="acc-btn">악세사리</div>
+                                   <div class="acc-btn">
+                                   		<input type="button" value="악세사리"/>
+                                   </div>
                                </a>
                                 </div>
                             </div>					
@@ -193,7 +220,7 @@
                     
                         
                         <div class="input_wrap" onclick="onclick=document.all.file.click()">
-		                    <div style="vertical-align:middle;padding:180px 0px 180px 0px">
+		                    <div id ="pic-input" style="vertical-align:middle;padding:180px 0px 180px 0px">
 			                    <span style="color:#707070">
 			                        <span style="padding:5px"><img src="/resources/images/icon/camera.png" style="width:15px; height:15px">
 			                    </span>
@@ -231,11 +258,13 @@
 					</div>
 	            </div>
 			</div>
-			
+			</form>
 			<div id="coordi-post">
-				<button class="btn-style-mint">등록</button>
+				<input type="submit" class="btn-style-mint" value="등록"></input>
 			</div>
-   	</div>
+			
+   		</div>
+   	
    	
 	<script>
 			$('.weather').click(function(){
@@ -489,6 +518,8 @@
 				    }
 				    
 				    function preview(arr){
+				    	
+				    	var count = 1;
 				      arr.forEach(function(f){
 				        
 				        //파일명이 길면 파일명...으로 처리
@@ -508,6 +539,14 @@
 				            str += '<img src="'+e.target.result+'" title="'+f.name+'" width=100 height=100 />';
 				            str += '</li></div>';
 				            $(str).appendTo('#preview');
+				            
+				            if(count==1)
+				            {
+				            	$('#pic-input').appendTo('#preview');
+				            }
+				            count++;
+				            
+				            	
 				          } 
 				          reader.readAsDataURL(f);
 				        }else{
@@ -518,10 +557,16 @@
 				    }
 				  });
 
+			 
+
 	</script>
+	
+	<!-- Channel Plugin Scripts -->
+
+<!-- End Channel Plugin -->
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 	</div>
 
 </body>
-</html>
+</html>-
