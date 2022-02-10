@@ -10,7 +10,7 @@ public class FAQ {
 	private String userId;
 	private Date regdate;
 	private char endYN;
-	
+	private String userName;
 	
 	
 	
@@ -75,7 +75,12 @@ public class FAQ {
 	public void setEndYN(char endYN) {
 		this.endYN = endYN;
 	}
-	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	
 	
 	

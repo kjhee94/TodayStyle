@@ -17,4 +17,28 @@ public interface AdminService {
 
 	HashMap<String, Object> selectSearchMember(int currentPage, String type, String keyword);
 
+	HashMap<String, Object> selectAllNotice(int currentPage);
+
+	int updateNoticeOneEndYNChange(int noticeNo, char endYN);
+
+	int updateNoticeCheckedEndYNChange(String noticeNo);
+
+	HashMap<String, Object> selectSearchNotice(int currentPage, String type, String keyword);
+
+	int insertNotice(String title, String content);
+
+	int updateNotice(String title, String content, int noticeNo);
+
+	HashMap<String, Object> selectAllFAQ(int currentPage);
+
+	int updateFAQOneEndYNChange(int faqNo, char endYN);
+
+	int updateFAQCheckedEndYNChange(String faqNo);
+
+	HashMap<String, Object> selectSearchFAQ(int currentPage, String category, String keyword);
+
+	int insertFAQ(String category, String title, String content);
+
+	int updateFAQ(String category, String title, String content, int faqNo);
+
 }
