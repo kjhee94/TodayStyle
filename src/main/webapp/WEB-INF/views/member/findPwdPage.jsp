@@ -110,7 +110,7 @@ $("input[name='userId']").keyup(function(){
 		}
 		  var id =  $('#userId').css("border-color")=="rgb(200, 200, 200)";
 		 var email =  $('#userEmail').css("border-color")=="rgb(200, 200, 200)";
-		 if(name&&email){
+		 if(id&&email){
     		 $('#findPwdForm').attr("action","/member/findPwd.do");
              $('#findPwdBtn').submit();
           }else{

@@ -8,4 +8,10 @@ public interface BestService {
 
 	ArrayList<Beststyle> AllBest();
 
+	ArrayList<Integer> selectLikeList(String userId);
+
+	ArrayList<Integer> selectScrapList(String userId);
+
+	ArrayList<Beststyle> weekBest();
+
 }

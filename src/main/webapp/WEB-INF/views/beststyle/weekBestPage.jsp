@@ -30,188 +30,52 @@
 				<a href="/beststyle/bestOfbestPage.do"><li class="tab-link" data-tab="tab-2">역대 베스트</li></a>
 			</ul>
 			<div id="tab-1" class="tab-content current">
-				<span>2021.01.17 ~ 2012.01.23  기준</span>
+				<span>${requestScope.beforeWeek}~${requestScope.beforeDate } 기준</span>
 				<div class="img-coordi-area">
+				
+				<c:choose>
+						<c:when test="${!requestScope.list.isEmpty() }">
+							<c:forEach items="${requestScope.list }" var="b" varStatus="i">
+				
 					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist29.jpg">
+						<img src="${b.coordifilepath }">
 						<div class="rank">
 							<i class="fas fa-bookmark"></i>
-							<span>1</span>
+							<span>${i.count }</span>
 						</div>
 						
-						<div class="likeScrapArea">
+						<div id="${b.coordiNo}" class="likeScrapArea">
 							<img class="like" src="/resources/images/icon/heart_wf.png"> 
 							<img class="scrap" src="/resources/images/icon/saved_wf.png">
 						</div>
 						
 						<div class="box-nick">
 							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
+								<a href="">
+								<c:choose>
+                                    <c:when test="${b.profilefilepath!=null}">
+                                        <img src="${b.profilefilepath}" id="profileImg">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="/resources/images/default/profile.jpg" id="profileImg">
+                                    </c:otherwise>
+                               </c:choose>
+								</a>
 							</div>
-							<span class="nickName">닉네임</span>
+							<span class="nickName">${b.nickname }</span>
 						</div>
-					</div>
+					</div>	
+					</c:forEach>
+					</c:when>
+					</c:choose>
 					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist1.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>2</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
-					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist2.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>3</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
-					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist3.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>4</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
-					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist10.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>5</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
-					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist5.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>6</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
-					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist6.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>7</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
-					
-					<div class="img-coordi-box">
-						<img src="/resources/images/coordi/stylelist7.jpg">
-						<div class="rank">
-							<i class="fas fa-bookmark"></i>
-							<span>8</span>
-						</div>
-						
-						<div class="likeScrapArea">
-							<img class="like" src="/resources/images/icon/heart_wf.png"> 
-							<img class="scrap" src="/resources/images/icon/saved_wf.png">
-						</div>
-						
-						<div class="box-nick">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="nickName">닉네임</span>
-						</div>
-					</div>
 				</div>
 			</div>
 	
 	
 			
-
+			<%--
 			<script>
-				$(document).ready(function(){
-					$("ul.tabs li").click(function() {
-						var tabId = $(this).attr("data-tab");
-		
-						$("ul.tabs li").removeClass("current");
-						$(".tab-content").removeClass("current");
-		
-						$(this).addClass("current");
-						$("#" + tabId).addClass("current");
-					})
-		
-				
-				});
-				
 				$('.like').click(function() {
 					if ($(this).attr('src') === "/resources/images/icon/heart_on.png") {
 						$(this).attr('src', "/resources/images/icon/heart_wf.png");
@@ -227,6 +91,101 @@
 					}
 				});
 			</script>
+			 --%>
+			 <script>
+		var a=${sessionScope.member.userId}
+		console.log(a);
+	</script>
+			<script>
+		var likeList=new Array();
+		var scrapList=new Array();
+		<c:forEach items="${requestScope.map.get('likeList')}" var="coordiNo" varStatus="i">
+			likeList.push(${coordiNo});
+		</c:forEach>
+		for(var i=0;i<likeList.length;i++){
+			$('#'+likeList[i]).children().eq(0).attr("src","/resources/images/icon/heart_on.png");
+			
+		};
+		<c:forEach items="${requestScope.map.get('scrapList')}" var="coordiNo" varStatus="i">
+		scrapList.push(${coordiNo});
+		</c:forEach>
+		for(var i=0;i<scrapList.length;i++){
+			$('#'+scrapList[i]).children().eq(1).attr("src","/resources/images/icon/saved_on.png");
+			
+		};
+	</script>
+	
+	<script>
+		$('.like').click(function() {
+			if ($(this).attr('src') === "/resources/images/icon/heart_on.png") {
+				var coordiNo=$(this).parent().attr('id');	
+				$(this).attr('src', "/resources/images/icon/heart_wf.png");
+				$.ajax({
+					url:"/coordi/unlikeCoordi.do",
+                	data:{coordiNo:coordiNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		console.log("통신실패");
+                	}
+					
+				});
+			} else {
+				var coordiNo=$(this).parent().attr('id');			
+				$(this).attr('src', "/resources/images/icon/heart_on.png");
+				$.ajax({
+					url:"/coordi/likeCoordi.do",
+                	data:{coordiNo:coordiNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		location.replace('/member/loginPage.do');
+                	}
+					
+				});
+			}
+		});
+		$('.scrap').click(function() {
+			if ($(this).attr('src') === "/resources/images/icon/saved_on.png") {
+				var coordiNo=$(this).parent().attr('id');
+				$(this).attr('src', "/resources/images/icon/saved_wf.png");
+				$.ajax({
+					url:"/coordi/unscrapCoordi.do",
+                	data:{coordiNo:coordiNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		console.log("통신실패");
+                	}
+					
+				});
+			} else {
+				var coordiNo=$(this).parent().attr('id');
+				$(this).attr('src', "/resources/images/icon/saved_on.png");
+				$.ajax({
+					url:"/coordi/scrapCoordi.do",
+                	data:{coordiNo:coordiNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		
+                		location.replace('/member/loginPage.do');
+                	}
+					
+				});
+			}
+		});
+		
+		
+	</script>
 		</div>
 	
 		<!-- footer -->

@@ -25,7 +25,7 @@
 									</div>
 									<div class="box-mypage-link">
 										<a href="/myPage/myStyle.do">나의 코디</a>
-										<a href="/myPage/scrap.do">스크랩북</a>
+										<a href="/myPage/scrapCoordi.do">스크랩북</a>
 										<a href="/myPage/comments.do">나의 댓글</a>
 										<a href="/myPage/setting.do">설정</a>
 										<a href="/member/logout.do">로그아웃</a>

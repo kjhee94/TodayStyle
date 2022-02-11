@@ -13,6 +13,7 @@
       FROM
          faq
           where end_yn='N'
+          order by faq_no desc
    </select>
    
    

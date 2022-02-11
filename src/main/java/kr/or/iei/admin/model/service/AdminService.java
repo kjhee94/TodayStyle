@@ -41,4 +41,8 @@ public interface AdminService {
 
 	int updateFAQ(String category, String title, String content, int faqNo);
 
+	HashMap<String, Object> selectAllCoordi(int currentPage);
+
+	int updateCoordiOneDelYNChange(int coordiNo, char delYN);
+
 }

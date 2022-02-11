@@ -43,10 +43,12 @@
 							<span>${i.count }</span>
 						</div>
 						
-						<div class="likeScrapArea">
+						
+						<div id="${b.coordiNo}" class="likeScrapArea">
 							<img class="like" src="/resources/images/icon/heart_wf.png"> 
 							<img class="scrap" src="/resources/images/icon/saved_wf.png">
 						</div>
+						
 						
 						<div class="box-nick">
 							<div class="profile">
@@ -77,20 +79,7 @@
 			</div>
 
 			<script>
-				$(document).ready(function(){
-					$("ul.tabs li").click(function() {
-						var tabId = $(this).attr("data-tab");
-		
-						$("ul.tabs li").removeClass("current");
-						$(".tab-content").removeClass("current");
-		
-						$(this).addClass("current");
-						$("#" + tabId).addClass("current");
-					})
-		
-				
-				});
-				
+			<%--
 				$('.like').click(function() {
 					if ($(this).attr('src') === "/resources/images/icon/heart_on.png") {
 						$(this).attr('src', "/resources/images/icon/heart_wf.png");
@@ -105,11 +94,107 @@
 						$(this).attr('src', "/resources/images/icon/saved_on.png");
 					}
 				});
+				--%>
 			</script>
+			<script>
+		var a=${sessionScope.member.userId}
+		console.log(a);
+	</script>
+			<script>
+		var likeList=new Array();
+		var scrapList=new Array();
+		<c:forEach items="${requestScope.map.get('likeList')}" var="coordiNo" varStatus="i">
+			likeList.push(${coordiNo});
+		</c:forEach>
+		for(var i=0;i<likeList.length;i++){
+			$('#'+likeList[i]).children().eq(0).attr("src","/resources/images/icon/heart_on.png");
+			
+		};
+		<c:forEach items="${requestScope.map.get('scrapList')}" var="coordiNo" varStatus="i">
+		scrapList.push(${coordiNo});
+		</c:forEach>
+		for(var i=0;i<scrapList.length;i++){
+			$('#'+scrapList[i]).children().eq(1).attr("src","/resources/images/icon/saved_on.png");
+			
+		};
+	</script>
+	
+	<script>
+		$('.like').click(function() {
+			if ($(this).attr('src') === "/resources/images/icon/heart_on.png") {
+				var coordiNo=$(this).parent().attr('id');	
+				$(this).attr('src', "/resources/images/icon/heart_wf.png");
+				$.ajax({
+					url:"/coordi/unlikeCoordi.do",
+                	data:{coordiNo:coordiNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		console.log("통신실패");
+                	}
+					
+				});
+			} else {
+				var coordiNo=$(this).parent().attr('id');			
+				$(this).attr('src', "/resources/images/icon/heart_on.png");
+				$.ajax({
+					url:"/coordi/likeCoordi.do",
+                	data:{coordiNo:coordiNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		location.replace('/member/loginPage.do');
+                	}
+					
+				});
+			}
+		});
+		$('.scrap').click(function() {
+			if ($(this).attr('src') === "/resources/images/icon/saved_on.png") {
+				var coordiNo=$(this).parent().attr('id');
+				$(this).attr('src', "/resources/images/icon/saved_wf.png");
+				$.ajax({
+					url:"/coordi/unscrapCoordi.do",
+                	data:{coordiNo:coordiNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		console.log("통신실패");
+                	}
+					
+				});
+			} else {
+				var coordiNo=$(this).parent().attr('id');
+				$(this).attr('src', "/resources/images/icon/saved_on.png");
+				$.ajax({
+					url:"/coordi/scrapCoordi.do",
+                	data:{coordiNo:coordiNo},
+                	type:"get",
+                	success:function (){
+                		
+                	},
+                	error:function(){
+                		
+                		location.replace('/member/loginPage.do');
+                	}
+					
+				});
+			}
+		});
+		
+		
+	</script>
 		</div>
 	
 		<!-- footer -->
 		<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+		
 	</div>
 </body>
 </html>

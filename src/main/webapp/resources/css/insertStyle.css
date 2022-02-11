@@ -210,7 +210,7 @@ input[id="info-check"]:checked + label + div{
 .btn-style-mint{
 	width:120px;
 }
-.togglebox>a div{
+.togglebox>a input[type="button"]{
     border-radius: 20px;
     border: solid 1px #C8C8C8;
     font-size:16px;

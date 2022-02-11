@@ -347,14 +347,28 @@ public class AdminController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
-		HashMap<String, Object> map = aService.selectAllMember(currentPage);
+		HashMap<String, Object> map = aService.selectAllCoordi(currentPage);
 		
 		mav.addObject("map", map);
-		mav.setViewName("admin/adminMember");
+		mav.setViewName("admin/adminCoordi");
 		
 		return mav;
 	}
 	
+	@RequestMapping(value = "/admin/coordiOneDelYNChange.do")
+	public void coordiOneDelYNChange(@RequestParam int coordiNo, @RequestParam char delYN, HttpServletResponse response) throws IOException {
+		
+		//삼항연상자
+		delYN = (delYN == 'Y')?'N':'Y';
+		
+		int result = aService.updateCoordiOneDelYNChange(coordiNo, delYN);
+		
+		if(result>0) {
+			response.getWriter().print(delYN);
+		}else {
+			response.getWriter().print(false);
+		}
+	}
 	
 	
 	

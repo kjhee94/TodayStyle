@@ -21,4 +21,19 @@ public class BestDAO {
 		return new ArrayList<Beststyle> (sqlSession.selectList("beststyle.AllBest"));
 	}
 
+	public ArrayList<Integer> selectLikeList(String userId) {
+		ArrayList<Integer> list=new ArrayList(sqlSession.selectList("beststyle.selectLikeList",userId));
+		return list;
+	}
+
+	public ArrayList<Integer> selectScrapList(String userId) {
+		ArrayList<Integer> list=new ArrayList(sqlSession.selectList("beststyle.selectScrapList",userId));
+
+		return list;
+	}
+
+	public ArrayList<Beststyle> weekBest() {
+		return new ArrayList<Beststyle> (sqlSession.selectList("beststyle.weekBest"));
+	}
+
 }
