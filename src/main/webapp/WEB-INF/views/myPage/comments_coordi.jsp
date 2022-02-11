@@ -36,7 +36,14 @@
                     <div class="contents-title">나의 댓글</div>
                     <div class="contents-num">18</div>
                 </div>
+                
+                <div id="btn-wrap">
+                	<a href = "/myPage/commentsCoordi.do"><div class="btn-style-mint btn" id="coordiBtn">코디</div></a>
+                	<a href = "/myPage/commentsItTem.do"><div class="btn-style-line btn" id="ittemBtn">잇템</div></a>
+                </div>
+                <div class="space"></div>
                 <div class="line"></div>
+                
                 <div class="contents-area">
                     <div class="contents-wrapping">
                     	<div class="contents-outLine">
@@ -54,7 +61,9 @@
                         <div class="btn-style-mint deleteBtn"><a>삭제</a></div>
 					</div>
                 </div>
+                
                 <div class="line"></div>
+                
                 <div class="contents-area">
                     <div class="contents-wrapping">
                     	<div class="contents-outLine">
@@ -72,7 +81,7 @@
                         <div class="btn-style-mint deleteBtn"><a>삭제</a></div>
 					</div>
                 </div>
-                <div id="space"></div>
+                <div class="space"></div>
 
             </div>
 
@@ -83,7 +92,8 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
 
 
 </body>

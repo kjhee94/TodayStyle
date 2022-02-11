@@ -75,6 +75,8 @@
 		    coordi_img.top_yn = 'Y'
 		    AND
 		    coordi.del_yn='N'
+		    AND
+		    member.end_yn = 'N'
 		ORDER BY
 			coordiScrapNo DESC
 	</select>
@@ -100,8 +102,62 @@
 		    it_img.top_yn = 'Y'
 		    AND
 		    it_item.del_yn='N'
+		    AND
+		    member.end_yn = 'N'
 		ORDER BY
 			itTemScrapNo DESC
 	</select>
+	
+	<!-- 팔로워 리스트 -->
+	<select id="followerList" resultType="kr.or.iei.myPage.model.vo.Follow">
+		SELECT
+		    member.user_id as userId,
+    		member.nickname as nickname,
+    		member_img.filepath as filepath
+		FROM
+		    follow
+		        left join member on (member.user_id = follow.user_id)
+		        left join member_img on (member_img.user_id = follow.user_id)
+		WHERE
+			follow.following_id = #{userId}
+		ORDER BY
+			nickname
+	</select>
+	
+	<!-- 팔로잉 리스트 -->
+	<select id="followingList" resultType="kr.or.iei.myPage.model.vo.Follow">
+		SELECT
+		    member.user_id as userId,
+    		member.nickname as nickname,
+    		member_img.filepath as filepath
+		FROM
+		    follow
+		        left join member on (member.user_id = follow.following_id)
+		        left join member_img on (member_img.user_id = follow.following_id)
+		WHERE
+			follow.user_id = #{userId}
+		ORDER BY
+			nickname
+	</select>
+	
+	<!-- unFollow -->
+	<delete id="unFollow" parameterType="hashmap">
+		DELETE
+		FROM
+			follow
+		WHERE
+			user_id = #{userId}
+			AND
+			following_id = #{unfollowUserId}
+			
+	</delete>
+	<!-- follow -->
+	<insert id="follow" parameterType="hashmap">
+		INSERT INTO
+			follow
+		VALUES
+			(#{userId},#{followUserId})
+			
+	</insert>
 	
 </mapper>

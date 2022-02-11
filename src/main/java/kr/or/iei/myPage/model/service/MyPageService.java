@@ -1,11 +1,13 @@
 package kr.or.iei.myPage.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import kr.or.iei.myPage.model.vo.MyCoordiList;
 import kr.or.iei.myPage.model.vo.MyItTemList;
 import kr.or.iei.myPage.model.vo.ScrapCoordiList;
 import kr.or.iei.myPage.model.vo.ScrapItTemList;
+import kr.or.iei.myPage.model.vo.Follow;
 
 public interface MyPageService {
 
@@ -28,6 +30,17 @@ public interface MyPageService {
 	
 	// scrap itTem
 	ArrayList<ScrapItTemList> scrapItTemList(String userId);
+
+	// follower list
+	ArrayList<Follow> followerList(String userId);
+
+	// following list
+	ArrayList<Follow> followingList(String userId);
+
+	//unFollow
+	int unFollow(HashMap<String, Object> map);
+	//follow
+	int follow(HashMap<String, Object> map);
 
 
 }

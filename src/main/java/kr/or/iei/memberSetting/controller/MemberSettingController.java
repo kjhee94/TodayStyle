@@ -45,11 +45,6 @@ public class MemberSettingController {
 
 	
 
-	@RequestMapping(value = "/myPage/comments.do")
-	public String commentsPage() {
-		return "myPage/comments";
-	}
-
 	// 설정 들어가면 비밀번호 확인 -> 확인 되었다면 회원 정보 수정 페이지로 이동
 	@RequestMapping(value = "/myPage/setting.do")
 	public String setttingPage(HttpServletRequest request, @SessionAttribute Member member, HttpSession session,

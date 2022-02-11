@@ -40,8 +40,8 @@
                     <div class="contents-num">${requestScope.ScrapItTemList.size() }</div>
                 </div>
                 <div id="btn-wrap">
-                	<a href = "/myPage/scrapCoordi.do"><div class="btn-style-mint btn" id="coordiBtn">코디</div></a>
-                	<a href = "/myPage/scrapItTem.do"><div class="btn-style-line btn" id="ittemBtn">잇템</div></a>
+                	<a href = "/myPage/scrapCoordi.do"><div class="btn-style-line btn" id="coordiBtn">코디</div></a>
+                	<a href = "/myPage/scrapItTem.do"><div class="btn-style-mint btn" id="ittemBtn">잇템</div></a>
                 </div>
                 <div class="contents-area">
                 
@@ -84,7 +84,8 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
 
    
 </div>

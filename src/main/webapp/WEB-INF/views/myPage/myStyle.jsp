@@ -47,7 +47,7 @@
                 <c:choose>
                 	<c:when test="${!requestScope.myCoordiList.isEmpty() }">
                 		<div class="contents-area">
-                			<c:forEach items="${requestScope.myCoordiList }" var="mcList" varStatus="i">
+                			<c:forEach items="${requestScope.myCoordiList }" var="mcList" varStatus="i" begin="0" end="7">
                 				<a>
 			                        <div class="contents"><img src="${mcList.filepath }"></div>
 			                    </a>
@@ -79,7 +79,7 @@
                 <c:choose>
                 	<c:when test="${!requestScope.myItTemList.isEmpty() }">
                 		<div class="contents-area">
-                			<c:forEach items="${requestScope.myItTemList }" var="mITList" varStatus="i">
+                			<c:forEach items="${requestScope.myItTemList }" var="mITList" varStatus="i" begin="0" end="7">
                 				<a>
 			                        <div class="contents"><img src="${mITList.filepath }"></div>
 			                    </a>
@@ -104,7 +104,8 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
     
 </div>
 

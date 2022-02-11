@@ -1,6 +1,7 @@
 package kr.or.iei.myPage.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import kr.or.iei.myPage.model.vo.MyCoordiList;
 import kr.or.iei.myPage.model.vo.MyItTemList;
 import kr.or.iei.myPage.model.vo.ScrapCoordiList;
 import kr.or.iei.myPage.model.vo.ScrapItTemList;
+import kr.or.iei.myPage.model.vo.Follow;
 
 @Repository
 public class MyPageDAO {
@@ -55,6 +57,26 @@ public class MyPageDAO {
 	public ArrayList<ScrapItTemList> scrapItTemList(String userId) {
 
 		return new ArrayList<ScrapItTemList>(sqlSession.selectList("myPage.scrapItTemList", userId));
+	}
+
+	public ArrayList<Follow> followerList(String userId) {
+		
+		return new ArrayList<Follow>(sqlSession.selectList("myPage.followerList", userId));
+	}
+
+	public ArrayList<Follow> followingList(String userId) {
+
+		return new ArrayList<Follow>(sqlSession.selectList("myPage.followingList", userId));
+	}
+
+	public int unFollow(HashMap<String, Object> map) {
+		
+		return (sqlSession.delete("myPage.unFollow", map));
+	}
+
+	public int follow(HashMap<String, Object> map) {
+
+		return (sqlSession.insert("myPage.follow", map));
 	}
 
 
