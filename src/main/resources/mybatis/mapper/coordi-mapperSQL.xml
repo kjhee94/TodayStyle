@@ -63,7 +63,14 @@
 			on 
 				(coordi_img.coordi_no =s.coordi_no)	
 		where 
-			top_YN='Y' and coordi.del_yn='N' and heart>0 and scrap>0
+			top_YN='Y' and coordi.del_yn='N' 
+		<if test="gender!=null">
+			and coordi.gender in
+			<foreach item="item" index="index" collection="gender"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
 		<if test="season!=null">
 			and season in
 			<foreach item="item" index="index" collection="season"
@@ -71,13 +78,7 @@
 				#{item}
 			</foreach>
 		</if>
-		<if test="gender!=null">
-			and gender in
-			<foreach item="item" index="index" collection="season"
-				open="(" separator="," close=")">
-				#{item}
-			</foreach>
-		</if>
+			
 		<!-- <if test="items!=null">
 			and gender in
 			<foreach item="item" index="index" collection="season"
@@ -88,15 +89,18 @@
 		<if test="temp!=null">
 			and temperature =#{temp} 
 		</if>
+		<if test="keyword!=null">
+			and hashtag like '%'||#{keyword}||'%'
+		</if>
 		<choose>
 			<when test="filter=='최신순'">
 				order by reg_Date desc
 			</when>
 			<when test="filter=='좋아요순'">
-				order by heart desc
+				and heart>0 order by heart desc
 			</when>
 			<otherwise>
-				order by scrap desc
+				 and scrap>0 order by scrap desc
 			</otherwise>
 		</choose>
  	</select>
@@ -136,4 +140,21 @@
  	<insert id="insertScrapCoordi">
  		insert into coordi_scrap values(COORDI_SCRAP_SEQ.NEXTVAL,#{userId},#{coordiNo})
  	</insert>
+ 	<select id="selectTopCoordiList" resultType="coordi">
+ 		select 
+		       coordi_img.coordi_no as coordiNo,
+			   coordi_img.filepath as filePath,
+			   coordi.user_Id as userId,
+			   coordi_content as coordiContent,
+			   coordi.gender,
+			   hashtag as hashTag,
+			   coordi.del_yn as delYN
+		from 
+			coordi_img
+		left join 
+			coordi on (coordi_img.coordi_no=coordi.coordi_no)
+		where
+			user_Id=#{userId} and top_YN='Y' and coordi.del_yn='N'
+		
+ 	</select>
 </mapper>

@@ -46,7 +46,7 @@
 							var filter=$('#filter option:selected').text();
 							$.ajax({
 								url:"/itItem/categoryItItemList.do",
-	    	                	data:{item:item,filter:filter},
+	    	                	data:{item:item,filter:filter,keyword:keyword},
 	    	                	type:"get",
 	    	                	success:function (result){
 			                		$('#itItemListArea').html(result);
@@ -60,12 +60,28 @@
 						})
 					</script>
 					<div class="box-search">
-						<form action="">
 							<input class="search-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
-							<button type="submit"><i class="fas fa-search"></i></button>
-						</form>
+							<button id="searchBtn" type="button" ><i class="fas fa-search" style="cursor:pointer;"></i></button>
 					</div>
 				</div>
+				<script>
+				var keyword;
+					$('#searchBtn').click(function(){
+						keyword =$('.search-style').val();
+						$.ajax({
+							url:"/coordi/categoryCoordiList.do",
+    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter,keyword:keyword},
+    	                	type:"get",
+    	                	success:function (result){
+		                		$('#coordiListArea').html(result);
+		                	},
+    	                	error:function(){
+    	                		console.log("통신실패");
+    	                	}
+							
+						});
+					})
+				</script>
 				
 				<div id="itItemImgArea">
 				<c:forEach items="${list }" var="itItem" varStatus="i">
@@ -86,7 +102,14 @@
 								<div class="nickNameArea">
 									<div class="profileArea">
 										<div class="profile">
-											<a href=""><img src="${itItem.profileFilePath }" /></a>
+											<c:choose>
+												<c:when test="${itItem.profileFilePath!=null}">
+			                                       	<a href=""><img src="${itItem.profileFilePath}" id="profileImg"></a>
+				                                </c:when>
+				                                <c:otherwise>
+				                                    <a href=""><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+				      	                        </c:otherwise>
+											</c:choose>
 										</div>
 									</div>
 									<span class="nickName">${itItem.nickName }</span>

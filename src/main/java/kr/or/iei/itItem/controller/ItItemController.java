@@ -101,6 +101,7 @@ public class ItItemController {
 	public String categoryItItemList(HttpServletRequest request,Model model) {
 		String item=request.getParameter("item");
 		String filter=request.getParameter("filter");
+		String keyword=request.getParameter("keyword");
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		HttpSession session=request.getSession();
 		Member m=(Member)session.getAttribute("member");
@@ -117,8 +118,10 @@ public class ItItemController {
 			String [] itemArray=item.split("/");
 			map.put("item", itemArray);
 		}
+		if(keyword!=null&&keyword!="") {
+			map.put("keyword",keyword);
+		}
 		map.put("filter", filter);
-		System.out.println(map.get("filter"));
 		ArrayList<ItItem> list=itService.selectCategoryItItemList(map);
 		model.addAttribute("filter",filter);
 		model.addAttribute("list",list);

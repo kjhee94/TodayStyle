@@ -28,7 +28,6 @@ public class CoordiDAO {
 
 	public ArrayList<Coordi> selectCategoryCoordiList(HashMap<String, Object> map) {
 		ArrayList<Coordi> list=new ArrayList(sqlSession.selectList("coordi.selectCategoryList",map));
-		
 		return list;
 	}
 
@@ -60,6 +59,11 @@ public class CoordiDAO {
 	public int insertScrapCoordi(HashMap<String, Object> map) {
 		int result=sqlSession.insert("coordi.insertScrapCoordi",map);
 		return result;
+	}
+
+	public ArrayList<Coordi> selectTopCoordiList(String userId) {
+		ArrayList<Coordi> list=new ArrayList(sqlSession.selectList("coordi.selectTopCoordiList",userId));
+		return list;
 	}
 
 }

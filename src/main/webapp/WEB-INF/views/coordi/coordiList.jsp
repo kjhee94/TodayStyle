@@ -90,7 +90,7 @@
 					</div>
 					
 				</div>
-				<script>
+				<!-- <script>
 					$('.tempBox').click(function(){
 						var temp=$(this).text();
 						console.log(temp);
@@ -149,8 +149,8 @@
 					});
 						
 					
-				</script>
-				<div class="category" id="itemArea">
+				</script> -->
+				<!-- <div class="category" id="itemArea">
 					<div class="categoryName">카테고리 분류
 						<i class="fas fa-chevron-down"></i>
 					</div>
@@ -172,7 +172,7 @@
 							<label for="item-box4">슬랙스</label>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<script>
 						var genders= new Array();
@@ -199,7 +199,7 @@
 							
 							$.ajax({
 			                	url:"/coordi/categoryCoordiList.do",
-			                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter},
+			                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter,keyword:keyword},
 			                	type:"get",
 			                	success:function (result){
 			                		$('#coordiListArea').html(result);
@@ -220,7 +220,7 @@
 							item="";
 							$.ajax({
 			                	url:"/coordi/categoryCoordiList.do",
-			                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter},
+			                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter,keyword:keyword},
 			                	type:"get",
 			                	success:function (result){
 			                		$('#coordiListArea').html(result);
@@ -246,10 +246,9 @@
 								gender=genders.join("/");
 							}
 							
-							
 							$.ajax({
 			                	url:"/coordi/categoryCoordiList.do",
-			                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter},
+			                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter,keyword:keyword},
 			                	type:"get",
 			                	success:function (result){
 			                		$('#coordiListArea').html(result);
@@ -277,7 +276,7 @@
 							
 							$.ajax({
 	    	                	url:"/coordi/categoryCoordiList.do",
-	    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter},
+	    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter,keyword:keyword},
 	    	                	type:"get",
 	    	                	success:function (result){
 			                		$('#coordiListArea').html(result);
@@ -307,7 +306,7 @@
 							var filter=$('#filter option:selected').text();
 							$.ajax({
 								url:"/coordi/categoryCoordiList.do",
-	    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter},
+	    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter,keyword:keyword},
 	    	                	type:"get",
 	    	                	success:function (result){
 			                		$('#coordiListArea').html(result);
@@ -321,13 +320,28 @@
 						})
 					</script>
 					<div class="box-search">
-						<form action="">
 							<input class="search-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
-							<button type="submit"><i class="fas fa-search"></i></button>
-						</form>
+							<button id="searchBtn" type="button" ><i class="fas fa-search" style="cursor:pointer;"></i></button>
 					</div>
 				</div>
-				
+				<script>
+				var keyword;
+					$('#searchBtn').click(function(){
+						keyword =$('.search-style').val();
+						$.ajax({
+							url:"/coordi/categoryCoordiList.do",
+    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter,keyword:keyword},
+    	                	type:"get",
+    	                	success:function (result){
+		                		$('#coordiListArea').html(result);
+		                	},
+    	                	error:function(){
+    	                		console.log("통신실패");
+    	                	}
+							
+						});
+					})
+				</script>
 				<div id="coordiListImgArea">
 					<div class="grid-sizer"></div>
 					<div id="coordiListWrap">
@@ -347,7 +361,14 @@
 							<div class="nickNameArea">
 								<div class="profileArea">
 									<div class="profile">
-										<a href=""><img src="${coordi.profileFilePath}" /></a>
+										<c:choose>
+                                    	<c:when test="${coordi.profileFilePath!=null}">
+                                       		<a href=""><img src="${coordi.profileFilePath}" id="profileImg"></a>
+	                                   	</c:when>
+	                                    <c:otherwise>
+	                                        <a href=""><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+	                                   	 </c:otherwise>
+	                               		</c:choose>
 									</div>
 								</div>
 								<span class="nickName">${coordi.nickName}</span>
