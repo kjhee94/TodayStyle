@@ -242,7 +242,7 @@
 	            <div id="insert-picture">
                    
                 	<label for="uploadFile">
-                        <div class="input_wrap" onclick="onclick=document.all.file.click()">
+                        <div id="input_wrap" class="input_wrap" onclick="onclick=document.all.file.click()">
 		                    <div style="vertical-align:middle;padding:180px 0px 180px 0px">
 			                    <span style="color:#707070">
 			                        <span style="padding:5px"><img src="/resources/images/icon/camera.png" style="width:15px; height:15px">
@@ -499,6 +499,7 @@
 			
 			
 
+			//사진업로드
 			 $(document).ready(function (e){
 				    $("input[type='file']").change(function(e){
 
@@ -516,6 +517,8 @@
 				      }
 				      
 				      preview(arr);
+				      
+				      readImage(this);
 				      
 				      
 				    });//file change
@@ -539,9 +542,35 @@
 				      return true;
 				    }
 				    
+				    
+				    function readImage(input){
+				    	
+				    	 var file = input.files[0];
+				    	 
+				    	
+				    	 var img = document.createElement("img");
+				    	 img.style.width="100%";
+				    	 img.style.height="100%";
+				    	
+				    	 img.src = URL.createObjectURL(file);
+				    	 
+				    	 var inputWrap = document.getElementById("input_wrap");
+				    	 inputWrap.html();
+				    	 console.log(inputWrap);
+				    	 inputWrap.appendChild(img);
+				    	 
+				    	
+				    	  
+				    	
+				    }
+				    
+				    
 				    function preview(arr){
 				    	
-				    	var count = 1;
+				    	
+				    	
+				    	
+				    	
 				      arr.forEach(function(f){
 				        
 				        //파일명이 길면 파일명...으로 처리
@@ -560,24 +589,22 @@
 				            //str += '<button type="button" class="delBtn" value="'+f.name+'" style="background: red">x</button><br>';
 				            str += '<img src="'+e.target.result+'" title="'+f.name+'" width=100 height=100 />';
 				            str += '</li></div>';
+				            $(str).appendTo('#preview');
+				         	
+				          
 				            
-				            if(count==1)
-				            {
-				            	$('#pic-input').appendTo('#preview');
-				            }
-				            count++;
 				            
-				            	
 				          } 
 				          reader.readAsDataURL(f);
 				        }else{
 				          str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=100 height=100 />';
 				          $(str).appendTo('#preview');
 				        }
+				        
+				    
 				      });//arr.forEach
 				    }
 				  });
-
 			 
 
 	</script>
