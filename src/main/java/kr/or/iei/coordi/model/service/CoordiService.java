@@ -23,5 +23,7 @@ public interface CoordiService {
 
 	int insertScrapCoordi(HashMap<String, Object> map);
 
+	ArrayList<Coordi> selectTopCoordiList(String userId);
+
 
 }

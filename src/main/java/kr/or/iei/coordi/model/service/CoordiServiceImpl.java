@@ -64,5 +64,11 @@ public class CoordiServiceImpl implements CoordiService{
 		return result;
 	}
 
+	@Override
+	public ArrayList<Coordi> selectTopCoordiList(String userId) {
+		ArrayList<Coordi> list=coDAO.selectTopCoordiList(userId);
+		return list;
+	}
+
 
 }
