@@ -63,7 +63,7 @@ public class MyPageController {
 		ArrayList<Follow> followerList = mpService.followerList(userId);
 		//System.out.println(followerList);
 		ArrayList<Follow> followingList = mpService.followingList(userId);
-		//System.out.println(followingList);
+		System.out.println(followingList);
 		
 		model.addAttribute("followerList", followerList);
 		model.addAttribute("followingList", followingList);
@@ -168,6 +168,8 @@ public class MyPageController {
 	@RequestMapping(value = "/myPage/unFollow.do")
 	public String unFollow(@RequestParam String unfollowUserId, @SessionAttribute Member member)
 	{
+		
+		System.out.println(unfollowUserId);
 		String userId = member.getUserId();
 		
 		HashMap<String, Object> map=new HashMap<String, Object>();
@@ -175,13 +177,13 @@ public class MyPageController {
 		map.put("userId", userId);
 		
 		int result=mpService.unFollow(map);
-		/*
+		
 		if(result>0) {
 			System.out.println("팔로우 취소 완료");
 		}
 		else {
 			System.out.println("팔로우 취소 실패");
-		}*/
+		}
 		
 		return "myPage/myStyle";
 	}
@@ -197,13 +199,13 @@ public class MyPageController {
 		map.put("userId", userId);
 		
 		int result=mpService.follow(map);
-		/*
+		
 		if(result>0) {
 			System.out.println("팔로우 완료");
 		}
 		else {
 			System.out.println("팔로우 실패");
-		}*/
+		}
 		
 		return "myPage/myStyle";
 	}

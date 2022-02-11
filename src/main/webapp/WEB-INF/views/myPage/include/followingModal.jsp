@@ -69,10 +69,10 @@
         // modal
         $(function() {
             $('#following-modal-btn').click(function() {
-                $('body').css('overflow', 'hidden'); // 스크롤 제어
+                //$('body').css('overflow', 'hidden'); // 스크롤 제어
 
                 var div = $('#following-modal');
-                div.css("position", "absolute");
+                div.css("position", "fixed");
                 // 모달창 열리는 위치 현재 화면의 위치로 지정
                 div.css("top", Math.max(0, (($(window).height() - div.outerHeight()) / 2) + $(window).scrollTop()) + "px");
                 div.css("left", Math.max(0, (($(window).width() - div.outerWidth()) / 2) + $(window).scrollLeft()) + "px");
@@ -85,7 +85,8 @@
                 // 모달창 닫기
                 $('#following-modal').fadeOut();
                 // 스크롤 제어 해제
-                $('body').css('overflow', 'auto');
+                //$('body').css('overflow', 'auto');
+                //location.reload();
             });
             $(document).mouseup(function(e) {
 
@@ -94,7 +95,8 @@
                 if (container.has(e.target).length === 0) {
 
                     container.css('display', 'none');
-                    $('body').css('overflow', 'auto');
+                    //$('body').css('overflow', 'auto');
+                    //location.reload();
 
                 }
 
