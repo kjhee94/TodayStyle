@@ -4,7 +4,7 @@
         /* 모달 */
         .follow-modal {
             position: absolute;
-            top: 0;
+            top: -100px;
             left: 0;
 
             width: 100%;
@@ -96,5 +96,22 @@
             font-weight: 500;
             letter-spacing: -0.03em;
             color: #707070;
+            cursor: pointer;
+        }
+        
+        .following-btn {
+            width: 60px;
+            height: 35px;
+            float: right;
+            line-height: 35px;
+            text-align: center;
+            border: 0.5px solid #A9D4D9;
+            background-color: #A9D4D9;
+            border-radius: 10px;
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            color: #fff;
             cursor: pointer;
         }

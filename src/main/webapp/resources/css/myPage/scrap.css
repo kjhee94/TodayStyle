@@ -76,12 +76,9 @@
             font-family: 'Noto Sans KR', sans-serif;
             font-size: 16px;
             color: #C8C8C8;
-            cursor: pointer;
             
         }
-        .contents-area-null:hover{
-            color: #A9D4D9;
-        }
+        
 
         .contents {
             width: 30.5%;

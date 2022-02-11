@@ -53,10 +53,22 @@
 			                            <img src="${scList.coordiFilepath }">
 			                            <div class="userData">
 			                                <a href="">
-			                                    <div class="profile scrapUserProfile"><a><img src="${scList.profileFilepath }"></a></div>
+			                                    <div class="profile scrapUserProfile">
+				                                    <a>
+				                                    	<c:choose>
+								                            <c:when test="${scList.profileFilepath!=null}">
+								                            	<img src="${scList.profileFilepath }">
+								                            </c:when>
+								                            <c:otherwise>
+								                            	<img src="/resources/images/default/profile.jpg">
+								                            </c:otherwise>
+							                            </c:choose>
+				                                    
+				                                    </a>
+			                                    </div>
 			                                    <div class="ScrapUserName">${scList.coordiNickname }</div>
 			                                </a>
-			                                <div class="scrapIcon"><img src="/resources/images/icon/saved_on.png"></div>
+			                                <div class="scrapIcon" id="${scList.coordiNo }"><img class="scrap" src="/resources/images/icon/saved_on.png"></div>
 			                            </div>
 			                        </div>
 			
@@ -84,10 +96,51 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
 
    
 </div>
+
+<script>
+	
+	$('.scrap').click(function() {
+		if ($(this).attr('src') === "/resources/images/icon/saved_on.png") {
+			var coordiNo=$(this).parent().attr('id');
+			$(this).attr('src', "/resources/images/icon/saved_wf.png");
+			$.ajax({
+				url:"/coordi/unscrapCoordi.do",
+	        	data:{coordiNo:coordiNo},
+	        	type:"get",
+	        	success:function (){
+	        		
+	        	},
+	        	error:function(){
+	        		console.log("통신실패");
+	        	}
+				
+			});
+		} else {
+			var coordiNo=$(this).parent().attr('id');
+			$(this).attr('src', "/resources/images/icon/saved_on.png");
+			$.ajax({
+				url:"/coordi/scrapCoordi.do",
+	        	data:{coordiNo:coordiNo},
+	        	type:"get",
+	        	success:function (){
+	        		
+	        	},
+	        	error:function(){
+	        		
+	        		location.replace('/member/loginPage.do');
+	        	}
+				
+			});
+		}
+	});
+	
+		
+</script>
 
 
 </body>

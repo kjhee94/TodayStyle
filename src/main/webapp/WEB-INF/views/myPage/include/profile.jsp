@@ -42,7 +42,7 @@
                                 <div class="icon-text">스크랩</div>
                             </div>
                         </a>
-                        <a href="/myPage/comments.do">
+                        <a href="/myPage/commentsCoordi.do">
                             <div id="comments-wrap" class="icon-area">
                                 <img src="/resources/images/icon/comment.png" class="icon-img">
                                 <div class="icon-text">내댓글</div>
