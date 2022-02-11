@@ -66,7 +66,7 @@ $("input[name='userId']").keyup(function(){
    	 
      }else{
         $('#id').css("color",'#FD8A69');
-        $('#id').html("아이디는 영문, 숫자를 포함하여 5자 이상이어야 합니다.");
+        $('#id').html("아이디는 영문,숫자 5자 이상이어야 합니다.");
         $('#id').css("display","block");
         $('#userId').css("border-color","#FD8A69");
      }

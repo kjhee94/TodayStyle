@@ -31,7 +31,7 @@
 			    <a href="/member/joinPage.do" class="small">회원가입</a>
 		 	</div>
 	    </form>
-	    
+	    <%--
 	    <div id="kakaoLogin">
 	    	<span>간편 로그인</span>
 	    	<button class="btn-style-gray kakao">
@@ -41,6 +41,7 @@
 	    		</a>
 	    	</button>
 	    </div>
+	     --%>
 	</div>
 </body>
 </html>

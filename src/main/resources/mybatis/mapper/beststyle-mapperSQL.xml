@@ -33,7 +33,7 @@ FROM (
                     left join coordi_img i on(c.coordi_no=i.coordi_no)
                     left join member m on (m.user_id=c.user_id)
                     left join member_img g on(m.user_id=g.user_id)
-    WHERE top_yn='Y' and num BETWEEN 1 AND 5
+    WHERE top_yn='Y' and num BETWEEN 1 AND 30
   </select>
   
   	<select id="selectLikeList" resultType="int">
@@ -86,7 +86,7 @@ FROM (
                     left join coordi_img i on(c.coordi_no=i.coordi_no)
                     left join member m on (m.user_id=c.user_id)
                     left join member_img g on(m.user_id=g.user_id)
-    WHERE top_yn='Y' and (num BETWEEN 1 AND 5) and (reg_date between (to_char(sysdate-7,'yyyy-mm-dd'))
+    WHERE top_yn='Y' and (num BETWEEN 1 AND 30) and (reg_date between (to_char(sysdate-7,'yyyy-mm-dd'))
    and  (to_char(sysdate,'yyyy-mm-dd'))) 
  	</select>
 </mapper>
