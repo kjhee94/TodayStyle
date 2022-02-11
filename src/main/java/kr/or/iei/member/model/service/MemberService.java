@@ -24,16 +24,5 @@ public interface MemberService {
 
 	ArrayList<Member> selectTopFollowList();
 
-	
-
-	
-
-
-
-	
-
-	
-
-	
 
 }

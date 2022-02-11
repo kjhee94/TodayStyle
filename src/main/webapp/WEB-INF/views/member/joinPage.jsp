@@ -82,7 +82,7 @@
         	
         	<div>
 	        <span class="title">비밀번호</span>
-	        <span class="explain">영문,숫자를 포함한 8자 이상의 비밀번호를 입력해주세요</span>
+	        <span class="explain">영문,숫자,특수문자를 포함한 8자 이상의 비밀번호를 입력해주세요</span>
 	        </div>
 	        <div>
 	        <input type="password" class="input-style" name="userPwd" id="userpwd" placeholder="비밀번호"/>
@@ -105,7 +105,7 @@
         	
         	<div>
 	        <span class="title">닉네임</span>
-	        <span class="explain">다른 유저와 겹치지 않는 별명을 입력해주세요(2~8자)</span>
+	        <span class="explain">다른 유저와 겹치지 않는 별명을 입력해주세요(2~8자 한글만)</span>
 	        </div>
 	        <input type="text" class="input-style" name="nickname" id="nickname" placeholder="닉네임"/>
 	        <div id="nick">
@@ -303,7 +303,7 @@
 	        	 
 	          }else{
 	             $('#id').css("color",'#FD8A69');
-	             $('#id').html("아이디는 영문, 숫자를 포함하여 5자 이상이어야 합니다.");
+	             $('#id').html("아이디는 영문,숫자 5자 이상이어야 합니다.");
 	             $('#id').css("display","block");
 	             $('#userid').css("border-color","#FD8A69");
 	          }
@@ -317,7 +317,7 @@
 	        	  $('#userpwd').css("border-color","#C8C8C8");
 	          }else{
 	        	  $('#pwd').css("color",'#FD8A69');
-		          $('#pwd').html("비밀번호는 영문,숫자,특수부호를 포함하여 8자 이상이어야 합니다.");
+		          $('#pwd').html("영문,숫자,특수문자를 포함하여 8자 이상이어야 합니다.");
 		          $('#pwd').css("display","block");
 		          $('#userpwd').css("border-color","#FD8A69");
 	          }
@@ -509,9 +509,9 @@
 	    	  var name =  $('#userName').css("border-color")=="rgb(200, 200, 200)";
 	    	 var nickname =  $('#nickname').css("border-color")=="rgb(200, 200, 200)";
 	    	 var email =  $('#userEmail').css("border-color")=="rgb(200, 200, 200)";
-	    	var emailBtn= $('#mail_check_button').css('background-color')=="rgb(200, 200, 200)";
+	    	var emailBtn= $('#mail_check_button2').css('background-color')=="rgb(200, 200, 200)";
 
-	    	if($('#mail_check_button').css('background-color')=="rgb(169, 212, 217)")
+	    	if($('#mail_check_button2').css('background-color')=="rgb(169, 212, 217)")
 	    		{
 	    		alert('이메일 인증을 해주세요');
 	    		return false;

@@ -187,11 +187,14 @@ public class MemberController {
      /* 이메일 보내기 */
      String setFrom = "hyeonji149@gmail.com";
      String toMail = email;
-     String title = "회원가입 인증 이메일 입니다.";
-     String content = 
-             "인증 번호는 " + checkNum + "입니다." + 
-             "<br>" + 
-             "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+     String title = "[오늘 뭐 입지?] 인증 이메일 입니다.";
+     String content = "인증코드를 확인해주세요.(회원가입)" + 
+    		 	"<br><br>" + 
+				checkNum + 
+				"<br><br>" + 
+				"이메일 인증 절차에 따라 이메일 인증코드를 발급해드립니다. <br>" + 
+				"해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+        
      try {
          
          MimeMessage message = mailSender.createMimeMessage();
@@ -238,7 +241,7 @@ public class MemberController {
         /* 이메일 보내기 */
         String setFrom = "hyeonji149@gmail.com";
         String toMail = email;
-        String title = "비밀번호 재설정 인증 이메일 입니다.";
+        String title = "[오늘 뭐 입지?] 인증 이메일 입니다.";
         String content = 
                 "인증 번호는 " + checkNum + "입니다." + 
                 "<br>" + 
@@ -278,11 +281,12 @@ public class MemberController {
           /* 이메일 보내기 */
           String setFrom = "hyeonji149@gmail.com";
           String toMail = userEmail;
-          String title = "임시 비밀번호 발급 이메일 입니다.";
-          String content = 
-                  "비밀번호는 " + checkNum + "입니다." + 
-                  "<br>" + 
-                  "해당 비밀번호를 마이페이지 내 비밀번호 변경에서 변경해주세요.";
+          String title = "[오늘 뭐 입지?] 임시 비밀번호 발급 이메일 입니다.";
+          String content = "인증코드를 확인해주세요.(비밀번호 발급)" + 
+        		  	"<br><br>" + 
+        		  	checkNum + 
+        		  	"<br><br>" + 
+        		  	"해당 비밀번호를 마이페이지 내 비밀번호 변경에서 변경해주세요.";
           try {
               
               MimeMessage message = mailSender.createMimeMessage();
