@@ -1,6 +1,7 @@
 package kr.or.iei.postCoordi.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,8 @@ public class PostCoordiController {
 		return "postPage/coordiInsert";
 	}
 	
-    @RequestMapping( value = "/coordi/CoordiInsert.do")
+	//코디 작성
+    @RequestMapping( value = "/postCoordi/coordiPost")
     @ResponseBody
     public PostCoordi insertBoard(HttpServletRequest request, HttpServletResponse response, PostCoordi PostCoordi) throws Exception{
         
