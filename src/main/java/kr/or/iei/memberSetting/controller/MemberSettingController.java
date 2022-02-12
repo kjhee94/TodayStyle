@@ -2,6 +2,7 @@ package kr.or.iei.memberSetting.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -30,12 +31,17 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import kr.or.iei.member.model.vo.Member;
 import kr.or.iei.memberSetting.model.service.MemberSettingService;
 import kr.or.iei.memberSetting.model.vo.ProfileImg;
+import kr.or.iei.myPage.model.service.MyPageService;
+import kr.or.iei.myPage.model.vo.Follow;
 
 @Controller
 public class MemberSettingController {
 
 	@Autowired
 	private MemberSettingService msService;
+	
+	@Autowired
+	private MyPageService mpService;
 
 
 	@RequestMapping(value = "/myPage/userPage.do")
@@ -43,12 +49,49 @@ public class MemberSettingController {
 		return "myPage/userPage";
 	}
 
+
+	// 프로필 
+	public void profile(@SessionAttribute Member member, Model model) {
+		
+		// profile 내용 (nickname, 프로필 이미지 경로, 팔로잉&팔로워 수, follow user 정보)
+
+		// 닉네임
+		String nickname = member.getNickname();
+
+		// 프로필 이미지 경로
+		String userId = member.getUserId();
+		String filepath = mpService.profileFilePath(userId);
+
+		// 팔로잉&팔로워 수
+		String followingNum = mpService.followingNum(userId);
+		String followerNum = mpService.followerNum(userId);
+
+		// 팔로우 사용자 정보 ( 프로필 이미지 경로, 닉네임, 회원번)
+		ArrayList<Follow> followerList = mpService.followerList(userId);
+		//System.out.println(followerList);
+		ArrayList<Follow> followingList = mpService.followingList(userId);
+		System.out.println(followingList);
+		
+		model.addAttribute("followerList", followerList);
+		model.addAttribute("followingList", followingList);
+		model.addAttribute("nickname", nickname);
+		model.addAttribute("filepath", filepath);
+		model.addAttribute("followingNum", followingNum);
+		model.addAttribute("followerNum", followerNum);
+	}
+	
 	
 
 	// 설정 들어가면 비밀번호 확인 -> 확인 되었다면 회원 정보 수정 페이지로 이동
 	@RequestMapping(value = "/myPage/setting.do")
 	public String setttingPage(HttpServletRequest request, @SessionAttribute Member member, HttpSession session,
 			Model model) {
+		
+
+		// profile 내용
+		profile(member, model);
+		
+		
 		String userPwd = request.getParameter("userPwd");
 		// System.out.println(userPwd);
 
@@ -387,7 +430,11 @@ public class MemberSettingController {
 
 	// 비밀번호 수정 페이지로 이동
 	@RequestMapping(value = "/myPage/pwdUpdatePage.do")
-	public String pwdPage() {
+	public String pwdPage(@SessionAttribute Member member, Model model) {
+
+		// profile 내용
+		profile(member, model);
+		
 		return "myPage/setting_pwdUpdate";
 	}
 
@@ -435,7 +482,11 @@ public class MemberSettingController {
 
 	// 회원 탈퇴 페이지로 이동
 	@RequestMapping(value = "/myPage/withdrawPage.do")
-	public String withdrawPage() {
+	public String withdrawPage(@SessionAttribute Member member, Model model) {
+
+		// profile 내용
+		profile(member, model);
+		
 		return "myPage/setting_withdraw";
 	}
 	
