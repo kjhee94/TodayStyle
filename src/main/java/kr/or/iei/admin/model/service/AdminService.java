@@ -3,7 +3,9 @@ package kr.or.iei.admin.model.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import kr.or.iei.coordi.model.vo.Coordi;
 import kr.or.iei.member.model.vo.Member;
+import kr.or.iei.postCoordi.model.vo.PostCoordi;
 
 public interface AdminService {
 
@@ -45,4 +47,19 @@ public interface AdminService {
 
 	int updateCoordiOneDelYNChange(int coordiNo, char delYN);
 
+	int updateCoordiCheckedDelYNChange(String coordiNo);
+	
+	ArrayList<PostCoordi> selectOneCoordiItem(int coordiNo);
+
+	HashMap<String, Object> selectSearchCoordi(int currentPage, String type, String keyword);
+
+	HashMap<String, Object> selectAllCoordiComment(int currentPage, int coordiNo);
+
+	int updateCoordiCommentOneDelYNChange(int cmtNo, String cmtDelYN);
+
+	int updateCoordiCommentCheckedDelYNChange(String cmtNo);
+
+	HashMap<String, Object> selectSearchCoordiComment(int currentPage, String type, String keyword);
+
+	HashMap<String, Object> selectSearchCoordiComment(int currentPage, String type, String keyword, int coordiNo);
 }

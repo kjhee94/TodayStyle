@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import kr.or.iei.coordi.model.vo.Coordi;
 import kr.or.iei.member.model.vo.Member;
+import kr.or.iei.postCoordi.model.vo.PostCoordi;
 
 @Repository
 public class AdminDAO {
@@ -575,4 +577,227 @@ public class AdminDAO {
 		return sqlSession.update("admin.updateCoordiOneDelYNChange", map);
 	}
 
+	public int updateCoordiCheckedDelYNChange(String coordiNo) {
+
+		String [] coordiNoArray = coordiNo.split(",");
+		
+		int result = sqlSession.update("admin.updateCoordiCheckedDelYNChange",coordiNoArray);
+		
+		return result;
+	}
+
+	public ArrayList<PostCoordi> selectOneCoordiItem(int coordiNo) {
+		
+		ArrayList<PostCoordi> list = new ArrayList<PostCoordi>(sqlSession.selectList("admin.selectOneCoordiItem",coordiNo));
+		
+		return list;
+	}
+
+	public ArrayList<Member> selectSearchCoordi(int recordCountPerPage, int currentPage, String type, String keyword) {
+		
+		int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
+		int end = currentPage*recordCountPerPage;
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("type", type);
+		map.put("keyword", keyword);
+		map.put("start", start);
+		map.put("end", end);
+		
+		ArrayList<Member> list = new ArrayList<Member>(sqlSession.selectList("admin.selectSearchCoordiListPage", map));
+		
+		return list;
+	}
+
+	public String getSearchCoordiPageNavi(int recordCountPerPage, int currentPage, int naviCountPerPage, String type,
+			String keyword) {
+		
+		//총 게시물 수
+		int recordTotalCount = totalSearchCoordiCount(type, keyword);
+		
+		//현재 페이지 수를 가지고 있는 변수
+		int pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
+		
+		int startNavi = ((currentPage-1)/naviCountPerPage)*naviCountPerPage+1;
+		int endNavi = startNavi+naviCountPerPage-1;
+		
+		//공백페이지 네비 처리
+		if(endNavi>pageTotalCount) {
+			endNavi=pageTotalCount;
+		}
+		
+		//모양만들기
+		StringBuilder sb = new StringBuilder();
+		if(startNavi != 1) {
+			
+			sb.append("<li><a href='/admin/coordiSearch.do?currentPage="+(startNavi-1)+"&type="+type+"&keyword="+keyword+"'><i class='fas fa-chevron-left'></i></a></li>");
+		}
+		for(int i=startNavi; i<=endNavi; i++) {
+			if(i==currentPage) {
+				sb.append("<li><a href='/admin/coordiSearch.do?currentPage="+i+"&type="+type+"&keyword="+keyword+"' class='page_active'>"+i+"</a></li>");
+			}else {
+				sb.append("<li><a href='/admin/coordiSearch.do?currentPage="+i+"&type="+type+"&keyword="+keyword+"'>"+i+"</a></li>");
+			}
+		}
+		if(endNavi != pageTotalCount) {
+			sb.append("<li><a href='/admin/coordiSearch.do?currentPage="+(endNavi+1)+"&type="+type+"&keyword="+keyword+"'><i class='fas fa-chevron-right'></i></a></li>");
+		}
+		
+		return sb.toString();
+	}
+
+	private int totalSearchCoordiCount(String type, String keyword) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("type", type);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectOne("admin.selectSearchCoordiTotalCount", map);
+	}
+
+	public ArrayList<Member> selectAllCoordiComment(int recordCountPerPage, int currentPage, int coordiNo) {
+
+		int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
+		int end = currentPage*recordCountPerPage;
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("coordiNo", coordiNo);
+		map.put("start", start);
+		map.put("end", end);
+		
+		ArrayList<Member> list = new ArrayList<Member>(sqlSession.selectList("admin.selectAllCoordiCommentListPage", map));
+		
+		return list;
+	}
+
+	public String getCoordiCommentPageNavi(int recordCountPerPage, int currentPage, int naviCountPerPage,
+			int coordiNo) {
+		
+		//총 게시물 수
+		int recordTotalCount = totalCoordiCommentCount(coordiNo);
+		
+		//현재 페이지 수를 가지고 있는 변수
+		int pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
+		
+		int startNavi = ((currentPage-1)/naviCountPerPage)*naviCountPerPage+1;
+		int endNavi = startNavi+naviCountPerPage-1;
+		
+		//공백페이지 네비 처리
+		if(endNavi>pageTotalCount) {
+			endNavi=pageTotalCount;
+		}
+		
+		//모양만들기
+		StringBuilder sb = new StringBuilder();
+		if(startNavi != 1) {
+			
+			sb.append("<li><a href='/admin/adminCoordiComment.do?coordiNo="+coordiNo+"&currentPage="+(startNavi-1)+"'><i class='fas fa-chevron-left'></i></a></li>");
+		}
+		for(int i=startNavi; i<=endNavi; i++) {
+			if(i==currentPage) {
+				sb.append("<li><a href='/admin/adminCoordiComment.do?coordiNo="+coordiNo+"&currentPage="+i+"' class='page_active'>"+i+"</a></li>");
+			}else {
+				sb.append("<li><a href='/admin/adminCoordiComment.do?coordiNo="+coordiNo+"&currentPage="+i+"'>"+i+"</a></li>");
+			}
+		}
+		if(endNavi != pageTotalCount) {
+			sb.append("<li><a href='/admin/adminCoordiComment.do?coordiNo="+coordiNo+"&currentPage="+(endNavi+1)+"'><i class='fas fa-chevron-right'></i></a></li>");
+		}
+		
+		return sb.toString();
+	}
+
+	private int totalCoordiCommentCount(int coordiNo) {
+		
+		return sqlSession.selectOne("admin.selectCoordiCommentTotalCount",coordiNo);
+	}
+
+	public int updateCoordiCommentOneDelYNChange(int cmtNo, String cmtDelYN) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("cmtNo", cmtNo);
+		map.put("cmtDelYN", cmtDelYN);
+		
+		return sqlSession.update("admin.updateCoordiCommentOneDelYNChange", map);
+	}
+
+	public int updateCoordiCommentCheckedDelYNChange(String cmtNo) {
+
+		String [] cmtNoArray = cmtNo.split(",");
+		
+		int result = sqlSession.update("admin.updateCoordiCommentCheckedDelYNChange",cmtNoArray);
+		
+		return result;
+	}
+
+	public ArrayList<Member> selectSearchCoordiComment(int recordCountPerPage, int currentPage, String type,
+			String keyword, int coordiNo) {
+		
+		int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
+		int end = currentPage*recordCountPerPage;
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("type", type);
+		map.put("keyword", keyword);
+		map.put("coordiNo", coordiNo);
+		map.put("start", start);
+		map.put("end", end);
+		
+		ArrayList<Member> list = new ArrayList<Member>(sqlSession.selectList("admin.selectSearchCoordiCommentListPage", map));
+		
+		return list;
+	}
+
+	public String getSearchCoordiCommentPageNavi(int recordCountPerPage, int currentPage, int naviCountPerPage,
+			String type, String keyword, int coordiNo) {
+		//총 게시물 수
+		int recordTotalCount = totalSearchCoordiCommentCount(coordiNo, type, keyword);
+		
+		//현재 페이지 수를 가지고 있는 변수
+		int pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
+		
+		int startNavi = ((currentPage-1)/naviCountPerPage)*naviCountPerPage+1;
+		int endNavi = startNavi+naviCountPerPage-1;
+		
+		//공백페이지 네비 처리
+		if(endNavi>pageTotalCount) {
+			endNavi=pageTotalCount;
+		}
+		
+		//모양만들기
+		StringBuilder sb = new StringBuilder();
+		if(startNavi != 1) {
+			
+			sb.append("<li><a href='/admin/coordiCommentSearch.do?coordiNo="+coordiNo+"&currentPage="+(startNavi-1)+"&type="+type+"&keyword="+keyword+"'><i class='fas fa-chevron-left'></i></a></li>");
+		}
+		for(int i=startNavi; i<=endNavi; i++) {
+			if(i==currentPage) {
+				sb.append("<li><a href='/admin/coordiCommentSearch.do?coordiNo="+coordiNo+"&currentPage="+i+"&type="+type+"&keyword="+keyword+"' class='page_active'>"+i+"</a></li>");
+			}else {
+				sb.append("<li><a href='/admin/coordiCommentSearch.do?coordiNo="+coordiNo+"&currentPage="+i+"&type="+type+"&keyword="+keyword+"'>"+i+"</a></li>");
+			}
+		}
+		if(endNavi != pageTotalCount) {
+			sb.append("<li><a href='/admin/coordiCommentSearch.do?coordiNo="+coordiNo+"&currentPage="+(endNavi+1)+"&type="+type+"&keyword="+keyword+"'><i class='fas fa-chevron-right'></i></a></li>");
+		}
+		
+		return sb.toString();
+
+	}
+
+	private int totalSearchCoordiCommentCount(int coordiNo, String type, String keyword) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("coordiNo", coordiNo);
+		map.put("type", type);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectOne("admin.selectSearchCoordiCommentTotalCount",map);
+	}
 }

@@ -82,21 +82,21 @@
 					</div>
 				</div>
 				
-				<c:choose>
-					<c:when test="${!requestScope.map.isEmpty() }">
-						<table>
-							<tr>
-								<th><input type="checkbox" id="Allcheck"></th>
-								<th>글번호</th>
-								<th>카테고리</th>
-								<th>질문</th>
-								<th>답변</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>수정</th>
-								<th>삭제</th>
-							</tr>
+				<table>
+					<tr>
+						<th><input type="checkbox" id="Allcheck"></th>
+						<th>글번호</th>
+						<th>카테고리</th>
+						<th>질문</th>
+						<th>답변</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>수정</th>
+						<th>삭제</th>
+					</tr>
 							
+					<c:choose>
+						<c:when test="${!requestScope.map.list.isEmpty() }">
 							<c:forEach items="${requestScope.map.list }" var="f">
 								<c:if test="${f.endYN eq 'N'.charAt(0)}">
 									<tr>
@@ -186,12 +186,15 @@
 									</td>
 								</tr>
 							</c:forEach>
-						</table>
-					</c:when>
-					<c:otherwise>
-						<h1>현재 자주 묻는 질문이 없습니다</h1>
-					</c:otherwise>
-				</c:choose>
+						</c:when>
+						<c:otherwise>
+							<tr class="txt-none">
+								<td colspan="9">검색된 자주 묻는 질문이 없습니다</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
+				</table>
+					
 				<div id="page_wrap">
 					<ul class="page_ul">
 						${requestScope.map.pageNavi}

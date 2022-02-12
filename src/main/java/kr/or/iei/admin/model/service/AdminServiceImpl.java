@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.or.iei.admin.model.dao.AdminDAO;
+import kr.or.iei.coordi.model.vo.Coordi;
 import kr.or.iei.member.model.vo.Member;
+import kr.or.iei.postCoordi.model.vo.PostCoordi;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -236,11 +238,105 @@ public class AdminServiceImpl implements AdminService {
 		
 		return map;
 	}
-
+	
 	@Override
 	public int updateCoordiOneDelYNChange(int coordiNo, char delYN) {
 		
 		return aDAO.updateCoordiOneDelYNChange(coordiNo,delYN);
+	}
+
+	@Override
+	public int updateCoordiCheckedDelYNChange(String coordiNo) {
+		
+		return aDAO.updateCoordiCheckedDelYNChange(coordiNo);
+	}
+
+	@Override
+	public ArrayList<PostCoordi> selectOneCoordiItem(int coordiNo) {
+		
+		return aDAO.selectOneCoordiItem(coordiNo);
+	}
+
+	@Override
+	public HashMap<String, Object> selectSearchCoordi(int currentPage, String type, String keyword) {
+
+		//한 페이지에 보여줄 게시물의 수 
+		int recordCountPerPage = 10;
+		
+		ArrayList<Member> list = aDAO.selectSearchCoordi(recordCountPerPage,currentPage,type,keyword);
+		
+		//페이지 네비
+		int naviCountPerPage = 5;
+		
+		String pageNavi = aDAO.getSearchCoordiPageNavi(recordCountPerPage,currentPage,naviCountPerPage,type,keyword);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+			
+		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> selectAllCoordiComment(int currentPage, int coordiNo) {
+		
+		//한 페이지에 보여줄 게시물의 수 
+		int recordCountPerPage = 10;
+		
+		ArrayList<Member> list = aDAO.selectAllCoordiComment(recordCountPerPage,currentPage,coordiNo);
+		
+		//페이지 네비
+		int naviCountPerPage = 5;
+		
+		String pageNavi = aDAO.getCoordiCommentPageNavi(recordCountPerPage,currentPage,naviCountPerPage,coordiNo);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+		
+		return map;
+	}
+
+	@Override
+	public int updateCoordiCommentOneDelYNChange(int cmtNo, String cmtDelYN) {
+		
+		return aDAO.updateCoordiCommentOneDelYNChange(cmtNo,cmtDelYN);
+	}
+
+	@Override
+	public int updateCoordiCommentCheckedDelYNChange(String cmtNo) {
+		
+		return aDAO.updateCoordiCommentCheckedDelYNChange(cmtNo);
+	}
+
+	@Override
+	public HashMap<String, Object> selectSearchCoordiComment(int currentPage, String type, String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public HashMap<String, Object> selectSearchCoordiComment(int currentPage, String type, String keyword,
+			int coordiNo) {
+		
+		//한 페이지에 보여줄 게시물의 수 
+		int recordCountPerPage = 10;
+		
+		ArrayList<Member> list = aDAO.selectSearchCoordiComment(recordCountPerPage,currentPage,type,keyword,coordiNo);
+		
+		//페이지 네비
+		int naviCountPerPage = 5;
+		
+		String pageNavi = aDAO.getSearchCoordiCommentPageNavi(recordCountPerPage,currentPage,naviCountPerPage,type,keyword,coordiNo);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+			
+		return map;
 	}
 
 }

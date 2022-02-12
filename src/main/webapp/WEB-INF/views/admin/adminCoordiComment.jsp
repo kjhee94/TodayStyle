@@ -35,23 +35,24 @@
 			
 			<div id="container">
 				<div id="searchAndBtn">
-					<form action="" method="get">
+					<form action="/admin/coordiCommentSearch.do" method="get">
 						<div id="boxSelect">
-							<select class="select-style" name="keyword">
+							<select class="select-style" name="type">
 								<option disabled selected>필터선택</option>
-								<option value="userId">작성자</option>
-								<option value="content">내용</option>
+								<option value="nickName">작성자</option>
+								<option value="cmtContent">내용</option>
 							</select>
 							<i class="fas fa-chevron-down"></i>
 						</div>
 						
 						<div id="boxSearch">
-							<input class="input-style" type="text" name="search" placeholder="검색어를 입력하세요">
+							<input class="input-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
+							<input type="hidden" name="coordiNo" value="${requestScope.coordiNo}">
 							<button type="submit"><i class="fas fa-search"></i></button>
 						</div>
 					</form>
 					<div id="boxBtn">
-						<button id="allWithDrawBtn" class="btn-style">삭제</button>
+						<button id="checkedDeleteCCommentBtn" class="btn-style">삭제</button>
 					</div>
 				</div>
 				
@@ -66,156 +67,64 @@
 						<th>작성일</th>
 						<th>삭제</th>
 					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>대댓글</td>
-						<td>ididwwwwwwww</td>
-						<td>내용이 여기에 충분히 들어갈거같아서 댓글은 따로 내용 확대창은 안넣겠습니다 </td>
-						<td>12345</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>대댓글</td>
-						<td>ididwwwwwwww</td>
-						<td>내용이 여기에 충분히 들어갈거같아서 댓글은 따로 내용 확대창은 안넣겠습니다 </td>
-						<td>12345</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>대댓글</td>
-						<td>ididwwwwwwww</td>
-						<td>내용이 여기에 충분히 들어갈거같아서 댓글은 따로 내용 확대창은 안넣겠습니다 </td>
-						<td>12345</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>대댓글</td>
-						<td>ididwwwwwwww</td>
-						<td>내용이 여기에 충분히 들어갈거같아서 댓글은 따로 내용 확대창은 안넣겠습니다 </td>
-						<td>12345</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>대댓글</td>
-						<td>ididwwwwwwww</td>
-						<td>내용이 여기에 충분히 들어갈거같아서 댓글은 따로 내용 확대창은 안넣겠습니다 </td>
-						<td>12345</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>대댓글</td>
-						<td>ididwwwwwwww</td>
-						<td>내용이 여기에 충분히 들어갈거같아서 댓글은 따로 내용 확대창은 안넣겠습니다 </td>
-						<td>12345</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>대댓글</td>
-						<td>ididwwwwwwww</td>
-						<td>내용이 여기에 충분히 들어갈거같아서 댓글은 따로 내용 확대창은 안넣겠습니다 </td>
-						<td>12345</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>대댓글</td>
-						<td>ididwwwwwwww</td>
-						<td>내용이 여기에 충분히 들어갈거같아서 댓글은 따로 내용 확대창은 안넣겠습니다 </td>
-						<td>12345</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>대댓글</td>
-						<td>ididwwwwwwww</td>
-						<td>내용이 여기에 충분히 들어갈거같아서 댓글은 따로 내용 확대창은 안넣겠습니다 </td>
-						<td>12345</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>대댓글</td>
-						<td>ididwwwwwwww</td>
-						<td>내용이 여기에 충분히 들어갈거같아서 댓글은 따로 내용 확대창은 안넣겠습니다 </td>
-						<td>12345</td>
-						<td>2022.01.24</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
+				
+					<c:choose>
+						<c:when test="${!requestScope.map.list.isEmpty() }">
+							<c:forEach items="${requestScope.map.list }" var="cc">
+								<c:if test="${cc.cmtDelYN eq 'N'}">
+									<tr>
+								</c:if>
+								<c:if test="${cc.cmtDelYN eq 'Y'}">
+									<tr class="deactivate">
+								</c:if>
+									<td>
+										<c:if test="${cc.cmtDelYN eq 'N'}">
+											<input type="checkbox" name="cmtNo" value="${cc.cmtNo}">
+										</c:if>
+										<c:if test="${cc.cmtDelYN eq 'Y'}">
+											<input type="checkbox" name="cmtNo" value="${cc.cmtNo}" disabled>
+										</c:if>
+									</td>
+									<td>${cc.cmtNo}</td>
+									<td>
+										<c:if test="${cc.cmtDepth eq '1'}">
+											댓글
+										</c:if>
+										<c:if test="${cc.cmtDepth eq '2'}">
+											대댓글
+										</c:if>
+									</td>
+									<td>${cc.nickName}</td>
+									<td>${cc.cmtContent}</td>
+									<td>
+										<c:if test="${cc.cmtParent eq null}">-</c:if>
+										<c:if test="${cc.cmtParent ne null}">${cc.cmtParent}</c:if>
+									</td>
+									<td>${cc.cmtTime}</td>
+									<td>
+										<div class="btn-style-icon btn-one-coordi-comment-delete" delyn="${cc.cmtDelYN}" cmtNo="${cc.cmtNo}">
+											<c:if test="${cc.cmtDelYN eq 'N'}">
+												<i class="fas fa-trash"></i>
+											</c:if>
+											<c:if test="${cc.cmtDelYN eq 'Y'}">
+												<i class="fas fa-trash-restore"></i>
+											</c:if>
+										</div>
+									</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr class="txt-none">
+								<td colspan="8">댓글 결과가 없습니다</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</table>
+					
 				<div id="page_wrap">
 					<ul class="page_ul">
-						<li><a href=''><i class='fas fa-chevron-left'></i></a></li>
-						<li><a href='' class='page_active'>1</a></li>
-						<li><a href=''>2</a></li>
-						<li><a href=''>3</a></li>
-						<li><a href=''>4</a></li>
-						<li><a href=''>5</a></li>
-						<li><a href=''><i class='fas fa-chevron-right'></i></a></li>
+						${requestScope.map.pageNavi}
 	 				</ul>
 			    </div>
 			</div>

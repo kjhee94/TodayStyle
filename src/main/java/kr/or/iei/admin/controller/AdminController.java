@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +23,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.iei.admin.model.service.AdminService;
+import kr.or.iei.coordi.model.vo.Coordi;
 import kr.or.iei.member.model.vo.Member;
+import kr.or.iei.postCoordi.model.vo.PostCoordi;
 
 @Controller
 public class AdminController {
@@ -274,9 +278,6 @@ public class AdminController {
 	@RequestMapping(value = "/admin/faqSearch.do", method = RequestMethod.GET)
 	public ModelAndView faqSearch(@RequestParam String category, @RequestParam String keyword, HttpServletRequest request, ModelAndView mav) {
 		
-		System.out.println(category);
-		System.out.println(keyword);
-		
 		//현재 페이지 번호
 		int currentPage;
 		
@@ -370,18 +371,137 @@ public class AdminController {
 		}
 	}
 	
+	@RequestMapping(value = "/admin/coordiCheckedDelYNChange.do", method = RequestMethod.POST)
+	public void coordiCheckedDelYNChange(@RequestParam String coordiNo, HttpServletResponse response) throws IOException {
+		
+		int result = aService.updateCoordiCheckedDelYNChange(coordiNo);
+		
+		if(result>0) {
+			response.getWriter().print(true);
+		}else {
+			response.getWriter().print(false);
+		}
+	}
 	
+	@RequestMapping(value = "/admin/coordiOneItemInfo.do", method = RequestMethod.POST)
+	public void coordiOneItemInfo(@RequestParam int coordiNo, HttpServletResponse response) throws IOException {
+		
+		ArrayList<PostCoordi> list = aService.selectOneCoordiItem(coordiNo);
+		
+		JSONArray jsonArray = new JSONArray();
+		
+		for(PostCoordi pc : list) {
+			
+			JSONObject json = new JSONObject();
+			
+			json.put("coordiNo", pc.getCoordiNo());
+			json.put("categoryCode", pc.getCategoryCode());
+			json.put("brand", pc.getBrand());
+			json.put("categoryName", pc.getCategoryName());
+			
+			jsonArray.add(json);
+		}
+		
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(jsonArray);
+	}
 	
-	
-	
-	
-	
+	@RequestMapping(value = "/admin/coordiSearch.do", method = RequestMethod.GET)
+	public ModelAndView coordiSearch(@RequestParam String type, @RequestParam String keyword, HttpServletRequest request, ModelAndView mav) {
+		
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		HashMap<String, Object> map = aService.selectSearchCoordi(currentPage,type,keyword);
+		
+		mav.addObject("map", map);
+		mav.setViewName("admin/adminCoordi");
+		
+		return mav;
+	}
 	
 	@RequestMapping(value = "/admin/adminCoordiComment.do")
-	public String adminCoordiComment() {
+	public ModelAndView adminCoordiComment(@RequestParam int coordiNo, HttpServletRequest request, ModelAndView mav) {
 		
-		return "admin/adminCoordiComment";
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+
+		HashMap<String, Object> map = aService.selectAllCoordiComment(currentPage,coordiNo);
+		
+		mav.addObject("map", map);
+		mav.addObject("coordiNo", coordiNo);
+		mav.setViewName("admin/adminCoordiComment");
+		
+		return mav;
 	}
+	
+	@RequestMapping(value = "/admin/coordiCommentOneDelYNChange.do", method = RequestMethod.POST)
+	public void coordiCommentOneDelYNChange(@RequestParam int cmtNo, @RequestParam String cmtDelYN, HttpServletResponse response) throws IOException {
+		
+		//삼항연산자
+		cmtDelYN = (cmtDelYN.equals("Y"))?"N":"Y";
+		
+		int result = aService.updateCoordiCommentOneDelYNChange(cmtNo, cmtDelYN);
+		
+		if(result>0) {
+			response.getWriter().print(cmtDelYN);
+		}else {
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value = "/admin/coordiCommentCheckedDelYNChange.do", method = RequestMethod.POST)
+	public void coordiCommentCheckedDelYNChange(@RequestParam String cmtNo, HttpServletResponse response) throws IOException {
+		
+		int result = aService.updateCoordiCommentCheckedDelYNChange(cmtNo);
+		
+		if(result>0) {
+			response.getWriter().print(true);
+		}else {
+			response.getWriter().print(false);
+		}
+		
+	}
+	
+	@RequestMapping(value = "/admin/coordiCommentSearch.do", method = RequestMethod.GET)
+	public ModelAndView coordiCommentSearch(@RequestParam int coordiNo, @RequestParam String type, @RequestParam String keyword, HttpServletRequest request, ModelAndView mav) {
+		
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		HashMap<String, Object> map = aService.selectSearchCoordiComment(currentPage,type,keyword,coordiNo);
+		
+		mav.addObject("map", map);
+		mav.setViewName("admin/adminCoordiComment");
+		
+		return mav;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value = "/admin/adminIttem.do")
 	public String adminIttem() {

@@ -35,12 +35,13 @@
 			
 			<div id="container">
 				<div id="searchAndBtn">
-					<form action="" method="get">
+					<form action="/admin/coordiSearch.do" method="get">
 						<div id="boxSelect">
 							<select class="select-style" name="type">
 								<option disabled selected>필터선택</option>
-								<option value="userId">작성자</option>
+								<option value="nickName">작성자</option>
 								<option value="coordiContent">내용</option>
+								<option value="hashTag">해시태그</option>
 							</select>
 							<i class="fas fa-chevron-down"></i>
 						</div>
@@ -51,28 +52,28 @@
 						</div>
 					</form>
 					<div id="boxBtn">
-						<button id="allWithDrawBtn" class="btn-style">삭제</button>
+						<button id="checkedDeleteCoordiBtn" class="btn-style">삭제</button>
 					</div>
 				</div>
 				
-				<c:choose>
-					<c:when test="${!requestScope.map.isEmpty() }">
-						<table>
-							<tr>
-								<th><input type="checkbox" id="Allcheck"></th>
-								<th>코디 번호</th>
-								<th>작성자</th>
-								<th>내용</th>
-								<th>기온</th>
-								<th>계절</th>
-								<th>성별</th>
-								<th>작성일</th>
-								<th>의상정보</th>
-								<th>해시태그</th>
-								<th>댓글관리</th>
-								<th>삭제</th>
-							</tr>
-							
+				<table>
+					<tr>
+						<th><input type="checkbox" id="Allcheck"></th>
+						<th>코디 번호</th>
+						<th>작성자</th>
+						<th>내용</th>
+						<th>기온</th>
+						<th>계절</th>
+						<th>성별</th>
+						<th>작성일</th>
+						<th>의상정보</th>
+						<th>해시태그</th>
+						<th>댓글관리</th>
+						<th>삭제</th>
+					</tr>
+					
+					<c:choose>
+						<c:when test="${!requestScope.map.list.isEmpty() }">
 							<c:forEach items="${requestScope.map.list }" var="c">
 								<c:if test="${c.delYN eq 'N'.charAt(0)}">
 									<tr>
@@ -107,46 +108,15 @@
 									<td>${c.regDate}</td>
 									<td>
 										<div class="relative">
-											<div class="btn-style-icon">
+											<div class="btn-style-icon btn-item-info">
 												<i class="fas fa-tshirt"></i>
 											</div>
-											<div class="box-style detail">
-												<div class="style">
-													<div class="img-style">
-														<img alt="상의" src="/resources/images/default/top.png">
-													</div>
-													<div class="txt-style">
-														<p>Top &nbsp·&nbsp 후드</p>
-														<span>꼼파뇨</span>
-													</div>
-												</div>
-												<div class="style">
-													<div class="img-style">
-														<img alt="하의" src="/resources/images/default/bottom.png">
-													</div>
-													<div class="txt-style">
-														<p>Bottom &nbsp·&nbsp 슬랙스</p>
-														<span>나인브라더스</span>
-													</div>
-												</div>
-												<div class="style">
-													<div class="img-style">
-														<img alt="신발" src="/resources/images/default/shoes.png">
-													</div>
-													<div class="txt-style">
-														<p>Shoes &nbsp·&nbsp 운동화</p>
-														<span>FILA</span>
-													</div>
-												</div>
-												<div class="style">
-													<div class="img-style">
-														<img alt="악세사리" src="/resources/images/default/acc.png">
-													</div>
-													<div class="txt-style">
-														<p>Acc &nbsp·&nbsp 안경</p>
-														<span>젠틀몬스터</span>
-													</div>
-												</div>
+											<c:if test="${c.delYN eq 'N'.charAt(0)}">
+												<div class="box-style detail" coordiNo="${c.coordiNo}">
+											</c:if>
+											<c:if test="${c.delYN eq 'Y'.charAt(0)}">
+												<div class="box-style" coordiNo="${c.coordiNo}">
+											</c:if>
 											</div>
 										</div>
 									</td>
@@ -155,22 +125,25 @@
 											<div class="btn-style-icon">
 												<i class="fas fa-hashtag"></i>
 											</div>
-											<div class="box-hashtag detail">
-												<div class="h-wrap">#데일리룩</div>
-												<div class="h-wrap">#후드티</div>
-												<div class="h-wrap">#후드</div>
-												<div class="h-wrap">#볼캡</div>
-												<div class="h-wrap">#볼캡코드</div>
-												<div class="h-wrap">#슬랙스</div>
-												<div class="h-wrap">#무채색코디</div>
-												<div class="h-wrap">#휠라운동화</div>
-												<div class="h-wrap">#슬랙스코디</div>
-												<div class="h-wrap">#레이어드</div>
+											<c:if test="${c.delYN eq 'N'.charAt(0)}">
+												<div class="box-hashtag detail">
+											</c:if>
+											<c:if test="${c.delYN eq 'Y'.charAt(0)}">
+												<div class="box-hashtag">
+											</c:if>
+												<c:forTokens var="hashTag" items="${c.hashTag }" delims=",">
+													<div class="h-wrap">#${hashTag}</div>
+												</c:forTokens>
 											</div>
 										</div>
 									</td>
 									<td>
-										<a href="/admin/adminCoordiComment.do">
+										<c:if test="${c.delYN eq 'N'.charAt(0)}">
+											<a href="/admin/adminCoordiComment.do?coordiNo=${c.coordiNo}">
+										</c:if>
+										<c:if test="${c.delYN eq 'Y'.charAt(0)}">
+											<a>
+										</c:if>
 											<div class="btn-style-icon">
 												<i class="far fa-comment-dots"></i>
 											</div>
@@ -188,13 +161,15 @@
 									</td>
 								</tr>
 							</c:forEach>
-						</table>
-					</c:when>
-					<c:otherwise>
-						<h1>현재 자주 묻는 질문이 없습니다</h1>
-					</c:otherwise>
-				</c:choose>
-						
+						</c:when>
+						<c:otherwise>
+							<tr class="txt-none">
+								<td colspan="12">검색된 코디가 없습니다</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
+				</table>
+					
 				<div id="page_wrap">
 					<ul class="page_ul">
 						${requestScope.map.pageNavi}

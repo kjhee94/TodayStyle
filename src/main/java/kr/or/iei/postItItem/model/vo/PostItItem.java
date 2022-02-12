@@ -1,6 +1,6 @@
 package kr.or.iei.postItItem.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class PostItItem {
 	

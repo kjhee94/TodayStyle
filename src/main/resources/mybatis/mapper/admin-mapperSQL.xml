@@ -79,7 +79,7 @@
 				USER_ID LIKE '%'||#{keyword}||'%'
 			</when>
 			<when test="type.equals('nickname')">
-				NICKNAME Like '%'||#{keyword}||'%'
+				NICKNAME LIKE '%'||#{keyword}||'%'
 			</when>
 		</choose>
 		)
@@ -93,7 +93,7 @@
 				USER_ID LIKE '%'||#{keyword}||'%'
 			</when>
 			<when test="type.equals('nickname')">
-				NICKNAME Like '%'||#{keyword}||'%'
+				NICKNAME LIKE '%'||#{keyword}||'%'
 			</when>
 		</choose>
 	</select>
@@ -150,7 +150,7 @@
 				TITLE LIKE '%'||#{keyword}||'%'
 			</when>
 			<when test="type.equals('content')">
-				CONTENT Like '%'||#{keyword}||'%'
+				CONTENT LIKE '%'||#{keyword}||'%'
 			</when>
 		</choose>
 		)
@@ -164,7 +164,7 @@
 				TITLE LIKE '%'||#{keyword}||'%'
 			</when>
 			<when test="type.equals('content')">
-				CONTENT Like '%'||#{keyword}||'%'
+				CONTENT LIKE '%'||#{keyword}||'%'
 			</when>
 		</choose>
 	</select>
@@ -291,4 +291,147 @@
 	<update id="updateCoordiOneDelYNChange">
 		UPDATE COORDI SET DEL_YN=#{delYN} WHERE COORDI_NO=#{coordiNo}
 	</update>
+	
+	<update id="updateCoordiCheckedDelYNChange">
+		UPDATE COORDI SET DEL_YN='Y' WHERE COORDI_NO IN 
+		<foreach collection="array" index="index" item="arr" open="(" separator="," close=")">
+		#{arr}
+		</foreach>
+	</update>
+	
+	<select id="selectOneCoordiItem" resultType="postCoordi">
+		SELECT 
+			coordi_no as coordiNo,
+			item_code as categoryCode,
+			brand as brand,
+			item_name as categoryName
+		FROM (
+		SELECT I.*, ITEM_NAME FROM ITEM I
+		LEFT JOIN ITEM_CATEGORY IC ON (I.ITEM_CODE=IC.ITEM_CODE)
+		WHERE COORDI_NO=#{coordiNo})
+	</select>
+	
+	<select id="selectSearchCoordiListPage" parameterType="map" resultType="coordi">
+		SELECT 
+			coordi_no as coordiNo,
+			user_id as userId,
+			coordi_content as coordiContent,
+			gender as gender,
+			season as season,
+			temperature as temperature,
+			reg_date as regDate,
+			hashtag as hashTag,
+			del_YN as delYN,
+			nickname as nickName
+		FROM (
+		SELECT ROW_NUMBER() OVER (ORDER BY COORDI_NO DESC)AS NUM, C.*, nickname
+		FROM COORDI C
+		LEFT JOIN MEMBER M ON (M.USER_ID=C.USER_ID)
+		WHERE
+		<choose>
+			<when test="type.equals('nickName')">
+				NICKNAME LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="type.equals('coordiContent')">
+				COORDI_CONTENT LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="type.equals('hashTag')">
+				HASHTAG LIKE '%'||#{keyword}||'%'
+			</when>
+		</choose>
+		)
+		WHERE NUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectSearchCoordiTotalCount" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) FROM COORDI C
+		LEFT JOIN MEMBER M ON (M.USER_ID=C.USER_ID)
+		WHERE 
+		<choose>
+			<when test="type.equals('nickName')">
+				NICKNAME LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="type.equals('coordiContent')">
+				COORDI_CONTENT LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="type.equals('hashTag')">
+				HASHTAG LIKE '%'||#{keyword}||'%'
+			</when>
+		</choose>
+	</select>
+	
+	
+	<!-- CoordiComment -->
+	<select id="selectAllCoordiCommentListPage" parameterType="hashmap" resultType="postCoordi">
+		SELECT 
+			cmt_no as cmtNo,
+			cmt_depth as cmtDepth,
+			nickname as nickName,
+			cmt_content as cmtContent,
+			cmt_parent as cmtParent,
+			cmt_time as CmtTime,
+			del_YN as cmtDelYN
+		FROM(
+		SELECT ROW_NUMBER() OVER (ORDER BY CMT_NO DESC)AS NUM, CC.*, NICKNAME
+		FROM COORDI_COMMENTS CC
+		LEFT JOIN MEMBER M ON (M.USER_ID=CC.CMT_WRITER)
+		WHERE COORDI_POST_NO=#{coordiNo})
+		WHERE NUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectCoordiCommentTotalCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM COORDI_COMMENTS
+		WHERE COORDI_POST_NO=#{coordiNo}
+	</select>
+	
+	<update id="updateCoordiCommentOneDelYNChange" parameterType="map">
+		UPDATE COORDI_COMMENTS SET DEL_YN=#{cmtDelYN} WHERE CMT_NO=#{cmtNo}
+	</update>
+	
+	<update id="updateCoordiCommentCheckedDelYNChange">
+		UPDATE COORDI_COMMENTS SET DEL_YN='Y' WHERE CMT_NO IN 
+		<foreach collection="array" index="index" item="arr" open="(" separator="," close=")">
+		#{arr}
+		</foreach>
+	</update>
+	
+	<select id="selectSearchCoordiCommentListPage" parameterType="hashmap" resultType="postCoordi">
+		SELECT 
+			cmt_no as cmtNo,
+			cmt_depth as cmtDepth,
+			nickname as nickName,
+			cmt_content as cmtContent,
+			cmt_parent as cmtParent,
+			cmt_time as CmtTime,
+			del_YN as cmtDelYN
+		FROM(
+		SELECT ROW_NUMBER() OVER (ORDER BY CMT_NO DESC)AS NUM, CC.*, NICKNAME
+		FROM COORDI_COMMENTS CC
+		LEFT JOIN MEMBER M ON (M.USER_ID=CC.CMT_WRITER)
+		WHERE COORDI_POST_NO=#{coordiNo} AND
+		<choose>
+			<when test="type.equals('nickName')">
+				NICKNAME LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="type.equals('cmtContent')">
+				CMT_CONTENT LIKE '%'||#{keyword}||'%'
+			</when>
+		</choose>
+		)
+		WHERE NUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="selectSearchCoordiCommentTotalCount" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*) FROM COORDI_COMMENTS CC
+		LEFT JOIN MEMBER M ON (M.USER_ID=CC.CMT_WRITER)
+		WHERE COORDI_POST_NO=#{coordiNo} AND
+		<choose>
+			<when test="type.equals('nickName')">
+				NICKNAME LIKE '%'||#{keyword}||'%'
+			</when>
+			<when test="type.equals('cmtContent')">
+				CMT_CONTENT LIKE '%'||#{keyword}||'%'
+			</when>
+		</choose>
+	</select>
 </mapper>

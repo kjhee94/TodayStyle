@@ -1,6 +1,6 @@
 package kr.or.iei.postCoordi.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class PostCoordi {
 	
