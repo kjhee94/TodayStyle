@@ -114,5 +114,24 @@ public class MemberAOP {
 			map.put("num", data);
 			
 		}
+		
+		// 카카오 로그인 회원 가입 암호화 처리 AOP 처리
+		
+				@Pointcut("execution(int kr.or.iei.member.model.service.MemberServiceImpl.kakaoinsert(..))")
+				public void kakaoinsertPointCut() {
+				}
+
+				@Before("kakaoinsertPointCut()")
+				public void kakaoinsertPasswordEncryption(JoinPoint jp) throws Exception {
+					HashMap<String,Object> map = (HashMap<String,Object>)jp.getArgs()[0];
+
+					String password = map.get("password").toString();
+					String userId = map.get("userId").toString();
+
+					String encryptPwd = enc.encryptionData(password, userId);
+
+					map.put("password", encryptPwd);
+
+				}
 
 }
