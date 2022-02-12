@@ -24,5 +24,14 @@ public interface MemberService {
 
 	ArrayList<Member> selectTopFollowList();
 
+	int kakaoinsert(HashMap<String, Object> map);
+
+	int findkakao(String email);
+
+	Member kakaoselect(Member member);
+
+	Member kakaoMember(Member member, String email);
+
+	int kakaoemail(String email);
 
 }

@@ -26,7 +26,7 @@
 	
 		<div id="content">
 			<ul class="tabs">
-				<a href="/beststyle/weekBestPage.do"><li class="tab-link current" data-tab="tab-1">이번주 베스트</li></a>
+				<a href="/beststyle/weekBestPage.do"><li class="tab-link current" data-tab="tab-1">지난 베스트</li></a>
 				<a href="/beststyle/bestOfbestPage.do"><li class="tab-link" data-tab="tab-2">역대 베스트</li></a>
 			</ul>
 			<div id="tab-1" class="tab-content current">
