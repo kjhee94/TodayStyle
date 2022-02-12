@@ -310,13 +310,7 @@ public class AdminServiceImpl implements AdminService {
 		
 		return aDAO.updateCoordiCommentCheckedDelYNChange(cmtNo);
 	}
-
-	@Override
-	public HashMap<String, Object> selectSearchCoordiComment(int currentPage, String type, String keyword) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public HashMap<String, Object> selectSearchCoordiComment(int currentPage, String type, String keyword,
 			int coordiNo) {
@@ -330,6 +324,115 @@ public class AdminServiceImpl implements AdminService {
 		int naviCountPerPage = 5;
 		
 		String pageNavi = aDAO.getSearchCoordiCommentPageNavi(recordCountPerPage,currentPage,naviCountPerPage,type,keyword,coordiNo);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+			
+		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> selectAllIttem(int currentPage) {
+
+		//한 페이지에 보여줄 게시물의 수 
+		int recordCountPerPage = 10;
+		
+		ArrayList<Member> list = aDAO.selectAllIttem(recordCountPerPage,currentPage);
+		
+		//페이지 네비
+		int naviCountPerPage = 5;
+		
+		String pageNavi = aDAO.getIttemPageNavi(recordCountPerPage,currentPage,naviCountPerPage);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+		
+		return map;
+	}
+
+	@Override
+	public int updateIttemOneDelYNChange(int itItemNo, char delYN) {
+		
+		return aDAO.updateIttemOneDelYNChange(itItemNo,delYN);
+	}
+
+	@Override
+	public int updateIttemCheckedDelYNChange(String itItemNo) {
+		
+		return aDAO.updateIttemCheckedDelYNChange(itItemNo);
+	}
+
+	@Override
+	public HashMap<String, Object> selectSearchIttem(int currentPage, String type, String keyword) {
+		
+		//한 페이지에 보여줄 게시물의 수 
+		int recordCountPerPage = 10;
+		
+		ArrayList<Member> list = aDAO.selectSearchIttem(recordCountPerPage,currentPage,type,keyword);
+		
+		//페이지 네비
+		int naviCountPerPage = 5;
+		
+		String pageNavi = aDAO.getSearchIttemPageNavi(recordCountPerPage,currentPage,naviCountPerPage,type,keyword);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+			
+		return map;
+	}
+
+	@Override
+	public HashMap<String, Object> selectAllIttemComment(int currentPage, int itItemNo) {
+		
+		//한 페이지에 보여줄 게시물의 수 
+		int recordCountPerPage = 10;
+		
+		ArrayList<Member> list = aDAO.selectAllIttemComment(recordCountPerPage,currentPage,itItemNo);
+		
+		//페이지 네비
+		int naviCountPerPage = 5;
+		
+		String pageNavi = aDAO.getIttemCommentPageNavi(recordCountPerPage,currentPage,naviCountPerPage,itItemNo);
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list", list);
+		map.put("pageNavi", pageNavi);
+		
+		return map;
+	}
+
+	@Override
+	public int updateIttemCommentOneDelYNChange(int cmtNo, String cmtDelYN) {
+		
+		return aDAO.updateIttemCommentOneDelYNChange(cmtNo,cmtDelYN);
+	}
+
+	@Override
+	public int updateIttemCommentCheckedDelYNChange(String cmtNo) {
+		// TODO Auto-generated method stub
+		return aDAO.updateIttemCommentCheckedDelYNChange(cmtNo);
+	}
+
+	@Override
+	public HashMap<String, Object> selectSearchIttemComment(int currentPage, String type, String keyword,
+			int itItemNo) {
+		
+		//한 페이지에 보여줄 게시물의 수 
+		int recordCountPerPage = 10;
+		
+		ArrayList<Member> list = aDAO.selectSearchIttemComment(recordCountPerPage,currentPage,type,keyword,itItemNo);
+		
+		//페이지 네비
+		int naviCountPerPage = 5;
+		
+		String pageNavi = aDAO.getSearchIttemCommentPageNavi(recordCountPerPage,currentPage,naviCountPerPage,type,keyword,itItemNo);
 		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		

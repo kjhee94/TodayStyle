@@ -800,4 +800,285 @@ public class AdminDAO {
 		
 		return sqlSession.selectOne("admin.selectSearchCoordiCommentTotalCount",map);
 	}
+
+	public ArrayList<Member> selectAllIttem(int recordCountPerPage, int currentPage) {
+		
+		int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
+		int end = currentPage*recordCountPerPage;
+		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		
+		map.put("start", start);
+		map.put("end", end);
+		
+		ArrayList<Member> list = new ArrayList<Member>(sqlSession.selectList("admin.selectAllIttemListPage", map));
+		
+		return list;
+	}
+
+	public String getIttemPageNavi(int recordCountPerPage, int currentPage, int naviCountPerPage) {
+
+		//총 게시물 수
+		int recordTotalCount = totalIttemCount();
+		
+		//현재 페이지 수를 가지고 있는 변수
+		int pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
+		
+		int startNavi = ((currentPage-1)/naviCountPerPage)*naviCountPerPage+1;
+		int endNavi = startNavi+naviCountPerPage-1;
+		
+		//공백페이지 네비 처리
+		if(endNavi>pageTotalCount) {
+			endNavi=pageTotalCount;
+		}
+		
+		//모양만들기
+		StringBuilder sb = new StringBuilder();
+		if(startNavi != 1) {
+			
+			sb.append("<li><a href='/admin/adminIttem.do?currentPage="+(startNavi-1)+"'><i class='fas fa-chevron-left'></i></a></li>");
+		}
+		for(int i=startNavi; i<=endNavi; i++) {
+			if(i==currentPage) {
+				sb.append("<li><a href='/admin/adminIttem.do?currentPage="+i+"' class='page_active'>"+i+"</a></li>");
+			}else {
+				sb.append("<li><a href='/admin/adminIttem.do?currentPage="+i+"'>"+i+"</a></li>");
+			}
+		}
+		if(endNavi != pageTotalCount) {
+			sb.append("<li><a href='/admin/adminIttem.do?currentPage="+(endNavi+1)+"'><i class='fas fa-chevron-right'></i></a></li>");
+		}
+		
+		return sb.toString();
+	}
+
+	private int totalIttemCount() {
+		
+		return sqlSession.selectOne("admin.selectIttemTotalCount");
+	}
+
+	public int updateIttemOneDelYNChange(int itItemNo, char delYN) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("itItemNo", itItemNo);
+		map.put("delYN", delYN);
+		
+		return sqlSession.update("admin.updateIttemOneDelYNChange",map);
+	}
+
+	public int updateIttemCheckedDelYNChange(String itItemNo) {
+		
+		String [] itItemNoArray = itItemNo.split(",");
+		
+		return sqlSession.update("admin.updateIttemCheckedDelYNChange",itItemNoArray);
+	}
+
+	public ArrayList<Member> selectSearchIttem(int recordCountPerPage, int currentPage, String type, String keyword) {
+		
+		int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
+		int end = currentPage*recordCountPerPage;
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("type", type);
+		map.put("keyword", keyword);
+		map.put("start", start);
+		map.put("end", end);
+		
+		ArrayList<Member> list = new ArrayList<Member>(sqlSession.selectList("admin.selectSearchIttemListPage", map));
+		
+		return list;
+	}
+
+	public String getSearchIttemPageNavi(int recordCountPerPage, int currentPage, int naviCountPerPage, String type,
+			String keyword) {
+		
+		///총 게시물 수
+		int recordTotalCount = totalSearchIttemCount(type, keyword);
+		
+		//현재 페이지 수를 가지고 있는 변수
+		int pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
+		
+		int startNavi = ((currentPage-1)/naviCountPerPage)*naviCountPerPage+1;
+		int endNavi = startNavi+naviCountPerPage-1;
+		
+		//공백페이지 네비 처리
+		if(endNavi>pageTotalCount) {
+			endNavi=pageTotalCount;
+		}
+		
+		//모양만들기
+		StringBuilder sb = new StringBuilder();
+		if(startNavi != 1) {
+			
+			sb.append("<li><a href='/admin/ittemSearch.do?currentPage="+(startNavi-1)+"&type="+type+"&keyword="+keyword+"'><i class='fas fa-chevron-left'></i></a></li>");
+		}
+		for(int i=startNavi; i<=endNavi; i++) {
+			if(i==currentPage) {
+				sb.append("<li><a href='/admin/ittemSearch.do?currentPage="+i+"&type="+type+"&keyword="+keyword+"' class='page_active'>"+i+"</a></li>");
+			}else {
+				sb.append("<li><a href='/admin/ittemSearch.do?currentPage="+i+"&type="+type+"&keyword="+keyword+"'>"+i+"</a></li>");
+			}
+		}
+		if(endNavi != pageTotalCount) {
+			sb.append("<li><a href='/admin/ittemSearch.do?currentPage="+(endNavi+1)+"&type="+type+"&keyword="+keyword+"'><i class='fas fa-chevron-right'></i></a></li>");
+		}
+		
+		return sb.toString();
+	}
+	
+	private int totalSearchIttemCount(String type, String keyword) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("type", type);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectOne("admin.selectSearchIttemTotalCount", map);
+	}
+
+	public ArrayList<Member> selectAllIttemComment(int recordCountPerPage, int currentPage, int itItemNo) {
+		
+		int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
+		int end = currentPage*recordCountPerPage;
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("itItemNo", itItemNo);
+		map.put("start", start);
+		map.put("end", end);
+		
+		ArrayList<Member> list = new ArrayList<Member>(sqlSession.selectList("admin.selectAllIttemCommentListPage", map));
+		
+		return list;
+	}
+
+	public String getIttemCommentPageNavi(int recordCountPerPage, int currentPage, int naviCountPerPage, int itItemNo) {
+		
+		//총 게시물 수
+		int recordTotalCount = totalIttemCommentCount(itItemNo);
+		
+		//현재 페이지 수를 가지고 있는 변수
+		int pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
+		
+		int startNavi = ((currentPage-1)/naviCountPerPage)*naviCountPerPage+1;
+		int endNavi = startNavi+naviCountPerPage-1;
+		
+		//공백페이지 네비 처리
+		if(endNavi>pageTotalCount) {
+			endNavi=pageTotalCount;
+		}
+		
+		//모양만들기
+		StringBuilder sb = new StringBuilder();
+		if(startNavi != 1) {
+			
+			sb.append("<li><a href='/admin/adminIttemComment.do?itItemNo="+itItemNo+"&currentPage="+(startNavi-1)+"'><i class='fas fa-chevron-left'></i></a></li>");
+		}
+		for(int i=startNavi; i<=endNavi; i++) {
+			if(i==currentPage) {
+				sb.append("<li><a href='/admin/adminIttemComment.do?itItemNo="+itItemNo+"&currentPage="+i+"' class='page_active'>"+i+"</a></li>");
+			}else {
+				sb.append("<li><a href='/admin/adminIttemComment.do?itItemNo="+itItemNo+"&currentPage="+i+"'>"+i+"</a></li>");
+			}
+		}
+		if(endNavi != pageTotalCount) {
+			sb.append("<li><a href='/admin/adminIttemComment.do?itItemNo="+itItemNo+"&currentPage="+(endNavi+1)+"'><i class='fas fa-chevron-right'></i></a></li>");
+		}
+		
+		return sb.toString();
+	}
+
+	private int totalIttemCommentCount(int itItemNo) {
+		
+		return sqlSession.selectOne("admin.selectIttemCommentTotalCount",itItemNo);
+	}
+
+	public int updateIttemCommentOneDelYNChange(int cmtNo, String cmtDelYN) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("cmtNo", cmtNo);
+		map.put("cmtDelYN", cmtDelYN);
+		
+		return sqlSession.update("admin.updateIttemCommentOneDelYNChange", map);
+	}
+
+	public int updateIttemCommentCheckedDelYNChange(String cmtNo) {
+		
+		String [] cmtNoArray = cmtNo.split(",");
+		
+		int result = sqlSession.update("admin.updateIttemCommentCheckedDelYNChange",cmtNoArray);
+		
+		return result;
+	}
+
+	public ArrayList<Member> selectSearchIttemComment(int recordCountPerPage, int currentPage, String type,
+			String keyword, int itItemNo) {
+		
+		int start = currentPage*recordCountPerPage-(recordCountPerPage-1);
+		int end = currentPage*recordCountPerPage;
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("type", type);
+		map.put("keyword", keyword);
+		map.put("itItemNo", itItemNo);
+		map.put("start", start);
+		map.put("end", end);
+		
+		ArrayList<Member> list = new ArrayList<Member>(sqlSession.selectList("admin.selectSearchIttemCommentListPage", map));
+		
+		return list;
+	}
+
+	public String getSearchIttemCommentPageNavi(int recordCountPerPage, int currentPage, int naviCountPerPage,
+			String type, String keyword, int itItemNo) {
+		
+		//총 게시물 수
+		int recordTotalCount = totalSearchIttemCommentCount(itItemNo, type, keyword);
+		
+		//현재 페이지 수를 가지고 있는 변수
+		int pageTotalCount = (int)Math.ceil(recordTotalCount/(double)recordCountPerPage);
+		
+		int startNavi = ((currentPage-1)/naviCountPerPage)*naviCountPerPage+1;
+		int endNavi = startNavi+naviCountPerPage-1;
+		
+		//공백페이지 네비 처리
+		if(endNavi>pageTotalCount) {
+			endNavi=pageTotalCount;
+		}
+		
+		//모양만들기
+		StringBuilder sb = new StringBuilder();
+		if(startNavi != 1) {
+			
+			sb.append("<li><a href='/admin/ittemCommentSearch.do?itItemNo="+itItemNo+"&currentPage="+(startNavi-1)+"&type="+type+"&keyword="+keyword+"'><i class='fas fa-chevron-left'></i></a></li>");
+		}
+		for(int i=startNavi; i<=endNavi; i++) {
+			if(i==currentPage) {
+				sb.append("<li><a href='/admin/ittemCommentSearch.do?itItemNo="+itItemNo+"&currentPage="+i+"&type="+type+"&keyword="+keyword+"' class='page_active'>"+i+"</a></li>");
+			}else {
+				sb.append("<li><a href='/admin/ittemCommentSearch.do?itItemNo="+itItemNo+"&currentPage="+i+"&type="+type+"&keyword="+keyword+"'>"+i+"</a></li>");
+			}
+		}
+		if(endNavi != pageTotalCount) {
+			sb.append("<li><a href='/admin/ittemCommentSearch.do?itItemNo="+itItemNo+"&currentPage="+(endNavi+1)+"&type="+type+"&keyword="+keyword+"'><i class='fas fa-chevron-right'></i></a></li>");
+		}
+		
+		return sb.toString();
+	}
+
+	private int totalSearchIttemCommentCount(int itItemNo, String type, String keyword) {
+
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("itItemNo", itItemNo);
+		map.put("type", type);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectOne("admin.selectSearchIttemCommentTotalCount",map);
+	}
+
 }

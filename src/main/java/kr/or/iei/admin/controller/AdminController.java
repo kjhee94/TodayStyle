@@ -495,24 +495,145 @@ public class AdminController {
 		return mav;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping(value = "/admin/adminIttem.do")
-	public String adminIttem() {
+	public ModelAndView adminIttem(HttpServletRequest request, ModelAndView mav) {
 		
-		return "admin/adminIttem";
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		HashMap<String, Object> map = aService.selectAllIttem(currentPage);
+		
+		mav.addObject("map", map);
+		mav.setViewName("admin/adminIttem");
+		
+		return mav;
 	}
 	
-	@RequestMapping(value = "/admin/adminIttemComment.do")
-	public String adminIttemComment() {
+	@RequestMapping(value = "/admin/ittemOneDelYNChange.do")
+	public void ittemOneDelYNChange(@RequestParam int itItemNo, @RequestParam char delYN, HttpServletResponse response) throws IOException {
 		
-		return "admin/adminIttemComment";
+		//삼항연상자
+		delYN = (delYN == 'Y')?'N':'Y';
+		
+		int result = aService.updateIttemOneDelYNChange(itItemNo, delYN);
+		
+		if(result>0) {
+			response.getWriter().print(delYN);
+		}else {
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value = "/admin/ittemCheckedDelYNChange.do", method = RequestMethod.POST)
+	public void ittemCheckedDelYNChange(@RequestParam String itItemNo, HttpServletResponse response) throws IOException {
+		
+		int result = aService.updateIttemCheckedDelYNChange(itItemNo);
+		
+		if(result>0) {
+			response.getWriter().print(true);
+		}else {
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value = "/admin/ittemSearch.do", method = RequestMethod.GET)
+	public ModelAndView ittemSearch(@RequestParam String type, @RequestParam String keyword, HttpServletRequest request, ModelAndView mav) {
+		
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		HashMap<String, Object> map = aService.selectSearchIttem(currentPage,type,keyword);
+		
+		mav.addObject("map", map);
+		mav.setViewName("admin/adminIttem");
+		
+		return mav;
+	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = "/admin/adminIttemComment.do")
+	public ModelAndView adminIttemComment(@RequestParam int itItemNo, HttpServletRequest request, ModelAndView mav) {
+		
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+
+		HashMap<String, Object> map = aService.selectAllIttemComment(currentPage,itItemNo);
+		
+		mav.addObject("map", map);
+		mav.addObject("itItemNo", itItemNo);
+		mav.setViewName("admin/adminIttemComment");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/admin/ittemCommentOneDelYNChange.do", method = RequestMethod.POST)
+	public void ittemCommentOneDelYNChange(@RequestParam int cmtNo, @RequestParam String cmtDelYN, HttpServletResponse response) throws IOException {
+		
+		//삼항연산자
+		cmtDelYN = (cmtDelYN.equals("Y"))?"N":"Y";
+		
+		int result = aService.updateIttemCommentOneDelYNChange(cmtNo, cmtDelYN);
+		
+		if(result>0) {
+			response.getWriter().print(cmtDelYN);
+		}else {
+			response.getWriter().print(false);
+		}
+	}
+	
+	@RequestMapping(value = "/admin/ittemCommentCheckedDelYNChange.do", method = RequestMethod.POST)
+	public void ittemCommentCheckedDelYNChange(@RequestParam String cmtNo, HttpServletResponse response) throws IOException {
+		
+		int result = aService.updateIttemCommentCheckedDelYNChange(cmtNo);
+		
+		if(result>0) {
+			response.getWriter().print(true);
+		}else {
+			response.getWriter().print(false);
+		}
+		
+	}
+	
+	@RequestMapping(value = "/admin/ittemCommentSearch.do", method = RequestMethod.GET)
+	public ModelAndView ittemCommentSearch(@RequestParam int itItemNo, @RequestParam String type, @RequestParam String keyword, HttpServletRequest request, ModelAndView mav) {
+		
+		//현재 페이지 번호
+		int currentPage;
+		
+		if(request.getParameter("currentPage")==null) {
+			currentPage=1;
+		}else {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		HashMap<String, Object> map = aService.selectSearchIttemComment(currentPage,type,keyword,itItemNo);
+		
+		mav.addObject("map", map);
+		mav.setViewName("admin/adminIttemComment");
+		
+		return mav;
 	}
 	
 	

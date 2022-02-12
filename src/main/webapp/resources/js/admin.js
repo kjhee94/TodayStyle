@@ -405,7 +405,7 @@ $(document).ready(function(){
 						$this.parent().parent().removeClass("deactivate");
 						$this.parent().siblings().find(".ellipsis").next().addClass("box-hovor");
 						$this.parent().siblings().find(".fas").parent().next().addClass("detail");
-						$this.parent().siblings().find(".far").parent().parent().attr("href","/admin/adminCoordiComment.do");
+						$this.parent().siblings().find(".far").parent().parent().attr("href","/admin/adminCoordiComment.do?coordiNo="+coordiNo);
 						$this.parent().siblings().find("input").attr("disabled", false);
 						$this.parent().siblings().find("input").prop("checked", false);
 					}
@@ -590,6 +590,165 @@ $(document).ready(function(){
 					if(result!=false){
 						$("input:checked").parent().siblings().find(".fa-trash").attr("class", "fas fa-trash-restore");
 						$("input:checked").parent().siblings().find(".btn-one-coordi-comment-delete").attr("delYN", "Y");
+						$("input:checked").parent().parent().addClass("deactivate");
+						$("input:checked").attr("disabled", true);
+						$("input:checked").prop("checked", false);
+						
+						alert("삭제가 완료되었습니다.");
+					}
+				},
+				error: function(){
+					console.log("ajax 통신 실패");
+				}
+			})
+		}else {
+			return false;
+		}
+	});
+	
+	
+	//개별 이미지 삭제(잇템)
+	$(".btn-one-ittem-delete").click(function(){
+		
+		var itItemNo = $(this).attr("itItemNo");
+		var delYN = $(this).attr("delyn");
+		var $this = $(this);
+		
+		$.ajax({
+			url:"/admin/ittemOneDelYNChange.do",
+			data:{"itItemNo":itItemNo,"delYN":delYN},
+			type:"post",
+			success: function(result){
+				if(result!=false){
+					$this.attr("delyn",result);
+					if(delYN=='N') {
+						$this.children("i").attr("class", "fas fa-trash-restore");
+						$this.parent().parent().addClass("deactivate");
+						$this.parent().siblings().find(".ellipsis").next().removeClass("box-hovor");
+						$this.parent().siblings().find(".fas").parent().next().removeClass("detail");
+						$this.parent().siblings().find(".far").parent().parent().removeAttr("href");
+						$this.parent().siblings().find("input").attr("disabled", true);
+						$this.parent().siblings().find("input").prop("checked", false);
+					}else if(delYN=='Y') {
+						$this.children("i").attr("class", "fas fa-trash");
+						$this.parent().parent().removeClass("deactivate");
+						$this.parent().siblings().find(".ellipsis").next().addClass("box-hovor");
+						$this.parent().siblings().find(".fas").parent().next().addClass("detail");
+						$this.parent().siblings().find(".far").parent().parent().attr("href","/admin/adminIttemComment.do?itItemNo="+itItemNo);
+						$this.parent().siblings().find("input").attr("disabled", false);
+						$this.parent().siblings().find("input").prop("checked", false);
+					}
+				}
+			},
+			error: function(){
+				console.log("ajax 통신 실패");
+			}
+		})
+	})
+	
+	//단체 삭제 처리 ajax(잇템)
+	$("#checkedDeleteIttemBtn").click(function() {
+		var itItemNo = "";
+		
+		$("input[name='itItemNo']:checked").each(function() {
+			itItemNo = itItemNo+$(this).val()+",";
+		})
+		
+		//맨끝 콤마 지우기
+		itItemNo = itItemNo.substring(0,itItemNo.lastIndexOf(",")); 
+		
+		if(itItemNo == ""){
+			alert("삭제할 대상을 선택하세요.");
+			return false;
+		}
+		
+		if(confirm("잇템 번호 "+itItemNo+" 을(를)\n삭제처리 하시겠습니까?")){
+			$.ajax({
+				url:"/admin/ittemCheckedDelYNChange.do",
+				data:{"itItemNo":itItemNo},
+				type:"post",
+				success: function(result){
+					if(result!=false){
+						$("input:checked").parent().siblings().find(".fa-trash").attr("class", "fas fa-trash-restore");
+						$("input:checked").parent().siblings().find(".btn-one-coordi-delete").attr("DelYN", "Y");
+						$("input:checked").parent().parent().addClass("deactivate");
+						$("input:checked").parent().siblings().find(".ellipsis").next().removeClass("box-hovor");
+						$("input:checked").parent().siblings().find(".fas").parent().next().removeClass("detail");
+						$("input:checked").parent().siblings().find(".far").parent().parent().removeAttr("href");
+						$("input:checked").attr("disabled", true);
+						$("input:checked").prop("checked", false);
+						
+						alert("삭제가 완료되었습니다.");
+					}
+				},
+				error: function(){
+					console.log("ajax 통신 실패");
+				}
+			})
+		}else {
+			return false;
+		}
+	});
+	
+	
+	//개별 삭제 처리 ajax(잇템 댓글)
+	$(".btn-one-ittem-comment-delete").click(function() {
+		
+		var cmtNo = $(this).attr("cmtNo");
+		var cmtDelYN = $(this).attr("delyn");
+		var $this = $(this);
+		
+		$.ajax({
+			url:"/admin/ittemCommentOneDelYNChange.do",
+			data:{"cmtNo":cmtNo,"cmtDelYN":cmtDelYN},
+			type:"post",
+			success: function(result){
+				if(result!=false){
+					$this.attr("delyn",result);
+					if(cmtDelYN=="N") {
+						$this.children("i").attr("class", "fas fa-trash-restore");
+						$this.parent().parent().addClass("deactivate");
+						$this.parent().siblings().find("input").attr("disabled", true);
+						$this.parent().siblings().find("input").prop("checked", false);
+					}else if(cmtDelYN=="Y") {
+						$this.children("i").attr("class", "fas fa-trash");
+						$this.parent().parent().removeClass("deactivate");
+						$this.parent().siblings().find("input").attr("disabled", false);
+						$this.parent().siblings().find("input").prop("checked", false);
+					}
+				}
+			},
+			error: function(){
+				console.log("ajax 통신 실패");
+			}
+		})
+	})
+
+	//단체 삭제 처리 ajax(잇템 댓글)
+	$("#checkedDeleteICommentBtn").click(function() {
+		var cmtNo = "";
+		
+		$("input[name='cmtNo']:checked").each(function() {
+			cmtNo = cmtNo+$(this).val()+",";
+		})
+		
+		//맨끝 콤마 지우기
+		cmtNo = cmtNo.substring(0,cmtNo.lastIndexOf(",")); 
+		
+		if(cmtNo == ""){
+			alert("삭제할 댓글을 선택하세요.");
+			return false;
+		}
+		
+		if(confirm("댓글 번호 "+cmtNo+" 을(를)\n삭제처리 하시겠습니까?")){
+			$.ajax({
+				url:"/admin/ittemCommentCheckedDelYNChange.do",
+				data:{"cmtNo":cmtNo},
+				type:"post",
+				success: function(result){
+					if(result!=false){
+						$("input:checked").parent().siblings().find(".fa-trash").attr("class", "fas fa-trash-restore");
+						$("input:checked").parent().siblings().find(".btn-one-ittem-comment-delete").attr("delYN", "Y");
 						$("input:checked").parent().parent().addClass("deactivate");
 						$("input:checked").attr("disabled", true);
 						$("input:checked").prop("checked", false);

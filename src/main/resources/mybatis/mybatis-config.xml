@@ -14,6 +14,7 @@
 		<typeAlias type="kr.or.iei.myPage.model.vo.MyCoordiList" alias="myCoordiList"/>
 		<typeAlias type="kr.or.iei.myPage.model.vo.MyItTemList" alias="myItTemList"/>
 		<typeAlias type="kr.or.iei.postCoordi.model.vo.PostCoordi" alias="postCoordi"/>
+		<typeAlias type="kr.or.iei.postItItem.model.vo.PostItItem" alias="postItItem"/>
 	</typeAliases>
 
 </configuration>

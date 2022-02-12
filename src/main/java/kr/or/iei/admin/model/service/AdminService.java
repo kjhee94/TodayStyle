@@ -59,7 +59,21 @@ public interface AdminService {
 
 	int updateCoordiCommentCheckedDelYNChange(String cmtNo);
 
-	HashMap<String, Object> selectSearchCoordiComment(int currentPage, String type, String keyword);
-
 	HashMap<String, Object> selectSearchCoordiComment(int currentPage, String type, String keyword, int coordiNo);
+
+	HashMap<String, Object> selectAllIttem(int currentPage);
+
+	int updateIttemOneDelYNChange(int itItemNo, char delYN);
+
+	int updateIttemCheckedDelYNChange(String itItemNo);
+
+	HashMap<String, Object> selectSearchIttem(int currentPage, String type, String keyword);
+
+	HashMap<String, Object> selectAllIttemComment(int currentPage, int itItemNo);
+
+	int updateIttemCommentOneDelYNChange(int cmtNo, String cmtDelYN);
+
+	int updateIttemCommentCheckedDelYNChange(String cmtNo);
+
+	HashMap<String, Object> selectSearchIttemComment(int currentPage, String type, String keyword, int itItemNo);
 }

@@ -35,24 +35,25 @@
 			
 			<div id="container">
 				<div id="searchAndBtn">
-					<form action="" method="get">
+					<form action="/admin/ittemSearch.do" method="get">
 						<div id="boxSelect">
-							<select class="select-style" name="keyword">
+							<select class="select-style" name="type">
 								<option disabled selected>필터선택</option>
-								<option value="userId">작성자</option>
-								<option value="subject">제목</option>
-								<option value="content">내용</option>
+								<option value="nickName">작성자</option>
+								<option value="itItemTitle">제목</option>
+								<option value="itItemContent">내용</option>
+								<option value="hashTag">해시태그</option>
 							</select>
 							<i class="fas fa-chevron-down"></i>
 						</div>
 						
 						<div id="boxSearch">
-							<input class="input-style" type="text" name="search" placeholder="검색어를 입력하세요">
+							<input class="input-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
 							<button type="submit"><i class="fas fa-search"></i></button>
 						</div>
 					</form>
 					<div id="boxBtn">
-						<button id="allWithDrawBtn" class="btn-style">삭제</button>
+						<button id="checkedDeleteIttemBtn" class="btn-style">삭제</button>
 					</div>
 				</div>
 				
@@ -69,946 +70,190 @@
 						<th>댓글관리</th>
 						<th>삭제</th>
 					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>ididwwwwwwww</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>2022.01.24</td>
-						<td>
-							<div id="box-icon-btn">
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-tshirt"></i>
-									</div>
-									<div class="box-style detail">
-										<div class="style">
-											<div class="img-style">
-												<img alt="상의" src="/resources/images/default/shoes.png">
+					
+					<c:choose>
+						<c:when test="${!requestScope.map.list.isEmpty() }">
+							<c:forEach items="${requestScope.map.list }" var="i">
+								<c:if test="${i.delYN eq 'N'.charAt(0)}">
+									<tr>
+								</c:if>
+								<c:if test="${i.delYN eq 'Y'.charAt(0)}">
+									<tr class="deactivate">
+								</c:if>
+									<td>
+										<c:if test="${i.delYN eq 'N'.charAt(0)}">
+											<input type="checkbox" name="itItemNo" value="${i.itItemNo}">
+										</c:if>
+										<c:if test="${i.delYN eq 'Y'.charAt(0)}">
+											<input type="checkbox" name="itItemNo" value="${i.itItemNo}" disabled>
+										</c:if>
+									</td>
+									<td>${i.itItemNo}</td>
+									<td>${i.nickName}</td>
+									<td>
+										<div class="relative">
+											<div class="ellipsis unenter">${i.itItemTitle}</div>
+											<c:if test="${i.delYN eq 'N'.charAt(0)}">
+												<div class="box-hovor">${i.itItemTitle}</div>
+											</c:if>
+											<c:if test="${i.delYN eq 'Y'.charAt(0)}">
+												<div>${i.itItemTitle}</div>
+											</c:if>
+										</div>
+									</td>
+									<td>
+										<div class="relative">
+											<div class="ellipsis unenter">${i.itItemContent}</div>
+											<c:if test="${i.delYN eq 'N'.charAt(0)}">
+												<div class="box-hovor">${i.itItemContent}</div>
+											</c:if>
+											<c:if test="${i.delYN eq 'Y'.charAt(0)}">
+												<div>${i.itItemContent}</div>
+											</c:if>
+										</div>
+									</td>
+									<td>${i.regDate}</td>
+									<td>
+										<div id="box-icon-btn">
+											<div class="relative">
+												<div class="btn-style-icon">
+													<i class="fas fa-tshirt"></i>
+												</div>
+												<div class="box-style detail">
+													<div class="style">
+														<c:if test="${i.itemCode.substring(0,1) eq 'T'}">
+															<div class="img-style">
+																<img alt="상의" src="/resources/images/default/top.png">
+															</div>
+															<div class="txt-style">
+																<p>Top &nbsp·&nbsp ${i.itemName}</p>
+																<span>${i.itItembrand}</span>
+															</div>
+														</c:if>
+														<c:if test="${i.itemCode.substring(0,1) eq 'B'}">
+															<div class="img-style">
+																<img alt="하의" src="/resources/images/default/bottom.png">
+															</div>
+															<div class="txt-style">
+																<p>Bottom &nbsp·&nbsp ${i.itemName}</p>
+																<span>${i.itItembrand}</span>
+															</div>
+														</c:if>
+														<c:if test="${i.itemCode.substring(0,1) eq 'O'}">
+															<div class="img-style">
+																<img alt="아우터" src="/resources/images/default/outer.png">
+															</div>
+															<div class="txt-style">
+																<p>Outer &nbsp·&nbsp ${i.itemName}</p>
+																<span>${i.itItembrand}</span>
+															</div>
+														</c:if>
+														<c:if test="${i.itemCode.substring(0,1) eq 'S'}">
+															<div class="img-style">
+																<img alt="신발" src="/resources/images/default/shoes.png">
+															</div>
+															<div class="txt-style">
+																<p>Shoes &nbsp·&nbsp ${i.itemName}</p>
+																<span>${i.itItembrand}</span>
+															</div>
+														</c:if>
+														<c:if test="${i.itemCode.substring(0,1) eq 'A'}">
+															<div class="img-style">
+																<img alt="악세사리" src="/resources/images/default/acc.png">
+															</div>
+															<div class="txt-style">
+																<p>Acc &nbsp·&nbsp ${i.itemName}</p>
+																<span>${i.itItembrand}</span>
+															</div>
+														</c:if>
+													</div>
+													<div class="txt-item">
+														<div class="txt-item-list">
+															<span class="tit-item">상품명</span>
+															<span>${i.itItemName}</span>
+														</div>
+														<div class="txt-item-list">
+															<span class="tit-item">색상</span>
+															<span>${i.itItemColor}</span>
+														</div>
+														<div class="txt-item-list">
+															<span class="tit-item">구매 사이즈</span>
+															<span>${i.itItemSize}</span>
+														</div>
+													</div>
+												</div>
 											</div>
-											<div class="txt-style">
-												<p>Shoes &nbsp·&nbsp 운동화</p>
-												<span>NIKE</span>
+											
+											<div class="relative">
+												<div class="btn-style-icon">
+													<i class="fas fa-user"></i>
+												</div>
+												<div class="box-user detail">
+													<div class="txt-item-list">
+														<span class="tit-item">구매자 키</span>
+														<span>${i.userHeight}</span>
+													</div>
+													<div class="txt-item-list">
+														<span class="tit-item">정사이즈</span>
+														<span>${i.userSize}</span>
+													</div>
+												</div>
 											</div>
 										</div>
-										<div class="txt-item">
-											<div class="txt-item-list">
-												<span class="tit-item">상품명</span>
-												<span>나이키 에어포스1</span>
+									</td>
+									<td>
+										<div class="relative">
+											<div class="btn-style-icon">
+												<i class="fas fa-hashtag"></i>
 											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">색상</span>
-												<span>화이트</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">구매 사이즈</span>
-												<span>245mm</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-user"></i>
-									</div>
-									<div class="box-user detail">
-										<div class="txt-item-list">
-											<span class="tit-item">구매자 키</span>
-											<span>163cm</span>
-										</div>
-										<div class="txt-item-list">
-											<span class="tit-item">정사이즈</span>
-											<span>240mm</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="btn-style-icon">
-									<i class="fas fa-hashtag"></i>
-								</div>
-								<div class="box-hashtag detail">
-									<div class="h-wrap">#데일리운동화</div>
-									<div class="h-wrap">#나이키</div>
-									<div class="h-wrap">#스니커즈</div>
-									<div class="h-wrap">#운동화추천</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<a href="/admin/adminIttemComment.do">
-								<div class="btn-style-icon">
-									<i class="far fa-comment-dots"></i>
-								</div>
-							</a>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>ididwwwwwwww</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>2022.01.24</td>
-						<td>
-							<div id="box-icon-btn">
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-tshirt"></i>
-									</div>
-									<div class="box-style detail">
-										<div class="style">
-											<div class="img-style">
-												<img alt="상의" src="/resources/images/default/shoes.png">
-											</div>
-											<div class="txt-style">
-												<p>Shoes &nbsp·&nbsp 운동화</p>
-												<span>NIKE</span>
+											<c:if test="${i.delYN eq 'N'.charAt(0)}">
+												<div class="box-hashtag detail">
+											</c:if>
+											<c:if test="${i.delYN eq 'Y'.charAt(0)}">
+												<div class="box-hashtag">
+											</c:if>
+												<c:forTokens var="hashTag" items="${i.hashTag }" delims=",">
+													<div class="h-wrap">#${hashTag}</div>
+												</c:forTokens>
 											</div>
 										</div>
-										<div class="txt-item">
-											<div class="txt-item-list">
-												<span class="tit-item">상품명</span>
-												<span>나이키 에어포스1</span>
+									</td>
+									<td>
+										<c:if test="${i.delYN eq 'N'.charAt(0)}">
+											<a href="/admin/adminIttemComment.do?itItemNo=${i.itItemNo}">
+										</c:if>
+										<c:if test="${i.delYN eq 'Y'.charAt(0)}">
+											<a>
+										</c:if>
+											<div class="btn-style-icon">
+												<i class="far fa-comment-dots"></i>
 											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">색상</span>
-												<span>화이트</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">구매 사이즈</span>
-												<span>245mm</span>
-											</div>
+										</a>
+									</td>
+									<td>
+										<div class="btn-style-icon btn-one-ittem-delete" delyn="${i.delYN}" itItemNo="${i.itItemNo}">
+											<c:if test="${i.delYN eq 'N'.charAt(0)}">
+												<i class="fas fa-trash"></i>
+											</c:if>
+											<c:if test="${i.delYN eq 'Y'.charAt(0)}">
+												<i class="fas fa-trash-restore"></i>
+											</c:if>
 										</div>
-									</div>
-								</div>
-								
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-user"></i>
-									</div>
-									<div class="box-user detail">
-										<div class="txt-item-list">
-											<span class="tit-item">구매자 키</span>
-											<span>163cm</span>
-										</div>
-										<div class="txt-item-list">
-											<span class="tit-item">정사이즈</span>
-											<span>240mm</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="btn-style-icon">
-									<i class="fas fa-hashtag"></i>
-								</div>
-								<div class="box-hashtag detail">
-									<div class="h-wrap">#데일리운동화</div>
-									<div class="h-wrap">#나이키</div>
-									<div class="h-wrap">#스니커즈</div>
-									<div class="h-wrap">#운동화추천</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<a href="/admin/adminIttemComment.do">
-								<div class="btn-style-icon">
-									<i class="far fa-comment-dots"></i>
-								</div>
-							</a>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>ididwwwwwwww</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>2022.01.24</td>
-						<td>
-							<div id="box-icon-btn">
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-tshirt"></i>
-									</div>
-									<div class="box-style detail">
-										<div class="style">
-											<div class="img-style">
-												<img alt="상의" src="/resources/images/default/shoes.png">
-											</div>
-											<div class="txt-style">
-												<p>Shoes &nbsp·&nbsp 운동화</p>
-												<span>NIKE</span>
-											</div>
-										</div>
-										<div class="txt-item">
-											<div class="txt-item-list">
-												<span class="tit-item">상품명</span>
-												<span>나이키 에어포스1</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">색상</span>
-												<span>화이트</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">구매 사이즈</span>
-												<span>245mm</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-user"></i>
-									</div>
-									<div class="box-user detail">
-										<div class="txt-item-list">
-											<span class="tit-item">구매자 키</span>
-											<span>163cm</span>
-										</div>
-										<div class="txt-item-list">
-											<span class="tit-item">정사이즈</span>
-											<span>240mm</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="btn-style-icon">
-									<i class="fas fa-hashtag"></i>
-								</div>
-								<div class="box-hashtag detail">
-									<div class="h-wrap">#데일리운동화</div>
-									<div class="h-wrap">#나이키</div>
-									<div class="h-wrap">#스니커즈</div>
-									<div class="h-wrap">#운동화추천</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<a href="/admin/adminIttemComment.do">
-								<div class="btn-style-icon">
-									<i class="far fa-comment-dots"></i>
-								</div>
-							</a>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>ididwwwwwwww</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>2022.01.24</td>
-						<td>
-							<div id="box-icon-btn">
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-tshirt"></i>
-									</div>
-									<div class="box-style detail">
-										<div class="style">
-											<div class="img-style">
-												<img alt="상의" src="/resources/images/default/shoes.png">
-											</div>
-											<div class="txt-style">
-												<p>Shoes &nbsp·&nbsp 운동화</p>
-												<span>NIKE</span>
-											</div>
-										</div>
-										<div class="txt-item">
-											<div class="txt-item-list">
-												<span class="tit-item">상품명</span>
-												<span>나이키 에어포스1</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">색상</span>
-												<span>화이트</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">구매 사이즈</span>
-												<span>245mm</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-user"></i>
-									</div>
-									<div class="box-user detail">
-										<div class="txt-item-list">
-											<span class="tit-item">구매자 키</span>
-											<span>163cm</span>
-										</div>
-										<div class="txt-item-list">
-											<span class="tit-item">정사이즈</span>
-											<span>240mm</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="btn-style-icon">
-									<i class="fas fa-hashtag"></i>
-								</div>
-								<div class="box-hashtag detail">
-									<div class="h-wrap">#데일리운동화</div>
-									<div class="h-wrap">#나이키</div>
-									<div class="h-wrap">#스니커즈</div>
-									<div class="h-wrap">#운동화추천</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<a href="/admin/adminIttemComment.do">
-								<div class="btn-style-icon">
-									<i class="far fa-comment-dots"></i>
-								</div>
-							</a>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>ididwwwwwwww</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>2022.01.24</td>
-						<td>
-							<div id="box-icon-btn">
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-tshirt"></i>
-									</div>
-									<div class="box-style detail">
-										<div class="style">
-											<div class="img-style">
-												<img alt="상의" src="/resources/images/default/shoes.png">
-											</div>
-											<div class="txt-style">
-												<p>Shoes &nbsp·&nbsp 운동화</p>
-												<span>NIKE</span>
-											</div>
-										</div>
-										<div class="txt-item">
-											<div class="txt-item-list">
-												<span class="tit-item">상품명</span>
-												<span>나이키 에어포스1</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">색상</span>
-												<span>화이트</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">구매 사이즈</span>
-												<span>245mm</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-user"></i>
-									</div>
-									<div class="box-user detail">
-										<div class="txt-item-list">
-											<span class="tit-item">구매자 키</span>
-											<span>163cm</span>
-										</div>
-										<div class="txt-item-list">
-											<span class="tit-item">정사이즈</span>
-											<span>240mm</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="btn-style-icon">
-									<i class="fas fa-hashtag"></i>
-								</div>
-								<div class="box-hashtag detail">
-									<div class="h-wrap">#데일리운동화</div>
-									<div class="h-wrap">#나이키</div>
-									<div class="h-wrap">#스니커즈</div>
-									<div class="h-wrap">#운동화추천</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<a href="/admin/adminIttemComment.do">
-								<div class="btn-style-icon">
-									<i class="far fa-comment-dots"></i>
-								</div>
-							</a>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>ididwwwwwwww</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>2022.01.24</td>
-						<td>
-							<div id="box-icon-btn">
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-tshirt"></i>
-									</div>
-									<div class="box-style detail">
-										<div class="style">
-											<div class="img-style">
-												<img alt="상의" src="/resources/images/default/shoes.png">
-											</div>
-											<div class="txt-style">
-												<p>Shoes &nbsp·&nbsp 운동화</p>
-												<span>NIKE</span>
-											</div>
-										</div>
-										<div class="txt-item">
-											<div class="txt-item-list">
-												<span class="tit-item">상품명</span>
-												<span>나이키 에어포스1</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">색상</span>
-												<span>화이트</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">구매 사이즈</span>
-												<span>245mm</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-user"></i>
-									</div>
-									<div class="box-user detail">
-										<div class="txt-item-list">
-											<span class="tit-item">구매자 키</span>
-											<span>163cm</span>
-										</div>
-										<div class="txt-item-list">
-											<span class="tit-item">정사이즈</span>
-											<span>240mm</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="btn-style-icon">
-									<i class="fas fa-hashtag"></i>
-								</div>
-								<div class="box-hashtag detail">
-									<div class="h-wrap">#데일리운동화</div>
-									<div class="h-wrap">#나이키</div>
-									<div class="h-wrap">#스니커즈</div>
-									<div class="h-wrap">#운동화추천</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<a href="/admin/adminIttemComment.do">
-								<div class="btn-style-icon">
-									<i class="far fa-comment-dots"></i>
-								</div>
-							</a>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>ididwwwwwwww</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>2022.01.24</td>
-						<td>
-							<div id="box-icon-btn">
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-tshirt"></i>
-									</div>
-									<div class="box-style detail">
-										<div class="style">
-											<div class="img-style">
-												<img alt="상의" src="/resources/images/default/shoes.png">
-											</div>
-											<div class="txt-style">
-												<p>Shoes &nbsp·&nbsp 운동화</p>
-												<span>NIKE</span>
-											</div>
-										</div>
-										<div class="txt-item">
-											<div class="txt-item-list">
-												<span class="tit-item">상품명</span>
-												<span>나이키 에어포스1</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">색상</span>
-												<span>화이트</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">구매 사이즈</span>
-												<span>245mm</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-user"></i>
-									</div>
-									<div class="box-user detail">
-										<div class="txt-item-list">
-											<span class="tit-item">구매자 키</span>
-											<span>163cm</span>
-										</div>
-										<div class="txt-item-list">
-											<span class="tit-item">정사이즈</span>
-											<span>240mm</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="btn-style-icon">
-									<i class="fas fa-hashtag"></i>
-								</div>
-								<div class="box-hashtag detail">
-									<div class="h-wrap">#데일리운동화</div>
-									<div class="h-wrap">#나이키</div>
-									<div class="h-wrap">#스니커즈</div>
-									<div class="h-wrap">#운동화추천</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<a href="/admin/adminIttemComment.do">
-								<div class="btn-style-icon">
-									<i class="far fa-comment-dots"></i>
-								</div>
-							</a>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>ididwwwwwwww</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>2022.01.24</td>
-						<td>
-							<div id="box-icon-btn">
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-tshirt"></i>
-									</div>
-									<div class="box-style detail">
-										<div class="style">
-											<div class="img-style">
-												<img alt="상의" src="/resources/images/default/shoes.png">
-											</div>
-											<div class="txt-style">
-												<p>Shoes &nbsp·&nbsp 운동화</p>
-												<span>NIKE</span>
-											</div>
-										</div>
-										<div class="txt-item">
-											<div class="txt-item-list">
-												<span class="tit-item">상품명</span>
-												<span>나이키 에어포스1</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">색상</span>
-												<span>화이트</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">구매 사이즈</span>
-												<span>245mm</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-user"></i>
-									</div>
-									<div class="box-user detail">
-										<div class="txt-item-list">
-											<span class="tit-item">구매자 키</span>
-											<span>163cm</span>
-										</div>
-										<div class="txt-item-list">
-											<span class="tit-item">정사이즈</span>
-											<span>240mm</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="btn-style-icon">
-									<i class="fas fa-hashtag"></i>
-								</div>
-								<div class="box-hashtag detail">
-									<div class="h-wrap">#데일리운동화</div>
-									<div class="h-wrap">#나이키</div>
-									<div class="h-wrap">#스니커즈</div>
-									<div class="h-wrap">#운동화추천</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<a href="/admin/adminIttemComment.do">
-								<div class="btn-style-icon">
-									<i class="far fa-comment-dots"></i>
-								</div>
-							</a>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>ididwwwwwwww</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>2022.01.24</td>
-						<td>
-							<div id="box-icon-btn">
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-tshirt"></i>
-									</div>
-									<div class="box-style detail">
-										<div class="style">
-											<div class="img-style">
-												<img alt="상의" src="/resources/images/default/shoes.png">
-											</div>
-											<div class="txt-style">
-												<p>Shoes &nbsp·&nbsp 운동화</p>
-												<span>NIKE</span>
-											</div>
-										</div>
-										<div class="txt-item">
-											<div class="txt-item-list">
-												<span class="tit-item">상품명</span>
-												<span>나이키 에어포스1</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">색상</span>
-												<span>화이트</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">구매 사이즈</span>
-												<span>245mm</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-user"></i>
-									</div>
-									<div class="box-user detail">
-										<div class="txt-item-list">
-											<span class="tit-item">구매자 키</span>
-											<span>163cm</span>
-										</div>
-										<div class="txt-item-list">
-											<span class="tit-item">정사이즈</span>
-											<span>240mm</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="btn-style-icon">
-									<i class="fas fa-hashtag"></i>
-								</div>
-								<div class="box-hashtag detail">
-									<div class="h-wrap">#데일리운동화</div>
-									<div class="h-wrap">#나이키</div>
-									<div class="h-wrap">#스니커즈</div>
-									<div class="h-wrap">#운동화추천</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<a href="/admin/adminIttemComment.do">
-								<div class="btn-style-icon">
-									<i class="far fa-comment-dots"></i>
-								</div>
-							</a>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox"></td>
-						<td>12345</td>
-						<td>ididwwwwwwww</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">제목입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="ellipsis">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-								<div class="box-hovor detail">내용입니다. 길면 줄임표가 나타납니다. 전체 내용은 클릭시 노출됩니다.</div>
-							</div>
-						</td>
-						<td>2022.01.24</td>
-						<td>
-							<div id="box-icon-btn">
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-tshirt"></i>
-									</div>
-									<div class="box-style detail">
-										<div class="style">
-											<div class="img-style">
-												<img alt="상의" src="/resources/images/default/shoes.png">
-											</div>
-											<div class="txt-style">
-												<p>Shoes &nbsp·&nbsp 운동화</p>
-												<span>NIKE</span>
-											</div>
-										</div>
-										<div class="txt-item">
-											<div class="txt-item-list">
-												<span class="tit-item">상품명</span>
-												<span>나이키 에어포스1</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">색상</span>
-												<span>화이트</span>
-											</div>
-											<div class="txt-item-list">
-												<span class="tit-item">구매 사이즈</span>
-												<span>245mm</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="relative">
-									<div class="btn-style-icon">
-										<i class="fas fa-user"></i>
-									</div>
-									<div class="box-user detail">
-										<div class="txt-item-list">
-											<span class="tit-item">구매자 키</span>
-											<span>163cm</span>
-										</div>
-										<div class="txt-item-list">
-											<span class="tit-item">정사이즈</span>
-											<span>240mm</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="relative">
-								<div class="btn-style-icon">
-									<i class="fas fa-hashtag"></i>
-								</div>
-								<div class="box-hashtag detail">
-									<div class="h-wrap">#데일리운동화</div>
-									<div class="h-wrap">#나이키</div>
-									<div class="h-wrap">#스니커즈</div>
-									<div class="h-wrap">#운동화추천</div>
-								</div>
-							</div>
-						</td>
-						<td>
-							<a href="/admin/adminIttemComment.do">
-								<div class="btn-style-icon">
-									<i class="far fa-comment-dots"></i>
-								</div>
-							</a>
-						</td>
-						<td>
-							<div class="btn-style-icon">
-								<i class="fas fa-trash"></i>
-							</div>
-						</td>
-					</tr>
+									</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr class="txt-none">
+								<td colspan="12">검색된 잇템이 없습니다</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</table>
+				
 				<div id="page_wrap">
 					<ul class="page_ul">
-						<li><a href=''><i class='fas fa-chevron-left'></i></a></li>
-						<li><a href='' class='page_active'>1</a></li>
-						<li><a href=''>2</a></li>
-						<li><a href=''>3</a></li>
-						<li><a href=''>4</a></li>
-						<li><a href=''>5</a></li>
-						<li><a href=''><i class='fas fa-chevron-right'></i></a></li>
+						${requestScope.map.pageNavi}
 	 				</ul>
 			    </div>
 			</div>
