@@ -3,6 +3,8 @@ package kr.or.iei.myPage.Controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import kr.or.iei.board.model.vo.Notice;
 import kr.or.iei.member.model.vo.Member;
 import kr.or.iei.memberSetting.model.service.MemberSettingService;
 import kr.or.iei.myPage.model.service.MyPageService;
+import kr.or.iei.myPage.model.vo.Comments;
 import kr.or.iei.myPage.model.vo.Follow;
 import kr.or.iei.myPage.model.vo.MyCoordiList;
 import kr.or.iei.myPage.model.vo.MyItTemList;
@@ -28,24 +32,11 @@ public class MyPageController {
 	@Autowired
 	private MyPageService mpService;
 
-	/*
-	 * // 프로필 데이터를 세션에 담는 메소드 public void profileData(@SessionAttribute Member
-	 * member, HttpSession session) { // 1. profile 내용 // - 이름 // - 사진(경로) // -
-	 * 팔로워/팔로잉 수 String userId = member.getUserId();
-	 * 
-	 * ProfileImg pI = msService.profileImgCheck(userId); // System.out.println(pI);
-	 * String filePath = pI.getFilePath(); System.out.println(filePath);
-	 * session.setAttribute("ProfileImgPath", filePath);
-	 * 
-	 * // 사용자가 팔로우한 사람 수 String result = mpService.followingNum(userId);
-	 * 
-	 * }
-	 */
-
-	// 나의 코디 페이지
-	@RequestMapping(value = "/myPage/myStyle.do")
-	public String myPage(@SessionAttribute Member member, Model model) {
-
+	
+	
+	
+	public void profile(@SessionAttribute Member member, Model model) {
+		
 		// 1. profile 내용 (nickname, 프로필 이미지 경로, 팔로잉&팔로워 수, follow user 정보)
 
 		// 닉네임
@@ -71,9 +62,17 @@ public class MyPageController {
 		model.addAttribute("filepath", filepath);
 		model.addAttribute("followingNum", followingNum);
 		model.addAttribute("followerNum", followerNum);
+	}
 
+	// 나의 코디 페이지
+	@RequestMapping(value = "/myPage/myStyle.do")
+	public String myPage(@SessionAttribute Member member, Model model) {
+		
+		//1. profile 내용
+		profile(member, model);
+		
 		// 2. content 내용
-
+		String userId = member.getUserId();
 		// user coordi list (코디글 번호, 이미지 경로)
 		ArrayList<MyCoordiList> myCoordiList = mpService.myCoordiList(userId);
 		// System.out.println(myCoordiList);
@@ -91,6 +90,9 @@ public class MyPageController {
 	@RequestMapping(value = "/mypage/myCoordi.do")
 	public String myCoordiAll(@SessionAttribute Member member, Model model) {
 
+		//1. profile 내용
+		profile(member, model);
+		
 		String userId = member.getUserId();
 
 		// user coordi list (코디글 번호, 이미지 경로)
@@ -105,6 +107,9 @@ public class MyPageController {
 	@RequestMapping(value = "/mypage/myItTem.do")
 	public String myItTemAll(@SessionAttribute Member member, Model model) {
 
+		//1. profile 내용
+		profile(member, model);
+		
 		String userId = member.getUserId();
 
 		// user itTem list (잇템글 번호, 이미지 경로)
@@ -119,6 +124,9 @@ public class MyPageController {
 	@RequestMapping(value = "/myPage/scrapCoordi.do")
 	public String scrapCoordi(@SessionAttribute Member member, Model model) {
 
+		//1. profile 내용
+		profile(member, model);
+		
 		String userId = member.getUserId();
 
 		ArrayList<ScrapCoordiList> scList = mpService.scrapCoordiList(userId);
@@ -133,6 +141,9 @@ public class MyPageController {
 	@RequestMapping(value = "/myPage/scrapItTem.do")
 	public String scrapItTem(@SessionAttribute Member member, Model model) {
 
+		//1. profile 내용
+		profile(member, model);
+		
 		String userId = member.getUserId();
 
 		ArrayList<ScrapItTemList> siList = mpService.scrapItTemList(userId);
@@ -145,22 +156,72 @@ public class MyPageController {
 
 	// 댓글(코디) 페이지
 	@RequestMapping(value = "/myPage/commentsCoordi.do")
-	public String commentsCoordi(@SessionAttribute Member member, Model model) {
+	public String commentsCoordi(HttpServletRequest request, @SessionAttribute Member member, Model model) 
+	{
+
+		//1. profile 내용
+		profile(member, model);
+		
+		int currentPage;
+		if (request.getParameter("currentPage")==null)
+		{
+			currentPage = 1;
+		}else {
+
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
 		
 		String userId = member.getUserId();
 		
-		//ArrayList<ScrapItTemList> siList = mpService.scrapItTemList(userId);
-		// System.out.println("siList"+siList);
-
-		//model.addAttribute("ScrapItTemList", siList);
-
+		HashMap<String, Object> pageDataMap = mpService.commentsPageDataMap(currentPage, userId);
+		
+		ArrayList<Notice> cmtList = (ArrayList<Notice>)pageDataMap.get("list");
+		String pageNavi = (String)pageDataMap.get("pageNavi");
+		
+		//System.out.println(cmtList);
+		//System.out.println(pageNavi);
+		
+		
+		
+		model.addAttribute("cmtList", cmtList);
+		model.addAttribute("pageNavi", pageNavi);
+		model.addAttribute("currentPage", currentPage);
 		
 		return "myPage/comments_coordi";
 	}
 
 	// 댓글(잇템) 페이지
 	@RequestMapping(value = "/myPage/commentsItTem.do")
-	public String commentsItTem() {
+	public String commentsItTem(HttpServletRequest request,@SessionAttribute Member member, Model model) {
+
+		//1. profile 내용
+		profile(member, model);
+
+		int currentPage;
+		if (request.getParameter("currentPage")==null)
+		{
+			currentPage = 1;
+		}else {
+
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		String userId = member.getUserId();
+		
+		HashMap<String, Object> pageDataMap = mpService.itTemPageDataMap(currentPage, userId);
+		
+		ArrayList<Notice> itTemList = (ArrayList<Notice>)pageDataMap.get("list");
+		String pageNavi = (String)pageDataMap.get("pageNavi");
+		
+		System.out.println(itTemList);
+		System.out.println(pageNavi);
+		
+		
+		
+		model.addAttribute("itTemList", itTemList);
+		model.addAttribute("itTempageNavi", pageNavi);
+		model.addAttribute("currentPage", currentPage);
+		
 		return "myPage/comments_ItTem";
 	}
 	
@@ -168,7 +229,7 @@ public class MyPageController {
 	@RequestMapping(value = "/myPage/unFollow.do")
 	public String unFollow(@RequestParam String unfollowUserId, @SessionAttribute Member member)
 	{
-		
+
 		System.out.println(unfollowUserId);
 		String userId = member.getUserId();
 		

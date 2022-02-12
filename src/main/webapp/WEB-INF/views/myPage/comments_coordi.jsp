@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%-- jQuery 라이브러리 --%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -44,43 +46,39 @@
                 <div class="space"></div>
                 <div class="line"></div>
                 
-                <div class="contents-area">
-                    <div class="contents-wrapping">
-                    	<div class="contents-outLine">
-                        	<a>
-                            	<div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                        	</a>
-                    	</div>
-                    	<div class="comment-wrapping">
-                        	<div class="comment-date textStyle">2022.01.26</div>
-                        	<div class="comment textStyle">코디 잘 보고 가요❤️ 가능하시면 제 게시물도 놀러와주세요:) 그리고 혹시 신발 상품코드 알 수 있을까요? </div>
-                        	<div class="comment-title-wrapping">
-                        		<div class="comment-title textStyle">3년이나 쓰고 이제 갈아탑니다 좋아요 이쁘고</div><div class="comments-num textStyle">[8]</div>
-                        	</div>
-                        </div>
-                        <div class="btn-style-mint deleteBtn"><a>삭제</a></div>
-					</div>
-                </div>
                 
-                <div class="line"></div>
+                <c:forEach items="${requestScope.cmtList }" var="cmtList" varStatus="i">
                 
-                <div class="contents-area">
-                    <div class="contents-wrapping">
-                    	<div class="contents-outLine">
-                        	<a>
-                            	<div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                        	</a>
-                    	</div>
-                    	<div class="comment-wrapping">
-                        	<div class="comment-date textStyle">2022.01.26</div>
-                        	<div class="comment textStyle">코디 잘 보고 가요❤️ 가능하시면 제 게시물도 놀러와주세요:) 그리고 혹시 신발 상품코드 알 수 있을까요? </div>
-                        	<div class="comment-title-wrapping">
-                        		<div class="comment-title textStyle">3년이나 쓰고 이제 갈아탑니다 좋아요 이쁘고</div><div class="comments-num textStyle">[8]</div>
-                        	</div>
-                        </div>
-                        <div class="btn-style-mint deleteBtn"><a>삭제</a></div>
-					</div>
-                </div>
+	                <div class="contents-area">
+	                    <div class="contents-wrapping">
+	                    	<div class="contents-outLine">
+	                        	<a>
+	                            	<div class="contents"><img src="${cmtList.postFilepath }"></div>
+	                        	</a>
+	                    	</div>
+	                    	<div class="comment-wrapping">
+	                        	<div class="comment-date textStyle">${cmtList.cmtTime }</div>
+	                        	<div class="comment textStyle">${cmtList.cmtContent } </div>
+	                        	<div class="comment-title-wrapping">
+	                        		<div class="comment-title textStyle">${cmtList.postContent }</div><div class="comments-num textStyle">[${cmtList.cmtNum}]</div>
+	                        	</div>
+	                        </div>
+	                        <div class="btn-style-mint deleteBtn"><a>삭제</a></div>
+						</div>
+	                </div>
+	                <div class="line"></div>
+                </c:forEach>
+                
+                <!-- pageNavi -->
+					<div id="page_wrap">
+						<ul class="page_ul">
+							${requestScope.pageNavi }
+		 				</ul>
+				    </div>
+                
+                
+                
+                
                 <div class="space"></div>
 
             </div>

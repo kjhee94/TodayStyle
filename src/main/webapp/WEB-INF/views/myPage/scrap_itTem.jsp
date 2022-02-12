@@ -56,7 +56,7 @@
 			                                    <div class="profile scrapUserProfile"><a><img src="${siList.profileFilepath }"></a></div>
 			                                    <div class="ScrapUserName">${siList.itTemNickname }</div>
 			                                </a>
-			                                <div class="scrapIcon"><img src="/resources/images/icon/saved_on.png"></div>
+			                                <div class="scrapIcon" id="${siList.itTemNo }"><img class="scrap" src="/resources/images/icon/saved_on.png"></div>
 			                            </div>
 			                        </div> 
 			
@@ -90,6 +90,46 @@
    
 </div>
 
+
+<script>
+	
+	$('.scrap').click(function() {
+		if ($(this).attr('src') === "/resources/images/icon/saved_on.png") {
+			var itItemNo=$(this).parent().attr('id');
+			$(this).attr('src', "/resources/images/icon/saved_wf.png");
+			$.ajax({
+				url:"/itItem/unscrapItItem.do",
+	        	data:{itItemNo:itItemNo},
+	        	type:"get",
+	        	success:function (){
+	        		
+	        	},
+	        	error:function(){
+	        		console.log("통신실패");
+	        	}
+				
+			});
+		} else {
+			var itItemNo=$(this).parent().attr('id');
+			$(this).attr('src', "/resources/images/icon/saved_on.png");
+			$.ajax({
+				url:"/itItem/scrapItItem.do",
+	        	data:{itItemNo:itItemNo},
+	        	type:"get",
+	        	success:function (){
+	        		
+	        	},
+	        	error:function(){
+	        		
+	        		location.replace('/member/loginPage.do');
+	        	}
+				
+			});
+		}
+	});
+	
+		
+</script>
 
 </body>
 

@@ -160,4 +160,84 @@
 			
 	</insert>
 	
+	
+	<!-- 댓글(코디) 리스트 페이징O-->
+	<select id="commentsCoordiList" resultType="kr.or.iei.myPage.model.vo.Comments">
+		SELECT
+		    postNo,
+		    cmtNo,
+		    cmtContent,
+		    cmtTime,
+		    postContent,
+		    postFilepath,
+		    cmtNum
+		FROM
+			(
+			SELECT
+				ROW_NUMBER() OVER(order BY cmt_time DESC)AS NUM,
+				coordi_comments.coordi_post_no as postNo,
+			    cmt_no as cmtNo,
+			    cmt_content as cmtContent,
+			    cmt_time as cmtTime,
+			    coordi.coordi_content as postContent,
+			    coordi_img.filepath as postFilepath,
+			    co.count as cmtNum
+			FROM
+			    coordi_comments
+			        left join coordi on (coordi_comments.coordi_post_no = coordi.coordi_no)
+			        left join coordi_img on (coordi_comments.coordi_post_no = coordi_img.coordi_no)
+			         LEFT join (select COORDI_POST_NO,COUNT(*) AS COUNT from coordi_comments GROUP BY COORDI_POST_NO) co
+			         ON (co.coordi_POST_NO = coordi_comments.coordi_POST_NO)
+			WHERE
+				cmt_writer = #{userId} and top_yn='Y'
+			)
+		WHERE 
+			NUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	
+	<select id="totalCount" resultType="int">
+    	SELECT 
+    		COUNT(*) as count 
+    	FROM 
+    		coordi_comments
+    	WHERE 
+    		cmt_writer = #{userId}
+    </select>
+    
+    
+    
+    <!-- 댓글(잇템) 리스트 페이징O-->
+	<select id="itTemPageDataList" resultType="kr.or.iei.myPage.model.vo.Comments">
+		SELECT
+		    postNo,
+		    cmtNo,
+		    cmtContent,
+		    cmtTime,
+		    postContent,
+		    postFilepath,
+		    cmtNum
+		FROM
+			(
+			SELECT
+				ROW_NUMBER() OVER(order BY cmt_time DESC)AS NUM,
+				ititem_comments.ititem_post_no as postNo,
+			    cmt_no as cmtNo,
+			    cmt_content as cmtContent,
+			    cmt_time as cmtTime,
+			    it_item.it_content as postContent,
+			    it_img.filepath as postFilepath,
+			    co.count as cmtNum
+			FROM
+			    ititem_comments
+			        left join it_item on (ititem_comments.ititem_post_no = it_item.it_itemno)
+			        left join it_img on (ititem_comments.ititem_post_no = it_img.it_itemno)
+			         LEFT join (select ititem_post_no,COUNT(*) AS COUNT from ititem_comments GROUP BY ititem_post_no) co
+			         ON (co.ititem_post_no = ititem_comments.ititem_post_no)
+			WHERE
+				cmt_writer = #{userId} and top_yn='Y'
+			)
+		WHERE 
+			NUM BETWEEN #{start} AND #{end}
+	</select>
 </mapper>
