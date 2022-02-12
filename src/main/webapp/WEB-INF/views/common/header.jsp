@@ -60,12 +60,11 @@
 			</a>
 		</div>
 		<div class="box-sideBar">
-			<a href="">
+
 				<div class="box-sidebar-img">
-					<img alt="" src="/resources/images/icon/chat.png">
+					<script src="/resources/API/talk.js"></script>
 				</div>
-				<span>CHAT</span>
-			</a>
+
 		</div>
 		<div class="box-sideBar page-top">
 			<a style="cursor:pointer;" onclick="window.scrollTo(0,0);">
