@@ -49,5 +49,21 @@ public interface MyPageService {
 	// 댓글(잇템) 페이지 데이터 맵
 	HashMap<String, Object> itTemPageDataMap(int currentPage, String userId);
 
+	// 댓글 삭제(잇템)
+	int deleteItTemComment(int cmtNo);
+	
+	// 댓글 삭제(코디)
+	int deleteCoordiComment(int cmtNo);
+
+	
+	// 개인페이지 - 프로필 정보 - 닉네임
+	String memberNickname(String memberUserId);
+
+	// 개인페이지 - 프로필 정보 - 탈퇴 여부
+	String memberEndYN(String memberUserId);
+	
+	// 개인 페이지 - 프로필 정보 - 팔로우 여부
+	int memberFollowYN(HashMap<String, Object> map);
+
 
 }

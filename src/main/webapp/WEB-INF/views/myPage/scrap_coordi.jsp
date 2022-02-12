@@ -52,8 +52,9 @@
 			                        <div class="contents">
 			                            <img src="${scList.coordiFilepath }">
 			                            <div class="userData">
-			                                <a href="">
-			                                    <div class="profile scrapUserProfile">
+			                                <a >
+			                                	<div class="userPageReplace" id="${scList.coordiUserId }">
+			                                    <div class="profile scrapUserProfile" id="${scList.coordiUserId }">
 				                                    <a>
 				                                    	<c:choose>
 								                            <c:when test="${scList.profileFilepath!=null}">
@@ -66,7 +67,9 @@
 				                                    
 				                                    </a>
 			                                    </div>
+			                                    
 			                                    <div class="ScrapUserName">${scList.coordiNickname }</div>
+			                                    </div>
 			                                </a>
 			                                <div class="scrapIcon" id="${scList.coordiNo }"><img class="scrap" src="/resources/images/icon/saved_on.png"></div>
 			                            </div>
@@ -139,6 +142,13 @@
 		}
 	});
 	
+	
+	
+	// 페이지 이동
+    $('.userPageReplace').click(function(){
+    	var userId = $(this).attr('id');
+    	location.href="/myPage/userPage.do?userId="+userId;
+    });
 		
 </script>
 

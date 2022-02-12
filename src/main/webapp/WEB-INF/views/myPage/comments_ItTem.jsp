@@ -36,7 +36,7 @@
             <div class="contents-wrap">
                 <div class="contents-title-wrap">
                     <div class="contents-title">나의 댓글</div>
-                    <div class="contents-num">18</div>
+                    <div class="contents-num">${requestScope.itTemCmtList.size() }</div>
                 </div>
                 
                 <div id="btn-wrap">
@@ -44,42 +44,49 @@
                 	<a href = "/myPage/commentsItTem.do"><div class="btn-style-mint btn" id="ittemBtn">잇템</div></a>
                 </div>
                 <div class="space"></div>
-                <div class="line"></div>
-                 
-                 
-                 
-                 
-                 
-                <c:forEach items="${requestScope.itTemList }" var="itTemList" varStatus="i">
                 
-	                <div class="contents-area">
-	                    <div class="contents-wrapping">
-	                    	<div class="contents-outLine">
-	                        	<a>
-	                            	<div class="contents"><img src="${itTemList.postFilepath }"></div>
-	                        	</a>
-	                    	</div>
-	                    	<div class="comment-wrapping">
-	                        	<div class="comment-date textStyle">${itTemList.cmtTime }</div>
-	                        	<div class="comment textStyle">${itTemList.cmtContent } </div>
-	                        	<div class="comment-title-wrapping">
-	                        		<div class="comment-title textStyle">${itTemList.postContent }</div><div class="comments-num textStyle">[${cmtList.cmtNum}]</div>
-	                        	</div>
-	                        </div>
-	                        <div class="btn-style-mint deleteBtn"><a>삭제</a></div>
-						</div>
-	                </div>
-	                <div class="line"></div>
-                </c:forEach>
-                
-                <!-- pageNavi -->
-					<div id="page_wrap">
-						<ul class="page_ul">
-							${requestScope.itTempageNavi }
-		 				</ul>
-				    </div>
-                
-                
+                <c:choose>
+                	<c:when test="${!requestScope.itTemCmtList.isEmpty() }">
+                		
+                		<div class="line"></div>
+		                <c:forEach items="${requestScope.itTemCmtList }" var="itTemCmtList" varStatus="i">
+		                
+			                <div class="contents-area">
+			                    <div class="contents-wrapping">
+			                    	<div class="contents-outLine">
+			                        	<a>
+			                            	<div class="contents"><img src="${itTemCmtList.postFilepath }"></div>
+			                        	</a>
+			                    	</div>
+			                    	<div class="comment-wrapping">
+			                        	<div class="comment-date textStyle">${itTemCmtList.cmtTime }</div>
+			                        	<div class="comment textStyle">${itTemCmtList.cmtContent } </div>
+			                        	<div class="comment-title-wrapping">
+			                        		<div class="comment-title textStyle">${itTemCmtList.postContent }</div><div class="comments-num textStyle">[${cmtList.cmtNum}]</div>
+			                        	</div>
+			                        </div>
+			                        <div class="btn-style-mint deleteBtn" id="${itTemCmtList.cmtNo}"><a>삭제</a></div>
+								</div>
+			                </div>
+			                <div class="line"></div>
+		                </c:forEach>
+		                
+		                <!-- pageNavi -->
+						<div id="page_wrap">
+							<ul class="page_ul">
+								${requestScope.itTempageNavi }
+			 				</ul>
+					    </div>
+		                
+		                
+                	</c:when>
+                	<c:otherwise>
+	                	<div class="contents-area">
+		                	<div class="contents-area-null"> 작성된 댓글이 없습니다.</div>
+		                </div>
+                	</c:otherwise>
+                	
+                </c:choose>
                 
                 
                 <div class="space"></div>
@@ -95,6 +102,33 @@
 
     <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
     <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
+    
+    
+    
+<script>
+
+	$('.deleteBtn').click(function(){
+		
+		if(window.confirm('댓글을 삭제하시겠습니까?'))
+		{
+			var cmtNo = $(this).attr('id');
+			//alert(cmtNo);
+			$.ajax({
+				url:"/myPage/deleteItTemComment.do",
+	        	data:{cmtNo:cmtNo},
+	        	type:"get",
+	        	success:function (){
+	        		location.reload();
+	        	},
+	        	error:function(){
+	        		console.log("통신실패");
+	        	}
+			});
+		}
+	
+	});
+
+</script>
 
 
 </body>

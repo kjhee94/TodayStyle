@@ -126,4 +126,37 @@ public class MyPageServiceImpl implements MyPageService{
 		return hm;
 	}
 
+	@Override
+	public int deleteItTemComment(int cmtNo) {
+
+		return mpDAO.deleteItTemComment(cmtNo);
+	}
+
+	@Override
+	public int deleteCoordiComment(int cmtNo) {
+
+		return mpDAO.deleteCoordiComment(cmtNo);
+	}
+
+	@Override
+	public String memberNickname(String memberUserId) {
+
+		return mpDAO.memberNickname(memberUserId);
+	}
+
+	@Override
+	public String memberEndYN(String memberUserId) {
+
+		return mpDAO.memberEndYN(memberUserId);
+	}
+
+	
+	@Override
+	public int memberFollowYN(HashMap<String, Object> map) {
+		
+		return mpDAO.memberFollowYN(map);
+	}
+
+	
+
 }

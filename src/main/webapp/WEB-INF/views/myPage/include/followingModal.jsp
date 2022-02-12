@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/resources/css/myPage/followModal.css">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
 <style>
 
@@ -15,7 +15,7 @@
         <div class="modal-wrap">
             <div class="modal-title-wrap">
                 <div class="modal-title">팔로잉</div>
-                <div id="following-modal-close-btn" class="modal-close">X</div>
+                <div id="following-modal-close-btn" class="modal-close"><i class="fas fa-times model-close"></i></div>
             </div>
             
             <c:choose>
@@ -23,7 +23,9 @@
 		            <c:forEach items="${requestScope.followingList }" var="fList" varStatus="i">
 			            <div class="follow-list-wrap">
 			                <div class="follow-oneId-wrap">
-			                    <div class="follow-name-wrap">
+			                
+			                	<a href="/myPage/userPage.do?userId=${fList.userId }">
+			                    <div class="follow-name-wrap" id="${fList.userId }">
 			                        <div class="follow-profile profile">
 				                        <c:choose>
 				                            <c:when test="${fList.filepath!=null}">
@@ -32,10 +34,12 @@
 				                            <c:otherwise>
 				                            	<a><img src="/resources/images/default/profile.jpg"></a>
 				                            </c:otherwise>
-			                            </c:choose>
+			                           </c:choose>
 			                        </div>
 			                        <div class="follow-name">${fList.nickname}</div>
 			                    </div>
+			                    </a>
+			                    
 			                    <div class="following-btn" id="${fList.userId }">팔로잉</div>
 			                </div>
 			            </div>
@@ -45,11 +49,7 @@
             <c:otherwise>
             <div class="follow-list-wrap">
                 <div class="follow-oneId-wrap">
-                    <div class="follow-name-wrap">
-                        <div class="follow-profile profile"><a><img src="/resources/images/default/profile.jpg"></a></div>
-                        <div class="follow-name">berryberry_8</div>
-                    </div>
-                    <div class="follow-btn">팔로우</div>
+                    <div class="followNull">팔로잉이 없습니다.</div>
                 </div>
             </div>
             </c:otherwise>
@@ -104,13 +104,18 @@
 
         });
         
-        // user 페이지 이동
-        $(function(){
-           $('.follow-name-wrap').click(function(){
-                location.replace('/myPage/userPage.do');
-           }); 
-        });
         
+        <%--
+        // 페이지 이동
+        $('.follow-name-wrap').click(function(){
+        	var userId = $(this).attr('id');
+        	alert(userId);
+        	location.replace("/myPage/userPage.do?userId="+userId);
+        });
+        --%>
+        
+        
+       
         // 팔로잉 버튼
         $('.following-btn').click(function(){
         	if($(this).html() === "팔로잉")

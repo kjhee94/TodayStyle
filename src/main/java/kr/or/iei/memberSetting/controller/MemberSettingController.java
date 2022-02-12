@@ -44,12 +44,6 @@ public class MemberSettingController {
 	private MyPageService mpService;
 
 
-	@RequestMapping(value = "/myPage/userPage.do")
-	public String userPage() {
-		return "myPage/userPage";
-	}
-
-
 	// 프로필 
 	public void profile(@SessionAttribute Member member, Model model) {
 		
