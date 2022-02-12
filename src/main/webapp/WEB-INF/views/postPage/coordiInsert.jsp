@@ -22,7 +22,7 @@
 	<div id="wrap" style="overflow:auto">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div id="content">
-		<form id="insertForm" name="insertForm" method="post">
+		<form action='<c:url value='/postCoordi/coordiPost'/>' id="insertForm" name="insertForm" method="post" >
 		<div id="title">
 			<p style="font-size: 25px; color:#707070">코디작성</p>
 		</div>
@@ -44,7 +44,7 @@
                             <p>기온</p>
                          </div>
                          
-                         <select class="select">
+                         <select class="select" name="temperature">
                             <option>
                             	기온 선택             
                            	</option>

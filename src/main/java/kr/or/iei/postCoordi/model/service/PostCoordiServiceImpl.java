@@ -1,23 +1,19 @@
 package kr.or.iei.postCoordi.model.service;
 
+import org.springframework.stereotype.Service;
+
 import kr.or.iei.postCoordi.model.vo.PostCoordi;
 
-public class PostCoordiServiceImpl {
+@Service
+public class PostCoordiServiceImpl implements PostCoordiService{
 
 
-	public static PostCoordi insertPost(PostCoordi postCoordi) throws Exception {
- 
-		PostCoordi boardDto = new PostCoordi();
- 
-        int insertCnt = PostCoordiDAO.insertPost(boardForm);
- 
-        if (insertCnt > 0) {
-            boardDto.setResult("SUCCESS");
-        } else {
-            boardDto.setResult("FAIL");
-        }
- 
-        return boardDto;
-    }
+	@Override
+	public void insertPost(PostCoordi postCoordi) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }
