@@ -61,6 +61,14 @@
             height: 40px;
             margin: 10px auto;
         }
+        .follow-oneId-wrap{
+        	height: 100%;
+        }
+        .follow-oneId-wrap>a{
+        	/*display: inline-block;*/
+        	height: 100%;
+        	width: 50%;
+        }
 
         .follow-name-wrap {
             cursor: pointer;
@@ -115,4 +123,11 @@
             letter-spacing: -0.03em;
             color: #fff;
             cursor: pointer;
+        }
+        
+        .followNull{
+        	font-family: 'Noto Sans KR', sans-serif;
+            font-size: 14px;
+            letter-spacing: -0.03em;
+            color: #C8C8C8;
         }

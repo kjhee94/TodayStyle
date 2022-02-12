@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="/resources/css/myPage/followModal.css">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
 
 <style>
 
@@ -15,7 +15,7 @@
         <div class="modal-wrap">
             <div class="modal-title-wrap">
                 <div class="modal-title">팔로워</div>
-                <div id="follower-modal-close-btn" class="modal-close">X</div>
+                <div id="follower-modal-close-btn" class="modal-close"><i class="fas fa-times model-close"></i></div>
             </div>
             
             <c:choose>
@@ -65,11 +65,7 @@
             <c:otherwise>
             <div class="follow-list-wrap">
                 <div class="follow-oneId-wrap">
-                    <div class="follow-name-wrap">
-                        <div class="follow-profile profile"><a><img src="/resources/images/default/profile.jpg"></a></div>
-                        <div class="follow-name">berryberry_8</div>
-                    </div>
-                    <div class="follow-btn">팔로우</div>
+                    <div class="followNull">팔로워가 없습니다.</div>
                 </div>
             </div>
             </c:otherwise>

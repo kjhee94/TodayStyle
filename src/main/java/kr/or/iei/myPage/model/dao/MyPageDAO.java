@@ -224,4 +224,30 @@ public class MyPageDAO {
 		
 	}
 
+	public int deleteItTemComment(int cmtNo) {
+
+		return sqlSession.delete("myPage.deleteItTemComment", cmtNo);
+	}
+
+	public int deleteCoordiComment(int cmtNo) {
+		
+		return sqlSession.delete("myPage.deleteCoordiComment", cmtNo);
+	}
+
+
+	public String memberNickname(String memberUserId) {
+		
+		return sqlSession.selectOne("myPage.memberNickname", memberUserId);
+	}
+
+	public String memberEndYN(String memberUserId) {
+		
+		return sqlSession.selectOne("myPage.memberEndYN", memberUserId);
+	}
+
+	public int memberFollowYN(HashMap<String, Object> map) {
+		
+		return sqlSession.selectOne("myPage.memberFollowYN", map)!=null?1:0;
+	}
+
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -210,15 +211,15 @@ public class MyPageController {
 		
 		HashMap<String, Object> pageDataMap = mpService.itTemPageDataMap(currentPage, userId);
 		
-		ArrayList<Notice> itTemList = (ArrayList<Notice>)pageDataMap.get("list");
+		ArrayList<Notice> itTemCmtList = (ArrayList<Notice>)pageDataMap.get("list");
 		String pageNavi = (String)pageDataMap.get("pageNavi");
 		
-		System.out.println(itTemList);
-		System.out.println(pageNavi);
+		//System.out.println(itTemList);
+		//System.out.println(pageNavi);
 		
 		
 		
-		model.addAttribute("itTemList", itTemList);
+		model.addAttribute("itTemCmtList", itTemCmtList);
 		model.addAttribute("itTempageNavi", pageNavi);
 		model.addAttribute("currentPage", currentPage);
 		
@@ -270,5 +271,157 @@ public class MyPageController {
 		
 		return "myPage/myStyle";
 	}
+	
+	
+	// 댓글 삭제(잇템)
+	@RequestMapping(value = "/myPage/deleteItTemComment.do")
+	public String deleteItTemComment(@RequestParam int cmtNo)
+	{
+		int result = mpService.deleteItTemComment(cmtNo);
+		
+		return "myPage/scrap_itTem";
+	}
+	
+	// 댓글 삭제(코디)
+	@RequestMapping(value = "/myPage/deleteCoordiComment.do")
+	public String deleteCoordiComment(@RequestParam int cmtNo)
+	{
+		int result = mpService.deleteCoordiComment(cmtNo);
+		
+		return "myPage/scrap_coordi";
+	}
+	
+	
+	// 개인페이지 프로필 정보
+	public void memberProfile(@SessionAttribute Member member, Model model, String memberUserId, String userId)
+	{
 
+		// 프로필 내용 (userId, 프로필 이미지, 닉네임, 팔로우 수, 팔로우 버튼(팔로우/팔로잉/탈퇴))
+		String memberProfileFilepath = mpService.profileFilePath(memberUserId);
+		String memberNickname = mpService.memberNickname(memberUserId);
+		String memberFollowingNum = mpService.followingNum(memberUserId);
+		String memberFollowerNum = mpService.followerNum(memberUserId);
+		String memberEndYN = mpService.memberEndYN(memberUserId); // N : 회원 / Y : 탈퇴
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("memberUserId", memberUserId);
+		int memberFollowYN = mpService.memberFollowYN(map); // 1 : 팔로우 / 2 : 팔로우x
+		String followBtn;
+		
+		if(memberEndYN.equals("N"))
+		{
+			if(memberFollowYN == 1)
+			{
+				followBtn = "팔로잉";
+			}else
+			{
+				followBtn = "팔로우";
+			}
+		}else
+		{
+			followBtn = "탈퇴";
+		}
+		
+		model.addAttribute("memberUserId", memberUserId);
+		model.addAttribute("memberProfileFilepath", memberProfileFilepath);
+		model.addAttribute("memberNickname", memberNickname);
+		model.addAttribute("memberFollowingNum", memberFollowingNum);
+		model.addAttribute("memberFollowerNum", memberFollowerNum);
+		model.addAttribute("followBtn", followBtn);
+		
+	}
+	
+	
+
+	// 개인페이지 - 메인
+	@RequestMapping(value = "/myPage/userPage.do", method = RequestMethod.GET)
+	public String userPage(HttpServletRequest request, @SessionAttribute Member member, Model model) {
+		
+		String memberUserId = request.getParameter("userId");
+		//System.out.println(userId);
+		String userId = member.getUserId();
+		
+		if(memberUserId.equals(userId))
+		{
+			return "redirect:/myPage/myStyle.do";
+		}
+		else
+		{
+			// memberFrofile data
+			memberProfile(member, model, memberUserId, userId);
+			
+			ArrayList<MyCoordiList> memberCoordiList = mpService.myCoordiList(memberUserId);
+			//System.out.println(memberCoordiList);
+			model.addAttribute("memberCoordiList", memberCoordiList);
+			
+			model.addAttribute("memberUserId", memberUserId);
+
+			ArrayList<MyItTemList> memberItTemList = mpService.myItTemList(memberUserId);
+			// System.out.println(myItTemList);
+			model.addAttribute("memberItTemList", memberItTemList);
+			
+			return "myPage/userPage";
+		}
+		
+	}
+	
+	// 개인페이지 - 코디 전체보기 페이지
+	@RequestMapping(value = "/mypage/memberCoordi.do", method = RequestMethod.GET)
+	public String memberCoordiPage(HttpServletRequest request, @SessionAttribute Member member, Model model) {
+		
+		String memberUserId = request.getParameter("userId");
+		//System.out.println(memberUserId);
+		String userId = member.getUserId();
+		//System.out.println(userId);
+		
+		if(memberUserId.equals(userId))
+		{
+			return "redirect:/myPage/myStyle.do";
+		}
+		else
+		{
+			// memberFrofile data
+			memberProfile(member, model, memberUserId, userId);
+			
+			ArrayList<MyCoordiList> memberCoordiList = mpService.myCoordiList(memberUserId);
+			//System.out.println(memberCoordiList);
+			model.addAttribute("memberCoordiList", memberCoordiList);
+			model.addAttribute("memberUserId", memberUserId);
+
+			return "myPage/userPage_AllCoordi";
+		}
+		
+		
+	}
+	
+
+	// 개인페이지 - 코디 전체보기 페이지
+	@RequestMapping(value = "/mypage/memberItTem.do", method = RequestMethod.GET)
+	public String memberItTemPage(HttpServletRequest request, @SessionAttribute Member member, Model model) {
+		
+		String memberUserId = request.getParameter("userId");
+		//System.out.println(memberUserId);
+		String userId = member.getUserId();
+		//System.out.println(userId);
+		
+		if(memberUserId.equals(userId))
+		{
+			return "redirect:/myPage/myStyle.do";
+		}
+		else
+		{
+			// memberFrofile data
+			memberProfile(member, model, memberUserId, userId);
+			
+			ArrayList<MyItTemList> memberItTemList = mpService.myItTemList(memberUserId);
+			//System.out.println(memberCoordiList);
+			model.addAttribute("memberItTemList", memberItTemList);
+			model.addAttribute("memberUserId", memberUserId);
+
+			return "myPage/userPage_AllItTem";
+		}
+
+	
+
+	}
 }

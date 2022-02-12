@@ -240,4 +240,56 @@
 		WHERE 
 			NUM BETWEEN #{start} AND #{end}
 	</select>
+	
+	
+	<!-- 댓글 삭제(잇템) -->
+	<delete id="deleteItTemComment">
+		DELETE
+		FROM
+			ititem_comments
+		WHERE
+			cmt_no = #{cmtNo}
+			
+	</delete>
+	
+	<!-- 댓글 삭제(코디) -->
+	<delete id="deleteCoordiComment">
+		DELETE
+		FROM
+			coordi_comments
+		WHERE
+			cmt_no = #{cmtNo}
+			
+	</delete>
+	
+	
+	<!-- 닉네임 (개인페이지) -->
+	<select id="memberNickname" resultType="string">
+		SELECT
+			nickname
+		FROM
+			member
+		WHERE
+			user_id = #{memberUserId}
+	</select>
+	
+	<!-- 탈퇴여부 (개인페이지) -->
+	<select id="memberEndYN" resultType="string">
+		SELECT
+			end_yn as endYN
+		FROM
+			member
+		WHERE
+			user_id = #{memberUserId}
+	</select>
+	
+	<!-- 팔로우여부 (개인페이지) -->
+	<select id="memberFollowYN" parameterType="hashmap" resultType="string">
+		SELECT
+			user_id
+		FROM
+			follow
+		WHERE
+			user_id = #{userId} and following_id = #{memberUserId}
+	</select>
 </mapper>
