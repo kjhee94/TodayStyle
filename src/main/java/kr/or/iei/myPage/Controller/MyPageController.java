@@ -34,10 +34,10 @@ public class MyPageController {
 
 	
 	
-	
+	// 프로필 
 	public void profile(@SessionAttribute Member member, Model model) {
 		
-		// 1. profile 내용 (nickname, 프로필 이미지 경로, 팔로잉&팔로워 수, follow user 정보)
+		// profile 내용 (nickname, 프로필 이미지 경로, 팔로잉&팔로워 수, follow user 정보)
 
 		// 닉네임
 		String nickname = member.getNickname();
@@ -90,7 +90,7 @@ public class MyPageController {
 	@RequestMapping(value = "/mypage/myCoordi.do")
 	public String myCoordiAll(@SessionAttribute Member member, Model model) {
 
-		//1. profile 내용
+		// profile 내용
 		profile(member, model);
 		
 		String userId = member.getUserId();
@@ -107,7 +107,7 @@ public class MyPageController {
 	@RequestMapping(value = "/mypage/myItTem.do")
 	public String myItTemAll(@SessionAttribute Member member, Model model) {
 
-		//1. profile 내용
+		// profile 내용
 		profile(member, model);
 		
 		String userId = member.getUserId();
@@ -124,7 +124,7 @@ public class MyPageController {
 	@RequestMapping(value = "/myPage/scrapCoordi.do")
 	public String scrapCoordi(@SessionAttribute Member member, Model model) {
 
-		//1. profile 내용
+		// profile 내용
 		profile(member, model);
 		
 		String userId = member.getUserId();
@@ -141,7 +141,7 @@ public class MyPageController {
 	@RequestMapping(value = "/myPage/scrapItTem.do")
 	public String scrapItTem(@SessionAttribute Member member, Model model) {
 
-		//1. profile 내용
+		// profile 내용
 		profile(member, model);
 		
 		String userId = member.getUserId();
@@ -159,7 +159,7 @@ public class MyPageController {
 	public String commentsCoordi(HttpServletRequest request, @SessionAttribute Member member, Model model) 
 	{
 
-		//1. profile 내용
+		// profile 내용
 		profile(member, model);
 		
 		int currentPage;
@@ -194,7 +194,7 @@ public class MyPageController {
 	@RequestMapping(value = "/myPage/commentsItTem.do")
 	public String commentsItTem(HttpServletRequest request,@SessionAttribute Member member, Model model) {
 
-		//1. profile 내용
+		// profile 내용
 		profile(member, model);
 
 		int currentPage;
