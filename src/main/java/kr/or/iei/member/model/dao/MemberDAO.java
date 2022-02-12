@@ -53,6 +53,30 @@ public class MemberDAO {
 		
 		return list;
 	}
+	
+public int kakaoinsert(HashMap<String, Object> map) {
+		
+		return sqlSession.insert("member.kakaoinsert",map);
+	}
+
+	public int findkakao(String email) {
+		return sqlSession.selectOne("member.findkakao",email)!=null?1:0;
+	}
+
+	public Member kakaoselect(Member member) {
+		return sqlSession.selectOne("member.kakaoselect",member);
+	}
+
+	public Member kakaoMember(Member member,String email) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("member", member);
+		map.put("email", email);
+		return sqlSession.selectOne("member.kakaoMember",map);
+	}
+
+	public int kakaoemail(String email) {
+		return sqlSession.selectOne("member.kakaoemail",email)!=null?1:0;
+	}
 
 	
 

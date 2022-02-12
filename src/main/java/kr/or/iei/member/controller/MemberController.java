@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.iei.member.model.service.MemberService;
+import kr.or.iei.member.model.service.kakaoService;
 import kr.or.iei.member.model.vo.Member;
 
 @Controller
@@ -31,6 +32,9 @@ public class MemberController {
 
 	 @Autowired
 	 private JavaMailSender mailSender;
+	 
+	 @Autowired
+	 private kakaoService kakaoService;
 	
 	@RequestMapping(value="/member/loginPage.do", method=RequestMethod.GET)
 	public String loginPage()
@@ -327,4 +331,77 @@ public class MemberController {
        
     	
     }
+    @RequestMapping(value="/main/kakao_login.ajax")
+    public String kakaoLogin() {
+        StringBuffer loginUrl = new StringBuffer();
+        loginUrl.append("https://kauth.kakao.com/oauth/authorize?client_id=");
+        loginUrl.append("efe990df155904844a586a916429d5d9"); 
+        loginUrl.append("&redirect_uri=");
+        loginUrl.append("http://127.0.0.1/kakao"); 
+        loginUrl.append("&response_type=code");
+        
+        return "redirect:"+loginUrl.toString();
+    }
+    @RequestMapping("/kakao")
+    public ModelAndView home(@RequestParam(value = "code", required = false) String code, HttpSession session
+    		,HttpServletRequest request,ModelAndView mav,Member member) throws Exception{
+        System.out.println("#########" + code);
+        String access_Token = kakaoService.getAccessToken(code);
+        HashMap<String, String> userInfo = kakaoService.getUserInfo(access_Token);
+        System.out.println("###access_Token#### : " + access_Token);
+        String userId = userInfo.get("email");
+        
+        String email =   userInfo.get("email");
+     
+        String name =  userInfo.get("nickname");
+        String nickname =   userInfo.get("nickname");
+        String password = userInfo.get("email");
+        
+	HashMap<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("email", email);
+		map.put("nickname", nickname);
+		map.put("password", password);
+		map.put("userId", userId);
+		map.put("name", name);
+        
+        
+      
+        int check = mService.kakaoemail(email);
+      System.out.println(check);
+      
+    
+      
+    	  int find =  mService.findkakao(email);
+      if(find>0)//1있다면
+      {
+    	  Member m = mService.kakaoMember(member,email);
+			session.setAttribute("member", m);
+			mav.addObject("location","/");
+			mav.setViewName("member/msg2"); 
+    	 
+      }else
+      {
+    	  
+    	  if(check>0)//이메일이 겹친다면
+          {
+        	  mav.addObject("msg","이미 사용중인 이메일입니다.");
+    			mav.addObject("location","/");
+    			mav.setViewName("member/msg"); 
+          }else {
+    	  
+    	int result = mService.kakaoinsert(map);
+    	if(result>0)
+    	{
+    	 mav.addObject("msg","회원가입 완료(비밀번호는 이메일로 설정되었습니다.)");
+			mav.addObject("location","/");
+			mav.setViewName("member/msg"); 
+    	}
+          }
+      }//0 없다면
+      
+       
+      return mav;
+
+}
 }

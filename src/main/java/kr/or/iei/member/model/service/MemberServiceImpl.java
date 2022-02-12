@@ -64,6 +64,33 @@ public class MemberServiceImpl implements MemberService {
 		ArrayList<Member> list = mDAO.selectTopFollowList();
 		return list;
 	}
+	
+	@Override
+	public int kakaoinsert(HashMap<String, Object> map) {
+		return mDAO.kakaoinsert(map);
+	}
+
+	@Override
+	public int findkakao(String email) {
+		return mDAO.findkakao(email);
+	}
+
+	@Override
+	public Member kakaoselect(Member member) {
+		Member m =  mDAO.kakaoselect(member);
+		return m;
+	}
+
+	@Override
+	public Member kakaoMember(Member member,String email) {
+		Member m =  mDAO.kakaoMember(member,email);
+		return m;
+	}
+
+	@Override
+	public int kakaoemail(String email) {
+		return mDAO.kakaoemail(email);
+	}
 
 	
 
