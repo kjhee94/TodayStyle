@@ -6,11 +6,13 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.iei.board.model.vo.Notice;
 import kr.or.iei.myPage.model.dao.MyPageDAO;
 import kr.or.iei.myPage.model.vo.MyCoordiList;
 import kr.or.iei.myPage.model.vo.MyItTemList;
 import kr.or.iei.myPage.model.vo.ScrapCoordiList;
 import kr.or.iei.myPage.model.vo.ScrapItTemList;
+import kr.or.iei.myPage.model.vo.Comments;
 import kr.or.iei.myPage.model.vo.Follow;
 
 @Service
@@ -83,6 +85,45 @@ public class MyPageServiceImpl implements MyPageService{
 	public int follow(HashMap<String, Object> map) {
 
 		return mpDAO.follow(map);
+	}
+
+
+	@Override
+	public HashMap<String, Object> commentsPageDataMap(int currentPage, String userId) {
+		
+		int recordCountPerPage = 5;
+		ArrayList<Notice> list = mpDAO.commentsPageDataList(currentPage,recordCountPerPage, userId);
+		
+		int naviCountPerPage = 5;
+		
+		String pageNavi = mpDAO.getPageNavi(naviCountPerPage,recordCountPerPage,currentPage, userId);
+		
+		
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		
+		hm.put("list",list);
+		hm.put("pageNavi", pageNavi);
+		
+		return hm;
+	}
+
+	@Override
+	public HashMap<String, Object> itTemPageDataMap(int currentPage, String userId) {
+
+		int recordCountPerPage = 5;
+		ArrayList<Notice> list = mpDAO.itTemPageDataList(currentPage,recordCountPerPage, userId);
+		
+		int naviCountPerPage = 5;
+		
+		String pageNavi = mpDAO.getItTemPageNavi(naviCountPerPage,recordCountPerPage,currentPage, userId);
+		
+		
+		HashMap<String,Object> hm = new HashMap<String,Object>();
+		
+		hm.put("list",list);
+		hm.put("pageNavi", pageNavi);
+		
+		return hm;
 	}
 
 }

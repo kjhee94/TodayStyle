@@ -7,6 +7,7 @@ import kr.or.iei.myPage.model.vo.MyCoordiList;
 import kr.or.iei.myPage.model.vo.MyItTemList;
 import kr.or.iei.myPage.model.vo.ScrapCoordiList;
 import kr.or.iei.myPage.model.vo.ScrapItTemList;
+import kr.or.iei.myPage.model.vo.Comments;
 import kr.or.iei.myPage.model.vo.Follow;
 
 public interface MyPageService {
@@ -41,6 +42,12 @@ public interface MyPageService {
 	int unFollow(HashMap<String, Object> map);
 	//follow
 	int follow(HashMap<String, Object> map);
+	
+	// 댓글(코디) 페이지 데이터 맵
+	HashMap<String, Object> commentsPageDataMap(int currentPage, String userId);
+
+	// 댓글(잇템) 페이지 데이터 맵
+	HashMap<String, Object> itTemPageDataMap(int currentPage, String userId);
 
 
 }
