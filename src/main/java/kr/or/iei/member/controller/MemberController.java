@@ -117,11 +117,32 @@ public class MemberController {
 	{
 		
 		Member m = mService.findId(member);
+		String userId = m.getUserId();
+		//아이디 첫글자
+		String firstId = userId.substring(0,1);
+		
+		
+		//아이디 중간글자
+		String midId = userId.substring(1,userId.length()-1);
+		
+		
+		//중간글자 마스킹
+		String id = "";
+		for(int i = 0; i<midId.length(); i++)
+		{
+			id +="*";//중간 글자 수 만큼 * 표시
+		}
+		//마지막 아이디 글자
+		String lastId = userId.substring(userId.length()-1,userId.length());
+		
+		//마스킹 완성된 사용자 아이디
+		String maskingId=firstId+id+lastId;
 		
 		
 		if(m!=null)
 		{
 			mav.addObject("m",m);
+			mav.addObject("maskingId",maskingId);
 			mav.setViewName("member/findIdPage"); 
 		}else
 		{
