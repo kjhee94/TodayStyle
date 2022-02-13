@@ -48,7 +48,7 @@ margin: 20px 0px 20px 0px;
 	</div>
 	<div style="border: 1px solid #C8C8C8; width:400px; height:73px; margin:0 auto;">
 	<div style="float:left; width:50%; height:100%; line-height:70px; font-size:18px; color:#707070;">
-	${requestScope.m.userId}
+	${requestScope.maskingId}
 	</div>
 	<div style="float:left; width:50%; height:100%; line-height:70px; font-size:12px; color:#C8C8C8;">
 	 ${requestScope.m.enrollDate} 가입

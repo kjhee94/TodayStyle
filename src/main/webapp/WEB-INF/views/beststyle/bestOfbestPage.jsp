@@ -52,7 +52,7 @@
 						
 						<div class="box-nick">
 							<div class="profile">
-								<a href="">
+								<a href="/myPage/userPage.do?userId=${b.userId }">
 								
 								<c:choose>
                                     <c:when test="${b.profilefilepath!=null}">
@@ -65,7 +65,9 @@
 								
 								</a>
 							</div>
+							<a href="/myPage/userPage.do?userId=${b.userId }">
 							<span class="nickName">${b.nickname }</span>
+							</a>
 						</div>
 					</div>
 					</c:forEach>

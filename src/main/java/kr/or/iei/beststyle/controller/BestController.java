@@ -40,7 +40,6 @@ public class BestController {
 		Member m=(Member)session.getAttribute("member");
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		ArrayList<Beststyle> list = sService.weekBest();
-	
 		//오늘
 		Date today = new Date();
 	    SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
