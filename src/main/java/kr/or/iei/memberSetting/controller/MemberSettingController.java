@@ -491,21 +491,22 @@ public class MemberSettingController {
 		
 		
 		int result = msService.memberWithdraw(member);
+		//System.out.println(result);
+		int deleteFollower = msService.memberWithdrawDeleteFollower(member);
+		int deleteFollowing = msService.memberWithdrawDeleteFollowing(member);
 		
-		System.out.println(result);
-		
-		if(result>0)
+		if(result>0 && deleteFollower>0 && deleteFollowing>0)
 		{
 			session.invalidate();
 			
-			System.out.println("if");
+			//System.out.println("회원 탈퇴 성공");
 		
 			mav.addObject("msg", "탈퇴되었습니다.\\n[오늘 뭐 입지]를 이용해주셔서 감사합니다.");
 			mav.addObject("location", "/");
 		}
 		else
 		{
-			System.out.println("else");
+			//System.out.println("회원 탈퇴 실패");
 			
 			mav.addObject("msg", "탈퇴처리가 되지 않았습니다.\\n- 지속적인 문제 발생 시 관리자에게 문의해 주세요. -");
 			mav.addObject("location", "/myPage/withdrawPage.do");

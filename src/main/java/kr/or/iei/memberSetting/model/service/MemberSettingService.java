@@ -38,6 +38,10 @@ public interface MemberSettingService {
 
 	// 회원 탈퇴
 	int memberWithdraw(Member m);
+	// 회원 탈퇴 시 팔로워 삭제
+	int memberWithdrawDeleteFollower(Member member);
+	// 회원 탈퇴 시 팔로잉 삭제
+	int memberWithdrawDeleteFollowing(Member member);
 
 	
 
