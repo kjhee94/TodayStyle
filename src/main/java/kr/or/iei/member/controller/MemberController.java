@@ -95,7 +95,6 @@ public class MemberController {
 		
 		if(m!=null)
 		{
-			System.out.println("로그인 성공");
 			HttpSession session = request.getSession();
 			session.setAttribute("member", m);
 			
@@ -345,10 +344,10 @@ public class MemberController {
     @RequestMapping("/kakao")
     public ModelAndView home(@RequestParam(value = "code", required = false) String code, HttpSession session
     		,HttpServletRequest request,ModelAndView mav,Member member) throws Exception{
-        System.out.println("#########" + code);
+       //System.out.println("#########" + code);
         String access_Token = kakaoService.getAccessToken(code);
         HashMap<String, String> userInfo = kakaoService.getUserInfo(access_Token);
-        System.out.println("###access_Token#### : " + access_Token);
+        //System.out.println("###access_Token#### : " + access_Token);
         String userId = userInfo.get("email");
         
         String email =   userInfo.get("email");
@@ -368,7 +367,7 @@ public class MemberController {
         
       
         int check = mService.kakaoemail(email);
-      System.out.println(check);
+      //System.out.println(check);
       
     
       
