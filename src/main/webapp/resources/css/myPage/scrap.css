@@ -13,6 +13,7 @@
             border-left: 1px solid #C8C8C8;
             float: left;
             margin-left: 20%;
+            min-height: 800px;
         }
 
         .contents-title-wrap {
@@ -151,4 +152,8 @@
         #space {
             width: 100%;
             height: 50px;
+        }
+        
+        .userPageReplace{
+        	cursor: pointer;
         }

@@ -75,8 +75,6 @@
 		    coordi_img.top_yn = 'Y'
 		    AND
 		    coordi.del_yn='N'
-		    AND
-		    member.end_yn = 'N'
 		ORDER BY
 			coordiScrapNo DESC
 	</select>
@@ -102,8 +100,6 @@
 		    it_img.top_yn = 'Y'
 		    AND
 		    it_item.del_yn='N'
-		    AND
-		    member.end_yn = 'N'
 		ORDER BY
 			itTemScrapNo DESC
 	</select>
@@ -189,20 +185,20 @@
 			         LEFT join (select COORDI_POST_NO,COUNT(*) AS COUNT from coordi_comments GROUP BY COORDI_POST_NO) co
 			         ON (co.coordi_POST_NO = coordi_comments.coordi_POST_NO)
 			WHERE
-				cmt_writer = #{userId} and top_yn='Y'
+				cmt_writer = #{userId} AND top_yn='Y'AND coordi_comments.del_yn = 'N'
 			)
 		WHERE 
 			NUM BETWEEN #{start} AND #{end}
 	</select>
 	
-	
+	<!-- 댓글(코디) 페이지 수 -->
 	<select id="totalCount" resultType="int">
     	SELECT 
     		COUNT(*) as count 
     	FROM 
     		coordi_comments
     	WHERE 
-    		cmt_writer = #{userId}
+    		cmt_writer = #{userId} and del_yn = 'N'
     </select>
     
     
@@ -235,32 +231,43 @@
 			         LEFT join (select ititem_post_no,COUNT(*) AS COUNT from ititem_comments GROUP BY ititem_post_no) co
 			         ON (co.ititem_post_no = ititem_comments.ititem_post_no)
 			WHERE
-				cmt_writer = #{userId} and top_yn='Y'
+				cmt_writer = #{userId} AND top_yn='Y' AND ititem_comments.del_yn = 'N'
 			)
 		WHERE 
 			NUM BETWEEN #{start} AND #{end}
 	</select>
 	
+	<!-- 댓글(잇템) 페이지 수 -->
+	<select id="totalCountItTem" resultType="int">
+    	SELECT 
+    		COUNT(*) as count 
+    	FROM 
+    		ititem_comments
+    	WHERE 
+    		cmt_writer = #{userId} and del_yn = 'N'
+    </select>
 	
 	<!-- 댓글 삭제(잇템) -->
-	<delete id="deleteItTemComment">
-		DELETE
-		FROM
+	<update id="deleteItTemComment">
+		UPDATE
 			ititem_comments
+		SET
+			del_yn='Y'
 		WHERE
 			cmt_no = #{cmtNo}
 			
-	</delete>
+	</update>
 	
 	<!-- 댓글 삭제(코디) -->
-	<delete id="deleteCoordiComment">
-		DELETE
-		FROM
+	<update id="deleteCoordiComment">
+		UPDATE
 			coordi_comments
+		SET
+			del_yn='Y'
 		WHERE
 			cmt_no = #{cmtNo}
 			
-	</delete>
+	</update>
 	
 	
 	<!-- 닉네임 (개인페이지) -->

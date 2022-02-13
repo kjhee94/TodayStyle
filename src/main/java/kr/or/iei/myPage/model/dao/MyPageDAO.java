@@ -220,18 +220,18 @@ public class MyPageDAO {
 
 
 	private int totalCountItTem(String userId) {
-		return sqlSession.selectOne("myPage.totalCount", userId);
+		return sqlSession.selectOne("myPage.totalCountItTem", userId);
 		
 	}
 
 	public int deleteItTemComment(int cmtNo) {
 
-		return sqlSession.delete("myPage.deleteItTemComment", cmtNo);
+		return sqlSession.update("myPage.deleteItTemComment", cmtNo);
 	}
 
 	public int deleteCoordiComment(int cmtNo) {
 		
-		return sqlSession.delete("myPage.deleteCoordiComment", cmtNo);
+		return sqlSession.update("myPage.deleteCoordiComment", cmtNo);
 	}
 
 
