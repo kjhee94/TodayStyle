@@ -84,6 +84,16 @@ public class MemberSettingDAO {
 		return sqlSession.update("memberSetting.memberWithdraw", m);
 	}
 
+	public int memberWithdrawDeleteFollower(Member m) {
+
+		return sqlSession.delete("memberSetting.memberWithdrawDeleteFollower", m);
+	}
+
+	public int memberWithdrawDeleteFollowing(Member m) {
+		
+		return sqlSession.delete("memberSetting.memberWithdrawDeleteFollowing", m);
+	}
+
 
 	
 }

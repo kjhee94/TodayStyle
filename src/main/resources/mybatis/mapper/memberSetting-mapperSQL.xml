@@ -159,6 +159,24 @@
 		WHERE
 			user_id = #{userId}
 	</update>
+	
+	<!-- 회원 탈퇴 시 팔로워 삭제 -->
+	<delete id="memberWithdrawDeleteFollower" parameterType="member">
+		DELETE
+		FROM
+			follow
+		WHERE
+			following_id = #{userId}
+	</delete>
+	
+	<!-- 회원 탈퇴 시 팔로잉 삭제 -->
+	<delete id="memberWithdrawDeleteFollowing" parameterType="member">
+		DELETE
+		FROM
+			follow
+		WHERE
+			user_id = #{userId}
+	</delete>
 
 
 </mapper>

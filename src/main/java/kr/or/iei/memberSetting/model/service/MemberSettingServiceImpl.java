@@ -86,6 +86,18 @@ public class MemberSettingServiceImpl implements MemberSettingService{
 		return msDAO.memberWithdraw(m);
 	}
 
+	@Override
+	public int memberWithdrawDeleteFollower(Member m) {
+
+		return msDAO.memberWithdrawDeleteFollower(m);
+	}
+
+	@Override
+	public int memberWithdrawDeleteFollowing(Member m) {
+
+		return msDAO.memberWithdrawDeleteFollowing(m);
+	}
+
 	
 
 

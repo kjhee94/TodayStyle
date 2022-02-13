@@ -26,6 +26,7 @@
 </head>
 
 <body>
+<div id="wrap">
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
     <div id="content">
@@ -103,7 +104,7 @@
     <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
     <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
 
-
+</div>
 <script>
 
 	$('.deleteBtn').click(function(){

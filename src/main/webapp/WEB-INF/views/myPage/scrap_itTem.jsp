@@ -53,8 +53,10 @@
 			                            <img src="${siList.itTemFilepath }">
 			                            <div class="userData">
 			                                <a href="">
+			                                <div class="userPageReplace" id="${siList.itTemUserId }">
 			                                    <div class="profile scrapUserProfile"><a><img src="${siList.profileFilepath }"></a></div>
 			                                    <div class="ScrapUserName">${siList.itTemNickname }</div>
+			                                </div>
 			                                </a>
 			                                <div class="scrapIcon" id="${siList.itTemNo }"><img class="scrap" src="/resources/images/icon/saved_on.png"></div>
 			                            </div>
@@ -127,7 +129,13 @@
 			});
 		}
 	});
-	
+
+	// 페이지 이동
+    $('.userPageReplace').click(function(){
+    	var userId = $(this).attr('id');
+    	location.href="/myPage/userPage.do?userId="+userId;
+    });
+		
 		
 </script>
 
