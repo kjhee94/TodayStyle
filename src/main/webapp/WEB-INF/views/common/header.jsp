@@ -51,20 +51,20 @@
 	</header>
 	
 	<div id="sideBar">
+		<!-- 
+			<div class="box-sideBar">
+				<a href="">
+					<div class="box-sidebar-img">
+						<img alt="" src="/resources/images/icon/location.png">
+					</div>
+					<span>VIEW</span>
+				</a>
+			</div>
+		 -->
 		<div class="box-sideBar">
-			<a href="">
-				<div class="box-sidebar-img">
-					<img alt="" src="/resources/images/icon/location.png">
-				</div>
-				<span>VIEW</span>
-			</a>
-		</div>
-		<div class="box-sideBar">
-
-				<div class="box-sidebar-img">
-					<script src="/resources/API/talk.js"></script>
-				</div>
-
+			<div class="box-sidebar-img">
+				<script src="/resources/API/talk.js"></script>
+			</div>
 		</div>
 		<div class="box-sideBar page-top">
 			<a style="cursor:pointer;" onclick="window.scrollTo(0,0);">

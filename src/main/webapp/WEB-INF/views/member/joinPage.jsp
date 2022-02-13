@@ -38,6 +38,7 @@
         #emailCheck-input{
             width: 275px;
             height: 50px;
+            background-color: #fff;
             margin-top: 10px;
             margin-bottom: 10px;
         }
@@ -69,54 +70,46 @@
 				<a href="/" id="logo"><img alt="오늘 뭐 입지 로고" src="/resources/images/logo.png"></a>
 			</div>
 		
-			<div>
+			<div class="input-top">
 	        <span class="title">아이디</span>
 	        <span class="explain">영문,숫자 5자 이상의 아이디를 입력해주세요</span>
 	        </div>
 	        <div>
 	        <input type="text" id="userid" class="input-style" name="userId" placeholder="아이디"/>
 	        </div>
-	        <div  id="id">
-	     	 
-        	</div>
+	        <div id="id" class="validity"></div>
         	
-        	<div>
+        	<div class="input-top">
 	        <span class="title">비밀번호</span>
 	        <span class="explain">영문,숫자,특수문자를 포함한 8자 이상의 비밀번호를 입력해주세요</span>
 	        </div>
 	        <div>
 	        <input type="password" class="input-style" name="userPwd" id="userpwd" placeholder="비밀번호"/>
 	        </div>
-	        <div id="pwd">
-	       
-        	</div>
+	        <div id="pwd" class="validity"></div>
 	        <input type="password" class="input-style" name="userpwd_re" id="userpwd_re" placeholder="비밀번호 확인">
-	       <div id="pwd_re">
-	       
-	       </div>
+	        <div id="pwd_re" class="validity"></div>
         	
-        	<div>
+        	<div class="input-top">
 	        <span class="title">이름</span>
 	        </div>
 	        <input class="input-style" name="userName" id="userName" placeholder="이름"/>
-	        <div id="name">
-	        
-        	</div>
+	        <div id="name" class="validity"></div>
         	
-        	<div>
+        	<div class="input-top">
 	        <span class="title">닉네임</span>
 	        <span class="explain">다른 유저와 겹치지 않는 별명을 입력해주세요(2~8자 한글만)</span>
 	        </div>
 	        <input type="text" class="input-style" name="nickname" id="nickname" placeholder="닉네임"/>
-	        <div id="nick">
+	        <div id="nick" class="validity">
 	        
 	        </div>
        		
-       		<div>
+       		<div class="input-top">
 	        <span class="title">이메일</span>
 	        </div>
 	        <input type="text" class="input-style" name="userEmail" id="userEmail" placeholder="이메일"/>
-	        <div id="email">
+	        <div id="email" class="validity">
 	        
 	        </div>
 	        

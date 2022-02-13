@@ -98,16 +98,25 @@ table>tbody>tr>td>a {
 	width: 120px;
 	height: 40px;
 	background-color: #fff;
+	color: #707070;
 	border: 0.5px solid #C8C8C8;
 	border-radius: 10px;
 	margin-left: 20px;
 	font-size: 16px;
-	cursor: pointer;
+	line-height: 40px;
 }
 .box-category>button:hover {
 	background-color: #A9D4D9;
+	border-width: 0;
+}
+.box-category>button>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	line-height: 40px;
+}
+.box-category>button>a:hover {
 	color: #fff;
-	border: 0;
 }
 
 

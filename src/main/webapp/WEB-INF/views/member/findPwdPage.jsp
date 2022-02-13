@@ -33,20 +33,17 @@ margin: 20px 0px 20px 0px;
 
  <div id="Wrapper">
 			
-			<br>
 			<ul class="tabs">
-				<a href="/member/findIdPage.do"><li class="tab-link" data-tab="tab-1">아이디 찾기</li></a><span style="color:#C8C8C8;">l</span><a href="/member/findPwdPage.do"><li class="tab-link current" data-tab="tab-2" id="pwdTab">비밀번호 찾기</li></a>
+				<li class="tab-link" data-tab="tab-1"><a href="/member/findIdPage.do">아이디 찾기</a></li>
+				<li class="tab-link current" data-tab="tab-2" id="pwdTab"><a href="/member/findPwdPage.do">비밀번호 찾기</a></li>
 			</ul>
-			<br>
 
 			<div  id="tab-1" class="tab-content current">
 			<form  method="post" id="findPwdForm" style="width:400px; margin:0 auto;">
-			<input type="text" class="input-style" id="userId" name="userId" placeholder="아이디" style="margin:0px 0px 10px 0px;">
-			<span id=id style="text-align:left;"></span>
-			<br>
-			<input type="email" class="input-style" id="userEmail" name="userEmail" placeholder="이메일">
-			<span id="email" style="text-align:left;"></span>
-			<br>
+			<input type="text" class="input-style" id="userId" name="userId" placeholder="아이디">
+			<span id=id style="text-align:left;" class="validity"></span>
+			<input type="email" class="input-style" id="userEmail" name="userEmail" placeholder="이메일" style="margin:10px 0px 0px 0px;">
+			<span id="email" style="text-align:left;" class="validity"></span>
 			<input type="submit" value="비밀번호 찾기" id="findPwdBtn" class="btn-style-mint">
 			</form>
 			</div>
