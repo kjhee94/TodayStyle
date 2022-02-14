@@ -42,7 +42,13 @@
                 
                 	<c:forEach items="${requestScope.memberItTemList }" var="miList" varStatus="i">
              			<a>
-                        	<div class="contents"><img src="${miList.filepath }"></div>
+                        	<div class="contents">
+                        		<img src="${miList.filepath }">
+	                        	<div id="${miList.itTemNo }" class="likeScrap-wrap">
+	                                <img class="likeIcon" src="/resources/images/icon/heart_wf.png">
+	                                <img class="scrapIcon" src="/resources/images/icon/saved_wf.png">
+	                            </div>
+                        	</div>
                     	</a>
               		</c:forEach>
               		
@@ -65,6 +71,103 @@
    
 </div>
 
+
+<script>
+
+	// 좋아요, 스크랩 아이콘 데이터 반영
+	var memberLikeList=new Array();
+	var memberScrapList=new Array();
+	
+	<c:forEach items="${requestScope.memberLikeList}" var="itTemNo" varStatus="i">
+		memberLikeList.push(${itTemNo});
+	</c:forEach>
+	for(var i=0;i<memberLikeList.length;i++){
+		$('#'+memberLikeList[i]).children().eq(0).attr("src","/resources/images/icon/heart_on.png");
+		
+	};
+	
+	<c:forEach items="${requestScope.memberScrapList}" var="itTemNo" varStatus="i">
+		memberScrapList.push(${itTemNo});
+	</c:forEach>
+	for(var i=0;i<memberScrapList.length;i++){
+		$('#'+memberScrapList[i]).children().eq(1).attr("src","/resources/images/icon/saved_on.png");
+		
+	};
+	
+	// 좋아요 기능
+	$('.likeIcon').click(function() {
+		if ($(this).attr('src') === "/resources/images/icon/heart_on.png") {
+			var coordiNo=$(this).parent().attr('id');	
+			$(this).attr('src', "/resources/images/icon/heart_wf.png");
+			$.ajax({
+				url:"/coordi/unlikeCoordi.do",
+               	data:{coordiNo:coordiNo},
+               	type:"get",
+               	success:function (){
+               		
+               	},
+               	error:function(){
+               		console.log("통신실패");
+               	}
+				
+			});
+		} else {
+			var coordiNo=$(this).parent().attr('id');			
+			$(this).attr('src', "/resources/images/icon/heart_on.png");
+			$.ajax({
+				url:"/coordi/likeCoordi.do",
+               	data:{coordiNo:coordiNo},
+               	type:"get",
+               	success:function (){
+               		
+               	},
+               	error:function(){
+               		location.replace('/member/loginPage.do');
+               	}
+				
+			});
+		}
+	});
+	
+	// 스크랩 기능
+	$('.scrapIcon').click(function() {
+		if ($(this).attr('src') === "/resources/images/icon/saved_on.png") {
+			var coordiNo=$(this).parent().attr('id');
+			$(this).attr('src', "/resources/images/icon/saved_wf.png");
+			$.ajax({
+				url:"/coordi/unscrapCoordi.do",
+	        	data:{coordiNo:coordiNo},
+	        	type:"get",
+	        	success:function (){
+	        		
+	        	},
+	        	error:function(){
+	        		console.log("통신실패");
+	        	}
+				
+			});
+		} else {
+			var coordiNo=$(this).parent().attr('id');
+			$(this).attr('src', "/resources/images/icon/saved_on.png");
+			$.ajax({
+				url:"/coordi/scrapCoordi.do",
+	        	data:{coordiNo:coordiNo},
+	        	type:"get",
+	        	success:function (){
+	        		
+	        	},
+	        	error:function(){
+	        		
+	        		location.replace('/member/loginPage.do');
+	        	}
+				
+			});
+		}
+	});
+	
+
+
+</script>
 
 </body>
 
