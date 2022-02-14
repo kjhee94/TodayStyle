@@ -41,7 +41,7 @@
                 <div class="contents-area">
                 
                 	<c:forEach items="${requestScope.myCoordiList }" var="mcList" varStatus="i">
-             			<a>
+             			<a href="/coordi/coordiPost.do?coordiNo=${mcList.coordiNo}">
                         	<div class="contents">
                         		<img src="${mcList.filepath }">
                         	</div>
@@ -49,16 +49,6 @@
               		</c:forEach>
               		
               		
-                    <a>
-                        <div class="contents">
-                            <img src="/resources/images/default/profile.jpg">
-                            <div class="likeScrap-wrap">
-                                <img class="likeIcon" src="/resources/images/icon/heart_wf.png">
-                                <img class="scrapIcon" src="/resources/images/icon/saved_wf.png">
-                            </div>
-                        </div>
-                    </a>
-                    
                     
                 </div>
                 <div id="space"></div>

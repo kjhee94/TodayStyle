@@ -41,7 +41,7 @@
                 <div class="contents-area">
                 
                 	<c:forEach items="${requestScope.memberItTemList }" var="miList" varStatus="i">
-             			<a>
+             			<a href="/coordi/ItPost.do?itItemNo=${miList.itTemNo}">
                         	<div class="contents">
                         		<img src="${miList.filepath }">
 	                        	<div id="${miList.itTemNo }" class="likeScrap-wrap">
@@ -65,8 +65,8 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
-    <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/userFollowerModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/userFollowingModal.jsp" />
 
    
 </div>

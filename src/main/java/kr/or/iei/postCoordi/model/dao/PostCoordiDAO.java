@@ -16,25 +16,21 @@ public class PostCoordiDAO {
 
 
 
-     public int insertInfo(PostCoordi post){
-            return sqlSession.insert("post.insertInfo",post);
-        }
-
-     public int insertPic(PostCoordi post){
-            return sqlSession.insert("post.insertPic",post);
-        }
-
-     public int insertCategory(PostCoordi post){
-            return sqlSession.insert("post.insertCategory",post);
+     public void insertInfo(PostCoordi post){
+            sqlSession.insert("post.insertInfo",post);
+         
         }
 
 
 
+     public void insertCategory(PostCoordi post){
+            sqlSession.insert("post.insertCategory",post);
+        }
 
-    public int viewPost(PostCoordi post) {
 
-        return sqlSession.insert("post.viewPost",post);
-    }
+
+
+
 
 }
 

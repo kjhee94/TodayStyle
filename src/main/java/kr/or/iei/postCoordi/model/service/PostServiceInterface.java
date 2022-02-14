@@ -7,7 +7,7 @@ import kr.or.iei.postCoordi.model.vo.PostCoordi;
 public interface PostServiceInterface {
 	
 	//코디 등록
-	int insert(PostCoordi post) throws Exception;
+	void insert(PostCoordi post) throws Exception;
 	
 
 	

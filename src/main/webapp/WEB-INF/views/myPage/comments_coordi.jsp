@@ -57,7 +57,7 @@
 			                <div class="contents-area">
 			                    <div class="contents-wrapping">
 			                    	<div class="contents-outLine">
-			                        	<a>
+			                        	<a href="/coordi/coordiPost.do?coordiNo=${cmtList.postNo}">
 			                            	<div class="contents"><img src="${cmtList.postFilepath }"></div>
 			                        	</a>
 			                    	</div>
@@ -65,7 +65,18 @@
 			                        	<div class="comment-date textStyle">${cmtList.cmtTime }</div>
 			                        	<div class="comment textStyle">${cmtList.cmtContent } </div>
 			                        	<div class="comment-title-wrapping">
-			                        		<div class="comment-title textStyle">${cmtList.postContent }</div><div class="comments-num textStyle">[${cmtList.cmtNum}]</div>
+			                        		<div class="comment-title textStyle">${cmtList.postContent }</div>
+			                        		<div class="comments-num textStyle">
+			                        		[${cmtList.cmtNum}]
+			                        		<%--
+			                        			<c:choose>
+			                        				<c:when test="${cmtList.cmtNum >0}">
+			                        					[${cmtList.cmtNum}]
+			                        				</c:when>
+			                        				<c:otherwise>[0]</c:otherwise>
+			                        			</c:choose>
+			                        		 --%>
+			                        		</div>
 			                        	</div>
 			                        </div>
 			                        <div class="btn-style-mint deleteBtn" id="${cmtList.cmtNo }"><a>삭제</a></div>

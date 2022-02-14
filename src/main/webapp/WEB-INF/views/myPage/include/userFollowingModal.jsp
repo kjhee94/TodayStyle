@@ -40,7 +40,6 @@
 			                    </div>
 			                    </a>
 			                    
-			                    <div class="following-btn" id="${fList.userId }">팔로잉</div>
 			                </div>
 			            </div>
 		            </c:forEach>
@@ -115,46 +114,6 @@
         
         
        
-        // 팔로잉 버튼
-        $('.following-btn').click(function(){
-        	if($(this).html() === "팔로잉")
-        	{
-        		var userId = $(this).attr('id');
-        		$(this).attr('class','follow-btn');
-        		$(this).html('팔로우');
-        		$.ajax({
-    				url:"/myPage/unFollow.do",
-    	        	data:{unfollowUserId:userId},
-    	        	type:"get",
-    	        	success:function (){
-    	        		
-    	        	},
-    	        	error:function(){
-    	        		console.log("통신실패");
-    	        	}
-    				
-    			});
-        	}
-        	else
-        	{
-        		var userId = $(this).attr('id');
-        		$(this).attr('class','following-btn');
-        		$(this).html('팔로잉');
-        		$.ajax({
-    				url:"/myPage/follow.do",
-    	        	data:{followUserId:userId},
-    	        	type:"get",
-    	        	success:function (){
-
-    	            	alert('following-modal');
-    	        	},
-    	        	error:function(){
-    	        		console.log("통신실패");
-    	        	}
-    				
-    			});
-        	}
-        });
         
         
 

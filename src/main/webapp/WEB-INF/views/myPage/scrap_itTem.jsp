@@ -48,7 +48,7 @@
                 	<c:choose>
 	                	<c:when test="${!requestScope.ScrapItTemList.isEmpty() }">
 	                		<c:forEach items="${requestScope.ScrapItTemList }" var="siList" varStatus="i">
-		                		<a>
+		                		<a href="/coordi/ItPost.do?itItemNo=${siList.itTemNo}">
 			                        <div class="contents">
 			                            <img src="${siList.itTemFilepath }">
 			                            <div class="userData">

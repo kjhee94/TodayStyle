@@ -37,24 +37,6 @@
 			                        <div class="follow-name">${fList.nickname}</div>
 			                    </div>
 			                    
-			                    <c:set var="doneLoop" value="false"/>
-		                    	<c:forEach items="${requestScope.followingList }" var="fgList" varStatus="i">
-		                    		
-		                    		<c:if test="${not doneLoop}">
-			                    		<c:choose>
-				                    		<c:when test="${fList.userId.equals(fgList.userId)}">
-				                    			<div class="following-BTN fBtn" id="${fList.userId }">팔로잉</div>
-				                    			<c:set var="doneLoop" value="true" />
-				                    		</c:when>
-				                    		<c:otherwise>
-				                    			<c:if test="${i.last}">
-				                    				<div class="follow-BTN fBtn" id="${fList.userId }">팔로우</div>
-				                    			</c:if>
-				                    			
-				                    		</c:otherwise>
-			                    		</c:choose>
-		                    		</c:if>
-		                    	</c:forEach>
 			                    
 			                    
 			                </div>
@@ -130,53 +112,6 @@
         });
         
 
-        // 팔로잉 버튼
-        $('.fBtn').click(function(){
-        	if($(this).html() === "팔로잉")
-        	{
-        		var userId = $(this).attr('id');
-        		$(this).attr('class','follow-BTN fBtn');
-        		$(this).html('팔로우');
-        		$.ajax({
-    				url:"/myPage/unFollow.do",
-    	        	data:{unfollowUserId:userId},
-    	        	type:"get",
-    	        	success:function (){
-    	        		
-    	        		
-    	        	},
-    	        	error:function(){
-    	        		console.log("통신실패");
-    	        	}
-    				
-    			});
-        		alert('follower-modal'); 
-        		
-        	}
-        	else
-        	{
-        	
-        		var userId = $(this).attr('id');
-        		$(this).attr('class','following-BTN fBtn');
-        		
-        		$(this).html('팔로잉');
-        		$.ajax({
-    				url:"/myPage/follow.do",
-    	        	data:{followUserId:userId},
-    	        	type:"get",
-    	        	success:function (){
-    	        		
-    	        	},
-    	        	error:function(){
-    	        		console.log("통신실패");
-    	        	}
-    				
-    			});
-        	}
-        	
-        	
-        });
-        
      
 
     </script>
