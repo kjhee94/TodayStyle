@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="postItItem">
+  
+  <select id="oneItItemPost" parameterType="int" resultType="postItItem">
+  	SELECT 
+  		it_itemno as itItemNo,
+  		user_id as userId,
+  		filepath as profileFilePath,
+		nickname as nickName,
+		it_title as itItemTitle,
+		it_content as itContent,
+		reg_date as postTime,
+		item_code as categoryCode,
+		item_name as categoryName,
+		brand as brand,
+		it_name as itName,
+		it_color as itColor,
+		it_size as itSize,
+		user_height as userHeight,
+		user_size as userSize,
+		hashtag as hashtag,
+		del_YN as delYN
+  	FROM(
+	SELECT I.*, FILEPATH, NICKNAME, ITEM_NAME
+	FROM IT_ITEM I
+	LEFT JOIN MEMBER_IMG MI ON (MI.USER_ID=I.USER_ID)
+	LEFT JOIN MEMBER M ON (M.USER_ID=I.USER_ID)
+	LEFT JOIN ITEM_CATEGORY IC ON (I.ITEM_CODE=IC.ITEM_CODE))
+	WHERE IT_ITEMNO=#{itItemNo}
+  </select>
+  
+  <select id="oneImgList" parameterType="int" resultType="postItItem">
+  	SELECT
+  		it_itemno as itItemNo,
+  		filepath as filePath
+  	FROM IT_IMG WHERE IT_ITEMNO=#{itItemNo}
+  </select>
+  
+  <select id="oneCmtList" parameterType="int" resultType="postItItem">
+  	SELECT 
+  		ititem_post_no as itItemNo,
+  		cmt_no as cmtNo,
+  		cmt_writer as cmtWriter,
+  		cmt_content as cmtContent,
+  		cmt_parent as cmtParent,
+  		cmt_depth as cmtDepth,
+  		cmt_seq as cmtSEQ,
+  		del_YN as cmtDelYN,
+  		cmt_time as cmtTime,
+        nickname as nickName,
+        filepath as profileFilePath
+  	FROM ITITEM_COMMENTS IC
+    LEFT JOIN MEMBER M ON (M.USER_ID=IC.cmt_writer)
+    LEFT JOIN MEMBER_IMG MI ON (MI.USER_ID=IC.cmt_writer)
+  	WHERE ititem_post_no=#{itItemNo} AND del_YN='N'
+  </select>
+  
+  <select id="oneItItemLike" parameterType="int" resultType="int">
+  	SELECT COUNT(*) as itLike 
+  	FROM ITEM_LIKE
+	GROUP BY IT_ITEMNO
+	HAVING IT_ITEMNO=#{itItemNo}
+  </select>
+  
+  <select id="oneItItemScrap" parameterType="int" resultType="int">
+  	SELECT COUNT(*)as itScrap 
+  	FROM ITEM_SCRAP
+	GROUP BY IT_ITEMNO
+	HAVING IT_ITEMNO=#{itItemNo}
+  </select>
+</mapper>
