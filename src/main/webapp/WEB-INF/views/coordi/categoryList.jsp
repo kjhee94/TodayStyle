@@ -15,7 +15,7 @@
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 </head>
 <body>
-		<div id="coordiListNumArea">코디 전체<span>${list.size()}개</span></div>
+		<div id="coordiListNumArea">코디 <span>${list.size()}개</span></div>
 				<div class="list-top">
 					<div id="coordiListFilterArea">
 						<select id="filter">
@@ -101,10 +101,10 @@
 									<div class="profile">
 										<c:choose>
 	                                    	<c:when test="${coordi.profileFilePath!=null}">
-	                                       		<a href=""><img src="${coordi.profileFilePath}" id="profileImg"></a>
+	                                       		<a href="/myPage/userPage.do?userId=${coordi.userId }"><img src="${coordi.profileFilePath}" id="profileImg"></a>
 		                                   	</c:when>
 		                                    <c:otherwise>
-		                                        <a href=""><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+		                                        <a href="/myPage/userPage.do?userId=${coordi.userId }"><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
 		                                   	 </c:otherwise>
 	                               		</c:choose>
 									</div>
