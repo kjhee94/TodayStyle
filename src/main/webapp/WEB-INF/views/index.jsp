@@ -58,7 +58,7 @@
 		                        			.then(function(json){
 		                        				const temparature = json.main.temp;
 		                        				const place = json.name;
-		                        				$('#temp').text(temparature+" 도");
+		                        				$('#temp').text(Math.round(temparature)+" ˚");
 		                        			});
 		                        }
 		            			
