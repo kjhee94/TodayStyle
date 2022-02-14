@@ -74,7 +74,7 @@
 		                <div id="cmt-count">
 		                   	댓글<span>3</span>
 		                </div>
-		                
+		                <form id="commentForm" name="commentForm">
 	                    <div class="cmt-input">
 	                   		<div class="profile">
 	                   			<img src="/resources/images/default/profile.jpg">
@@ -84,6 +84,7 @@
 	                        	<input id="commentInsertBtn" type="button" name="name" value="등록">
 	                   		</div>
 	                    </div>
+	                    </form>
 	                    
 		                <div id="cmt-list">
 
@@ -116,18 +117,7 @@
 						</a>
 		              </div>
 		              <button class="btn-style-line" id="user-follow-btn">팔로우</button>
-		           </div>
-		           
-		                  <c:choose>
-		        <c:when test="${requestScope.followBtn.equals('팔로잉') }">
-		           <div id="${requestScope.memberUserId }" class="btn-style-mint user-follow-btn">팔로잉</div>
-		        </c:when>
-		        <c:when test="${requestScope.followBtn.equals('팔로우') }">
-		           <div id="${requestScope.memberUserId }" class="btn-style-line user-follow-btn">팔로우</div>
-		        </c:when>
-		     </c:choose>
-     
-     
+		           </div>    
 		           
 		           <div id="like-scrap">
 	                   	<button id="like">
