@@ -10,6 +10,7 @@
 		<typeAlias type="kr.or.iei.coordi.model.vo.Coordi" alias="coordi"/>
 		<typeAlias type="kr.or.iei.itItem.model.vo.ItItem" alias="itItem"/>
 		<typeAlias type="kr.or.iei.myPage.model.vo.ProfileImg" alias="profileImg"/>
+		<typeAlias type="kr.or.iei.postCoordi.model.vo.PostCoordi" alias="Post"/>
 	</typeAliases>
 
 </configuration>

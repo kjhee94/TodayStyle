@@ -2,20 +2,39 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="post">
 
-	<insert id="insert">
-	  INSERT INTO COORDI VALUES(
-	  
-	 					COORDI_SEQ.NEXTVAL AS COORDINO,
-	 					#{userId},
-	 					COORDI_CONTENT AS COOR
-	 					
-	  
-	  
-	  )
-	  
+	<insert id="insertInfo" parameterType="Post">
+	   INSERT 
+	   	INTO COORDI VALUES( COORDI_SEQ.NEXTVAL,"test1",${content},${gender},${season},${temperature},SYSDATE,default,'N'
+	   	)
+      
+      
+   </insert>
    
-    </insert>
+
+  	<insert id="insertItItem">
+  	
+  	
+  	</insert>
+
+  	
+  	
+  	<insert id="deleteItItem">
+  	
+  	
+  	</insert>
 
 
-
+	<insert id="readCmt">
+    	SELECT
+    		  COORDI_POST_NO,COORDICMT_SEQ.nextval,CMT_WRITER,CMT_CONTENT,CMT_PARENT,CMT_DEPTH,CMT_SEQ,DEL_YN,SYSDATE
+    	 FROM COORDI_COMMENTS
+    	WHERE coordiNo = #{coordi_post}
+	</insert>
+	
+	<insert id="viewPost">
+		SELECT
+			TEMPERATURE, SEASON, GENDER
+		FROM COORDI
+		WHERE COORDI_NO =#{coordiNo} 
+	</insert>
 </mapper>

@@ -22,12 +22,12 @@
 	<div id="wrap" style="overflow:auto">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div id="content">
-		<form action='<c:url value='/postCoordi/coordiPost'/>' id="insertForm" name="insertForm" method="post" >
+		<form id="boardForm" name="boardForm">
 		<div id="title">
 			<p style="font-size: 25px; color:#707070">코디작성</p>
 		</div>
-				
-		<div id="info-wrapper">
+			
+		<div id="info-wrapper" method="get">
                 <input type="checkbox" id="info-check">
                 <label for="info-check">
                     <span style="color:#707070;">
@@ -43,20 +43,17 @@
                         <div class="subject">
                             <p>기온</p>
                          </div>
-                         
-                         <select class="select" name="temperature">
-                            <option>
-                            	기온 선택             
-                           	</option>
-                            
-                               <option>4°이하</option>
-                               <option>5°~8°</option>
-                               <option>9°~11°</option>
-                               <option>12°~16°</option>
-                               <option>17°~19°</option>
-                               <option>20°~22°</option>
-                               <option>23°~27°</option>
-                               <option>28°이상</option>
+                         <input type="text" id="changeInput" style="display:none"/>
+                         <select class="select" name="temperature" id="temperature" onchange="selectBoxChange(this.value);" >
+                               <option>기온 선택</option>
+                               <option value="4°이하">4°이하</option>
+                               <option value="5°~8°">5°~8°</option>
+                               <option value="9°~11°">9°~11°</option>
+                               <option value="12°~16°">12°~16°</option>
+                               <option value="17°~19°">17°~19°</option>
+                               <option value="20°~22°">20°~22°</option>
+                               <option value="23°~27°">23°~27°</option>
+                               <option value="28°이상">28°이상</option>
                          </select>
 					</div>
                        
@@ -65,30 +62,31 @@
                                <p>계절</p>
                            </div>
 	                       <a>
-	                           	  <input type="button" value="봄" class="weather"/>
+	                       		<button type="button" value="봄" class="weather" name="season" onclick="weatherBtn(this.value)">봄</button>
 	                       </a>
 	                       <a>
-									<input type="button" value="여름" class="weather"/> 
+                       			<button type="button" value="여름" class="weather" name="season" onclick="weatherBtn(this.value)">여름</button>
 	                       </a>
 	                        <a>
-	                        		<input type="button" value="가을" class="weather"/>
+                        		<button type="button"value="가을" class="weather" name="season" onclick="weatherBtn(this.value)">가을</button>
 	                       </a>
 	                        <a>
-									<input type="button" value="겨울" class="weather"/>
+                        		<button type="button" value="겨울" class="weather" name="season" onclick="weatherBtn(this.value)">겨울</button>
 	                       </a>
+	                       <input type="hidden" name="season" id="season"/>
                      </div>
                      <div class="togglebox">
                            <div class="subject">
                                <p>성별</p>
                            </div>
 	                       <a>
-								<input type="button" value="여자" class="gender"/>
+	                       		<button type="button" value="여자" class="gender" name="gender" onclick="genderBtn(this.value)">여자</button>
 	                       </a>
 	                        <a>
-								<input type="button" value="남자" class="gender"/>
+	                        	<button type="button" value="남자" class="gender" name="gender" onclick="genderBtn(this.value)">남자</button>
 	                        </a>
 	                        <a>
-								<input type="button" value="공용" class="gender"/>
+	                        	<button type="button" value="공용" class="gender" name="gender" onclick="genderBtn(this.value)">공용</button>
 	                       </a>
                      </div>
                      <div id="coordi-info1">
@@ -99,20 +97,19 @@
                             <div class="select-category">
                                <div class="togglebox">
                         	   <a>
-                                 		<input type="button" value="상의" class="top-btn"/>
+                        	   		<button type="button" value="상의" class="top-btn" name="top" onclick="categoryBtn(this.value)">상의</button>
                                </a>
                                <a>
-										<input type="button" value="하의" class="bottom-btn"/>
-
+                               		<button type="button" value="하의" class="bottom-btn" name="bottom" onclick="categoryBtn(this.value)">하의</button>
                                </a>
                                <a>
-										<input type="button" value="아우터" class="outer-btn"/>
+                               		<button type="button" value="아우터" class="outer-btn" name="outer" onclick="categoryBtn(this.value)">아우터</button>
                                </a>
                                <a>
-										<input type="button" value="신발" class="shoes-btn"/>
+                              		 <button type="button" value="신발" class="shoes-btn" name="shoes" onclick="categoryBtn(this.value)">신발</button>
                                </a>
                                <a>
-										<input type="button" value="악세사리" class="acc-btn"/>
+ 									<button type="button" value="악세사리" class="acc-btn" name="acc" onclick="categoryBtn(this.value)">악세사리</button>
                                </a>
                                 </div>
                             </div>					
@@ -120,50 +117,52 @@
                             <div id="select-category2">
                                 <div class="top" style="display:none">
                                    <span>
-                                        <select class="select">
-                                            <option>상의 카테고리 선택</option>
-                                            <option>블라우스</option>
-                                            <option>반팔</option>
-                                            <option>셔츠</option>
-                                            <option>긴팔</option>
-                                            <option>맨투맨</option>
-                                            <option>후드</option>
-                                            <option>니트</option>
-                                            <option>히트텍</option>
-                                            <option>원피스</option>
-                                            <option>조끼</option>
+                                   <input type="text" id="TopCategory" style="display:none"/>
+                                        <select class="select" onchange="selectTopChange(this.value)" id="select">
+                                            <option value="상의선택">상의 카테고리 선택</option>
+                                            <option value="블라우스">블라우스</option>
+                                            <option value="반팔">반팔</option>
+                                            <option value="셔츠">셔츠</option>
+                                            <option value="긴팔">긴팔</option>
+                                            <option value="맨투맨">맨투맨</option>
+                                            <option value="후드">후드</option>
+                                            <option value="니트">니트</option>
+                                            <option value="히트텍">히트텍</option>
+                                            <option value="원피스">원피스</option>
+                                            <option value="조끼">조끼</option>
                                         </select>
                                     </span>
                                     <span>
-                                    	<input type="text" placeholder="브랜드를 입력하세요" class="textarea2" style="margin-bottom:29px"/>
+                                    	<input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="top-textarea" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="top-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
                                     </span>
                                 </div>
-                                <div class="bottom" style="display:none">
+                                <div class="bottom" style="display:none" >
                                    <span>
-                                        <select class="select">
-                                            <option>하의 카테고리 선택</option>
-                                            <option>반바지</option>
-                                            <option>짧은치마</option>
-                                            <option>긴치마</option>
-                                            <option>슬랙스</option>
-                                            <option>기모바지</option>
-                                            <option>스타킹</option>
-                                            <option>레깅스</option>
-                                            <option>일자바지</option>
-                                            <option>와이드팬츠</option>
-                                            <option>스키니</option>
-                                            <option>부츠컷</option>
-                                            <option>조거</option>
-                                            <option>치마바지</option>
-                                            <option>멜빵</option>
-                                            <option>미디스커트</option>
+                                   <input type="text" id="BottomCategory" style="display:none"/>
+                                        <select class="select" onchange="selectBottomChange(this.value)" id="select">
+                                            <option value="하의선택">하의 카테고리 선택</option>
+                                            <option value="반바지">반바지</option>
+                                            <option value="짧은치마">짧은치마</option>
+                                            <option value="긴치마">긴치마</option>
+                                            <option value="슬랙스">슬랙스</option>
+                                            <option value="기모바지">기모바지</option>
+                                            <option value="스타킹">스타킹</option>
+                                            <option value="레깅스">레깅스</option>
+                                            <option value="일자바지">일자바지</option>
+                                            <option value="와이드팬츠">와이드팬츠</option>
+                                            <option value="스키니">스키니</option>
+                                            <option value="부츠컷">부츠컷</option>
+                                            <option value="조거">조거</option>
+                                            <option value="치마바지">치마바지</option>
+                                            <option value="멜빵">멜빵</option>
+                                            <option value="미니스커트">미니스커트</option>
                                         </select>
                                     </span>
                                     <span>
-                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" style="margin-bottom:29px"/>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="bottom-textarea" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="bottom-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -171,21 +170,22 @@
                                 </div>
                                 <div class="outer" style="display:none">
                                    <span>
-                                        <select class="select">
-                                            <option>아우터 카테고리 선택</option>
-                                            <option>자켓</option>
-                                            <option>가디건</option>
-                                            <option>야상</option>
-                                            <option>트렌치코트</option>
-                                            <option>패딩</option>
-                                            <option>코트</option>
-                                            <option>바람막이</option>
-                                            <option>플리스</option>
-                                            <option>집업</option>
+                                   <input type="text" id="OuterCategory" style="display:none"/>
+                                        <select class="select" onchange="selectOuterChange(this.value)" id="select" >
+                                            <option value="아우터선택">아우터 카테고리 선택</option>
+                                            <option value="자켓">자켓</option>
+                                            <option value="가디건">가디건</option>
+                                            <option value="야상">야상</option>
+                                            <option value="트렌치코트">트렌치코트</option>
+                                            <option value="패딩">패딩</option>
+                                            <option value="코트">코트</option>
+                                            <option value="바람막이">바람막이</option>
+                                            <option value="플리스">플리스</option>
+                                            <option value="집업">집업</option>
                                         </select>
                                     </span>
                                     <span>
-                                         <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" style="margin-bottom:29px"/>
+                                         <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="outer-textarea"style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="outer-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -199,7 +199,7 @@
                                         </select>
                                     </span>
                                     <span>
-                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" style="margin-bottom:29px"/>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="shoes-textarea" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="shoes-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -207,25 +207,26 @@
                                 </div>
                                 <div class="acc" style="display:none">
                                    <span>
-                                        <select class="select">
-                                            <option>악세사리 카테고리 선택</option>
-                                            <option>장갑</option>
-                                            <option>목도리</option>
-                                            <option>모자</option>
-                                            <option>양말</option>
-                                            <option>벨트</option>
-                                            <option>시계</option>
-                                            <option>안경</option>
-                                            <option>가방</option>
-                                            <option>귀걸이</option>
-                                            <option>목걸이</option>
-                                            <option>팔찌</option>
-                                            <option>반지</option>
-                                            <option>발찌</option>
+                                   <input type="text" id="AccCategory" style="display:none"/>
+                                        <select class="select" onchange="selectAccChange(this.value)" id="select">
+                                            <option value="악세사리선택">악세사리 카테고리 선택</option>
+                                            <option value="장갑">장갑</option>
+                                            <option value="목도리">목도리</option>
+                                            <option value="모자">모자</option>
+                                            <option value="양말">양말</option>
+                                            <option value="벨트">벨트</option>
+                                            <option value="시계">시계</option>
+                                            <option value="안경">안경</option>
+                                            <option value="가방">가방</option>
+                                            <option value="귀걸이">귀걸이</option>
+                                            <option value="목걸이">목걸이</option>
+                                            <option value="팔찌">팔찌</option>
+                                            <option value="반지">반지</option>
+                                            <option value="발찌">발찌</option>
                                         </select>
                                     </span>
                                     <span>
-                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" style="margin-bottom:29px"/>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="acc-textarea" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="acc-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -265,14 +266,14 @@
 	            </div>
 	            <div id="insert-info">
 	                <div id="coordi-info2">
-	                    <textarea placeholder="코디설명을 입력하세요" class="textarea" ></textarea>
+	                    <textarea placeholder="코디설명을 입력하세요" class="textarea" name="coordi-content" ></textarea>
 	                </div>
 	                
 					<div class="tr_hashTag_area">
 							<div class="form-group">
 							    <input type="hidden" value="" name="tag" id="rdTag" />
 							</div>
-							<ul id="tag-list">
+							<ul id="tag-list" name="hashtag">
 							<div class="form-group" style="display:inline">
 								<input type="text" id="tag" size="7" placeholder="# 키워드" value="" style="border:none;width:70px;height:25px;border-radius:20px;background-color:#F5F5F5;padding-left:15px"/>
 							</div>
@@ -280,10 +281,11 @@
 					</div>
 	            </div>
 			</div>
-			</form>
+			
 			<div id="coordi-post">
-				<input type="submit" class="btn-style-mint" value="등록"></input>
+				<input type="submit" class="btn-style-mint"  onclick="javascript:insertBoard();"  value="등록"></input>
 			</div>
+			</form>
 			
    		</div>
    	
@@ -473,7 +475,8 @@
 	                
 	                    // 해시태그가 중복되었는지 확인
 	                    if (result.length == 0) { 
-	                        $("#tag-list").append("<li class='tag-item' style='cursor:pointer; display:inline;border:none;width:90px;height:35px;border-radius:20px;background-color:#F5F5F5;margin:5px;color:#C8C8C8'>#  "+tagValue+"<span class='del-btn' idx='"+counter+" style='color:#FFFFFF'>  </span></li>");
+	                        $("#tag-list").append("<li class='tag-item' style='cursor:pointer; display:inline;border:none;width:90px;height:35px;border-radius:20px;background-color:#F5F5F5;margin:5px;color:#C8C8C8'>#  "+tagValue+"<span class='del-btn' idx='"+counter+" style='color:#FFFFFF'>  </span><input type='hidden' name='tags' value='"+tagValue+"'/></li>");
+	                        
 	                        addTag(tagValue);
 	                        self.val("");
 	                    } else {
@@ -555,7 +558,7 @@
 				    	 img.src = URL.createObjectURL(file);
 				    	 
 				    	 var inputWrap = document.getElementById("input_wrap");
-				    	 inputWrap.html();
+				    	 inputWrap.innerHTML="";
 				    	 console.log(inputWrap);
 				    	 inputWrap.appendChild(img);
 				    	 
@@ -606,7 +609,125 @@
 				    }
 				  });
 			 
+			
+			 /** 게시판 - 작성  */
+			    function insertBoard(){
+			    	var tem = $("#Temperature option:selected").val();
 
+			    	var weather = weatherBtn(clicked_value);
+			    	
+	                
+	                var objParams = {
+	                		"temperature" : tem,
+	                		"gender" : genderArray,
+	                        "category" : categoryArray,
+	                        "weather" : weather
+	                    };
+			        
+			        var yn = confirm("게시글을 등록하시겠습니까?");        
+			        if(yn){
+			                
+			            $.ajax({    
+			                
+			               url      : "/board/insertBoard",
+			               data     : objParams,
+			               dataType : "JSON",
+			               cache    : false,
+			               async    : true,
+			               type     : "POST",    
+			               success  : function(obj) {
+			                    insertBoardCallback(obj);                
+			                },           
+			               error    : function(xhr, status, error) {}
+			                
+			            });
+			        }
+			    }
+			    
+			    /** 게시판 - 작성 콜백 함수 */
+			    function insertBoardCallback(obj){
+			    
+			        if(obj != null){        
+			            
+			            var result = obj.result;
+			            
+			            if(result == "SUCCESS"){                
+			                alert("게시글 등록을 성공하였습니다.");                
+			                goBoardList();                 
+			            } else {                
+			                alert("게시글 등록을 실패하였습니다.");    
+			                return;
+			            }
+			        }
+			    }
+				
+				//선택된 기온옵션
+				var selectBoxChange=function(value){
+					console.log(value);
+					$("#changeInput").val(value);
+				}
+
+			
+			
+			//클릭된 계절버튼
+			function weatherBtn(clicked_value)
+			{
+				var weather = clicked_value;
+				$('#season').val(weather);
+
+				
+			};			
+			
+			
+			
+			
+			//클릭된 성별버튼
+			function genderBtn(clicked_value)
+			{
+				var gender = clicked_value;
+				alert(gender);
+
+				
+			};
+			//클릭된 카테고리
+			function categoryBtn(clicked_value)
+			{
+				var category = clicked_value;
+				alert(category);
+			};
+			
+			//선택된 TOP옵션
+			var selectTopChange = function(value){
+				console.log("값 변경테스트 : "+value);
+				$("#TopCategory").val(value);
+			};			
+			//선택된 BOTTOM옵션
+			var selectBottomChange = function(value){
+				console.log("값 변경테스트 : "+value);
+				$("#BottomCategory").val(value);
+			};			
+			//선택된 OUTER옵션
+			var selectOuterChange = function(value){
+				console.log("값 변경테스트 : "+value);
+				$("#OuterCategory").val(value);
+			};			
+			//선택된 SHOES옵션
+			var selectShoesChange = function(value){
+				console.log("값 변경테스트 : "+value);
+				$("#ShoesCategory").val(value);
+			};			
+			
+			//선택된 ACC옵션
+			var selectAccChange = function(value){
+				console.log("값 변경테스트 : "+value);
+				$("#AccCategory").val(value);
+			};
+			
+
+			
+			
+
+			
 	</script>
 	
 	<!-- Channel Plugin Scripts -->
@@ -617,4 +738,4 @@
 	</div>
 
 </body>
-</html>-
+</html>

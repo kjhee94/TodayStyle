@@ -1,10 +1,11 @@
 package kr.or.iei.postItItem.model.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class PostItItem {
 	
 	private int itItemNo;
+	private String itItemTitle;
 	private String nickName;
 	private String profileFilePath;
 	private String follow;
@@ -42,13 +43,14 @@ public class PostItItem {
 
 
 
-	public PostItItem(int itItemNo, String nickName, String profileFilePath, String follow, int itLike, int itScrap,
-			String gender, String itContent, String categoryName, String categoryCode, String brand, String itName,
-			String itColor, String itSize, int userHeight, String userSize, String filePath, String hashtag, char delYN,
-			int cmtNo, String cmtWriter, String cmtContent, String cmtParent, String cmtDepth, String cmtSEQ,
-			String cmtDelYN, Date cmtTime, Date postTime) {
+	public PostItItem(int itItemNo, String itItemTitle, String nickName, String profileFilePath, String follow,
+			int itLike, int itScrap, String gender, String itContent, String categoryName, String categoryCode,
+			String brand, String itName, String itColor, String itSize, int userHeight, String userSize,
+			String filePath, String hashtag, char delYN, int cmtNo, String cmtWriter, String cmtContent,
+			String cmtParent, String cmtDepth, String cmtSEQ, String cmtDelYN, Date cmtTime, Date postTime) {
 		super();
 		this.itItemNo = itItemNo;
+		this.itItemTitle = itItemTitle;
 		this.nickName = nickName;
 		this.profileFilePath = profileFilePath;
 		this.follow = follow;
@@ -88,6 +90,18 @@ public class PostItItem {
 
 	public void setItItemNo(int itItemNo) {
 		this.itItemNo = itItemNo;
+	}
+
+
+
+	public String getItItemTitle() {
+		return itItemTitle;
+	}
+
+
+
+	public void setItItemTitle(String itItemTitle) {
+		this.itItemTitle = itItemTitle;
 	}
 
 
@@ -414,6 +428,10 @@ public class PostItItem {
 		PostTime = postTime;
 	}
 
+	
+
+
+	
 	
 
 	
