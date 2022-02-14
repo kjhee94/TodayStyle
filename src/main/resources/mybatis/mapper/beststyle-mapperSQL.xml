@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+  <mapper namespace="beststyle">
+  
+  <select id="AllBest" resultType="beststyle">
+  	SELECT 
+            num,
+            count,
+            c.coordi_no as coordiNo,
+            c.user_id as userId,
+            m.nickname as nickname,
+            coordi_content as coordiContent,
+            c.gender as gender,
+            season as season,
+            temperature as temperature,
+            reg_date as regdate,
+            hashtag as hashtag,
+            c.DEL_YN as delYN,
+            i.filepath as coordifilepath,
+            g.filepath as profilefilepath,
+            i.top_YN as topYN
+FROM (
+    SELECT row_number()over(order by count desc) as num, DATA.*
+    FROM (
+        SELECT NVL(count,0) AS count ,c.*
+        from coordi c
+        left join 
+            (select count(*) AS count,coordi_no 
+            from coordi_LIKE group by coordi_no) b 
+            on (b.coordi_No=c.coordi_No)
+        ) DATA
+    ) C
+                    left join coordi_img i on(c.coordi_no=i.coordi_no)
+                    left join member m on (m.user_id=c.user_id)
+                    left join member_img g on(m.user_id=g.user_id)
+    WHERE top_yn='Y' and num BETWEEN 1 AND 30
+  </select>
+  
+  	<select id="selectLikeList" resultType="int">
+ 		select
+ 			coordi_no as coordiNo 
+ 		from 
+ 			coordi_like 
+ 		where 
+ 			user_id=#{userId}
+ 		
+ 	</select>
+ 	<select id="selectScrapList" resultType="int">
+ 		select
+ 			coordi_no as coordiNo 
+ 		from 
+ 			coordi_scrap 
+ 		where 
+ 			user_id=#{userId}
+ 			
+ 	</select>
+ 	
+ 	<select id="weekBest" resultType="beststyle">
+ 	SELECT 
+            num,
+            count,
+            c.coordi_no as coordiNo,
+            c.user_id as userId,
+            m.nickname as nickname,
+            coordi_content as coordiContent,
+            c.gender as gender,
+            season as season,
+            temperature as temperature,
+            reg_date as regdate,
+            hashtag as hashtag,
+            c.DEL_YN as delYN,
+            i.filepath as coordifilepath,
+            g.filepath as profilefilepath,
+            i.top_YN as topYN
+FROM (
+    SELECT row_number()over(order by count desc) as num, DATA.*
+    FROM (
+        SELECT NVL(count,0) AS count ,c.*
+        from coordi c
+        left join 
+            (select count(*) AS count,coordi_no 
+            from coordi_LIKE group by coordi_no) b 
+            on (b.coordi_No=c.coordi_No)
+        ) DATA
+    ) C
+                    left join coordi_img i on(c.coordi_no=i.coordi_no)
+                    left join member m on (m.user_id=c.user_id)
+                    left join member_img g on(m.user_id=g.user_id)
+    WHERE top_yn='Y' and (num BETWEEN 1 AND 30) and (reg_date between (to_char(sysdate-7,'yyyy-mm-dd'))
+   and  (to_char(sysdate,'yyyy-mm-dd'))) 
+ 	</select>
+</mapper>

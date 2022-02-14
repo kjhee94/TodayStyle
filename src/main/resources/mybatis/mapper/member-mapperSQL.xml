@@ -137,4 +137,101 @@
    		 MEMBER
    		WHERE USER_ID= #{userId} AND USER_EMAIL = #{userEmail}
     </select>
+    <select id="selectTopFollowList" resultType="member">
+    	
+    		select 
+				rownum,userId, userName,nickname,follow,filePath
+			from
+			(
+			select member.user_Id as userId,
+			         user_Name as userName,
+			         nickname as nickname,
+			         filePath,
+			        follow
+			from 
+				member
+			left join
+				(select count(*) as follow , following_ID from follow group by FOLLoWING_ID) f
+			on 
+				(member.USER_ID =f.following_ID)
+			left join 
+				member_img on (member.user_id=member_img.user_id)
+			where
+				follow>0
+			order by
+				follow desc)
+		WHERE 
+			rownum <![CDATA[ <= ]]>  4
+		
+    </select>
+     <insert id="kakaoinsert" parameterType="hashmap">
+  INSERT INTO
+         MEMBER
+      VALUES (MEMBER_SEQ.NEXTVAL, #{userId}, #{password}, #{name}, #{email},'비공개',#{nickname}, DEFAULT, DEFAULT, 'N')
+</insert>
+<select id="findkakao" resultType="member">
+SELECT
+   			 user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+   		from
+   		 MEMBER
+   		 	where user_id=#{email} and end_yn='N'
+</select>
+<select id="kakaoselect" parameterType="member" resultType="member">>
+  SELECT
+          user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+      FROM
+         member
+      WHERE user_Id = #{userId} and end_yn='N'
+</select>
+
+<select id="kakaoMember"  parameterType="hashmap" resultType="member">
+SELECT
+   			 user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+   		from
+   		 MEMBER
+   		 	where user_id=#{email} and end_yn='N'
+</select>
+<select id="kakaoemail" resultType="member">
+SELECT
+   		 user_No as userNo,
+         user_Id as userId,
+         user_Pwd as userPwd,
+         user_Name as userName,
+         user_Email as userEmail,
+         gender as gender,
+         nickname as nickname,
+         enroll_Date as enrollDate,
+         roll as roll,
+         end_YN as endYN
+   		from
+   		 MEMBER
+   		WHERE user_Email= #{email}
+</select>
 </mapper>

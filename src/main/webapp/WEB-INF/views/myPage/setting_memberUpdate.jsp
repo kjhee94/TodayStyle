@@ -26,8 +26,7 @@
 </head>
 
 <body>
-
-	
+<div id="wrap">
 	
 
 	<c:if test="${sessionScope.member!=null }">
@@ -41,7 +40,7 @@
             </div>
             <div class="contents-wrap">
                 <div class="contents-title-wrap">
-                    <a href="/myPage/memberUpdatePage.do">
+                    <a href="/myPage/setting.do">
                         <div class="contents-title" id="memberUpdate">회원정보 수정</div>
                     </a>
                     <div id="line"></div>
@@ -151,8 +150,11 @@
     
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    
+    <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
 
-    <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
+   
 
 	</c:if>
 
@@ -434,7 +436,7 @@
 
     </script>
 
-
+</div>
 </body>
 
 </html>

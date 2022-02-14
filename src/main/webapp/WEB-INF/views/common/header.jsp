@@ -25,8 +25,8 @@
 									</div>
 									<div class="box-mypage-link">
 										<a href="/myPage/myStyle.do">나의 코디</a>
-										<a href="/myPage/scrap.do">스크랩북</a>
-										<a href="/myPage/comments.do">나의 댓글</a>
+										<a href="/myPage/scrapCoordi.do">스크랩북</a>
+										<a href="/myPage/commentsCoordi.do">나의 댓글</a>
 										<a href="/myPage/setting.do">설정</a>
 										<a href="/member/logout.do">로그아웃</a>
 									</div>
@@ -51,20 +51,20 @@
 	</header>
 	
 	<div id="sideBar">
+		<!-- 
+			<div class="box-sideBar">
+				<a href="">
+					<div class="box-sidebar-img">
+						<img alt="" src="/resources/images/icon/location.png">
+					</div>
+					<span>VIEW</span>
+				</a>
+			</div>
+		 -->
 		<div class="box-sideBar">
-			<a href="">
-				<div class="box-sidebar-img">
-					<img alt="" src="/resources/images/icon/location.png">
-				</div>
-				<span>VIEW</span>
-			</a>
-		</div>
-		<div class="box-sideBar">
-
-				<div class="box-sidebar-img">
-					<script src="/resources/API/talk.js"></script>
-				</div>
-
+			<div class="box-sidebar-img">
+				<script src="/resources/API/talk.js"></script>
+			</div>
 		</div>
 		<div class="box-sideBar page-top">
 			<a style="cursor:pointer;" onclick="window.scrollTo(0,0);">

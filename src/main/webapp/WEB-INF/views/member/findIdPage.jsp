@@ -33,12 +33,10 @@ margin: 20px 0px 20px 0px;
 <div id="content">
 
  <div id="Wrapper">
-			
-			<br>
 			<ul class="tabs">
-				<a href="/member/findIdPage.do"><li class="tab-link current" data-tab="tab-1">아이디 찾기</li></a><span style="color:#C8C8C8;">l</span><a href="/member/findPwdPage.do"><li class="tab-link" data-tab="tab-2" id="pwdTab">비밀번호 찾기</li></a>
+				<li class="tab-link current" data-tab="tab-1"><a href="/member/findIdPage.do">아이디 찾기</a></li>
+				<li class="tab-link" data-tab="tab-2" id="pwdTab"><a href="/member/findPwdPage.do">비밀번호 찾기</a></li>
 			</ul>
-			<br>
 			<div id="tab-1" class="tab-content current">
 			
 			<c:choose>
@@ -48,7 +46,7 @@ margin: 20px 0px 20px 0px;
 	</div>
 	<div style="border: 1px solid #C8C8C8; width:400px; height:73px; margin:0 auto;">
 	<div style="float:left; width:50%; height:100%; line-height:70px; font-size:18px; color:#707070;">
-	${requestScope.m.userId}
+	${requestScope.maskingId}
 	</div>
 	<div style="float:left; width:50%; height:100%; line-height:70px; font-size:12px; color:#C8C8C8;">
 	 ${requestScope.m.enrollDate} 가입
@@ -58,12 +56,10 @@ margin: 20px 0px 20px 0px;
 			</c:when>
 			<c:otherwise>
 			<form  method="post" id="findIdForm" style="width:400px; margin:0 auto;">
-			<input type="text" class="input-style" id="userName" name="userName" placeholder="이름" style="margin:0px 0px 10px 0px;">
-			<span id="name" style="text-align:left;"></span>
-			<br>
-			<input type="email" class="input-style" id="userEmail" name="userEmail" placeholder="이메일">
-			<span id="email" style="text-align:left;"></span>
-			<br>
+			<input type="text" class="input-style" id="userName" name="userName" placeholder="이름">
+			<span id="name" style="text-align:left;" class="validity"></span>
+			<input type="email" class="input-style" id="userEmail" name="userEmail" placeholder="이메일" style="margin-top: 10px;">
+			<span id="email" style="text-align:left;" class="validity"></span>
 			<input type="submit" value="아이디 찾기" id="findId" class="btn-style-mint"><br>
 			</form>
 			</c:otherwise>
@@ -129,7 +125,7 @@ margin: 20px 0px 20px 0px;
              $('#findId').submit();
           }else{
        
-             alert("아이디 조회 실패");
+             
              return false;
           }
 	});

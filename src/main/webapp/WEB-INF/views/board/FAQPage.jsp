@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/resources/common/footer.css">
 <link rel="stylesheet" href="/resources/css/board/boardPage.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>  
+<script src="/resources/common/common.js"></script>
 </head>
 
 <body>
@@ -35,6 +36,7 @@
 					<button><a href="/board/faqClick.do?type=all">전체</a></button>
 					<button><a href="/board/faqClick.do?type=member">회원/정보</a></button>
 					<button><a href="/board/faqClick.do?type=write">게시글</a></button>
+					<button><a href="/board/faqClick.do?type=etc">기타</a></button>
 				</div>
 			
 				<div class="faq">
@@ -59,7 +61,14 @@
 						</c:when>
 						
 						<c:otherwise>
-							일단 비워
+							<div class="q-box">
+									
+									<div>
+										검색 결과가 없습니다.
+										
+										
+									</div>
+								</div>
 						</c:otherwise>
 					</c:choose>
 			  	</div>

@@ -34,11 +34,11 @@
             </div>
             <div class="contents-wrap">
                 <div class="contents-title-wrap">
-                    <a >
+                    <a href="/myPage/setting.do">
                         <div class="contents-title" id="memberUpdate">회원정보 수정</div>
                     </a>
                     <div id="line"></div>
-                    <a >
+                    <a href="/myPage/pwdUpdatePage.do">
                         <div class="contents-title">비밀번호 수정</div>
                     </a>
                 </div>
@@ -64,7 +64,8 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
 
 	<script>
 	

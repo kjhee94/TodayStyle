@@ -38,6 +38,7 @@
         #emailCheck-input{
             width: 275px;
             height: 50px;
+            background-color: #fff;
             margin-top: 10px;
             margin-bottom: 10px;
         }
@@ -69,54 +70,46 @@
 				<a href="/" id="logo"><img alt="오늘 뭐 입지 로고" src="/resources/images/logo.png"></a>
 			</div>
 		
-			<div>
+			<div class="input-top">
 	        <span class="title">아이디</span>
-	        <span class="explain">영문,숫자를 포함한 12자 이상의 아이디를 입력해주세요</span>
+	        <span class="explain">영문,숫자 5자 이상의 아이디를 입력해주세요</span>
 	        </div>
 	        <div>
 	        <input type="text" id="userid" class="input-style" name="userId" placeholder="아이디"/>
 	        </div>
-	        <div  id="id">
-	     	 
-        	</div>
+	        <div id="id" class="validity"></div>
         	
-        	<div>
+        	<div class="input-top">
 	        <span class="title">비밀번호</span>
-	        <span class="explain">영문,숫자를 포함한 8자 이상의 비밀번호를 입력해주세요</span>
+	        <span class="explain">영문,숫자,특수문자를 포함한 8자 이상의 비밀번호를 입력해주세요</span>
 	        </div>
 	        <div>
 	        <input type="password" class="input-style" name="userPwd" id="userpwd" placeholder="비밀번호"/>
 	        </div>
-	        <div id="pwd">
-	       
-        	</div>
+	        <div id="pwd" class="validity"></div>
 	        <input type="password" class="input-style" name="userpwd_re" id="userpwd_re" placeholder="비밀번호 확인">
-	       <div id="pwd_re">
-	       
-	       </div>
+	        <div id="pwd_re" class="validity"></div>
         	
-        	<div>
+        	<div class="input-top">
 	        <span class="title">이름</span>
 	        </div>
 	        <input class="input-style" name="userName" id="userName" placeholder="이름"/>
-	        <div id="name">
-	        
-        	</div>
+	        <div id="name" class="validity"></div>
         	
-        	<div>
+        	<div class="input-top">
 	        <span class="title">닉네임</span>
-	        <span class="explain">다른 유저와 겹치지 않는 별명을 입력해주세요(2~8자)</span>
+	        <span class="explain">다른 유저와 겹치지 않는 별명을 입력해주세요(2~8자 한글만)</span>
 	        </div>
 	        <input type="text" class="input-style" name="nickname" id="nickname" placeholder="닉네임"/>
-	        <div id="nick">
+	        <div id="nick" class="validity">
 	        
 	        </div>
        		
-       		<div>
+       		<div class="input-top">
 	        <span class="title">이메일</span>
 	        </div>
 	        <input type="text" class="input-style" name="userEmail" id="userEmail" placeholder="이메일"/>
-	        <div id="email">
+	        <div id="email" class="validity">
 	        
 	        </div>
 	        
@@ -124,7 +117,7 @@
 	        
              
 	        <button type="button" class="btn-style-mint btn-certified" id="mail_check_button"><a>이메일 인증</a></button>
-	        
+	         <button type="button" class="btn-style-mint btn-certified" id="mail_check_button2" style="display:none"><a>인증 완료</a></button>
 	        <div id="emailCheck-area">
                   <div id="emailCheck-text" class="emailCheck">이메일로 전송된 인증코드를 입력해주세요</div>
                   <div class="mail_check_input_box" id="mail_check_input_box_false">
@@ -216,9 +209,11 @@
         if(inputCode==code){                            // 일치할 경우
         	 $('#userEmail').css("border-color","#C8C8C8");  
         	$('#emailCheck-area').css("display","none");
-        	$('#mail_check_button').attr('disabled','disabled');
-        	
-        	$('#mail_check_button').css('background-color','#C8C8C8');
+        	$('#mail_check_button2').attr('disabled','disabled');
+        	$('#mail_check_button').css('display','none');
+        	$('#mail_check_button2').css('display','block');
+        	  $("input[name='userEmail']").attr('readonly','true');  // 이메일 입력창 비활성화
+        	$('#mail_check_button2').css('background-color','#C8C8C8');
         	
         } else {                                            // 일치하지 않을 경우
         	$('#userEmail').css("border-color","#FD8A69");
@@ -301,7 +296,7 @@
 	        	 
 	          }else{
 	             $('#id').css("color",'#FD8A69');
-	             $('#id').html("아이디는 영문, 숫자를 포함하여 5자 이상이어야 합니다.");
+	             $('#id').html("아이디는 영문,숫자 5자 이상이어야 합니다.");
 	             $('#id').css("display","block");
 	             $('#userid').css("border-color","#FD8A69");
 	          }
@@ -315,7 +310,7 @@
 	        	  $('#userpwd').css("border-color","#C8C8C8");
 	          }else{
 	        	  $('#pwd').css("color",'#FD8A69');
-		          $('#pwd').html("비밀번호는 영문,숫자,특수부호를 포함하여 8자 이상이어야 합니다.");
+		          $('#pwd').html("영문,숫자,특수문자를 포함하여 8자 이상이어야 합니다.");
 		          $('#pwd').css("display","block");
 		          $('#userpwd').css("border-color","#FD8A69");
 	          }
@@ -507,9 +502,9 @@
 	    	  var name =  $('#userName').css("border-color")=="rgb(200, 200, 200)";
 	    	 var nickname =  $('#nickname').css("border-color")=="rgb(200, 200, 200)";
 	    	 var email =  $('#userEmail').css("border-color")=="rgb(200, 200, 200)";
-	    	var emailBtn= $('#mail_check_button').css('background-color')=="rgb(200, 200, 200)";
+	    	var emailBtn= $('#mail_check_button2').css('background-color')=="rgb(200, 200, 200)";
 
-	    	if($('#mail_check_button').css('background-color')=="rgb(169, 212, 217)")
+	    	if($('#mail_check_button2').css('background-color')=="rgb(169, 212, 217)")
 	    		{
 	    		alert('이메일 인증을 해주세요');
 	    		return false;

@@ -1,5 +1,6 @@
 package kr.or.iei.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -45,6 +46,36 @@ public class MemberDAO {
 
 	public int findNewPwd(HashMap<String, Object> map) {
 		return sqlSession.update("member.findNewPwd",map);
+	}
+
+	public ArrayList<Member> selectTopFollowList() {
+		ArrayList<Member> list=new ArrayList(sqlSession.selectList("member.selectTopFollowList"));
+		
+		return list;
+	}
+	
+public int kakaoinsert(HashMap<String, Object> map) {
+		
+		return sqlSession.insert("member.kakaoinsert",map);
+	}
+
+	public int findkakao(String email) {
+		return sqlSession.selectOne("member.findkakao",email)!=null?1:0;
+	}
+
+	public Member kakaoselect(Member member) {
+		return sqlSession.selectOne("member.kakaoselect",member);
+	}
+
+	public Member kakaoMember(Member member,String email) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("member", member);
+		map.put("email", email);
+		return sqlSession.selectOne("member.kakaoMember",map);
+	}
+
+	public int kakaoemail(String email) {
+		return sqlSession.selectOne("member.kakaoemail",email)!=null?1:0;
 	}
 
 	

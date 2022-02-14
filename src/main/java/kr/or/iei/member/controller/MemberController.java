@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.or.iei.member.model.service.MemberService;
+import kr.or.iei.member.model.service.kakaoService;
 import kr.or.iei.member.model.vo.Member;
 
 @Controller
@@ -31,6 +32,9 @@ public class MemberController {
 
 	 @Autowired
 	 private JavaMailSender mailSender;
+	 
+	 @Autowired
+	 private kakaoService kakaoService;
 	
 	@RequestMapping(value="/member/loginPage.do", method=RequestMethod.GET)
 	public String loginPage()
@@ -91,7 +95,6 @@ public class MemberController {
 		
 		if(m!=null)
 		{
-			System.out.println("로그인 성공");
 			HttpSession session = request.getSession();
 			session.setAttribute("member", m);
 			
@@ -114,11 +117,32 @@ public class MemberController {
 	{
 		
 		Member m = mService.findId(member);
+		String userId = m.getUserId();
+		//아이디 첫글자
+		String firstId = userId.substring(0,1);
+		
+		
+		//아이디 중간글자
+		String midId = userId.substring(1,userId.length()-1);
+		
+		
+		//중간글자 마스킹
+		String id = "";
+		for(int i = 0; i<midId.length(); i++)
+		{
+			id +="*";//중간 글자 수 만큼 * 표시
+		}
+		//마지막 아이디 글자
+		String lastId = userId.substring(userId.length()-1,userId.length());
+		
+		//마스킹 완성된 사용자 아이디
+		String maskingId=firstId+id+lastId;
 		
 		
 		if(m!=null)
 		{
 			mav.addObject("m",m);
+			mav.addObject("maskingId",maskingId);
 			mav.setViewName("member/findIdPage"); 
 		}else
 		{
@@ -187,11 +211,14 @@ public class MemberController {
      /* 이메일 보내기 */
      String setFrom = "hyeonji149@gmail.com";
      String toMail = email;
-     String title = "회원가입 인증 이메일 입니다.";
-     String content = 
-             "인증 번호는 " + checkNum + "입니다." + 
-             "<br>" + 
-             "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+     String title = "[오늘 뭐 입지?] 인증 이메일 입니다.";
+     String content = "인증코드를 확인해주세요.(회원가입)" + 
+    		 	"<br><br>" + 
+				checkNum + 
+				"<br><br>" + 
+				"이메일 인증 절차에 따라 이메일 인증코드를 발급해드립니다. <br>" + 
+				"해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+        
      try {
          
          MimeMessage message = mailSender.createMimeMessage();
@@ -238,7 +265,7 @@ public class MemberController {
         /* 이메일 보내기 */
         String setFrom = "hyeonji149@gmail.com";
         String toMail = email;
-        String title = "비밀번호 재설정 인증 이메일 입니다.";
+        String title = "[오늘 뭐 입지?] 인증 이메일 입니다.";
         String content = 
                 "인증 번호는 " + checkNum + "입니다." + 
                 "<br>" + 
@@ -278,11 +305,12 @@ public class MemberController {
           /* 이메일 보내기 */
           String setFrom = "hyeonji149@gmail.com";
           String toMail = userEmail;
-          String title = "임시 비밀번호 발급 이메일 입니다.";
-          String content = 
-                  "비밀번호는 " + checkNum + "입니다." + 
-                  "<br>" + 
-                  "해당 비밀번호를 마이페이지 내 비밀번호 변경에서 변경해주세요.";
+          String title = "[오늘 뭐 입지?] 임시 비밀번호 발급 이메일 입니다.";
+          String content = "인증코드를 확인해주세요.(비밀번호 발급)" + 
+        		  	"<br><br>" + 
+        		  	checkNum + 
+        		  	"<br><br>" + 
+        		  	"해당 비밀번호를 마이페이지 내 비밀번호 변경에서 변경해주세요.";
           try {
               
               MimeMessage message = mailSender.createMimeMessage();
@@ -323,4 +351,77 @@ public class MemberController {
        
     	
     }
+    @RequestMapping(value="/main/kakao_login.ajax")
+    public String kakaoLogin() {
+        StringBuffer loginUrl = new StringBuffer();
+        loginUrl.append("https://kauth.kakao.com/oauth/authorize?client_id=");
+        loginUrl.append("efe990df155904844a586a916429d5d9"); 
+        loginUrl.append("&redirect_uri=");
+        loginUrl.append("http://127.0.0.1/kakao"); 
+        loginUrl.append("&response_type=code");
+        
+        return "redirect:"+loginUrl.toString();
+    }
+    @RequestMapping("/kakao")
+    public ModelAndView home(@RequestParam(value = "code", required = false) String code, HttpSession session
+    		,HttpServletRequest request,ModelAndView mav,Member member) throws Exception{
+       //System.out.println("#########" + code);
+        String access_Token = kakaoService.getAccessToken(code);
+        HashMap<String, String> userInfo = kakaoService.getUserInfo(access_Token);
+        //System.out.println("###access_Token#### : " + access_Token);
+        String userId = userInfo.get("email");
+        
+        String email =   userInfo.get("email");
+     
+        String name =  userInfo.get("nickname");
+        String nickname =   userInfo.get("nickname");
+        String password = userInfo.get("email");
+        
+	HashMap<String,Object> map = new HashMap<String,Object>();
+		
+		map.put("email", email);
+		map.put("nickname", nickname);
+		map.put("password", password);
+		map.put("userId", userId);
+		map.put("name", name);
+        
+        
+      
+        int check = mService.kakaoemail(email);
+      //System.out.println(check);
+      
+    
+      
+    	  int find =  mService.findkakao(email);
+      if(find>0)//1있다면
+      {
+    	  Member m = mService.kakaoMember(member,email);
+			session.setAttribute("member", m);
+			mav.addObject("location","/");
+			mav.setViewName("member/msg2"); 
+    	 
+      }else
+      {
+    	  
+    	  if(check>0)//이메일이 겹친다면
+          {
+        	  mav.addObject("msg","이미 사용중인 이메일입니다.");
+    			mav.addObject("location","/");
+    			mav.setViewName("member/msg"); 
+          }else {
+    	  
+    	int result = mService.kakaoinsert(map);
+    	if(result>0)
+    	{
+    	 mav.addObject("msg","회원가입 완료(비밀번호는 이메일로 설정되었습니다.)");
+			mav.addObject("location","/");
+			mav.setViewName("member/msg"); 
+    	}
+          }
+      }//0 없다면
+      
+       
+      return mav;
+
+}
 }

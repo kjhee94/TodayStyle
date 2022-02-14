@@ -31,8 +31,8 @@ public class PostItItem {
 	private String cmtDepth;
 	private String cmtSEQ;
 	private String cmtDelYN;
-	private Date CmtTime;
-	private Date PostTime;
+	private Date cmtTime;
+	private Date postTime;
 	
 	
 	
@@ -76,8 +76,8 @@ public class PostItItem {
 		this.cmtDepth = cmtDepth;
 		this.cmtSEQ = cmtSEQ;
 		this.cmtDelYN = cmtDelYN;
-		CmtTime = cmtTime;
-		PostTime = postTime;
+		this.cmtTime = cmtTime;
+		this.postTime = postTime;
 	}
 
 
@@ -407,25 +407,25 @@ public class PostItItem {
 
 
 	public Date getCmtTime() {
-		return CmtTime;
+		return cmtTime;
 	}
 
 
 
 	public void setCmtTime(Date cmtTime) {
-		CmtTime = cmtTime;
+		this.cmtTime = cmtTime;
 	}
 
 
 
 	public Date getPostTime() {
-		return PostTime;
+		return postTime;
 	}
 
 
 
 	public void setPostTime(Date postTime) {
-		PostTime = postTime;
+		this.postTime = postTime;
 	}
 
 	

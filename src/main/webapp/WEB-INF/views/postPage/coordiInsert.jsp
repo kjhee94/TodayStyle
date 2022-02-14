@@ -88,6 +88,7 @@
 	                        <a>
 	                        	<button type="button" value="공용" class="gender" name="gender" onclick="genderBtn(this.value)">공용</button>
 	                       </a>
+	                       <input type="hidden" name="gender" id="gender"/>
                      </div>
                      <div id="coordi-info1">
                             <div class="subject">
@@ -99,18 +100,23 @@
                         	   <a>
                         	   		<button type="button" value="상의" class="top-btn" name="top" onclick="categoryBtn(this.value)">상의</button>
                                </a>
+                               <input type="hidden" name="top" id="top"/>
                                <a>
                                		<button type="button" value="하의" class="bottom-btn" name="bottom" onclick="categoryBtn(this.value)">하의</button>
                                </a>
+                               <input type="hidden" name="bottom" id="bottom"/>
                                <a>
                                		<button type="button" value="아우터" class="outer-btn" name="outer" onclick="categoryBtn(this.value)">아우터</button>
                                </a>
+                               <input type="hidden" name="outer" id="outer"/>
                                <a>
                               		 <button type="button" value="신발" class="shoes-btn" name="shoes" onclick="categoryBtn(this.value)">신발</button>
                                </a>
+                               <input type="hidden" name="shoes" id="shoes"/>
                                <a>
  									<button type="button" value="악세사리" class="acc-btn" name="acc" onclick="categoryBtn(this.value)">악세사리</button>
                                </a>
+                               <input type="hidden" name="acc" id="acc"/>
                                 </div>
                             </div>					
 
@@ -283,7 +289,7 @@
 			</div>
 			
 			<div id="coordi-post">
-				<input type="submit" class="btn-style-mint"  onclick="javascript:insertBoard();"  value="등록"></input>
+				<input type="submit" class="btn-style-mint"  value="등록"></input>
 			</div>
 			</form>
 			
@@ -610,56 +616,9 @@
 				  });
 			 
 			
-			 /** 게시판 - 작성  */
-			    function insertBoard(){
-			    	var tem = $("#Temperature option:selected").val();
 
-			    	var weather = weatherBtn(clicked_value);
-			    	
-	                
-	                var objParams = {
-	                		"temperature" : tem,
-	                		"gender" : genderArray,
-	                        "category" : categoryArray,
-	                        "weather" : weather
-	                    };
-			        
-			        var yn = confirm("게시글을 등록하시겠습니까?");        
-			        if(yn){
-			                
-			            $.ajax({    
-			                
-			               url      : "/board/insertBoard",
-			               data     : objParams,
-			               dataType : "JSON",
-			               cache    : false,
-			               async    : true,
-			               type     : "POST",    
-			               success  : function(obj) {
-			                    insertBoardCallback(obj);                
-			                },           
-			               error    : function(xhr, status, error) {}
-			                
-			            });
-			        }
-			    }
 			    
-			    /** 게시판 - 작성 콜백 함수 */
-			    function insertBoardCallback(obj){
-			    
-			        if(obj != null){        
-			            
-			            var result = obj.result;
-			            
-			            if(result == "SUCCESS"){                
-			                alert("게시글 등록을 성공하였습니다.");                
-			                goBoardList();                 
-			            } else {                
-			                alert("게시글 등록을 실패하였습니다.");    
-			                return;
-			            }
-			        }
-			    }
+
 				
 				//선택된 기온옵션
 				var selectBoxChange=function(value){
@@ -685,7 +644,7 @@
 			function genderBtn(clicked_value)
 			{
 				var gender = clicked_value;
-				alert(gender);
+				$('#gender').val(gender);
 
 				
 			};
@@ -693,7 +652,7 @@
 			function categoryBtn(clicked_value)
 			{
 				var category = clicked_value;
-				alert(category);
+				$('#category').val(category);
 			};
 			
 			//선택된 TOP옵션

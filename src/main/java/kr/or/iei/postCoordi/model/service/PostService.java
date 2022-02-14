@@ -16,24 +16,14 @@ public class PostService implements PostServiceInterface{
 	 @Autowired
 	 private PostCoordiDAO postCoordiDAO;
 	
-	 public int insertInfo(PostCoordi post) {
-		
+	 public int insert(PostCoordi post) {
+		 postCoordiDAO.insertPic(post);
+		 postCoordiDAO.insertCategory(post);
 	 
-	        return postCoordiDAO.insertInfo(post);
+	     return postCoordiDAO.insertInfo(post);
 	       
 	    }
-	 public int insertPic(PostCoordi post) {
-			
-		 
-	        return postCoordiDAO.insertPic(post);
-	       
-	    }	 
-	 public int insertCategory(PostCoordi post) {
-		
-	 
-	        return postCoordiDAO.insertCategory(post);
-	       
-	    }	 
+ 
 	 
 	 
 	 

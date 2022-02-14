@@ -31,11 +31,10 @@
 			    <a href="/member/joinPage.do" class="small">회원가입</a>
 		 	</div>
 	    </form>
-	    
 	    <div id="kakaoLogin">
 	    	<span>간편 로그인</span>
 	    	<button class="btn-style-gray kakao">
-	    		<a href="">
+	    		<a href="/main/kakao_login.ajax">
     				<img alt="" src="/resources/images/icon/kakao.png">
     				카카오로 시작하기
 	    		</a>

@@ -102,3 +102,10 @@
             letter-spacing: -0.03em;
         }
         
+        
+        .user-follow-btn{
+            width: 150px;
+            height: 50px;
+            margin: 0 auto;
+        }
+        

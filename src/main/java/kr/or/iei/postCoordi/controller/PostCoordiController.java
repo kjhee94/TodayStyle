@@ -21,65 +21,53 @@ import kr.or.iei.postCoordi.model.vo.PostCoordi;
 @Controller
 public class PostCoordiController {
 
-	@Autowired
+
+    @Autowired
     private PostService postService;
 
 
-	//코디 게시물 개별페이지 이동
-	@RequestMapping(value="/coordi/coordiPost.do",method=RequestMethod.GET)
-	public String coordiPost(PostCoordi post){
-		int result = postService.viewPost(post);
-		
-		return "postPage/coordiPost";
-	}
-	
-	//코디 게시물 개별페이지 조회
-	@RequestMapping(value="/coordi/coordiRead.do",method=RequestMethod.GET)
-	public String coordiPost(PostCoordi post){
-		int result = postService.viewPost(post);
-		
-		return "postPage/coordiPost";
-	}
-	
-	
-	//코디 작성페이지 이동
-	@RequestMapping(value="/coordi/insertCoordi.do",method=RequestMethod.GET)
-	public String insertCoordi(){
-		return "postPage/coordiInsert";
-	}
-	
-	//코디 수정페이지 이동
-	@RequestMapping(value="/coordi/coordiUpdate.do",method=RequestMethod.GET)
-	public String coordiUpdate(){
-		return "postPage/coordiUpdate";
-	}
-	
+    //코디 게시물 개별페이지 이동
+    @RequestMapping(value="/coordi/coordiPost.do",method=RequestMethod.GET)
+    public String coordiPost(PostCoordi post){
+        int result = postService.viewPost(post);
 
-	//코디 작성
-	@RequestMapping( value = "/coordi/insertBoard.do", method=RequestMethod.POST)
-    public ModelAndView insertBoard(HttpServletRequest request, PostCoordi post,ModelAndView mav,@RequestParam String temperature
-    		,@RequestParam String weather,@RequestParam String gender,@RequestParam String coordiContent) throws Exception{
-        
-		post.setTemperature(temperature);
-		post.setGender(gender);
-		post.setSeason(weather);
-		post.setCoordiContent(coordiContent);
-		
-	
-        
-
-		mav.setViewName("coordi/coordiList"); 
-		
-		
-        return mav;
+        return "postPage/coordiPost";
     }
-	
-	
-	
+
+    //코디 게시물 개별페이지 조회
+    @RequestMapping(value="/coordi/coordiRead.do",method=RequestMethod.GET)
+    public String coordiRead(PostCoordi post){
+        int result = postService.viewPost(post);
+
+        return "postPage/coordiPost";
+    }
 
 
-	
-	
+    //코디 작성페이지 이동
+    @RequestMapping(value="/coordi/insertCoordi.do",method=RequestMethod.GET)
+    public String insertCoordi(){
+        return "postPage/coordiInsert";
+    }
+
+    //코디 작성
+    @RequestMapping( value = "/coordi/insertBoard.do", method=RequestMethod.POST)
+    public int insertBoard(HttpServletRequest request, PostCoordi post) throws Exception{
+
+        int result = postService.insert(post);
+
+        return 0; 
+    }
+
+    //코디 수정페이지 이동
+    @RequestMapping(value="/coordi/coordiUpdate.do",method=RequestMethod.GET)
+    public String coordiUpdate(){
+        return "postPage/coordiUpdate";
+    }
+
+
+
+
+
+
 }
-	
 

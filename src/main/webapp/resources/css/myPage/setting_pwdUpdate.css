@@ -13,6 +13,7 @@
             border-left: 1px solid #C8C8C8;
             float: left;
             margin-left: 20%;
+            min-height: 712px;
         }
 
         .contents-title-wrap {

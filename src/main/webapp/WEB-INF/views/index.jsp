@@ -103,13 +103,21 @@
 					<!-- Swiper -->
 					<div class="swiper mySwiper coordiSwiper">
 						<div class="swiper-wrapper">
-							<c:forEach items="${requestScope.map.get('coordiList')}" var="coordi" varStatus="i">
+							<c:forEach items="${requestScope.map.get('coordiList')}" var="coordi" varStatus="i" end="8">
 							<div class="swiper-slide">
 								<a href="/coordi/coordiPost.do">
 									<img class="coordiImg" src="${coordi.filePath}">
 									<div class="nickNameArea">
 										<div class="profile">
-											<a href=""><img src="${coordi.profileFilePath}"/></a>
+											
+									<c:choose>
+                                    	<c:when test="${coordi.profileFilePath!=null}">
+                                       		<a href="/myPage/userPage.do?userId=${coordi.userId }"><img src="${coordi.profileFilePath}" id="profileImg"></a>
+	                                   	</c:when>
+	                                    <c:otherwise>
+	                                        <a href="/myPage/userPage.do?userId=${coordi.userId }"><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+	                                   	 </c:otherwise>
+	                               		</c:choose>
 										</div>
 										<span class="nickName">${coordi.nickName}</span>
 									</div>
@@ -133,7 +141,7 @@
 					<!-- Swiper -->
 					<div class="swiper mySwiper itemSwiper">
 						<div class="swiper-wrapper">
-							<c:forEach items="${requestScope.map.get('itItemList')}" var="itItem" varStatus="i">
+							<c:forEach items="${requestScope.map.get('itItemList')}" var="itItem" varStatus="i" end="8">
 							<div class="swiper-slide">
 								<a href="/coordi/ItPost.do">
 									<img class="itItemImg" src="${itItem.filePath}">
@@ -142,7 +150,14 @@
 										<div class="itemInfoTitle">${itItem.itItemTitle}</div>
 										<div class="itemInfoNickNameArea">
 											<div class="profile">
-												<a href=""><img src="${itItem.profileFilePath}"/></a>
+												<c:choose>
+			                                    	<c:when test="${itItem.profileFilePath!=null}">
+			                                       		<a href="/myPage/userPage.do?userId=${itItem.userId }"><img src="${itItem.profileFilePath}" id="profileImg"></a>
+				                                   	</c:when>
+				                                    <c:otherwise>
+				                                        <a href="/myPage/userPage.do?userId=${itItem.userId }"><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+				                                   	 </c:otherwise>
+				                               	</c:choose>
 											</div>
 											<span class="nickName">${itItem.nickName}</span>
 										</div>
@@ -164,46 +179,26 @@
 			<div id="rankingArea">
 				<div class="main-area">인기 계정 랭킹</div>
 				<div id="ranking">
-					<div class="userRank">
-						<div class="rank">1</div>
+					<c:forEach items="${map.get('topFollowList') }" var="member" varStatus="i">
+					<div class="userRank" id="${member.userId }">
+						<div class="rank">${i.count }</div>
 						<div class="rankProfile">
 							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
+								<c:choose>
+			                      <c:when test="${member.filePath!=null}">
+			                         <a href="/myPage/userPage.do?userId=${member.userId }"><img src="${member.filePath}" id="profileImg"></a>
+				                  </c:when>
+				                     <c:otherwise>
+				                       <a href="/myPage/userPage.do?userId=${member.userId }"><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+				                    </c:otherwise>
+				                </c:choose>
 							</div>
-							<span class="rankNickName">닉네임 ·</span>
-							<span class="rankFollowing">팔로잉 <span>468</span></span>
+							<span class="rankNickName">${member.nickname } ·</span>
+							<span class="rankFollowing">팔로잉 <span>${member.follow }</span></span>
 						</div>
 					</div>
-					<div class="userRank">
-						<div class="rank">2</div>
-						<div class="rankProfile">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="rankNickName">닉네임 ·</span>
-							<span class="rankFollowing">팔로잉 <span>468</span></span>
-						</div>
-					</div>
-					<div class="userRank">
-						<div class="rank">3</div>
-						<div class="rankProfile">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="rankNickName">닉네임 ·</span>
-							<span class="rankFollowing">팔로잉 <span>468</span></span>
-						</div>
-					</div>
-					<div class="userRank">
-						<div class="rank">4</div>
-						<div class="rankProfile">
-							<div class="profile">
-								<a href=""><img src="/resources/images/default/profile.jpg"/></a>
-							</div>
-							<span class="rankNickName">닉네임 ·</span>
-							<span class="rankFollowing">팔로잉 <span>468</span></span>
-						</div>
-					</div>
+					</c:forEach>
+					
 				</div>
 				<div id="rankingImgArea">
 					<div class="rankCoordiImg"><img alt="" src="/resources/images/coordi/stylelist1.jpg"></div>
@@ -219,6 +214,23 @@
 	</div>
 	
 	<!-- Initialize Swiper -->
+	<script>
+		$('.userRank').click(function(){
+			var userId=$(this).attr('id');
+			console.log(userId);
+			$.ajax({
+				url:"/coordi/topCoordiList.do",
+            	data:{userId:userId},
+            	type:"get",
+            	success:function (result){
+            		$('#rankingImgArea').html(result);
+            	},
+            	error:function(){
+            		console.log("통신실패");
+			}
+		})
+		});
+	</script>
 	<script>
 		var swiper = new Swiper(".mySwiper", {
 			slidesPerView : 3,

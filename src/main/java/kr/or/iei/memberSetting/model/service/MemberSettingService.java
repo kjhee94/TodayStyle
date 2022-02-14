@@ -1,9 +1,9 @@
-package kr.or.iei.myPage.model.service;
+package kr.or.iei.memberSetting.model.service;
 
 import java.util.HashMap;
 
 import kr.or.iei.member.model.vo.Member;
-import kr.or.iei.myPage.model.vo.ProfileImg;
+import kr.or.iei.memberSetting.model.vo.ProfileImg;
 
 public interface MemberSettingService {
 
@@ -38,6 +38,10 @@ public interface MemberSettingService {
 
 	// 회원 탈퇴
 	int memberWithdraw(Member m);
+	// 회원 탈퇴 시 팔로워 삭제
+	int memberWithdrawDeleteFollower(Member member);
+	// 회원 탈퇴 시 팔로잉 삭제
+	int memberWithdrawDeleteFollowing(Member member);
 
 	
 

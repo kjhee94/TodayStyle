@@ -31,73 +31,71 @@
 
     <div id="content">
         <div id="body">
-                <jsp:include page="/WEB-INF/views/myPage/include/profile.jsp" />
+        	<jsp:include page="/WEB-INF/views/myPage/include/profile.jsp" />
 
             <div class="contents-wrap">
                 <div class="contents-title-wrap">
                     <div class="contents-title">나의 코디</div>
-                    <div class="contents-num">18</div>
-                    <div class="contents-plus"><a href="/mypage/myCoordi.do">전체보기</a></div>
+                    <div class="contents-num">${requestScope.myCoordiList.size() }</div>
+                    <div class="contents-plus">
+                    	<c:if test="${!requestScope.myCoordiList.isEmpty() }">
+                    		<a href="/mypage/myCoordi.do">전체보기</a>
+                    	</c:if>
+                    </div>
                 </div>
-                <div class="contents-area">
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                </div>
+                
+                <c:choose>
+                	<c:when test="${!requestScope.myCoordiList.isEmpty() }">
+                		<div class="contents-area">
+                			<c:forEach items="${requestScope.myCoordiList }" var="mcList" varStatus="i" begin="0" end="7">
+                				<a>
+			                        <div class="contents"><img src="${mcList.filepath }"></div>
+			                    </a>
+                			</c:forEach>
+                		</div>
+                	</c:when>
+                	<c:otherwise>
+                		<a>
+		                	<div class="contents-area-null"> 코디를 추가해주세요 :)</div>
+		                </a>
+                	</c:otherwise>
+                	
+                </c:choose>
+                
                 <div id="space"></div>
+                
+                
                 <div class="contents-title-wrap">
                     <div class="contents-title">나의 잇템</div>
-                    <div class="contents-num">18</div>
-                    <div class="contents-plus"><a>전체보기</a></div>
+                    <div class="contents-num">${requestScope.myItTemList.size() }</div>
+                    <div class="contents-plus">
+                    	<c:if test="${!requestScope.myItTemList.isEmpty() }">
+                    		<a href="/mypage/myItTem.do">전체보기</a>
+                    	</c:if>
+                    </div>
                 </div>
-                <div class="contents-area">
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                </div>
+                
+                
+                <c:choose>
+                	<c:when test="${!requestScope.myItTemList.isEmpty() }">
+                		<div class="contents-area">
+                			<c:forEach items="${requestScope.myItTemList }" var="mITList" varStatus="i" begin="0" end="7">
+                				<a>
+			                        <div class="contents"><img src="${mITList.filepath }"></div>
+			                    </a>
+                			</c:forEach>
+                		</div>
+                	</c:when>
+                	<c:otherwise>
+                		<a>
+		                	<div class="contents-area-null"> 잇템을 추가해주세요 :)</div>
+		                </a>
+                	</c:otherwise>
+                	
+                </c:choose>
+                
             </div>
+            
 
         </div>
 
@@ -106,7 +104,8 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
     
 </div>
 

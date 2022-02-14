@@ -1,4 +1,4 @@
-package kr.or.iei.myPage.model.dao;
+package kr.or.iei.memberSetting.model.dao;
 
 import java.util.HashMap;
 
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import kr.or.iei.member.model.vo.Member;
-import kr.or.iei.myPage.model.vo.ProfileImg;
+import kr.or.iei.memberSetting.model.vo.ProfileImg;
 
 @Repository
 public class MemberSettingDAO {
@@ -82,6 +82,16 @@ public class MemberSettingDAO {
 	public int memberWithdraw(Member m) {
 
 		return sqlSession.update("memberSetting.memberWithdraw", m);
+	}
+
+	public int memberWithdrawDeleteFollower(Member m) {
+
+		return sqlSession.delete("memberSetting.memberWithdrawDeleteFollower", m);
+	}
+
+	public int memberWithdrawDeleteFollowing(Member m) {
+		
+		return sqlSession.delete("memberSetting.memberWithdrawDeleteFollowing", m);
 	}
 
 

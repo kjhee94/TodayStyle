@@ -54,7 +54,7 @@ public class MemberAOP {
 	}
 
 	// 회원 설정 - 비밀번호 확인 시 암호화 처리
-	@Pointcut("execution(kr.or.iei.member.model.vo.Member kr.or.iei.myPage.model.service.MemberSettingServiceImpl.settingPwdCheck(..))")
+	@Pointcut("execution(kr.or.iei.member.model.vo.Member kr.or.iei.memberSetting.model.service.MemberSettingServiceImpl.settingPwdCheck(..))")
 	public void settingPwdCheckPointCut() {
 	}
 
@@ -71,7 +71,7 @@ public class MemberAOP {
 	}
 
 	// 회원 설정 - 비밀번호 변경 암호화
-	@Pointcut("execution(int kr.or.iei.myPage.model.service.MemberSettingServiceImpl.pwdUpdate(..))")
+	@Pointcut("execution(int kr.or.iei.memberSetting.model.service.MemberSettingServiceImpl.pwdUpdate(..))")
 	public void pwdUpdatePointCut() {
 	}
 
@@ -114,5 +114,24 @@ public class MemberAOP {
 			map.put("num", data);
 			
 		}
+		
+		// 카카오 로그인 회원 가입 암호화 처리 AOP 처리
+		
+				@Pointcut("execution(int kr.or.iei.member.model.service.MemberServiceImpl.kakaoinsert(..))")
+				public void kakaoinsertPointCut() {
+				}
+
+				@Before("kakaoinsertPointCut()")
+				public void kakaoinsertPasswordEncryption(JoinPoint jp) throws Exception {
+					HashMap<String,Object> map = (HashMap<String,Object>)jp.getArgs()[0];
+
+					String password = map.get("password").toString();
+					String userId = map.get("userId").toString();
+
+					String encryptPwd = enc.encryptionData(password, userId);
+
+					map.put("password", encryptPwd);
+
+				}
 
 }

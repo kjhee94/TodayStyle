@@ -10,6 +10,22 @@
       
    </insert>
    
+   	<insert id="insertPic" parameterType="Post">
+	   INSERT 
+	   	INTO COORDI VALUES( COORDI_SEQ.NEXTVAL,"test1",${content},${gender},${season},${temperature},SYSDATE,default,'N'
+	   	)
+      
+      
+   </insert>
+   
+   	<insert id="insertCategory" parameterType="Post">
+	   INSERT 
+	   	INTO COORDI VALUES( COORDI_SEQ.NEXTVAL,"test1",${content},${gender},${season},${temperature},SYSDATE,default,'N'
+	   	)
+      
+      
+   </insert>
+   
 
   	<insert id="insertItItem">
   	

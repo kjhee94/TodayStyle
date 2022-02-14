@@ -70,20 +70,20 @@
 					</div>
 				</div>
 				
-				<c:choose>
-					<c:when test="${!requestScope.map.isEmpty() }">
-						<table>
-							<tr>
-								<th><input type="checkbox" id="Allcheck"></th>
-								<th>글번호</th>
-								<th>제목</th>
-								<th>내용</th>
-								<th>작성자</th>
-								<th>작성일</th>
-								<th>수정</th>
-								<th>삭제</th>
-							</tr>
-							
+				<table>
+					<tr>
+						<th><input type="checkbox" id="Allcheck"></th>
+						<th>글번호</th>
+						<th>제목</th>
+						<th>내용</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th>수정</th>
+						<th>삭제</th>
+					</tr>
+					
+					<c:choose>
+						<c:when test="${!requestScope.map.list.isEmpty() }">
 							<c:forEach items="${requestScope.map.list }" var="n">
 								<c:if test="${n.endYN eq 'N'.charAt(0)}">
 									<tr>
@@ -102,7 +102,7 @@
 									<td>${n.noticeNo}</td>
 									<td>
 										<div class="relative">
-											<div class="ellipsis">${n.title}</div>
+											<div class="ellipsis unenter">${n.title}</div>
 											<c:if test="${n.endYN eq 'N'.charAt(0)}">
 												<div class="box-hovor">${n.title}</div>
 											</c:if>
@@ -162,13 +162,15 @@
 									</td>
 								</tr>
 							</c:forEach>
-						</table>
-					</c:when>
-					<c:otherwise>
-						<h1>현재 회원이 없습니다</h1>
-					</c:otherwise>
-				</c:choose>
-				
+						</c:when>
+						<c:otherwise>
+							<tr class="txt-none">
+								<td colspan="8">검색된 공지가 없습니다</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
+				</table>
+					
 				<div id="page_wrap">
 					<ul class="page_ul">
 						${requestScope.map.pageNavi}

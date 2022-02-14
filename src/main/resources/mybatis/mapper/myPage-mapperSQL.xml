@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myPage">
+	
+	
+	<!-- 프로필 이미지 경로 -->
+	<select id="profileFilePath" resultType="string">
+		SELECT
+			filepath 
+		FROM
+			member_img
+		WHERE
+			user_id = #{userId}
+	</select>
+	
+	<!-- 팔로잉 수 -->
+	<select id="followingNum" resultType="string">
+		SELECT
+			count(*) AS following
+		FROM
+			follow
+		WHERE
+			user_id = #{userId}
+	</select>
+	<!-- 팔로워 수 -->
+	<select id="followerNum" resultType="string">
+		SELECT
+			count(*) AS following
+		FROM
+			follow
+		WHERE
+			following_id = #{userId}
+	</select>
+	
+	<!-- 사용자 코디 리스트 -->
+	<select id="myCoordiList" resultType="myCoordiList">
+		SELECT
+			coordi.coordi_no as coordiNo, filepath as filepath
+		FROM
+			coordi
+			LEFT JOIN coordi_img ON (coordi.coordi_no = coordi_img.coordi_no)
+		WHERE
+			user_id = #{userId} and top_yn='Y'
+	</select>
+	
+	<!-- 사용자 잇템 리스트 -->
+	<select id="myItTemList" resultType="myItTemList">
+		SELECT
+			it_item.it_itemno as itTemNo, filepath as filepath
+		FROM
+			it_item
+			LEFT JOIN it_img ON (it_item.it_itemno = it_img.it_itemno)
+		WHERE
+			user_id = #{userId} and top_yn='Y'
+	</select>
+	
+	<!-- 사용자 스크랩 코디 리스트 -->
+	<select id="scrapCoordiList" resultType="kr.or.iei.myPage.model.vo.ScrapCoordiList">
+		SELECT
+		    coordi_scrap.coordi_scrap_no as coordiScrapNo,
+		    coordi_scrap.coordi_no as CoordiNo,
+		    coordi.user_id as coordiUserId,
+		    coordi_img.filepath as coordiFilepath,
+		    member_img.filepath as profileFilepath,
+		    member.nickname as coordiNickname
+		FROM
+		    coordi_scrap
+		        left join coordi on (coordi_scrap.coordi_no = coordi.coordi_no)
+		        left join coordi_img on (coordi_scrap.coordi_no = coordi_img.coordi_no)
+		        left join member_img on (coordi.user_id = member_img.user_id)
+		        left join member on (coordi.user_id = member.user_id)
+		WHERE
+			coordi_scrap.user_id = #{userId}
+		    AND
+		    coordi_img.top_yn = 'Y'
+		    AND
+		    coordi.del_yn='N'
+		ORDER BY
+			coordiScrapNo DESC
+	</select>
+	
+	<!-- 사용자 스크랩 잇템 리스트 -->
+	<select id="scrapItTemList" resultType="kr.or.iei.myPage.model.vo.ScrapItTemList">
+		SELECT
+		    item_scrap.item_scrap_no as itTemScrapNo,
+		    item_scrap.it_itemno as itTemNo,
+		    it_item.user_id as itTemUserId,
+		    it_img.filepath as itTemFilepath,
+		    member_img.filepath as profileFilepath,
+		    member.nickname as itTemNickname
+		FROM
+		    item_scrap
+		        left join it_item on (item_scrap.it_itemno = it_item.it_itemno)
+		        left join it_img on (item_scrap.it_itemno = it_img.it_itemno)
+		        left join member_img on (it_item.user_id = member_img.user_id)
+		        left join member on (it_item.user_id = member.user_id)
+		WHERE
+			item_scrap.user_id = #{userId}
+		    AND
+		    it_img.top_yn = 'Y'
+		    AND
+		    it_item.del_yn='N'
+		ORDER BY
+			itTemScrapNo DESC
+	</select>
+	
+	<!-- 팔로워 리스트 -->
+	<select id="followerList" resultType="kr.or.iei.myPage.model.vo.Follow">
+		SELECT
+		    member.user_id as userId,
+    		member.nickname as nickname,
+    		member_img.filepath as filepath
+		FROM
+		    follow
+		        left join member on (member.user_id = follow.user_id)
+		        left join member_img on (member_img.user_id = follow.user_id)
+		WHERE
+			follow.following_id = #{userId}
+		ORDER BY
+			nickname
+	</select>
+	
+	<!-- 팔로잉 리스트 -->
+	<select id="followingList" resultType="kr.or.iei.myPage.model.vo.Follow">
+		SELECT
+		    member.user_id as userId,
+    		member.nickname as nickname,
+    		member_img.filepath as filepath
+		FROM
+		    follow
+		        left join member on (member.user_id = follow.following_id)
+		        left join member_img on (member_img.user_id = follow.following_id)
+		WHERE
+			follow.user_id = #{userId}
+		ORDER BY
+			nickname
+	</select>
+	
+	<!-- unFollow -->
+	<delete id="unFollow" parameterType="hashmap">
+		DELETE
+		FROM
+			follow
+		WHERE
+			user_id = #{userId}
+			AND
+			following_id = #{unfollowUserId}
+			
+	</delete>
+	<!-- follow -->
+	<insert id="follow" parameterType="hashmap">
+		INSERT INTO
+			follow
+		VALUES
+			(#{userId},#{followUserId})
+			
+	</insert>
+	
+	
+	<!-- 댓글(코디) 리스트 페이징O-->
+	<select id="commentsCoordiList" resultType="kr.or.iei.myPage.model.vo.Comments">
+		SELECT
+		    postNo,
+		    cmtNo,
+		    cmtContent,
+		    cmtTime,
+		    postContent,
+		    postFilepath,
+		    cmtNum
+		FROM
+			(
+			SELECT
+				ROW_NUMBER() OVER(order BY cmt_time DESC)AS NUM,
+				coordi_comments.coordi_post_no as postNo,
+			    cmt_no as cmtNo,
+			    cmt_content as cmtContent,
+			    cmt_time as cmtTime,
+			    coordi.coordi_content as postContent,
+			    coordi_img.filepath as postFilepath,
+			    co.count as cmtNum
+			FROM
+			    coordi_comments
+			        left join coordi on (coordi_comments.coordi_post_no = coordi.coordi_no)
+			        left join coordi_img on (coordi_comments.coordi_post_no = coordi_img.coordi_no)
+			         LEFT join (select COORDI_POST_NO,COUNT(*) AS COUNT from coordi_comments GROUP BY COORDI_POST_NO) co
+			         ON (co.coordi_POST_NO = coordi_comments.coordi_POST_NO)
+			WHERE
+				cmt_writer = #{userId} AND top_yn='Y'AND coordi_comments.del_yn = 'N'
+			)
+		WHERE 
+			NUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 댓글(코디) 페이지 수 -->
+	<select id="totalCount" resultType="int">
+    	SELECT 
+    		COUNT(*) as count 
+    	FROM 
+    		coordi_comments
+    	WHERE 
+    		cmt_writer = #{userId} and del_yn = 'N'
+    </select>
+    
+    
+    
+    <!-- 댓글(잇템) 리스트 페이징O-->
+	<select id="itTemPageDataList" resultType="kr.or.iei.myPage.model.vo.Comments">
+		SELECT
+		    postNo,
+		    cmtNo,
+		    cmtContent,
+		    cmtTime,
+		    postContent,
+		    postFilepath,
+		    cmtNum
+		FROM
+			(
+			SELECT
+				ROW_NUMBER() OVER(order BY cmt_time DESC)AS NUM,
+				ititem_comments.ititem_post_no as postNo,
+			    cmt_no as cmtNo,
+			    cmt_content as cmtContent,
+			    cmt_time as cmtTime,
+			    it_item.it_content as postContent,
+			    it_img.filepath as postFilepath,
+			    co.count as cmtNum
+			FROM
+			    ititem_comments
+			        left join it_item on (ititem_comments.ititem_post_no = it_item.it_itemno)
+			        left join it_img on (ititem_comments.ititem_post_no = it_img.it_itemno)
+			         LEFT join (select ititem_post_no,COUNT(*) AS COUNT from ititem_comments GROUP BY ititem_post_no) co
+			         ON (co.ititem_post_no = ititem_comments.ititem_post_no)
+			WHERE
+				cmt_writer = #{userId} AND top_yn='Y' AND ititem_comments.del_yn = 'N'
+			)
+		WHERE 
+			NUM BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 댓글(잇템) 페이지 수 -->
+	<select id="totalCountItTem" resultType="int">
+    	SELECT 
+    		COUNT(*) as count 
+    	FROM 
+    		ititem_comments
+    	WHERE 
+    		cmt_writer = #{userId} and del_yn = 'N'
+    </select>
+	
+	<!-- 댓글 삭제(잇템) -->
+	<update id="deleteItTemComment">
+		UPDATE
+			ititem_comments
+		SET
+			del_yn='Y'
+		WHERE
+			cmt_no = #{cmtNo}
+			
+	</update>
+	
+	<!-- 댓글 삭제(코디) -->
+	<update id="deleteCoordiComment">
+		UPDATE
+			coordi_comments
+		SET
+			del_yn='Y'
+		WHERE
+			cmt_no = #{cmtNo}
+			
+	</update>
+	
+	
+	<!-- 닉네임 (개인페이지) -->
+	<select id="memberNickname" resultType="string">
+		SELECT
+			nickname
+		FROM
+			member
+		WHERE
+			user_id = #{memberUserId}
+	</select>
+	
+	<!-- 탈퇴여부 (개인페이지) -->
+	<select id="memberEndYN" resultType="string">
+		SELECT
+			end_yn as endYN
+		FROM
+			member
+		WHERE
+			user_id = #{memberUserId}
+	</select>
+	
+	<!-- 팔로우여부 (개인페이지) -->
+	<select id="memberFollowYN" parameterType="hashmap" resultType="string">
+		SELECT
+			user_id
+		FROM
+			follow
+		WHERE
+			user_id = #{userId} and following_id = #{memberUserId}
+	</select>
+</mapper>

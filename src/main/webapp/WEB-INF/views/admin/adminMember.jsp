@@ -55,22 +55,22 @@
 					</div>
 				</div>
 				
-				<c:choose>
-					<c:when test="${!requestScope.map.isEmpty() }">
-						<table>
-							<tr>
-								<th><input type="checkbox" id="Allcheck"></th>
-								<th>회원번호</th>
-								<th>아이디</th>
-								<th>이름</th>
-								<th>닉네임</th>
-								<th>이메일</th>
-								<th>성별</th>
-								<th>권한</th>
-								<th>가입일</th>
-								<th>탈퇴</th>
-							</tr>
-						
+				<table>
+					<tr>
+						<th><input type="checkbox" id="Allcheck"></th>
+						<th>회원번호</th>
+						<th>아이디</th>
+						<th>이름</th>
+						<th>닉네임</th>
+						<th>이메일</th>
+						<th>성별</th>
+						<th>권한</th>
+						<th>가입일</th>
+						<th>탈퇴</th>
+					</tr>
+					
+					<c:choose>
+						<c:when test="${!requestScope.map.list.isEmpty() }">
 							<c:forEach items="${requestScope.map.list }" var="m">
 								<c:if test="${m.endYN eq 'N'.charAt(0)}">
 									<tr>
@@ -94,7 +94,14 @@
 									<td>${m.nickname}</td>
 									<td>${m.userEmail}</td>
 									<td>${m.gender}</td>
-									<td>${m.roll}</td>
+									<td>
+										<c:if test="${m.roll eq 'AD-1'}">
+											관리자
+										</c:if>
+										<c:if test="${m.roll eq 'UR-1'}">
+											일반회원
+										</c:if>
+									</td>
 									<td>${m.enrollDate}</td>
 									<td>
 										<c:if test="${m.roll eq 'UR-1'}">
@@ -110,13 +117,15 @@
 									</td>
 								</tr>
 							</c:forEach>
-						</table>
-					</c:when>	
-					<c:otherwise>
-						<h1>현재 회원이 없습니다</h1>
-					</c:otherwise>
-				</c:choose>
-				
+						</c:when>	
+						<c:otherwise>
+							<tr class="txt-none">
+								<td colspan="10">검색된 회원이 없습니다</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
+				</table>
+						
 				<div id="page_wrap">
 					<ul class="page_ul">
 						${requestScope.map.pageNavi}

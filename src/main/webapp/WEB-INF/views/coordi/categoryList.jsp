@@ -15,24 +15,73 @@
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 </head>
 <body>
-		<div id="coordiListNumArea">코디 전체<span>${list.size()}개</span></div>
+		<div id="coordiListNumArea">코디 <span>${list.size()}개</span></div>
 				<div class="list-top">
 					<div id="coordiListFilterArea">
 						<select id="filter">
-							<option>최신순</option>
-							<option>최근 인기순</option>
-							<option>역대 인기순</option>
-							<option>팔로잉</option>
+							<c:choose>
+								<c:when test="${filter eq '최신순' }">
+									<option value="최신순" selected>최신순</option>
+									<option value="좋아요순" >좋아요순</option>
+									<option value="스크랩순">스크랩순</option>
+								</c:when>
+								<c:when test="${filter eq '스크랩순' }">
+									<option value="최신순">최신순</option>
+									<option value="좋아요순">좋아요순</option>
+									<option value="스크랩순" selected>스크랩순</option>
+								</c:when>
+								<c:otherwise>
+									<option value="최신순" >최신순</option>
+									<option value="좋아요순" selected>좋아요순</option>
+									<option value="스크랩순">스크랩순</option>
+								</c:otherwise>
+							</c:choose>
 						</select>
 						<i class="fas fa-filter"></i>
 					</div>
+					<script>
+					var filter="최신순";
+						$('#filter').change(function(){
+							var filter=$('#filter option:selected').text();
+							console.log(filter);
+							$.ajax({
+								url:"/coordi/categoryCoordiList.do",
+	    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter,keyword:keyword},
+	    	                	type:"get",
+	    	                	success:function (result){
+			                		$('#coordiListArea').html(result);
+			                	},
+	    	                	error:function(){
+	    	                		console.log("통신실패");
+	    	                	}
+								
+							});
+							
+						})
+					</script>
 					<div class="box-search">
-						<form action="">
 							<input class="search-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
-							<button type="submit"><i class="fas fa-search"></i></button>
-						</form>
+							<button id="searchBtn" type="button" ><i class="fas fa-search" style="cursor:pointer;"></i></button>
 					</div>
 				</div>
+				<script>
+				var keyword;
+					$('#searchBtn').click(function(){
+						keyword =$('.search-style').val();
+						$.ajax({
+							url:"/coordi/categoryCoordiList.do",
+    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter,keyword:keyword},
+    	                	type:"get",
+    	                	success:function (result){
+		                		$('#coordiListArea').html(result);
+		                	},
+    	                	error:function(){
+    	                		console.log("통신실패");
+    	                	}
+							
+						});
+					})
+				</script>
 				
 				<div id="coordiListImgArea">
 					<div class="grid-sizer"></div>
@@ -50,7 +99,14 @@
 							<div class="nickNameArea">
 								<div class="profileArea">
 									<div class="profile">
-										<a href=""><img src="${coordi.profileFilePath}" /></a>
+										<c:choose>
+	                                    	<c:when test="${coordi.profileFilePath!=null}">
+	                                       		<a href="/myPage/userPage.do?userId=${coordi.userId }"><img src="${coordi.profileFilePath}" id="profileImg"></a>
+		                                   	</c:when>
+		                                    <c:otherwise>
+		                                        <a href="/myPage/userPage.do?userId=${coordi.userId }"><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+		                                   	 </c:otherwise>
+	                               		</c:choose>
 									</div>
 								</div>
 								<span class="nickName">${coordi.nickName}</span>

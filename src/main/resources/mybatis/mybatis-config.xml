@@ -2,15 +2,20 @@
 <!DOCTYPE configuration PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 
-	<!-- 별칭 등록 -->
-	<typeAliases>
-		<typeAlias type="kr.or.iei.member.model.vo.Member" alias="member"/>
-		<typeAlias type="kr.or.iei.board.model.vo.FAQ" alias="FAQ"/>
-		<typeAlias type="kr.or.iei.board.model.vo.Notice" alias="Notice"/>
-		<typeAlias type="kr.or.iei.coordi.model.vo.Coordi" alias="coordi"/>
-		<typeAlias type="kr.or.iei.itItem.model.vo.ItItem" alias="itItem"/>
-		<typeAlias type="kr.or.iei.myPage.model.vo.ProfileImg" alias="profileImg"/>
-		<typeAlias type="kr.or.iei.postCoordi.model.vo.PostCoordi" alias="Post"/>
-	</typeAliases>
+
+    <!-- 별칭 등록 -->
+    <typeAliases>
+        <typeAlias type="kr.or.iei.member.model.vo.Member" alias="member"/>
+        <typeAlias type="kr.or.iei.board.model.vo.FAQ" alias="FAQ"/>
+        <typeAlias type="kr.or.iei.board.model.vo.Notice" alias="Notice"/>
+        <typeAlias type="kr.or.iei.coordi.model.vo.Coordi" alias="coordi"/>
+        <typeAlias type="kr.or.iei.itItem.model.vo.ItItem" alias="itItem"/>
+        <typeAlias type="kr.or.iei.myPage.model.vo.ProfileImg" alias="profileImg"/>
+        <typeAlias type="kr.or.iei.myPage.model.vo.MyCoordiList" alias="myCoordiList"/>
+		<typeAlias type="kr.or.iei.myPage.model.vo.MyItTemList" alias="myItTemList"/>
+        <typeAlias type="kr.or.iei.postCoordi.model.vo.PostCoordi" alias="Post"/>
+        <typeAlias type="kr.or.iei.postItItem.model.vo.PostItItem" alias="postItItem"/>
+    </typeAliases>
+
 
 </configuration>

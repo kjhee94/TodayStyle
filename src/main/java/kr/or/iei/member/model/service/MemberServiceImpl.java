@@ -2,6 +2,7 @@ package kr.or.iei.member.model.service;
 
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,40 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int findNewPwd(HashMap<String, Object> map) {
 		return mDAO.findNewPwd(map);
+	}
+	
+	//메인페이지 팔로우 랭킹띄우는 로직
+	@Override
+	public ArrayList<Member> selectTopFollowList() {
+		ArrayList<Member> list = mDAO.selectTopFollowList();
+		return list;
+	}
+	
+	@Override
+	public int kakaoinsert(HashMap<String, Object> map) {
+		return mDAO.kakaoinsert(map);
+	}
+
+	@Override
+	public int findkakao(String email) {
+		return mDAO.findkakao(email);
+	}
+
+	@Override
+	public Member kakaoselect(Member member) {
+		Member m =  mDAO.kakaoselect(member);
+		return m;
+	}
+
+	@Override
+	public Member kakaoMember(Member member,String email) {
+		Member m =  mDAO.kakaoMember(member,email);
+		return m;
+	}
+
+	@Override
+	public int kakaoemail(String email) {
+		return mDAO.kakaoemail(email);
 	}
 
 	

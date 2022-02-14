@@ -59,6 +59,12 @@ textarea {
 	white-space: pre-wrap;
 }
 
+.validity {
+	padding-top: 10px;
+	font-size: 12px;
+	color: #FD8A69;
+}
+
 
 /*검색창 디자인*/
 .box-search {

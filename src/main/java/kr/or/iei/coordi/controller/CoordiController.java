@@ -188,9 +188,10 @@ public class CoordiController {
 		String genders=request.getParameter("gender");
 		String temp=request.getParameter("temp");
 		String items=request.getParameter("item");
+		String filter=request.getParameter("filter");
+		String keyword=request.getParameter("keyword");
 		HttpSession session=request.getSession();
 		Member m=(Member)session.getAttribute("member");
-		
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		if(m!=null) {
 			String userId=m.getUserId();
@@ -215,9 +216,12 @@ public class CoordiController {
 		if(temp!=null&&temp!="") {
 			map.put("temp", temp);
 		}
-		
+		if(keyword!=null&&keyword!="") {
+			map.put("keyword",keyword);
+		}
+		map.put("filter", filter);
 		ArrayList<Coordi> list =coService.selectCategoryCoordiList(map);
-		
+		model.addAttribute("filter",filter);
 		model.addAttribute("list", list);
 		return "coordi/categoryList";
 		
@@ -270,5 +274,12 @@ public class CoordiController {
 		int result=coService.insertScrapCoordi(map);
 		
 		return "coordi/coordiList";
+	}
+	
+	@RequestMapping(value="/coordi/topCoordiList",method = RequestMethod.GET)
+	public String topCoordiList(@RequestParam String userId,Model model) {
+		ArrayList<Coordi> list= coService.selectTopCoordiList(userId);
+		model.addAttribute("list", list);
+		return "coordi/topCoordiListAjax";
 	}
 }

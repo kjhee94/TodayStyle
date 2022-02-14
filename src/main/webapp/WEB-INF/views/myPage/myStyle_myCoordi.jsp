@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%-- jQuery 라이브러리 --%>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 
@@ -23,6 +24,7 @@
 </head>
 
 <body>
+<div id="wrap">
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
     <div id="content">
@@ -33,10 +35,20 @@
             <div class="contents-wrap">
                 <div class="contents-title-wrap">
                     <div class="contents-title">나의 코디</div>
-                    <div class="contents-num">18</div>
+                    <div class="contents-num">${requestScope.myCoordiList.size() }</div>
                     <div class="contents-plus"><a href="/myPage/myStyle.do">목록보기</a></div>
                 </div>
                 <div class="contents-area">
+                
+                	<c:forEach items="${requestScope.myCoordiList }" var="mcList" varStatus="i">
+             			<a>
+                        	<div class="contents">
+                        		<img src="${mcList.filepath }">
+                        	</div>
+                    	</a>
+              		</c:forEach>
+              		
+              		
                     <a>
                         <div class="contents">
                             <img src="/resources/images/default/profile.jpg">
@@ -46,27 +58,8 @@
                             </div>
                         </div>
                     </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
-                    <a>
-                        <div class="contents"><img src="/resources/images/default/profile.jpg"></div>
-                    </a>
+                    
+                    
                 </div>
                 <div id="space"></div>
 
@@ -79,7 +72,11 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <jsp:include page="/WEB-INF/views/myPage/include/followModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
+
+   
+</div>
 
 
 </body>
