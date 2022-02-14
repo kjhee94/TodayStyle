@@ -51,4 +51,19 @@ public class PostItItemDAO {
 		return map;
 	}
 
+	public ArrayList<Integer> selectLikeList(String userId) {
+		ArrayList<Integer> list=new ArrayList<Integer>(sqlSession.selectList("postItItem.selectLikeList",userId));
+		return list;
+	}
+
+	public ArrayList<Integer> selectScrapList(String userId) {
+		ArrayList<Integer> list=new ArrayList<Integer>(sqlSession.selectList("postItItem.selectScrapList",userId));
+		return list;
+	}
+
+	public int insertComment(HashMap<String, Object> map) {
+		
+		return sqlSession.insert("postItItem.insertComment",map);
+	}
+
 }

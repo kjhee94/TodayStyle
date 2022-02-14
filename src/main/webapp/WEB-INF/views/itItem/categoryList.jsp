@@ -88,7 +88,7 @@
 					<div class="itItemImgWrap">
 						
 							<div class="itItemImgArea">
-								<a href="/coordi/ItPost.do">
+								<a href="/coordi/ItPost.do?itItemNo=${itItem.itItemNo }">
 								<img class="itItemImg" src="${itItem.filePath}">
 								</a>
 								<div id="${itItem.itItemNo}" class="likeScrapArea">
