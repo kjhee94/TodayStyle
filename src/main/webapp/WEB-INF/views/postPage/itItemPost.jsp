@@ -38,13 +38,13 @@
 			            
 						<div id="picture">
 							<div id="picture-left" class="img-big">
-								<img src="/resources/images/itItem/item1.jpg">
+								<img src="${requestScope.map.imgList.get(0).filePath}">
 							</div>
-							<div id="picture-right">
+							<!-- <div id="picture-right">
 								<div class="img-small focus"><img src="/resources/images/itItem/item1.jpg"></div>
 								<div class="img-small"><img src="/resources/images/itItem/item2.jpg"></div>
 							    <div class="img-small"><img src="/resources/images/itItem/item2-1.jpg"></div>
-							</div>
+							</div> -->
 						</div>
 					
 						<div id="post-content">
@@ -65,7 +65,7 @@
 		            
 		            <div id="left-bottom-wrapper">
 		                <div id="cmt-count">
-		                   	댓글<span>3</span>
+		                   	댓글<span>${requestScope.map.cmtList.size() }</span>
 		                </div>
 		                
 	                    <div class="cmt-input">
@@ -127,11 +127,30 @@
 					    </div>
 					     -->
 		            </div>
+		            <script>
+	                    	$('#commentInsertBtn').click(function(){
+	                    		var comment = $('.input-style').val();
+	                    		var itItemNo=$('#like-scrap').attr('class');
+	                    		$.ajax({
+			    					url:"/itItem/insertComment.do",
+			                    	data:{comment:comment,itItemNo:itItemNo},
+			                    	type:"get",
+			                    	success:function (result){
+			                    		$('#left-bottom-wrapper').html(result);
+			                    	},
+			                    	error:function(){
+			                    		console.log("통신실패");
+			                    		location.replace('/member/loginPage.do');
+			                    	}
+			    					
+			    				});
+	                    	})
+	                    </script>
 		        </div>
 		        
 		         <div id="right-wrapper">
 		           <div id="user-info">
-		              <div id="user-box">
+		              <div id="user-box" class="${requestScope.map.pi.userId}">
 						<a href="/myPage/userPage.do?userId=${requestScope.map.pi.userId}">
 							<div class="profile">
 								<c:choose>
@@ -146,20 +165,163 @@
 							<span>${requestScope.map.pi.nickName}</span>
 						</a>
 		              </div>
-		              <button class="btn-style-line">팔로우</button>
+		              <c:choose>
+		              	<c:when test="${map.followBtn.equals('팔로잉') }">
+		              		<button id="followBtn" class="btn-style-line " style="background-color:#A9D4D9; color:#fff;">팔로잉</button>
+		              	</c:when>
+		              	<c:otherwise>
+		              		<button id="followBtn" class="btn-style-line ">팔로우</button>
+		              	</c:otherwise>
+		              </c:choose>
+		              
 		           </div>
-		           
-		           <div id="like-scrap">
+		           <script>
+		           		$('#followBtn').click(function(){
+		           			var text=$(this).text();
+		           			var followUserId=$(this).prev().attr('class');
+		           			console.log(followUserId);
+		           			if(text=='팔로우'){
+		           				$(this).text('팔로잉');
+		           				$(this).css('background-color','#A9D4D9');
+		           				$(this).css('color','#fff');
+		           				$.ajax({
+			    					url:"/myPage/follow.do",
+			                    	data:{followUserId:followUserId},
+			                    	type:"get",
+			                    	success:function (){
+			                    		
+			                    	},
+			                    	error:function(){
+			                    		console.log("통신실패");
+			                    		location.replace('/member/loginPage.do');
+			                    	}
+			    					
+			    				});
+		           			}else{
+		           				var unfollowUserId=$(this).prev().attr('class');
+		           				$(this).text('팔로우');
+		           				$(this).css('background-color','#fff');
+		           				$(this).css('color','#707070');
+		           				$.ajax({
+			    					url:"/myPage/unFollow.do",
+			                    	data:{unfollowUserId:unfollowUserId},
+			                    	type:"get",
+			                    	success:function (){
+			                    		
+			                    	},
+			                    	error:function(){
+			                    		console.log("통신실패");
+			                    	}
+			    					
+			    				});
+		           			}
+		           			
+		           			
+		           		})
+		           </script>
+		           <div id="like-scrap" class="${requestScope.map.pi.itItemNo }">
 	                   	<button id="like">
-                   			<img src="/resources/images/icon/heart.png">
+	                   		<c:choose>
+	                   			<c:when test="${map.likeResult>0}">
+	                   				<img src="/resources/images/icon/heart_on.png">
+	                   			</c:when>
+	                   			<c:otherwise>
+	                   				<img src="/resources/images/icon/heart.png">
+	                   			</c:otherwise>
+	                   		</c:choose>
+	                   		
+                   			
                    			<span>${requestScope.map.ItItemLike}</span>
 	                   	</button>
 		                <button id="scrap">
-	                   		<img src="/resources/images/icon/saved.png">
+		                	<c:choose>
+	                   			<c:when test="${map.scrapResult>0}">
+	                   				<img src="/resources/images/icon/saved_on.png"">
+	                   			</c:when>
+	                   			<c:otherwise>
+	                   				<img src="/resources/images/icon/saved.png">
+	                   			</c:otherwise>
+	                   		</c:choose>
+	                   		
 	                   		<span>${requestScope.map.ItItemScrap}</span>
 		                </button>
 					</div>
-		           
+		           	<script>
+		           	$('#like').click(function() {
+		           		var itItemNo=$(this).parent().attr('class');
+		           		var likeNum=$(this).children().eq(1).text();
+		           		console.log(itItemNo);
+		    			if ($(this).children().eq(0).attr('src') === "/resources/images/icon/heart_on.png") {
+		    				$(this).children().eq(0).attr('src', "/resources/images/icon/heart.png");
+		    				
+		    				$(this).children().eq(1).text(likeNum-1);
+		    				$.ajax({
+		    					url:"/itItem/unlikeItItem.do",
+		                    	data:{itItemNo:itItemNo},
+		                    	type:"get",
+		                    	success:function (){
+		                    		
+		                    	},
+		                    	error:function(){
+		                    		console.log("통신실패");
+		                    	}
+		    					
+		    				});
+		    			} else {		
+		    				$(this).children().eq(0).attr('src', "/resources/images/icon/heart_on.png");
+		    				$(this).children().eq(1).text(++likeNum);
+		    				$.ajax({
+		    					url:"/itItem/likeItItem.do",
+		                    	data:{itItemNo:itItemNo},
+		                    	type:"get",
+		                    	success:function (){
+		                    		                	},
+		                    	error:function(){
+		                    		location.replace('/member/loginPage.do');
+		                    	}
+		    					
+		    				});
+		    			}
+		    		});
+		    		$('#scrap').click(function() {
+		    			var itItemNo=$(this).parent().attr('class');
+		    			var scrapNum=$(this).children().eq(1).text();
+		    			if ($(this).children().eq(0).attr('src') === "/resources/images/icon/saved_on.png") {
+		    				
+		    				$(this).children().eq(0).attr('src', "/resources/images/icon/saved.png");
+		    				$(this).children().eq(1).text(scrapNum-1);
+		    				$.ajax({
+		    					url:"/itItem/unscrapItItem.do",
+		                    	data:{itItemNo:itItemNo},
+		                    	type:"get",
+		                    	success:function (){
+		                    		
+		                    	},
+		                    	error:function(){
+		                    		console.log("통신실패");
+		                    	}
+		    					
+		    				});
+		    			} else {
+		    				
+		    				$(this).children().eq(0).attr('src', "/resources/images/icon/saved_on.png");
+		    				$(this).children().eq(1).text(++scrapNum);
+		    				$.ajax({
+		    					url:"/itItem/scrapItItem.do",
+		                    	data:{itItemNo:itItemNo},
+		                    	type:"get",
+		                    	success:function (){
+		                    		
+		                    	},
+		                    	error:function(){
+		                    		
+		                    		location.replace('/member/loginPage.do');
+		                    	}
+		    					
+		    				});
+		    			}
+		    		});
+		           	</script>
 		           <div id="cloth-info">
 						<span class="info-title">의상 정보</span>
 			           	<div class="box-style">

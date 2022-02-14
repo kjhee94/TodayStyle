@@ -150,7 +150,7 @@
 						<div class="swiper-wrapper">
 							<c:forEach items="${requestScope.map.get('itItemList')}" var="itItem" varStatus="i" end="8">
 							<div class="swiper-slide">
-								<a href="/coordi/ItPost.do">
+								<a href="/coordi/ItPost.do?itItemNo=${itItem.itItemNo }">
 									<img class="itItemImg" src="${itItem.filePath}">
 									<div class="itemInfoArea">
 										<div class="itemInfoCategory">${itItem.itemName}</div>
