@@ -6,8 +6,12 @@
 <html>
 
 <head>
+
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
+
     <meta charset="UTF-8">
-    <title>오늘 뭐 입지?</title>
+    <title>오늘 뭐 입지? - 회원설정/비밀번호 수정</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
