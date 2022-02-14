@@ -22,7 +22,7 @@
 	<div id="wrap" style="overflow:auto">
 		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<div id="content">
-		<form id="boardForm" name="boardForm">
+		<form action="/coordi/insertBoard.do" id="boardForm" name="boardForm" method="post" enctype="multipart/form-data">
 		<div id="title">
 			<p style="font-size: 25px; color:#707070">코디작성</p>
 		</div>
@@ -126,7 +126,7 @@
                                    <input type="text" id="TopCategory" style="display:none"/>
                                         <select class="select" onchange="selectTopChange(this.value)" id="select">
                                             <option value="상의선택">상의 카테고리 선택</option>
-                                            <option value="블라우스">블라우스</option>
+                                            <option value="T-blouse">블라우스</option>
                                             <option value="반팔">반팔</option>
                                             <option value="셔츠">셔츠</option>
                                             <option value="긴팔">긴팔</option>
@@ -256,7 +256,7 @@
 			                    </span>
 			                    <span>
 		                        	사진을 등록해주세요<pre>
-		                        	</pre>(*최대 10장까지)
+		                        	</pre>
 	                        	</span>
 	                        </div>
                         </div>
@@ -266,8 +266,8 @@
                        		</div>
 	                    </div>
 	                   
-						<input style="display: none" type="file" name="uploadFile" id="uploadFile" multiple/>
-				              	
+						<input style="display: none" type="file" name="uploadFile" id="uploadFile"/>
+				         
                     
 	            </div>
 	            <div id="insert-info">

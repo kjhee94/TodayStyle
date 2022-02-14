@@ -8,6 +8,7 @@ public class PostCoordi {
 	
 	private int coordiNo;
 	private String nickName;
+	private String userId;
 	private String profileFilePath;
 	private String follow;
 	private int coordiLike;
@@ -37,14 +38,15 @@ public class PostCoordi {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PostCoordi(int coordiNo, String nickName, String profileFilePath, String follow, int coordiLike,
-			int coordiScrap, String temperature, String season, String gender, String coordiContent,
+	public PostCoordi(int coordiNo, String nickName, String userId, String profileFilePath, String follow,
+			int coordiLike, int coordiScrap, String temperature, String season, String gender, String coordiContent,
 			String categoryName, String categoryCode, String brand, String filePath, String hashtag, char delYN,
 			int cmtNo, String cmtWriter, String cmtContent, String cmtParent, String cmtDepth, String cmtSEQ,
 			String cmtDelYN, Date cmtTime, Date postTime) {
 		super();
 		this.coordiNo = coordiNo;
 		this.nickName = nickName;
+		this.userId = userId;
 		this.profileFilePath = profileFilePath;
 		this.follow = follow;
 		this.coordiLike = coordiLike;
@@ -84,6 +86,14 @@ public class PostCoordi {
 
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getProfileFilePath() {
@@ -269,6 +279,8 @@ public class PostCoordi {
 	public void setPostTime(Date postTime) {
 		PostTime = postTime;
 	}
+
+	
 
 	
 	
