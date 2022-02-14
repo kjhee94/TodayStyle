@@ -33,7 +33,7 @@
 			                    <span>겨울</span>
 			                    <span>여성</span>
 			                </div>
-			                <span>2022.01.15</span>
+			                <span>${requestScope.date }</span>
 			            </div>
 			            
 						<div id="picture">
@@ -86,54 +86,7 @@
 	                    </div>
 	                    
 		                <div id="cmt-list">
-		                	<div class="cmt-one">
-		                		<div class="profile">
-		                   			<a href="/myPage/userPage.do"><img src="/resources/images/default/profile.jpg"></a>
-		                   		</div>
-		                   		<div class="cmt-txt">
-			                   		<span class="cmt-nick"><a href="/myPage/userPage.do">닉네임</a></span>
-			                   		<span class="cmt-content">댓글 내용입니다</span>
-			                   		<div class="cmt-info">
-			                   			<span>2022.01.16</span>
-			                   			<span>답글</span>
-			                   			<span>수정</span>
-			                   			<span>삭제</span>
-			                   		</div>
-		                   		</div>
-		                	</div>
-		                	<div class="cmt-re">
-		                		<div class="cmt-one ">
-		                   			<div class="profile">
-			                   			<a href="/myPage/userPage.do"><img src="/resources/images/default/profile.jpg"></a>
-			                   		</div>
-			                   		<div class="cmt-txt">
-			                   			<span class="cmt-nick"><a href="/myPage/userPage.do">닉네임</a></span>
-				                   		<span class="cmt-re-nick"><a href="/myPage/userPage.do">@원댓쓴이</a></span>
-				                   		<span class="cmt-content">댓글 내용입니다</span>
-				                   		<div class="cmt-info">
-				                   			<span>2022.01.16</span>
-				                   			<span>답글</span>
-				                   			<span>수정</span>
-				                   			<span>삭제</span>
-				                   		</div>
-			                   		</div>
-		                   		</div>
-		                	</div>
-		                	<div class="cmt-one">
-		                		<div class="profile">
-		                   			<a href="/myPage/userPage.do"><img src="/resources/images/default/profile.jpg"></a>
-		                   		</div>
-		                   		<div class="cmt-txt">
-			                   		<span class="cmt-nick"><a href="/myPage/userPage.do">닉네임</a></span>
-			                   		<span class="cmt-content">댓글 내용입니다</span>
-			                   		<div class="cmt-info">
-			                   			<span>2022.01.16</span>
-			                   			<span>답글</span>
-			                   			<span>수정</span>
-			                   			<span>삭제</span>
-			                   		</div>
-		                   		</div>
-		                	</div>
+
 		                	
 		                </div>
 		                
@@ -162,8 +115,19 @@
 							<span>닉네임</span>
 						</a>
 		              </div>
-		              <button class="btn-style-line">팔로우</button>
+		              <button class="btn-style-line" id="user-follow-btn">팔로우</button>
 		           </div>
+		           
+		                  <c:choose>
+		        <c:when test="${requestScope.followBtn.equals('팔로잉') }">
+		           <div id="${requestScope.memberUserId }" class="btn-style-mint user-follow-btn">팔로잉</div>
+		        </c:when>
+		        <c:when test="${requestScope.followBtn.equals('팔로우') }">
+		           <div id="${requestScope.memberUserId }" class="btn-style-line user-follow-btn">팔로우</div>
+		        </c:when>
+		     </c:choose>
+     
+     
 		           
 		           <div id="like-scrap">
 	                   	<button id="like">
@@ -235,6 +199,94 @@
 			$(this).addClass("focus");
 			$(".img-small").not(this).removeClass("focus");
 		})
+		
+
+		
+		
+		
+                   $('#user-follow-btn').click(function(){
+                      var userId = $('#user-follow-btn').attr('id');
+                      if($('#user-follow-btn').html()==="팔로잉")
+                      {
+                         $('#user-follow-btn').attr('class','btn-style-line user-follow-btn');
+                         $('#user-follow-btn').html("팔로우");
+                         $.ajax({
+                            url:"/myPage/unFollow.do",
+                              data:{unfollowUserId:userId},
+                              type:"get",
+                              success:function (){
+                                 location.reload();
+                              },
+                              error:function(){
+                                 console.log("통신실패");
+                              }
+                            
+                         });
+                      }else
+                      {
+                         $('#user-follow-btn').attr('class','btn-style-mint user-follow-btn');
+                         $('#user-follow-btn').html("팔로잉");
+                         $.ajax({
+                            url:"/myPage/follow.do",
+                              data:{followUserId:userId},
+                              type:"get",
+                              success:function (){
+                                 location.reload();
+                              },
+                              error:function(){
+                                 console.log("통신실패");
+                              }
+                            
+                         });
+                      }
+                   });
+		//댓글 불러오기
+		 
+		function getCommentList(){
+		    
+		    $.ajax({
+		        type:'GET',
+		        url : "<c:url value='/coordi/commentList.do'/>",
+		        dataType : "json",
+		        data:$("#commentForm").serialize(),
+		        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
+		        success : function(data){
+		            
+		            var html = "";
+		            var cCnt = data.length;
+		            
+		            if(data.length > 0){
+		                
+		                for(i=0; i<data.length; i++){
+		                    html += "<div>";
+		                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
+		                    html += data[i].comment + "<tr><td></td></tr>";
+		                    html += "</table></div>";
+		                    html += "</div>";
+		                }
+		                
+		            } else {
+		                
+		                html += "<div>";
+		                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
+		                html += "</table></div>";
+		                html += "</div>";
+		                
+		            }
+		            
+		            $("#cCnt").html(cCnt);
+		            $("#commentList").html(html);
+		            
+		        },
+		        error:function(request,status,error){
+		            
+		       }
+		        
+		    });
+		}
+		
+
+
 	</script>
 
 </body>

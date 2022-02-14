@@ -2,6 +2,7 @@
 <!DOCTYPE configuration PUBLIC "//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
 
+
     <!-- 별칭 등록 -->
     <typeAliases>
         <typeAlias type="kr.or.iei.member.model.vo.Member" alias="member"/>
@@ -15,5 +16,6 @@
         <typeAlias type="kr.or.iei.postCoordi.model.vo.PostCoordi" alias="Post"/>
         <typeAlias type="kr.or.iei.postItItem.model.vo.PostItItem" alias="postItItem"/>
     </typeAliases>
+
 
 </configuration>

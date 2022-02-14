@@ -21,6 +21,7 @@ import kr.or.iei.postCoordi.model.vo.PostCoordi;
 @Controller
 public class PostCoordiController {
 
+
     @Autowired
     private PostService postService;
 
@@ -69,3 +70,4 @@ public class PostCoordiController {
 
 
 }
+

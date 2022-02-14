@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/common/header.css">
 <link rel="stylesheet" href="/resources/common/footer.css">
-<link rel="stylesheet" href="/resources/css/insertStyle.css?after">
+<link rel="stylesheet" href="/resources/css/insertStyle.css?ver=1">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="/resources/js/postInsert.js"></script>
 </head>
@@ -23,7 +23,7 @@
 		<div id="content">
 		<form id="frm" name="frm" method="get" action="/coordi/coordiList.do">
 		<div id="title">
-			<p style="font-size: 25px; color:#707070">잇템작성</p>
+			<p style="font-size: 25px; color:#707070">잇템수정</p>
 		</div>
 				
 		<div id="info-wrapper">
@@ -42,20 +42,15 @@
                            <div class="subject">
                                <p>성별</p>
                            </div>
-	                       <a>
-	                          <div class="gender">
-	                          	<input type="button" value="여자"/>
-	                          </div>
+	                        <a>
+								<input type="button" value="여자" class="gender"/>
 	                       </a>
 	                        <a>
-	                           <div class="gender">
-	                           		<input type="button" value="남자"/>
-	                           </div>
+								<input type="button" value="남자" class="gender"/>
 	                        </a>
 	                        <a>
-	                           <div class="gender">
-	                           		<input type="button" value="공용"/>
-	                           </div>
+								<input type="button" value="공용" class="gender"/>
+	                       </a>
                      </div>
 
 						<div id="coordi-info1" style="height:230px">
@@ -71,31 +66,19 @@
                             <div class="select-category">
                                <div class="togglebox">
 	                        	   <a>
-	                                 	<div id="top-btn" class="clothes-btn">
-	                                 		<input type="button" value="상의"/>
-	                                 	</div>
-	 
+	                                 		<input type="button" value="상의" id="top-btn" class="clothes-btn"/>
 	                               </a>
 	                               <a>
-	                                   <div id="bottom-btn"  class="clothes-btn">
-	                                   		<input type="button" value="하의"/>
-	                                   </div>
-	
+											<input type="button" value="하의" id="bottom-btn" class="clothes-btn"/>
 	                               </a>
 	                               <a>
-	                                   <div id="outer-btn"  class="clothes-btn">
-	                                   		<input type="button" value="아우터"/>
-	                                   </div>
+											<input type="button" value="아우터" id="outer-btn" class="clothes-btn"/>
 	                               </a>
 	                               <a>
-	                                   <div id="shoes-btn"  class="clothes-btn">
-	                                   		<input type="button" value="신발"/>
-	                                   </div>
+											<input type="button" value="신발" id="shoes-btn" class="clothes-btn"/>
 	                               </a>
 	                               <a>
-	                                   <div id="acc-btn"  class="clothes-btn">
-	                                   		<input type="button" value="악세사리"/>
-	                                   </div>
+											<input type="button" value="악세사리" id="acc-btn" class="clothes-btn"/>
 	                               </a>
                                 </div>
                             </div>					
@@ -105,65 +88,113 @@
                                    <span>
                                         <select class="select">
                                             <option>상의 카테고리 선택</option>
+                                            <option>블라우스</option>
+                                            <option>반팔</option>
+                                            <option>셔츠</option>
+                                            <option>긴팔</option>
+                                            <option>맨투맨</option>
+                                            <option>후드</option>
+                                            <option>니트</option>
+                                            <option>히트텍</option>
+                                            <option>원피스</option>
+                                            <option>조끼</option>
+                                            
                                         </select>
                                     </span>
                                     <span>
-                                        <textarea class="textarea2" placeholder="브랜드를 입력하세요" style="margin-bottom:27px"></textarea>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
-                                        <input type="button" class="top-cancel-btn" value="x"></input>
+                                        <input type="button" class="outer-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
                                     </span>
                                 </div>
                                 <div class="bottom" style="display:none">
                                    <span>
                                         <select class="select">
                                             <option>하의 카테고리 선택</option>
+                                            <option>반바지</option>
+                                            <option>짧은치마</option>
+                                            <option>긴치마</option>
+                                            <option>슬랙스</option>
+                                            <option>기모바지</option>
+                                            <option>스타킹</option>
+                                            <option>레깅스</option>
+                                            <option>일자바지</option>
+                                            <option>와이드팬츠</option>
+                                            <option>스키니</option>
+                                            <option>부츠컷</option>
+                                            <option>조거</option>
+                                            <option>치마바지</option>
+                                            <option>멜빵</option>
+                                            <option>미디스커트</option>
                                         </select>
                                     </span>
                                     <span>
-                                        <textarea class="textarea2" placeholder="브랜드를 입력하세요" style="margin-bottom:27px"></textarea>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
-                                        <input type="button" class="bottom-cancel-btn" value="x"></input>
+                                        <input type="button" class="outer-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
                                     </span>
                                 </div>
                                 <div class="outer" style="display:none">
                                    <span>
                                         <select class="select">
                                             <option>아우터 카테고리 선택</option>
+                                            <option>자켓</option>
+                                            <option>가디건</option>
+                                            <option>야상</option>
+                                            <option>트렌치코트</option>
+                                            <option>패딩</option>
+                                            <option>코트</option>
+                                            <option>바람막이</option>
+                                            <option>플리스</option>
+                                            <option>집업</option>
                                         </select>
                                     </span>
                                     <span>
-                                        <textarea class="textarea2" placeholder="브랜드를 입력하세요" style="margin-bottom:27px"></textarea>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
-                                        <input type="button" class="outer-cancel-btn" value="x"></input>
+                                        <input type="button" class="outer-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
                                     </span>
                                 </div>
                                 <div class="shoes" style="display:none">
                                    <span>
                                         <select class="select">
-                                            <option>신발 카테고리 선택</option>
+                                            <option>신발</option>
                                         </select>
                                     </span>
                                     <span>
-                                        <textarea class="textarea2" placeholder="브랜드를 입력하세요" style="margin-bottom:27px"></textarea>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
-                                        <input type="button" class="shoes-cancel-btn" value="x"></input>
+                                        <input type="button" class="outer-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
                                     </span>
                                 </div>
                                 <div class="acc" style="display:none">
                                    <span>
                                         <select class="select">
                                             <option>악세사리 카테고리 선택</option>
+                                            <option>장갑</option>
+                                            <option>목도리</option>
+                                            <option>모자</option>
+                                            <option>양말</option>
+                                            <option>벨트</option>
+                                            <option>시계</option>
+                                            <option>안경</option>
+                                            <option>가방</option>
+                                            <option>귀걸이</option>
+                                            <option>목걸이</option>
+                                            <option>팔찌</option>
+                                            <option>반지</option>
+                                            <option>발찌</option>
                                         </select>
                                     </span>
                                     <span>
-                                        <textarea class="textarea2" placeholder="브랜드를 입력하세요" style="margin-bottom:27px"></textarea>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
-                                        <input type="button" class="acc-cancel-btn" value="x"></input>
+                                        <input type="button" class="outer-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
                                     </span>
                                 </div>
                             </div>
@@ -239,7 +270,8 @@
 				
 			<div id="picture-wrapper">
 	            <div id="insert-picture">
-                    
+                   
+                	<label for="uploadFile">
                         <div class="input_wrap" onclick="onclick=document.all.file.click()">
 		                    <div style="vertical-align:middle;padding:180px 0px 180px 0px">
 			                    <span style="color:#707070">
@@ -257,7 +289,7 @@
                        		</div>
 	                    </div>
 	                   
-						<input style="display: block" type="file" name="uploadFile" id="uploadFile"  multiple/>
+						<input style="display: none" type="file" name="uploadFile" id="uploadFile" multiple/>
 				              	
                     
 	            </div>

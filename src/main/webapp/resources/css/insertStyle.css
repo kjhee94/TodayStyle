@@ -63,7 +63,7 @@ margin: 15px;
 float: left;
 }
 
-.textarea2{
+#select-category2 span input[type="text"]{
     resize: none;
     width: 335px;
     height: 38px;
@@ -210,7 +210,6 @@ input[id="info-check"]:checked + label + div{
 .imgs_wrap{
 	height:500px;
 	width:150px;
-	border:solid 1px black;
 	float:right;
 	margin-right:20px
 }
@@ -218,7 +217,7 @@ input[id="info-check"]:checked + label + div{
 .btn-style-mint{
 	width:120px;
 }
-.togglebox>a input[type="button"]{
+.togglebox>a button{
     border-radius: 20px;
     border: solid 1px #C8C8C8;
     font-size:16px;

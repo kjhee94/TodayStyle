@@ -9,6 +9,7 @@ import kr.or.iei.postCoordi.model.vo.PostCoordi;
 @Repository
 public class PostCoordiDAO {
 
+
     @Autowired
     @Qualifier(value="sqlSessionTemplate")
     private SqlSessionTemplate sqlSession;
@@ -36,3 +37,4 @@ public class PostCoordiDAO {
     }
 
 }
+
