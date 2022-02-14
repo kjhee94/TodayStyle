@@ -3,25 +3,38 @@
 <mapper namespace="post">
 
 	<insert id="insertInfo" parameterType="Post">
+		<selectKey keyProperty="coordiNo" resultType="int" order="BEFORE">
+			select COORDI_SEQ.nextval from dual
+		</selectKey>
+	
 	   INSERT 
-	   	INTO COORDI VALUES( COORDI_SEQ.NEXTVAL,"test1",${content},${gender},${season},${temperature},SYSDATE,default,'N'
+		   	INTO COORDI VALUES( 
+		   	#{coordiNo},
+		   	#{userId},
+		   	#{coordiContent},
+		   	#{gender},
+		   	#{season},
+		   	#{temperature},
+		   	SYSDATE,
+		   	#{hashtag},
+		   	'N'
 	   	)
-      
-      
    </insert>
    
    	<insert id="insertPic" parameterType="Post">
-	   INSERT 
-	   	INTO COORDI VALUES( COORDI_SEQ.NEXTVAL,"test1",${content},${gender},${season},${temperature},SYSDATE,default,'N'
-	   	)
-      
-      
+	INSERT 
+		INTO COORDI_IMG VALUES(
+		#{coordiNo},
+		#{filePath},
+		#{topyn},
+		#{delyn}
+		)
+
+ 
    </insert>
    
    	<insert id="insertCategory" parameterType="Post">
-	   INSERT 
-	   	INTO COORDI VALUES( COORDI_SEQ.NEXTVAL,"test1",${content},${gender},${season},${temperature},SYSDATE,default,'N'
-	   	)
+	
       
       
    </insert>
@@ -47,10 +60,5 @@
     	WHERE coordiNo = #{coordi_post}
 	</insert>
 	
-	<insert id="viewPost">
-		SELECT
-			TEMPERATURE, SEASON, GENDER
-		FROM COORDI
-		WHERE COORDI_NO =#{coordiNo} 
-	</insert>
+
 </mapper>
