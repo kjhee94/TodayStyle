@@ -48,7 +48,7 @@
                 	<c:when test="${!requestScope.myCoordiList.isEmpty() }">
                 		<div class="contents-area">
                 			<c:forEach items="${requestScope.myCoordiList }" var="mcList" varStatus="i" begin="0" end="7">
-                				<a>
+                				<a href="/coordi/coordiPost.do?coordiNo=${mcList.coordiNo}">
 			                        <div class="contents"><img src="${mcList.filepath }"></div>
 			                    </a>
                 			</c:forEach>
@@ -80,7 +80,7 @@
                 	<c:when test="${!requestScope.myItTemList.isEmpty() }">
                 		<div class="contents-area">
                 			<c:forEach items="${requestScope.myItTemList }" var="mITList" varStatus="i" begin="0" end="7">
-                				<a>
+                				<a href="/coordi/ItPost.do?itItemNo=${mITList.itTemNo}">
 			                        <div class="contents"><img src="${mITList.filepath }"></div>
 			                    </a>
                 			</c:forEach>

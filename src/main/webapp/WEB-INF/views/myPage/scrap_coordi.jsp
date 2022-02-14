@@ -48,7 +48,7 @@
                 	<c:choose>
 	                	<c:when test="${!requestScope.ScrapCoordiList.isEmpty() }">
 	                		<c:forEach items="${requestScope.ScrapCoordiList }" var="scList" varStatus="i">
-		                		<a>
+		                		<a href="/coordi/coordiPost.do?coordiNo=${scList.coordiNo}">
 			                        <div class="contents">
 			                            <img src="${scList.coordiFilepath }">
 			                            <div class="userData">
