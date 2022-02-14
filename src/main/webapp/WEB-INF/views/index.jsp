@@ -41,21 +41,28 @@
 								
 							    var day=year+month+date;
 								var time=hour-1+"00";
-								console.log(day);
-								console.log(time);
 		                       /*
 		                        alert("현재 시간: " + now.toDateString() + "\n"
 		                            + "현재 위치(위도: " + latitude + "경도: " + longitude + "\n"
 		                            + "정확도: " + acc);
 		                        
 		                        */
-		                        $.get('http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst?'+
-		                        		'serviceKey=K1qlq9RSjVEacJGS1cYzhmZ6EhmwgRNN2AyQJRBjvJE%2F8uoXAomaHeRsmIe9CHqKyCZdkkAG3DaYH5ZWD2MBIg%3D%3D&'+
-		                        		'pageNo=1&numOfRows=1000&dataType=JSON&base_date='+day+'&base_time='+time+'&nx=55&ny=127',function(data){
-		            				console.log(data);
-		            				console.log(data.response.body.items.item[3].obsrValue);
-		            				$('#temp').text(data.response.body.items.item[3].obsrValue+"도");
-		            			})
+		                        getWeather(latitude,longitude);
+		                        
+		            			function getWeather(lat,lon){
+		                        	fetch('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid=d114b8984a0f6d1a125c960c72035804&units=metric'
+		                        			)
+		                        			.then(function(response){
+		                        				return response.json();
+		                        			})
+		                        			.then(function(json){
+		                        				const temparature = json.main.temp;
+		                        				const place = json.name;
+		                        				$('#temp').text(temparature+" 도");
+		                        			});
+		                        }
+		            			
+		            			
 		                        $.ajax({
 		    	                	url:"/rest/setSession.do",
 		    	                	data:{latitude:latitude,longitude:longitude},
@@ -180,8 +187,8 @@
 				<div class="main-area">인기 계정 랭킹</div>
 				<div id="ranking">
 					<c:forEach items="${map.get('topFollowList') }" var="member" varStatus="i">
-					<div class="userRank" id="${member.userId }">
-						<div class="rank">${i.count }</div>
+					<div class="userRank" id="${member.userId }" style="cursor:pointer;">
+						<div class="rank" id="${i.count%4 }">${i.count }</div>
 						<div class="rankProfile">
 							<div class="profile">
 								<c:choose>
@@ -201,10 +208,7 @@
 					
 				</div>
 				<div id="rankingImgArea">
-					<div class="rankCoordiImg"><img alt="" src="/resources/images/coordi/stylelist1.jpg"></div>
-					<div class="rankCoordiImg"><img alt="" src="/resources/images/coordi/stylelist2.jpg"></div>
-					<div class="rankCoordiImg"><img alt="" src="/resources/images/coordi/stylelist3.jpg"></div>
-					<div class="rankCoordiImg"><img alt="" src="/resources/images/coordi/stylelist27.jpg"></div>
+					
 				</div>
 			</div>
 		</div>
@@ -215,9 +219,34 @@
 	
 	<!-- Initialize Swiper -->
 	<script>
+		var index=0;
+		var timer =setInterval(function(){
+			index++;
+			var id=index%4;
+			var userId=$('#'+id).parent().attr('id');
+			sendRequest(userId);
+			$('.userRank').css('background-color','rgba(0,0,0,0)');
+			$('#'+id).parent().css('background-color','rgba(169,212,217,0.15)');
+		},3000);	
+		function sendRequest(userId){
+			$.ajax({
+				url:"/coordi/topCoordiList.do",
+            	data:{userId:userId},
+            	type:"get",
+            	success:function (result){
+            		$('#rankingImgArea').html(result);
+            	},
+            	error:function(){
+            		console.log("통신실패");
+			}
+		})
+		}
+		
 		$('.userRank').click(function(){
+			$('.userRank').css('background-color','rgba(0,0,0,0)');
 			var userId=$(this).attr('id');
-			console.log(userId);
+			clearInterval(timer);
+			$(this).css('background-color','rgba(169,212,217,0.15)');
 			$.ajax({
 				url:"/coordi/topCoordiList.do",
             	data:{userId:userId},
