@@ -45,15 +45,19 @@
                 </div>
                
                 <c:choose>
+                
                 	<c:when test="${!requestScope.memberCoordiList.isEmpty() }">
                 		<div class="contents-area">
                 			<c:forEach items="${requestScope.memberCoordiList }" var="mcList" varStatus="i" begin="0" end="7">
                 				<a>
-			                        <div class="contents"><img src="${mcList.filepath }"></div>
+			                        <div class="contents">
+			                        	<img src="${mcList.filepath }">
+			                        </div>
 			                    </a>
                 			</c:forEach>
                 		</div>
                 	</c:when>
+                	
                 	<c:otherwise>
                 		<a>
 		                	<div class="contents-area-null-member"> 작성된 코디가 없습니다.</div>
