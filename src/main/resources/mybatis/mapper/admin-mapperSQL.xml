@@ -299,7 +299,7 @@
 		</foreach>
 	</update>
 	
-	<select id="selectOneCoordiItem" resultType="postCoordi">
+	<select id="selectOneCoordiItem" resultType="Post">
 		SELECT 
 			coordi_no as coordiNo,
 			item_code as categoryCode,
@@ -362,7 +362,7 @@
 	
 	
 	<!-- CoordiComment -->
-	<select id="selectAllCoordiCommentListPage" parameterType="hashmap" resultType="postCoordi">
+	<select id="selectAllCoordiCommentListPage" parameterType="hashmap" resultType="Post">
 		SELECT 
 			cmt_no as cmtNo,
 			cmt_depth as cmtDepth,
@@ -395,7 +395,7 @@
 		</foreach>
 	</update>
 	
-	<select id="selectSearchCoordiCommentListPage" parameterType="hashmap" resultType="postCoordi">
+	<select id="selectSearchCoordiCommentListPage" parameterType="hashmap" resultType="Post">
 		SELECT 
 			cmt_no as cmtNo,
 			cmt_depth as cmtDepth,
