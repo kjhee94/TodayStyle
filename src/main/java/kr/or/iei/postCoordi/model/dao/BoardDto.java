@@ -1,10 +1,8 @@
-package kr.or.iei.postCoordi.model.vo;
+package kr.or.iei.postCoordi.model.dao;
 
 import java.sql.Date;
 
-import org.springframework.stereotype.Repository;
-@Repository
-public class PostCoordi {
+public class BoardDto {
 	
 	private int coordiNo;
 	private String nickName;
@@ -32,16 +30,19 @@ public class PostCoordi {
 	private Date CmtTime;
 	private Date PostTime;
 	
-	public PostCoordi() {
+	String result;
+	public BoardDto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public PostCoordi(int coordiNo, String nickName, String profileFilePath, String follow, int coordiLike,
+
+
+	public BoardDto(int coordiNo, String nickName, String profileFilePath, String follow, int coordiLike,
 			int coordiScrap, String temperature, String season, String gender, String coordiContent,
 			String categoryName, String categoryCode, String brand, String filePath, String hashtag, char delYN,
 			int cmtNo, String cmtWriter, String cmtContent, String cmtParent, String cmtDepth, String cmtSEQ,
-			String cmtDelYN, Date cmtTime, Date postTime) {
+			String cmtDelYN, Date cmtTime, Date postTime, String result) {
 		super();
 		this.coordiNo = coordiNo;
 		this.nickName = nickName;
@@ -68,7 +69,10 @@ public class PostCoordi {
 		this.cmtDelYN = cmtDelYN;
 		CmtTime = cmtTime;
 		PostTime = postTime;
+		this.result = result;
 	}
+
+
 
 	public int getCoordiNo() {
 		return coordiNo;
@@ -270,7 +274,13 @@ public class PostCoordi {
 		PostTime = postTime;
 	}
 
-	
+	 public String getResult() {
+	        return result;
+	    }
+	 
+	    public void setResult(String result) {
+	        this.result = result;
+	    }
 	
 
 	

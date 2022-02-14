@@ -60,7 +60,7 @@
 						})
 					</script>
 					<div class="box-search">
-							<input class="search-style" type="text" name="keyword" placeholder="검색어를 입력하세요">
+							<input class="search-style" type="text" name="keyword" placeholder="해시태그를 입력하세요">
 							<button id="searchBtn" type="button" ><i class="fas fa-search" style="cursor:pointer;"></i></button>
 					</div>
 				</div>

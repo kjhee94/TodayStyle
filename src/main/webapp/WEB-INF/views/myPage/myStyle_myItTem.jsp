@@ -41,21 +41,12 @@
                 <div class="contents-area">
                 
                 	<c:forEach items="${requestScope.myItTemList }" var="mITList" varStatus="i">
-             			<a>
+             			<a href="/coordi/ItPost.do?itItemNo=${mITList.itTemNo}">
                         	<div class="contents"><img src="${mITList.filepath }"></div>
                     	</a>
               		</c:forEach>
               		
-              		
-                    <a>
-                        <div class="contents">
-                            <img src="/resources/images/default/profile.jpg">
-                            <div class="likeScrap-wrap">
-                                <img class="likeIcon" src="/resources/images/icon/heart_wf.png">
-                                <img class="scrapIcon" src="/resources/images/icon/saved_wf.png">
-                            </div>
-                        </div>
-                    </a>
+              	
                     
                     
                 </div>

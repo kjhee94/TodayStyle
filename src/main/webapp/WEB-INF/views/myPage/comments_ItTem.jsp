@@ -55,7 +55,7 @@
 			                <div class="contents-area">
 			                    <div class="contents-wrapping">
 			                    	<div class="contents-outLine">
-			                        	<a>
+			                        	<a href="/coordi/ItPost.do?itItemNo=${itTemCmtList.postNo}">
 			                            	<div class="contents"><img src="${itTemCmtList.postFilepath }"></div>
 			                        	</a>
 			                    	</div>

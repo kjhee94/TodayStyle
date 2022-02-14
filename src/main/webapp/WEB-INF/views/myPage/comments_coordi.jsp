@@ -57,7 +57,7 @@
 			                <div class="contents-area">
 			                    <div class="contents-wrapping">
 			                    	<div class="contents-outLine">
-			                        	<a>
+			                        	<a href="/coordi/coordiPost.do?coordiNo=${cmtList.postNo}">
 			                            	<div class="contents"><img src="${cmtList.postFilepath }"></div>
 			                        	</a>
 			                    	</div>

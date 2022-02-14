@@ -49,7 +49,7 @@
                 	<c:when test="${!requestScope.memberCoordiList.isEmpty() }">
                 		<div class="contents-area">
                 			<c:forEach items="${requestScope.memberCoordiList }" var="mcList" varStatus="i" begin="0" end="7">
-                				<a>
+                				<a href="/coordi/coordiPost.do?coordiNo=${mcList.coordiNo}">
 			                        <div class="contents">
 			                        	<img src="${mcList.filepath }">
 			                        </div>
@@ -84,7 +84,7 @@
                 	<c:when test="${!requestScope.memberItTemList.isEmpty() }">
                 		<div class="contents-area">
                 			<c:forEach items="${requestScope.memberItTemList }" var="mITList" varStatus="i" begin="0" end="7">
-                				<a>
+                				<a href="/coordi/ItPost.do?itItemNo=${mITList.itTemNo}">
 			                        <div class="contents"><img src="${mITList.filepath }"></div>
 			                    </a>
                 			</c:forEach>
@@ -108,8 +108,8 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <jsp:include page="/WEB-INF/views/myPage/include/followerModal.jsp" />
-    <jsp:include page="/WEB-INF/views/myPage/include/followingModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/userFollowerModal.jsp" />
+    <jsp:include page="/WEB-INF/views/myPage/include/userFollowingModal.jsp" />
     
 </div>
 
