@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +19,6 @@ import kr.or.iei.coordi.model.service.CoordiService;
 import kr.or.iei.member.model.vo.Member;
 import kr.or.iei.memberSetting.model.service.MemberSettingService;
 import kr.or.iei.myPage.model.service.MyPageService;
-import kr.or.iei.myPage.model.vo.Comments;
 import kr.or.iei.myPage.model.vo.Follow;
 import kr.or.iei.myPage.model.vo.MyCoordiList;
 import kr.or.iei.myPage.model.vo.MyItTemList;
@@ -255,24 +255,34 @@ public class MyPageController {
 	
 	// 팔로우
 	@RequestMapping(value = "/myPage/follow.do")
-	public String follow(@RequestParam String followUserId, @SessionAttribute Member member)
+	public String follow(@RequestParam String followUserId,@SessionAttribute Member member)
 	{
-		String userId = member.getUserId();
 		
-		HashMap<String, Object> map=new HashMap<String, Object>();
-		map.put("followUserId", followUserId);
-		map.put("userId", userId);
-		
-		int result=mpService.follow(map);
-		
-		if(result>0) {
-			System.out.println("팔로우 완료");
+		if(member != null)
+		{
+			String userId = member.getUserId();
+			
+			
+			HashMap<String, Object> map=new HashMap<String, Object>();
+			map.put("followUserId", followUserId);
+			map.put("userId", userId);
+			
+			int result=mpService.follow(map);
+			
+			if(result>0) {
+				System.out.println("팔로우 완료");
+			}
+			else {
+				System.out.println("팔로우 실패");
+			}
+			
+			return "myPage/myStyle";
 		}
-		else {
-			System.out.println("팔로우 실패");
+		else
+		{
+			return "redirect:/member/loginPage.do";
 		}
 		
-		return "myPage/myStyle";
 	}
 	
 	
@@ -295,8 +305,8 @@ public class MyPageController {
 	}
 	
 	
-	// 개인페이지 프로필 정보
-	public void memberProfile(@SessionAttribute Member member, Model model, String memberUserId, String userId)
+	// 개인페이지 프로필 정보 (로그인 O)
+	public void memberProfile(Model model, String memberUserId, String userId)
 	{
 
 		// 프로필 내용 (userId, 프로필 이미지, 닉네임, 팔로우 수, 팔로우 버튼(팔로우/팔로잉/탈퇴))
@@ -333,26 +343,79 @@ public class MyPageController {
 		model.addAttribute("followBtn", followBtn);
 		
 	}
-	
+	// 개인페이지 프로필 정보 (로그인 X)
+	public void nLoginMemberProfile(Model model, String memberUserId)
+	{
+
+		// 프로필 내용 (userId, 프로필 이미지, 닉네임, 팔로우 수, 팔로우 버튼(팔로우/팔로잉/탈퇴))
+		String memberProfileFilepath = mpService.profileFilePath(memberUserId);
+		String memberNickname = mpService.memberNickname(memberUserId);
+		String memberFollowingNum = mpService.followingNum(memberUserId);
+		String memberFollowerNum = mpService.followerNum(memberUserId);
+		String memberEndYN = mpService.memberEndYN(memberUserId); // N : 회원 / Y : 탈퇴
+		
+		String followBtn;
+		
+		if(memberEndYN.equals("N"))
+		{
+			
+			followBtn = "팔로우";
+			
+		}else
+		{
+			followBtn = "탈퇴";
+		}
+		
+		model.addAttribute("memberUserId", memberUserId);
+		model.addAttribute("memberProfileFilepath", memberProfileFilepath);
+		model.addAttribute("memberNickname", memberNickname);
+		model.addAttribute("memberFollowingNum", memberFollowingNum);
+		model.addAttribute("memberFollowerNum", memberFollowerNum);
+		model.addAttribute("followBtn", followBtn);
+		
+	}
 	
 
 	// 개인페이지 - 메인
 	@RequestMapping(value = "/myPage/userPage.do", method = RequestMethod.GET)
-	public String userPage(HttpServletRequest request, @SessionAttribute Member member, Model model) {
+	public String userPage(HttpServletRequest request, Model model, HttpSession session) {
 		
+		Member member = (Member)session.getAttribute("member");
+
 		String memberUserId = request.getParameter("userId");
-		//System.out.println(userId);
-		String userId = member.getUserId();
 		
-		if(memberUserId.equals(userId))
+		if(member != null) 
 		{
-			return "redirect:/myPage/myStyle.do";
+
+			//System.out.println(userId);
+			String userId = member.getUserId();
+			
+			if(memberUserId.equals(userId))
+			{
+				return "redirect:/myPage/myStyle.do";
+			}
+			else
+			{
+				// memberFrofile data
+				memberProfile(model, memberUserId, userId);
+				
+				ArrayList<MyCoordiList> memberCoordiList = mpService.myCoordiList(memberUserId);
+				//System.out.println(memberCoordiList);
+				model.addAttribute("memberCoordiList", memberCoordiList);
+				
+				model.addAttribute("memberUserId", memberUserId);
+
+				ArrayList<MyItTemList> memberItTemList = mpService.myItTemList(memberUserId);
+				// System.out.println(myItTemList);
+				model.addAttribute("memberItTemList", memberItTemList);
+				
+				return "myPage/userPage";
+			}
 		}
 		else
 		{
-			// memberFrofile data
-			memberProfile(member, model, memberUserId, userId);
-			
+			nLoginMemberProfile(model, memberUserId);
+
 			ArrayList<MyCoordiList> memberCoordiList = mpService.myCoordiList(memberUserId);
 			//System.out.println(memberCoordiList);
 			model.addAttribute("memberCoordiList", memberCoordiList);
@@ -363,8 +426,10 @@ public class MyPageController {
 			// System.out.println(myItTemList);
 			model.addAttribute("memberItTemList", memberItTemList);
 			
+			
 			return "myPage/userPage";
 		}
+		
 		
 	}
 	
@@ -384,7 +449,7 @@ public class MyPageController {
 		else
 		{
 			// memberFrofile data
-			memberProfile(member, model, memberUserId, userId);
+			memberProfile(model, memberUserId, userId);
 			
 			ArrayList<MyCoordiList> memberCoordiList = mpService.myCoordiList(memberUserId);
 			//System.out.println(memberCoordiList);
@@ -419,7 +484,7 @@ public class MyPageController {
 		else
 		{
 			// memberFrofile data
-			memberProfile(member, model, memberUserId, userId);
+			memberProfile(model, memberUserId, userId);
 			
 			ArrayList<MyItTemList> memberItTemList = mpService.myItTemList(memberUserId);
 			//System.out.println(memberCoordiList);

@@ -63,7 +63,18 @@
 			                        	<div class="comment-date textStyle">${itTemCmtList.cmtTime }</div>
 			                        	<div class="comment textStyle">${itTemCmtList.cmtContent } </div>
 			                        	<div class="comment-title-wrapping">
-			                        		<div class="comment-title textStyle">${itTemCmtList.postContent }</div><div class="comments-num textStyle">[${cmtList.cmtNum}]</div>
+			                        		<div class="comment-title textStyle">${itTemCmtList.postContent }</div>
+			                        		<div class="comments-num textStyle">
+			                        			[${itTemCmtList.cmtNum}]
+			                        			<%-- 
+			                        			<c:choose>
+			                        				<c:when test="${itTemCmtList.cmtNum >0}">
+			                        					[${itTemCmtList.cmtNum}]
+			                        				</c:when>
+			                        				<c:otherwise>[0]</c:otherwise>
+			                        			</c:choose>
+			                        			--%>
+			                        		</div>
 			                        	</div>
 			                        </div>
 			                        <div class="btn-style-mint deleteBtn" id="${itTemCmtList.cmtNo}"><a>삭제</a></div>

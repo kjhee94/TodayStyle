@@ -55,13 +55,13 @@
                 		var userId = $('.user-follow-btn').attr('id');
                 		if($('.user-follow-btn').html()==="팔로잉")
                 		{
-                			$('.user-follow-btn').attr('class','btn-style-line user-follow-btn');
-                			$('.user-follow-btn').html("팔로우");
                 			$.ajax({
                 				url:"/myPage/unFollow.do",
                 	        	data:{unfollowUserId:userId},
                 	        	type:"get",
                 	        	success:function (){
+                        			$('.user-follow-btn').attr('class','btn-style-line user-follow-btn');
+                        			$('.user-follow-btn').html("팔로우");
                 	        		location.reload();
                 	        	},
                 	        	error:function(){
@@ -71,17 +71,17 @@
                 			});
                 		}else
                 		{
-                			$('.user-follow-btn').attr('class','btn-style-mint user-follow-btn');
-                			$('.user-follow-btn').html("팔로잉");
                 			$.ajax({
                 				url:"/myPage/follow.do",
                 	        	data:{followUserId:userId},
                 	        	type:"get",
                 	        	success:function (){
+                        			$('.user-follow-btn').attr('class','btn-style-mint user-follow-btn');
+                        			$('.user-follow-btn').html("팔로잉");
                 	        		location.reload();
                 	        	},
                 	        	error:function(){
-                	        		console.log("통신실패");
+                	        		location.replace('/member/loginPage.do');
                 	        	}
                 				
                 			});
