@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>오늘 뭐 입지?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -14,6 +14,8 @@
 <link rel="stylesheet" href="/resources/common/footer.css">
 <link rel="stylesheet" href="/resources/css/board/detailPage.css">
 <script src="/resources/common/common.js"></script>
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
 </head>
 
 <body>

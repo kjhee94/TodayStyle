@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>고객센터</title>
+<title>오늘 뭐 입지?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -16,6 +16,8 @@
 <link rel="stylesheet" href="/resources/css/board/boardPage.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>  
 <script src="/resources/common/common.js"></script>
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
 </head>
 
 <body>
