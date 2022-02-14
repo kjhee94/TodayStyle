@@ -8,8 +8,12 @@
 <html>
 
 <head>
+
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
+
     <meta charset="UTF-8">
-    <title>오늘 뭐 입지?</title>
+    <title>오늘 뭐 입지? - 회원정보 수정</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -61,7 +65,7 @@
                         <div class="rowLine"></div>
                         <div class="input-wrap">
                             <div class="titleName">닉네임</div>
-                            <input type="text" class="input-style" id="nickName" name="nickname" value="${sessionScope.member.nickname }">
+                            <input type="text" class="input-style" id="nickName" name="nickname" maxlength="8" value="${sessionScope.member.nickname }">
                             <div class="check" id="userNickNameCheck"></div>
                         </div>
                         <div class="rowLine"></div>
@@ -361,14 +365,14 @@
         });
         <%-- 닉네임 유효성 검사 --%>
         $("input[name='nickname']").keyup(function() {
-            var regName = /^[a-zA-Z0-9가-힣]{2,8}$/;
+            var regName = /^[가-힣]{2,8}$/;
             if (regName.test($(this).val())) {
                 $('#userNickNameCheck').css('display', 'none');
                 $("input[name='nickname']").css('border-color','#C8C8C8');
             } else {
                 $('#userNickNameCheck').css('display', 'block');
                 $('#userNickNameCheck').css('color', '#FD8A69');
-                $('#userNickNameCheck').html('2-8글자로 입력해주세요');
+                $('#userNickNameCheck').html('2-8글자의 한글로 입력해주세요');
                 $("input[name='nickname']").css('border-color','#FD8A69');
             }
         });
@@ -406,7 +410,7 @@
         
         <%-- 이메일 유효성 검사 --%>
         $("input[name='userEmail']").keyup(function() {
-            var regName = /.+@.+/;
+            var regName = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
             if (regName.test($(this).val())) {
                 $('#userEmailCheck').css('display', 'none');
                 $("input[name='userEmail']").css('border-color','#C8C8C8');
