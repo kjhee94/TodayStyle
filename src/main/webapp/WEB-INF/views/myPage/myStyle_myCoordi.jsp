@@ -42,7 +42,9 @@
                 
                 	<c:forEach items="${requestScope.myCoordiList }" var="mcList" varStatus="i">
              			<a>
-                        	<div class="contents"><img src="${mcList.filepath }"></div>
+                        	<div class="contents">
+                        		<img src="${mcList.filepath }">
+                        	</div>
                     	</a>
               		</c:forEach>
               		

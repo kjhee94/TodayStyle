@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.or.iei.board.model.vo.Notice;
+import kr.or.iei.coordi.model.service.CoordiService;
 import kr.or.iei.member.model.vo.Member;
 import kr.or.iei.memberSetting.model.service.MemberSettingService;
 import kr.or.iei.myPage.model.service.MyPageService;
@@ -33,6 +34,8 @@ public class MyPageController {
 	@Autowired
 	private MyPageService mpService;
 
+	@Autowired
+	private CoordiService coService;
 	
 	
 	// 프로필 
@@ -387,6 +390,11 @@ public class MyPageController {
 			//System.out.println(memberCoordiList);
 			model.addAttribute("memberCoordiList", memberCoordiList);
 			model.addAttribute("memberUserId", memberUserId);
+			
+			ArrayList<Integer> memberLikeList=coService.selectLikeList(userId);
+			ArrayList<Integer> memberScrapList=coService.selectScrapList(userId);
+			model.addAttribute("memberLikeList", memberLikeList);
+			model.addAttribute("memberScrapList", memberScrapList);
 
 			return "myPage/userPage_AllCoordi";
 		}
@@ -395,7 +403,7 @@ public class MyPageController {
 	}
 	
 
-	// 개인페이지 - 코디 전체보기 페이지
+	// 개인페이지 - 잇템 전체보기 페이지
 	@RequestMapping(value = "/mypage/memberItTem.do", method = RequestMethod.GET)
 	public String memberItTemPage(HttpServletRequest request, @SessionAttribute Member member, Model model) {
 		
@@ -417,6 +425,11 @@ public class MyPageController {
 			//System.out.println(memberCoordiList);
 			model.addAttribute("memberItTemList", memberItTemList);
 			model.addAttribute("memberUserId", memberUserId);
+
+			ArrayList<Integer> memberLikeList=coService.selectLikeList(userId);
+			ArrayList<Integer> memberScrapList=coService.selectScrapList(userId);
+			model.addAttribute("memberLikeList", memberLikeList);
+			model.addAttribute("memberScrapList", memberScrapList);
 
 			return "myPage/userPage_AllItTem";
 		}
