@@ -69,4 +69,26 @@
 	GROUP BY IT_ITEMNO
 	HAVING IT_ITEMNO=#{itItemNo}
   </select>
+  <select id="selectLikeList" resultType="int" >
+  	select 
+  		it_ItemNo as itItemNo 
+  	from 
+  		item_like
+  	where
+  		user_Id=#{userId}
+  </select>
+  <select id="selectScrapList" resultType="int" >
+  	select 
+  		it_ItemNo as itItemNo 
+  	from 
+  		item_scrap
+  	where
+  		user_Id=#{userId}
+  </select>
+  <insert id="insertComment" parameterType="hashmap">
+  	insert into 
+  		ititem_comments
+  	values
+  		(#{itItemNo},ititemcmt_seq.nextval,#{userId},#{comment},null,1,1,'N',sysdate)
+  </insert>
 </mapper>
