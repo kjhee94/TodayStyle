@@ -8,13 +8,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>아이디/비밀번호 찾기</title>
+<title>오늘 뭐 입지?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/common/header.css">
 <link rel="stylesheet" href="/resources/css/member/findIdPage.css">
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
 </head>
 <body>
 <style>
@@ -84,7 +86,7 @@ margin: 20px 0px 20px 0px;
 	       });
 	       <%--이메일 유효성 검사 --%>
 	       $("input[name='userEmail']").keyup(function(){
-		          var regName=/.+@.+/;
+		          var regName=/^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 		          if(regName.test($(this).val())){
 		        	  $('#email').css("display","none");
 		        	  $('#userEmail').css("border-color","#C8C8C8");
