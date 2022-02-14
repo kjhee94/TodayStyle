@@ -261,7 +261,7 @@
 			<script>
 			var itemArray=new Array();
 			var item;
-				$('.box').click(function(){
+				$('.box').off().on('click',function(){
 					if($(this).prop("checked")==true){
 						itemArray.push($(this).next().text());
 						item=itemArray.join("/");
@@ -307,7 +307,7 @@
 							var filter=$('#filter option:selected').text();
 							$.ajax({
 								url:"/itItem/categoryItItemList.do",
-	    	                	data:{item:item,filter:filter},
+	    	                	data:{item:item,filter:filter,keyword:keyword},
 	    	                	type:"get",
 	    	                	success:function (result){
 			                		$('#itItemListArea').html(result);
@@ -330,11 +330,11 @@
 					$('#searchBtn').click(function(){
 						keyword =$('.search-style').val();
 						$.ajax({
-							url:"/coordi/categoryCoordiList.do",
-    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter,keyword:keyword},
+							url:"/itItem/categoryItItemList.do",
+    	                	data:{item:item,filter:filter,keyword:keyword},
     	                	type:"get",
     	                	success:function (result){
-		                		$('#coordiListArea').html(result);
+		                		$('#itItemListArea').html(result);
 		                	},
     	                	error:function(){
     	                		console.log("통신실패");
@@ -365,10 +365,10 @@
 										<div class="profile">
 											<c:choose>
 												<c:when test="${itItem.profileFilePath!=null}">
-			                                       	<a href=""><img src="${itItem.profileFilePath}" id="profileImg"></a>
+			                                       	<a href="/myPage/userPage.do?userId=${itItem.userId }"><img src="${itItem.profileFilePath}" id="profileImg"></a>
 				                                </c:when>
 				                                <c:otherwise>
-				                                    <a href=""><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+				                                    <a href="/myPage/userPage.do?userId=${itItem.userId }"><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
 				                                </c:otherwise>
 											</c:choose>
 											
@@ -408,8 +408,13 @@
 		};
 	</script>
 	<script>
-		$('.categoryName').click(function(){
-			$(this).next().slideToggle();
+		$('.categoryName').off('click').on('click',function(){
+			if($(this).next().css('display')=='none'){
+				$(this).next().slideDown();
+			}else{
+				$(this).next().slideUp();
+			}
+			
 		})
 
 		$('.like').click(function() {
@@ -479,14 +484,7 @@
 				});
 			}
 		});
-		$('.categoryBtnImg').click(function() {
-			if ($(this).attr('src') === "/resources/images/icon/up.png") {
-				$(this).attr('src', "/resources/images/icon/down.png");
-			} else {
-				$(this).attr('src', "/resources/images/icon/up.png");
-			}
-
-		});
+		
 	</script>
 	<script>
 		$('.itItemImg').hover(function(){
@@ -497,7 +495,7 @@
 		},function(){
 			$(this).css('transition','all 0.2s linear');
 			$(this).css('transform','scale(1.0)');
-		});
+		})
 	</script>
 </body>
 </html>

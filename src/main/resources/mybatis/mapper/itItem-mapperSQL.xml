@@ -126,13 +126,13 @@
 		</if>
 		<choose>
 			<when test="filter=='최신순'">
-				 and heart>0 order by reg_Date desc
+				order by reg_Date desc
 			</when>
 			<when test="filter=='좋아요순'">
-				and scrap>0 order by heart desc
+				 and heart>0 order by heart desc
 			</when>
 			<otherwise>
-				order by scrap desc
+				and scrap>0 order by scrap desc
 			</otherwise>
 		</choose>
  	</select>
