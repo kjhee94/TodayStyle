@@ -24,7 +24,7 @@
 			            <div class="follow-list-wrap">
 			                <div class="follow-oneId-wrap">
 			                
-			                	<a href="/myPage/userPage.do?userId=${fList.userId }">
+			                	<a >
 			                    <div class="follow-name-wrap" id="${fList.userId }">
 			                        <div class="follow-profile profile">
 				                        <c:choose>
@@ -86,7 +86,7 @@
                 $('#following-modal').fadeOut();
                 // 스크롤 제어 해제
                 //$('body').css('overflow', 'auto');
-                //location.reload();
+				location.replace(location.href);
             });
             $(document).mouseup(function(e) {
 
@@ -96,7 +96,6 @@
 
                     container.css('display', 'none');
                     //$('body').css('overflow', 'auto');
-                    //location.reload();
 
                 }
 
@@ -105,14 +104,14 @@
         });
         
         
-        <%--
+        
         // 페이지 이동
         $('.follow-name-wrap').click(function(){
         	var userId = $(this).attr('id');
-        	alert(userId);
-        	location.replace("/myPage/userPage.do?userId="+userId);
+        	//alert(userId);
+        	location.href="/myPage/userPage.do?userId="+userId;
         });
-        --%>
+        
         
         
        
@@ -146,7 +145,8 @@
     	        	data:{followUserId:userId},
     	        	type:"get",
     	        	success:function (){
-    	        		
+
+    	            	alert('following-modal');
     	        	},
     	        	error:function(){
     	        		console.log("통신실패");

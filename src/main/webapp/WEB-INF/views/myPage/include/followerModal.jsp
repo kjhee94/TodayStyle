@@ -23,7 +23,7 @@
 		            <c:forEach items="${requestScope.followerList }" var="fList" varStatus="i">
 			            <div class="follow-list-wrap">
 			                <div class="follow-oneId-wrap">
-			                    <div class="follow-name-wrap">
+			                    <div class="follower-name-wrap" id="${fList.userId }">
 			                        <div class="follow-profile profile">
 				                        <c:choose>
 				                            <c:when test="${fList.filepath!=null}">
@@ -43,12 +43,12 @@
 		                    		<c:if test="${not doneLoop}">
 			                    		<c:choose>
 				                    		<c:when test="${fList.userId.equals(fgList.userId)}">
-				                    			<div class="following-btn fBtn" id="${fList.userId }">팔로잉</div>
+				                    			<div class="following-BTN fBtn" id="${fList.userId }">팔로잉</div>
 				                    			<c:set var="doneLoop" value="true" />
 				                    		</c:when>
 				                    		<c:otherwise>
 				                    			<c:if test="${i.last}">
-				                    				<div class="follow-btn fBtn" id="${fList.userId }">팔로우</div>
+				                    				<div class="follow-BTN fBtn" id="${fList.userId }">팔로우</div>
 				                    			</c:if>
 				                    			
 				                    		</c:otherwise>
@@ -102,6 +102,7 @@
                 $('#follower-modal').fadeOut();
                 // 스크롤 제어 해제
                 //$('body').css('overflow', 'auto');
+				location.replace(location.href);
 				
 
             });
@@ -120,13 +121,13 @@
         });
         
         
-        
-        $(function(){
-           $('.follow-name-wrap').click(function(){
-                location.replace('/myPage/userPage.do');
-           }); 
+
+        // 페이지 이동
+        $('.follower-name-wrap').click(function(){
+        	var userId = $(this).attr('id');
+        	//alert(userId);
+        	location.href="/myPage/userPage.do?userId="+userId;
         });
-        
         
 
         // 팔로잉 버튼
@@ -134,11 +135,34 @@
         	if($(this).html() === "팔로잉")
         	{
         		var userId = $(this).attr('id');
-        		$(this).attr('class','follow-btn');
+        		$(this).attr('class','follow-BTN fBtn');
         		$(this).html('팔로우');
         		$.ajax({
     				url:"/myPage/unFollow.do",
     	        	data:{unfollowUserId:userId},
+    	        	type:"get",
+    	        	success:function (){
+    	        		
+    	        		
+    	        	},
+    	        	error:function(){
+    	        		console.log("통신실패");
+    	        	}
+    				
+    			});
+        		alert('follower-modal'); 
+        		
+        	}
+        	else
+        	{
+        	
+        		var userId = $(this).attr('id');
+        		$(this).attr('class','following-BTN fBtn');
+        		
+        		$(this).html('팔로잉');
+        		$.ajax({
+    				url:"/myPage/follow.do",
+    	        	data:{followUserId:userId},
     	        	type:"get",
     	        	success:function (){
     	        		
@@ -149,67 +173,11 @@
     				
     			});
         	}
-        	else
-        	{
-        		var userId = $(this).attr('id');
-        		$(this).attr('class','following-btn fBtn');
-        		$(this).html('팔로잉');
-        		$.ajax({
-    				url:"/myPage/follow.do",
-    	        	data:{followUserId:userId},
-    	        	type:"get",
-    	        	success:function (){
-    	        		alert('aa');
-    	        	},
-    	        	error:function(){
-    	        		console.log("통신실패");
-    	        	}
-    				
-    			});
-        	}
+        	
+        	
         });
         
-        <%--
-        // 팔로우 버튼
-        $('.follow-btn').click(function(){
-        	if($(this).html() === "팔로잉")
-        	{
-        		var userId = $(this).attr('id');
-        		$(this).attr('class','follow-btn fBtn');
-        		$(this).html('팔로우');
-        		$.ajax({
-    				url:"/myPage/unFollow.do",
-    	        	data:{unfollowUserId:userId},
-    	        	type:"get",
-    	        	success:function (){
-    	        		
-    	        	},
-    	        	error:function(){
-    	        		console.log("통신실패");
-    	        	}
-    				
-    			});
-        	}
-        	else
-        	{
-        		var userId = $(this).attr('id');
-        		$(this).attr('class','following-btn');
-        		$(this).html('팔로잉');
-        		$.ajax({
-    				url:"/myPage/follow.do",
-    	        	data:{followUserId:userId},
-    	        	type:"get",
-    	        	success:function (){
-    	        		alert('aa');
-    	        	},
-    	        	error:function(){
-    	        		console.log("통신실패");
-    	        	}
-    				
-    			});
-        	}
-        });
-        --%>
+     
 
     </script>
     
