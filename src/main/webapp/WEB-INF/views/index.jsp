@@ -112,10 +112,10 @@
 											
 									<c:choose>
                                     	<c:when test="${coordi.profileFilePath!=null}">
-                                       		<a href=""><img src="${coordi.profileFilePath}" id="profileImg"></a>
+                                       		<a href="/myPage/userPage.do?userId=${coordi.userId }"><img src="${coordi.profileFilePath}" id="profileImg"></a>
 	                                   	</c:when>
 	                                    <c:otherwise>
-	                                        <a href=""><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+	                                        <a href="/myPage/userPage.do?userId=${coordi.userId }"><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
 	                                   	 </c:otherwise>
 	                               		</c:choose>
 										</div>
@@ -152,10 +152,10 @@
 											<div class="profile">
 												<c:choose>
 			                                    	<c:when test="${itItem.profileFilePath!=null}">
-			                                       		<a href=""><img src="${itItem.profileFilePath}" id="profileImg"></a>
+			                                       		<a href="/myPage/userPage.do?userId=${itItem.userId }"><img src="${itItem.profileFilePath}" id="profileImg"></a>
 				                                   	</c:when>
 				                                    <c:otherwise>
-				                                        <a href=""><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+				                                        <a href="/myPage/userPage.do?userId=${itItem.userId }"><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
 				                                   	 </c:otherwise>
 				                               	</c:choose>
 											</div>
@@ -186,10 +186,10 @@
 							<div class="profile">
 								<c:choose>
 			                      <c:when test="${member.filePath!=null}">
-			                         <a href=""><img src="${member.filePath}" id="profileImg"></a>
+			                         <a href="/myPage/userPage.do?userId=${member.userId }"><img src="${member.filePath}" id="profileImg"></a>
 				                  </c:when>
 				                     <c:otherwise>
-				                       <a href=""><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+				                       <a href="/myPage/userPage.do?userId=${member.userId }"><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
 				                    </c:otherwise>
 				                </c:choose>
 							</div>

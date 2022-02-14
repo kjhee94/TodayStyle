@@ -15,7 +15,7 @@
 <script src="/resources/common/common.js"></script>
 </head>
 <body>
-	<div id="itItemListNumArea">잇템 전체 <span>${list.size()}개</span></div>
+	<div id="itItemListNumArea">잇템 <span>${list.size()}개</span></div>
 				<div class="list-top">
 					<div id="itItemListFilterArea">
 						<select id="filter">
@@ -69,11 +69,11 @@
 					$('#searchBtn').click(function(){
 						keyword =$('.search-style').val();
 						$.ajax({
-							url:"/coordi/categoryCoordiList.do",
-    	                	data:{item:item,temp:temp,gender:gender,season:season,filter:filter,keyword:keyword},
+							url:"/itItem/categoryItItemList.do",
+    	                	data:{item:item,filter:filter,keyword:keyword},
     	                	type:"get",
     	                	success:function (result){
-		                		$('#coordiListArea').html(result);
+		                		$('#itItemListArea').html(result);
 		                	},
     	                	error:function(){
     	                		console.log("통신실패");
@@ -104,10 +104,10 @@
 										<div class="profile">
 											<c:choose>
 												<c:when test="${itItem.profileFilePath!=null}">
-			                                       	<a href=""><img src="${itItem.profileFilePath}" id="profileImg"></a>
+			                                       	<a href="/myPage/userPage.do?userId=${itItem.userId }"><img src="${itItem.profileFilePath}" id="profileImg"></a>
 				                                </c:when>
 				                                <c:otherwise>
-				                                    <a href=""><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
+				                                    <a href="/myPage/userPage.do?userId=${itItem.userId }"><img src="/resources/images/default/profile.jpg" id="profileImg"></a>
 				      	                        </c:otherwise>
 											</c:choose>
 										</div>
@@ -140,8 +140,10 @@
 				};
 	</script>
 	<script>
-		$('.categoryName').click(function(){
+		$('.categoryName').one('click',function(){
+			
 			$(this).next().slideToggle();
+			e.stopPropagation();
 		})
 
 		$('.like').click(function() {
