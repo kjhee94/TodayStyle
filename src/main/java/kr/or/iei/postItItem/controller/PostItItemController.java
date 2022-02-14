@@ -3,13 +3,16 @@ package kr.or.iei.postItItem.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PostItItemController {
 	
 	//잇템 게시물 개별페이지
 	@RequestMapping(value="/coordi/ItPost.do",method=RequestMethod.GET)
-	public String itPost(){
+	public String itPost(@RequestParam int itItemNo){
+		
+		
 		return "postPage/itItemPost";
 	}
 	

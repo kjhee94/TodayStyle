@@ -18,25 +18,25 @@
       }
     }
 
+#content {
+	width: 60%;
+}
+
 #title{
-    border-bottom:solid 3px #707070; 
-    height: 10%;
-    font-weight: 1000;
+    font-weight: 900;
     color:#707070;
     font-size: 25px;
-    margin:10px;
+    padding: 40px 0 30px;
 }
 
 #info-wrapper{
-	height:40%;
-	width: 90%;
-	margin: auto
+	border-top:solid 3px #707070; 
+	width: 100%;
 }
 
 #picture-wrapper{
-	height:40%;
 	border-top:solid 1px #C8C8C8; 
-	padding: 15px
+	padding-top: 30px;
 }
 
 #coordi-post{
@@ -118,8 +118,10 @@ input[id="info-check"]{
 
 input[id="info-check"] + label {
     display: block;
-    padding: 20px;
+    height: 90px;
+    line-height: 90px;
     cursor:pointer;
+    padding: 0 30px;
 }
 input[id="info-check"] + label + div{
     max-height: 0;
@@ -130,6 +132,12 @@ input[id="info-check"] + label + div{
 input[id="info-check"]:checked + label + div{
     max-height: 1500px;
     animation: fadeIn .8s;
+}
+#info-wrapper>label>span:first-child>b {
+	padding: 0 20px 0 10px;
+}
+#info-wrapper>label>span:last-child>img {
+	margin-top: 40px;
 }
 
 #insert-item{

@@ -1,5 +1,5 @@
 package kr.or.iei.postItItem.model.service;
 
-public class PostItItemServiceImpl {
+public class PostItItemServiceImpl implements PostItItemService{
 
 }
