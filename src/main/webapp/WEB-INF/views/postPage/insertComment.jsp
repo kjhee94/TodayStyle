@@ -60,7 +60,7 @@
 						                   			<span>${cl.cmtTime}</span>
 						                   			<c:if test="${ cl.cmtWriter==sessionScope.member.userId}">
 						                   				<span>답글</span>
-						                   				<span id="cmt-delete" style="cursor:pointer">삭제</span>
+						                   				<span class="cmt-delete" style="cursor:pointer">삭제</span>
 						                   			</c:if>
 						                   		</div>
 					                   		</div>
@@ -71,8 +71,30 @@
 			                		<span>현재 댓글이 없습니다</span>
 			                	</c:otherwise>
 		                	</c:choose>
-		                	<script>
-				                    $('#cmt-delete').click(function(){
+		                	
+		                </div>
+		               <script>
+	                    	$('#commentInsertBtn').click(function(){
+	                    		var comment = $('.input-style').val();
+	                    		var itItemNo=$('#like-scrap').attr('class');
+	                    		$.ajax({
+			    					url:"/itItem/insertComment.do",
+			                    	data:{comment:comment,itItemNo:itItemNo},
+			                    	type:"get",
+			                    	success:function (result){
+			                    		$('#left-bottom-wrapper').html(result);
+			                    	},
+			                    	error:function(){
+			                    		console.log("통신실패");
+			                    		location.replace('/member/loginPage.do');
+			                    	}
+			    					
+			    				});
+	                    	})
+	                    	
+	                    </script>
+	                    <script>
+				                    $('.cmt-delete').click(function(){
 				                    	if(confirm("댓글을 삭제하시겠습니까?")){
 				                    		var cmtNo=$('.cmt-one').attr('id');
 					                    	var itItemNo=$('#like-scrap').attr('class');
@@ -93,6 +115,5 @@
 				                    	
 				                    });
 				          	 	</script>
-		                </div>
 </body>
 </html>
