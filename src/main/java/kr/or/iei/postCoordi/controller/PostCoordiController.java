@@ -197,6 +197,6 @@ public class PostCoordiController {
 
     	postService.insert(post,topPost,bottomPost,outerPost,accPost,shoesPost);
     	
-        return "redirect:/";
+        return "coordi/coordiList";
     }
 }
