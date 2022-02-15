@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐 입지?</title>
+<title>오늘 뭐 입지? - 코디 개별</title>
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -29,50 +32,40 @@
 					<div id="left-top-wrapper">
 						<div id="info-bar">
 			                <div>
-			                    <span>17˚C~19˚C</span>
-			                    <span>겨울</span>
-			                    <span>여성</span>
+			                    <span>${requestScope.map.pc.temperature}</span>
+			                    <span>${requestScope.map.pc.season}</span>
+			                    <span>${requestScope.map.pc.gender}</span>
 			                </div>
-			                <span>${requestScope.date }</span>
+			                <span>${requestScope.map.pc.postTime}</span>
 			            </div>
 			            
 						<div id="picture">
 							<div id="picture-left" class="img-big">
-								<img src="/resources/images/coordi/stylelist23.jpg">
-							</div>
-							<div id="picture-right">
-								<div class="img-small focus"><img src="/resources/images/coordi/stylelist23.jpg"></div>
-								<div class="img-small"><img src="/resources/images/coordi/stylelist24.jpg"></div>
-							    <div class="img-small"><img src="/resources/images/coordi/stylelist25.jpg"></div>
+								<img src="${requestScope.map.pc.filePath}">
 							</div>
 						</div>
 					
 						<div id="post-content">
-							<p>
-								블랙 색상이라 무채색에 찰떡이고 많이 두껍지 않아서 가볍게 입고 다니기 좋더라구요!<br>
-								특히 뒷 면에 자수가 너무 귀여워서 입고 다녔을 때 다들 탐내는 후드 디자인이었어요 :)<br> 
-								레이어드해서 입으면 너무 좋을 것 같고 사이즈는 좀 오버한 핏이라 맞게 입으시려면 한 단계 낮춰서 주문하시는 걸 추천합니다!<br>
-							</p>
+							<p>${requestScope.map.pc.coordiContent}</p>
 						</div>
 					
 						<div id="hashtag">
-							<span><a href="">#데일리룩</a></span>
-							<span><a href="">#후드티</a></span>
-							<span><a href="">#후드</a></span>
-							<span><a href="">#볼캡</a></span>
-							<span><a href="">#볼캡코디</a></span>
-							<span><a href="">#슬랙스</a></span>
+							<c:forTokens var="hashTag" items="${requestScope.map.pc.hashtag}" delims=",">
+								<span><a href="">#${hashTag}</a></span>
+							</c:forTokens>
 						</div>
 						
 		                <div id="box-post-btn">
 		               	 	<button class="btn-style-line"><a href="/coordi/coordiList.do">목록</a></button>
-		                	<button class="btn-style-mint"><a href="/coordi/coordiUpdate.do">수정</a></button>
+		               	 	<c:if test="${requestScope.map.pc.userId==sessionScope.member.userId}">
+		               	 		<button class="btn-style-mint"><a href="/coordi/coordiUpdate.do?coordiNo=${requestScope.map.pc.coordiNo}">수정</a></button>
+		               	 	</c:if>
 		                </div>
 					</div>
 		            
 		            <div id="left-bottom-wrapper">
 		                <div id="cmt-count">
-		                   	댓글<span>3</span>
+		                   	댓글<span>${requestScope.map.cmtList.size() }</span>
 		                </div>
 		                <form id="commentForm" name="commentForm">
 	                    <div class="cmt-input">
@@ -87,11 +80,42 @@
 	                    </form>
 	                    
 		                <div id="cmt-list">
-
-		                	
+							<c:choose>
+								<c:when test="${!requestScope.map.cmtlist.isEmpty}">
+				                	<c:forEach items="${requestScope.map.cmtList }" var="cl">
+					                	<div class="cmt-one">
+					                		<div class="profile">
+					                   			<a href="/myPage/userPage.do?userId=${cl.cmtWriter}">
+					                   				<c:choose>
+					                                    <c:when test="${cl.profileFilePath!=null}">
+					                                        <img src="${cl.profileFilePath}" id="profileImg">
+					                                    </c:when>
+					                                    <c:otherwise>
+					                                        <img src="/resources/images/default/profile.jpg" id="profileImg">
+					                                    </c:otherwise>
+					                               </c:choose>
+					                   			</a>
+					                   		</div>
+					                   		<div class="cmt-txt">
+						                   		<span class="cmt-nick"><a href="/myPage/userPage.do">${cl.nickName}</a></span>
+						                   		<span class="cmt-content">${cl.cmtContent}</span>
+						                   		<div class="cmt-info">
+						                   			<span>${cl.cmtTime}</span>
+						                   			<c:if test="${ cl.cmtWriter==sessionScope.member.userId}">
+						                   				<span>삭제</span>
+						                   			</c:if>
+						                   		</div>
+					                   		</div>
+					                	</div>
+				                	</c:forEach>
+			                	</c:when>
+			                	<c:otherwise>
+			                		<span>현재 댓글이 없습니다</span>
+			                	</c:otherwise>
+		                	</c:choose>
 		                </div>
 		                
-		                <!-- 댓글 페이지네이션 -->
+		                <!-- 댓글 페이지네이션
 		                <div id="page_wrap">
 							<ul class="page_ul">
 								<li><a href=''><i class='fas fa-chevron-left'></i></a></li>
@@ -103,72 +127,93 @@
 								<li><a href=''><i class='fas fa-chevron-right'></i></a></li>
 			 				</ul>
 					    </div>
+					     -->
 		            </div>
 		        </div>
 		        
 		         <div id="right-wrapper">
 		           <div id="user-info">
 		              <div id="user-box">
-						<a href="/myPage/userPage.do">
+						<a href="/myPage/userPage.do?userId=${requestScope.map.pc.userId}">
 							<div class="profile">
-								<img src="/resources/images/default/profile.jpg">
+								<c:choose>
+                                    <c:when test="${requestScope.map.pc.profileFilePath!=null}">
+                                        <img src="${requestScope.map.pc.profileFilePath}" id="profileImg">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="/resources/images/default/profile.jpg" id="profileImg">
+                                    </c:otherwise>
+                             	</c:choose>
 							</div>
-							<span>닉네임</span>
+							<span>${requestScope.map.pc.nickName}</span>
 						</a>
 		              </div>
-		              <button class="btn-style-line" id="user-follow-btn">팔로우</button>
+		              <button class="btn-style-line">팔로우</button>
 		           </div>    
 		           
 		           <div id="like-scrap">
 	                   	<button id="like">
                    			<img src="/resources/images/icon/heart.png">
-                   			<span>12</span>
+                   			<span>${requestScope.map.countLike}</span>
 	                   	</button>
 		                <button id="scrap">
 	                   		<img src="/resources/images/icon/saved.png">
-	                   		<span>7</span>
+	                   		<span>${requestScope.map.countScrap}</span>
 		                </button>
 					</div>
 		           
 					<div id="cloth-info">
 						<span class="info-title">아이템 정보</span>
 			           	<div class="box-style">
-							<div class="style">
-								<div class="img-style">
-									<img alt="상의" src="/resources/images/default/top.png">
+				           	<c:forEach items="${requestScope.map.itemList}" var="il">
+								<div class="style">
+									<c:if test="${il.categoryCode.substring(0,1) eq 'T'}">
+										<div class="img-style">
+											<img alt="상의" src="/resources/images/default/top.png">
+										</div>
+										<div class="txt-style">
+											<p>Top &nbsp·&nbsp ${il.categoryName}</p>
+											<span>${il.brand}</span>
+										</div>
+									</c:if>
+									<c:if test="${il.categoryCode.substring(0,1) eq 'B'}">
+										<div class="img-style">
+											<img alt="하의" src="/resources/images/default/bottom.png">
+										</div>
+										<div class="txt-style">
+											<p>Bottom &nbsp·&nbsp ${il.categoryName}</p>
+											<span>${il.brand}</span>
+										</div>
+									</c:if>
+									<c:if test="${il.categoryCode.substring(0,1) eq 'O'}">
+										<div class="img-style">
+											<img alt="아우터" src="/resources/images/default/outer.png">
+										</div>
+										<div class="txt-style">
+											<p>Outer &nbsp·&nbsp ${il.categoryName}</p>
+											<span>${il.brand}</span>
+										</div>
+									</c:if>
+									<c:if test="${il.categoryCode.substring(0,1) eq 'S'}">
+										<div class="img-style">
+											<img alt="신발" src="/resources/images/default/shoes.png">
+										</div>
+										<div class="txt-style">
+											<p>Shoes &nbsp·&nbsp ${il.categoryName}</p>
+											<span>${il.brand}</span>
+										</div>
+									</c:if>
+									<c:if test="${il.categoryCode.substring(0,1) eq 'A'}">
+										<div class="img-style">
+											<img alt="악세사리" src="/resources/images/default/acc.png">
+										</div>
+										<div class="txt-style">
+											<p>Acc &nbsp·&nbsp ${il.categoryName}</p>
+											<span>${il.brand}</span>
+										</div>
+									</c:if>
 								</div>
-								<div class="txt-style">
-									<p>Top &nbsp·&nbsp 후드</p>
-									<span>꼼파뇨</span>
-								</div>
-							</div>
-							<div class="style">
-								<div class="img-style">
-									<img alt="하의" src="/resources/images/default/bottom.png">
-								</div>
-								<div class="txt-style">
-									<p>Bottom &nbsp·&nbsp 슬랙스</p>
-									<span>나인브라더스</span>
-								</div>
-							</div>
-							<div class="style">
-								<div class="img-style">
-									<img alt="신발" src="/resources/images/default/shoes.png">
-								</div>
-								<div class="txt-style">
-									<p>Shoes &nbsp·&nbsp 운동화</p>
-									<span>FILA</span>
-								</div>
-							</div>
-							<div class="style">
-								<div class="img-style">
-									<img alt="악세사리" src="/resources/images/default/acc.png">
-								</div>
-								<div class="txt-style">
-									<p>Acc &nbsp·&nbsp 안경</p>
-									<span>젠틀몬스터</span>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 			        </div>
 				</div>
@@ -189,94 +234,6 @@
 			$(this).addClass("focus");
 			$(".img-small").not(this).removeClass("focus");
 		})
-		
-
-		
-		
-		
-                   $('#user-follow-btn').click(function(){
-                      var userId = $('#user-follow-btn').attr('id');
-                      if($('#user-follow-btn').html()==="팔로잉")
-                      {
-                         $('#user-follow-btn').attr('class','btn-style-line user-follow-btn');
-                         $('#user-follow-btn').html("팔로우");
-                         $.ajax({
-                            url:"/myPage/unFollow.do",
-                              data:{unfollowUserId:userId},
-                              type:"get",
-                              success:function (){
-                                 location.reload();
-                              },
-                              error:function(){
-                                 console.log("통신실패");
-                              }
-                            
-                         });
-                      }else
-                      {
-                         $('#user-follow-btn').attr('class','btn-style-mint user-follow-btn');
-                         $('#user-follow-btn').html("팔로잉");
-                         $.ajax({
-                            url:"/myPage/follow.do",
-                              data:{followUserId:userId},
-                              type:"get",
-                              success:function (){
-                                 location.reload();
-                              },
-                              error:function(){
-                                 console.log("통신실패");
-                              }
-                            
-                         });
-                      }
-                   });
-		//댓글 불러오기
-		 
-		function getCommentList(){
-		    
-		    $.ajax({
-		        type:'GET',
-		        url : "<c:url value='/coordi/commentList.do'/>",
-		        dataType : "json",
-		        data:$("#commentForm").serialize(),
-		        contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-		        success : function(data){
-		            
-		            var html = "";
-		            var cCnt = data.length;
-		            
-		            if(data.length > 0){
-		                
-		                for(i=0; i<data.length; i++){
-		                    html += "<div>";
-		                    html += "<div><table class='table'><h6><strong>"+data[i].writer+"</strong></h6>";
-		                    html += data[i].comment + "<tr><td></td></tr>";
-		                    html += "</table></div>";
-		                    html += "</div>";
-		                }
-		                
-		            } else {
-		                
-		                html += "<div>";
-		                html += "<div><table class='table'><h6><strong>등록된 댓글이 없습니다.</strong></h6>";
-		                html += "</table></div>";
-		                html += "</div>";
-		                
-		            }
-		            
-		            $("#cCnt").html(cCnt);
-		            $("#commentList").html(html);
-		            
-		        },
-		        error:function(request,status,error){
-		            
-		       }
-		        
-		    });
-		}
-		
-
-
 	</script>
 
 </body>

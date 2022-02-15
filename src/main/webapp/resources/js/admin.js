@@ -462,7 +462,7 @@ $(document).ready(function(){
 	});
 
 	//코디 아이템 정보 불러오기
-	$(".btn-item-info").click(function(){
+	$(".btn-item-info").one('mouseover',function(){
 		
 		var $boxStyle = $(this).next();
 		

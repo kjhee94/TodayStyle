@@ -112,7 +112,7 @@
 						<div class="swiper-wrapper">
 							<c:forEach items="${requestScope.map.get('coordiList')}" var="coordi" varStatus="i" end="8">
 							<div class="swiper-slide">
-								<a href="/coordi/coordiPost.do">
+								<a href="/coordi/coordiPost.do?coordiNo=${coordi.coordiNo}">
 									<img class="coordiImg" src="${coordi.filePath}">
 									<div class="nickNameArea">
 										<div class="profile">

@@ -34,12 +34,6 @@ public class PostItItemDAO {
 			ItItemScrap=0;
 		}
 		
-		System.out.println(pi);
-		System.out.println(imgList);
-		System.out.println(cmtList);
-		System.out.println(ItItemLike);
-		System.out.println(ItItemScrap);
-		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("pi",pi);
