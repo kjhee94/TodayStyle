@@ -41,6 +41,8 @@
 			LEFT JOIN coordi_img ON (coordi.coordi_no = coordi_img.coordi_no)
 		WHERE
 			user_id = #{userId} and top_yn='Y'
+		ORDER BY
+			coordi.coordi_no desc
 	</select>
 	
 	<!-- 사용자 잇템 리스트 -->
@@ -52,6 +54,8 @@
 			LEFT JOIN it_img ON (it_item.it_itemno = it_img.it_itemno)
 		WHERE
 			user_id = #{userId} and top_yn='Y'
+		ORDER BY
+			it_item.it_itemno desc
 	</select>
 	
 	<!-- 사용자 스크랩 코디 리스트 -->

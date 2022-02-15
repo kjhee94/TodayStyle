@@ -62,7 +62,7 @@
                 		</div>
                 	</c:when>
                 	<c:otherwise>
-                		<a>
+                		<a href="/coordi/insertCoordi.do">
 		                	<div class="contents-area-null"> 코디를 추가해주세요 :)</div>
 		                </a>
                 	</c:otherwise>
