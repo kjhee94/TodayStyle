@@ -30,6 +30,7 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectLoginMember(Member member) {
 		
 		Member m =  mDAO.selectLoginMember(member);
+	
 		return m;
 	}
 
