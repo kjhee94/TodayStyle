@@ -24,6 +24,9 @@ public class MemberDAO {
 	}
 
 	public Member selectLoginMember(Member member) {
+		
+		System.out.println(member);
+		
 		return sqlSession.selectOne("member.selectLoginMember",member);
 	}
 

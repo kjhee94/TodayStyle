@@ -190,14 +190,14 @@
     	 var email = $("#userEmail").val();  // 입력한 이메일
          var cehckBox = $("#emailCheck-input");        // 인증번호 입력란
          var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
-         
+         alert('이메일이 재전송 되었습니다.');
          $.ajax({
          	   url:"/member/emailCheck.do",
  	             data:{"email":email},
  	             type:"GET",
  	             success:function(data){
  	            	
- 	            	alert('이메일이 재전송 되었습니다.');
+ 	            	
  	            	code = data;
  	            	 
  	             }         
