@@ -28,6 +28,7 @@
           	padding: 15px;
             
             display: none;
+            margin-bottom: 30px;
         }
         .emailCheck{
             font-family: 'Noto Sans KR', sans-serif;

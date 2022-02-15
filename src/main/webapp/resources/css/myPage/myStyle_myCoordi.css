@@ -74,7 +74,7 @@
             padding-bottom: 100%;
         }
 
-        .contents>img {
+        .contents>a>img {
             position: absolute;
             display: block;
             width: 100%;

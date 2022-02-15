@@ -47,6 +47,7 @@
                 	<c:forEach items="${requestScope.myCoordiList }" var="mcList" varStatus="i">
              			<a href="/coordi/coordiPost.do?coordiNo=${mcList.coordiNo}">
                         	<div class="contents">
+                        	
                         		<img src="${mcList.filepath }">
                         	</div>
                     	</a>
