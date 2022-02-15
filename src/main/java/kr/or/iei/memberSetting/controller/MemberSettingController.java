@@ -103,6 +103,8 @@ public class MemberSettingController {
 
 			if (m != null) {
 				session.setAttribute("member", m); // 회원정보(세션) 갱신
+				
+				//System.out.println(m);
 
 				ProfileImg pI = msService.profileImgCheck(userId);
 				// System.out.println(pI);
