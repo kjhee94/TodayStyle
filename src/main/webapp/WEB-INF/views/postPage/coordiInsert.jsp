@@ -83,10 +83,10 @@
                                <p>성별</p>
                            </div>
 	                       <a>
-	                       		<button type="button" value="여자" class="gender" name="gender" onclick="genderBtn(this.value)">여자</button>
+	                       		<button type="button" value="여성" class="gender" name="gender" onclick="genderBtn(this.value)">여성</button>
 	                       </a>
 	                        <a>
-	                        	<button type="button" value="남자" class="gender" name="gender" onclick="genderBtn(this.value)">남자</button>
+	                        	<button type="button" value="남성" class="gender" name="gender" onclick="genderBtn(this.value)">남성</button>
 	                        </a>
 	                        <a>
 	                        	<button type="button" value="공용" class="gender" name="gender" onclick="genderBtn(this.value)">공용</button>
