@@ -193,6 +193,7 @@ public class CoordiController {
 		HttpSession session=request.getSession();
 		Member m=(Member)session.getAttribute("member");
 		HashMap<String, Object> map=new HashMap<String, Object>();
+		System.out.println(temp);
 		if(m!=null) {
 			String userId=m.getUserId();
 			ArrayList<Integer> likeList=coService.selectLikeList(userId);
