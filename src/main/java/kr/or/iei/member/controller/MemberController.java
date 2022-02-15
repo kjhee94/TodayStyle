@@ -92,7 +92,7 @@ public class MemberController {
 				)
 	{	
 		Member m = mService.selectLoginMember(member);
-		
+		System.out.println(m);
 		if(m!=null)
 		{
 			HttpSession session = request.getSession();

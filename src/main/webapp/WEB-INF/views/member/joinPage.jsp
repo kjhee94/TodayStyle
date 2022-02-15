@@ -159,6 +159,7 @@
     	
     $("#mail_check_button").click(function(){// 이메일 인증 입력창 나타나기
     	 var email = $("#userEmail").val();  // 입력한 이메일
+    	 $("input[name='userEmail']").attr('readonly','true');  // 이메일 입력창 비활성화
     	if(email!="" && ($('#userEmail').css("border-color")=="rgb(200, 200, 200)")){
     	 $('#emailCheck-area').css('display','block');
        
