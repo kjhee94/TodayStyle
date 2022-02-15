@@ -11,6 +11,7 @@ import kr.or.iei.postCoordi.model.dao.BoardDto;
 import kr.or.iei.postCoordi.model.dao.PostCoordiDAO;
 import kr.or.iei.postCoordi.model.vo.PostCoordi;
 
+
 @Service
 public class PostService implements PostServiceInterface{
 	

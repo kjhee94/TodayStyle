@@ -20,8 +20,8 @@ public interface PostItItemService {
 
 	int deleteComment(int cmtNo);
 
-	void insert(PostCoordi post, PostCoordi topPost, PostCoordi bottomPost, PostCoordi outerPost, PostCoordi accPost,
-			PostCoordi shoesPost);
+	void insert(PostItItem post) throws Exception;
+
 	
 	
 }

@@ -133,7 +133,7 @@ public class PostCoordiController {
     @RequestMapping( value = "/coordi/insertBoard.do", method=RequestMethod.POST)
     public String insertBoard(HttpServletRequest request, @SessionAttribute Member member) throws Exception{
         
-    	String uploadPath = "/resources/upload/uploadCoordi/";
+    	String uploadPath = "/resources/images/coordi/";
 		
 	
 		int uploadFileSizeLimit = 5*1024*1024; // 최대 업로드 파일 크기 5MB로 제한
@@ -195,8 +195,19 @@ public class PostCoordiController {
 		accPost.setBrand(accBrand);
 		shoesPost.setBrand(shoesBrand);
 
+	
+
+
     	postService.insert(post,topPost,bottomPost,outerPost,accPost,shoesPost);
     	
         return "redirect:/";
     }
+
+
+
+
+
+
+
+
 }
