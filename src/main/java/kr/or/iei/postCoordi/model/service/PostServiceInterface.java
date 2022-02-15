@@ -20,4 +20,6 @@ public interface PostServiceInterface {
 
 	void insert(PostCoordi post, PostCoordi topPost, PostCoordi bottomPost, PostCoordi outerPost, PostCoordi accPost,
 			PostCoordi shoesPost) throws Exception;
+
+	PostCoordi selectCoordi(PostCoordi post);
 }

@@ -134,25 +134,27 @@ public class PostItItemController {
 
         String originalUploadFilePath = uploadPath+originalFileName;
 
-        String top = multi.getParameter("top");
-        String bottom = multi.getParameter("bottom");
-        String outer = multi.getParameter("outer");
-        String shoes = multi.getParameter("shoes");
-        String acc = multi.getParameter("acc");
+        //String top = multi.getParameter("top");
+        //String bottom = multi.getParameter("bottom");
+        //String outer = multi.getParameter("outer");
+        //String shoes = multi.getParameter("shoes");
+        //String acc = multi.getParameter("acc");
         String tag = multi.getParameter("tags");
         String uploadFile = multi.getParameter("uploadFile");
         String itTitle = multi.getParameter("it-title");
         String itContent = multi.getParameter("it-content");
-        String topBrand = multi.getParameter("top-textarea");
-        String bottomBrand = multi.getParameter("bottom-textarea");
-        String outerBrand = multi.getParameter("outer-textarea");
-        String accBrand = multi.getParameter("acc-textarea");
-        String shoesBrand = multi.getParameter("shoes-textarea");
+        //String topBrand = multi.getParameter("top-textarea");
+        //String bottomBrand = multi.getParameter("bottom-textarea");
+        //String outerBrand = multi.getParameter("outer-textarea");
+        //String accBrand = multi.getParameter("acc-textarea");
+        //String shoesBrand = multi.getParameter("shoes-textarea");
         String itemName = multi.getParameter("itemName");
         String itemColor = multi.getParameter("itemColor");
         String itemSize = multi.getParameter("itemSize");
         String userHeight = multi.getParameter("userHeight");
         String userSize = multi.getParameter("userSize");
+        String select = multi.getParameter("select");
+        String brand = multi.getParameter("brand");
         
         PostItItem post = new PostItItem();
 
@@ -168,50 +170,64 @@ public class PostItItemController {
         post.setUserSize(userSize);
         post.setUserId(member.getUserId());
         post.setFilePath(uploadPath+originalFileName);
+        post.setBrand(brand);
+        post.setCategoryCode(select);
+
         
         
+        /*
         if(!top.isEmpty()) {
-        	post.setCategoryCode(top);
-        	post.setBrand(topBrand);
+
         	bottom = "";
         	outer="";
         	shoes="";
         	acc="";
+        	post.setCategoryCode(top);
+        	post.setBrand(topBrand);
+        	System.out.println("상의");
         }
         if(!bottom.isEmpty()) {
+
+        	top="";
+        	outer="";
+        	shoes="";
+        	acc="";
         	post.setCategoryCode(bottom);
         	post.setBrand(bottomBrand);
-        	top="";
-        	outer="";
-        	shoes="";
-        	acc="";
+        	System.out.println("상의");
         }
         if(!outer.isEmpty()) {
+
+        	top="";
+        	bottom="";
+        	shoes="";
+        	acc="";
         	post.setCategoryCode(outer);
         	post.setBrand(outerBrand);
-        	top="";
-        	bottom="";
-        	shoes="";
-        	acc="";
+        	System.out.println("상의");
         }
         if(!shoes.isEmpty()) {
-        	post.setCategoryCode(shoes);
-        	post.setBrand(shoesBrand);
+
         	top="";
         	bottom="";
         	outer="";
         	acc="";
+        	post.setCategoryCode(shoes);
+        	post.setBrand(shoesBrand);
+        	System.out.println("상의");
         }
         if(!acc.isEmpty()) {
-        	post.setCategoryCode(acc);
-        	post.setBrand(accBrand);
+
         	top="";
         	bottom="";
         	outer="";
         	shoes="";
+        	post.setCategoryCode(acc);
+        	post.setBrand(accBrand);
+        	System.out.println("상의");
         }
 
-        
+        */
         
         
         

@@ -435,7 +435,7 @@
 					$('.acc-btn').css('color','#707070')
 			})
 			
-			
+
 			//해시태그
 			 $(document).ready(function () {
 	        var tag = {};
@@ -502,10 +502,17 @@
 			});
 			
 			
-			
-			
-			
-			
+
+
+
+
+
+
+
+
+
+
+
 
 			//사진업로드
 			 $(document).ready(function (e){

@@ -58,7 +58,7 @@
 		                <div id="box-post-btn">
 		               	 	<button class="btn-style-line"><a href="/coordi/coordiList.do">목록</a></button>
 		               	 	<c:if test="${requestScope.map.pc.userId==sessionScope.member.userId}">
-		               	 		<button class="btn-style-mint"><a href="/coordi/coordiUpdate.do?coordiNo=${requestScope.map.pc.coordiNo}">수정</a></button>
+								 <button class="btn-style-mint"><a href="/coordi/coordiUpdate.do?coordiNo=${requestScope.map.pi.coordiNo}">수정</a></button>
 		               	 	</c:if>
 		                </div>
 					</div>

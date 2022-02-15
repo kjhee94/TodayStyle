@@ -122,6 +122,11 @@ public class PostCoordiDAO {
 
  }
 
+public PostCoordi selectPost(PostCoordi post) {
+	
+	return sqlSession.selectOne("post.selectCoordi",post);
+}
+
 
 
 

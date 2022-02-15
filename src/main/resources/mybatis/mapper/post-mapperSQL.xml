@@ -147,36 +147,17 @@
 
 
 
-   <!-- 코디 업데이트 정보 불러오기 -->
-   <insert id="updateCoordiInfo" parameterType="Post">
-        SELECT
-            TEMPERATURE,
-            SEASON,
-            GENDER,
-            COORDICONTENT,
-            HASHTAG
-        FROM COORDI
-        WHERE coordi_No = #{coordiNo} and user_id = #{userId}
-   </insert>
-      <!-- 코디사진 업데이트 정보 불러오기 -->
-   <insert id="updateCoordiPic" parameterType="Post">
-        SELECT
-            CATEGORY,
-            FILEFATH,
-            COORDICONTENT,
-            HASHTAG
-        FROM COORDI_IMG
-        WHERE coordi_no = #{coordiNo}
-   </insert>
-      <!-- 코디카테고리 업데이트 정보 불러오기 -->
-      <insert id="updateCoordiCategory" parameterType="Post">
-        SELECT
-            coordi_no as coordiNo,
-            item_code as itemCode,
-            brand as brand
-        FROM ITEM
-        WHERE coordi_no = #{coordiNo}
-           </insert>
+ 	<select id="selectCoordi" parameterType="Post" resultType="Post">
+ 		SELECT
+ 			temperature as temperature,
+ 			season as season,
+ 			gender as gender,
+ 			coordi_content as coordiContent,
+ 			hashtag as hashtag
+ 		FROM
+ 			coordi
+ 		WHERE userid = #{userId} and del_YN ='N'
+ 	</select>
 
 	
 </mapper>
