@@ -82,7 +82,7 @@
 			                <c:choose>
 								<c:when test="${!requestScope.map.list.isEmpty() }">
 				                	<c:forEach items="${requestScope.map.cmtList }" var="cl">
-					                	<div class="cmt-one">
+					                	<div class="cmt-one" id="${cl.cmtNo }">
 					                		<div class="profile">
 					                   			<a href="/myPage/userPage.do?userId=${cl.cmtWriter}">
 					                   				<c:choose>
@@ -100,17 +100,44 @@
 						                   		<span class="cmt-content">${cl.cmtContent}</span>
 						                   		<div class="cmt-info">
 						                   			<span>${cl.cmtTime}</span>
-						                   			<span>답글</span>
-						                   			<span>삭제</span>
+						                   			<c:if test="${ cl.cmtWriter==sessionScope.member.userId}">
+						                   				<span>답글</span>
+						                   				<span id="cmt-delete" style="cursor:pointer">삭제</span>
+						                   			</c:if>
+						                   			
+						                   		
 						                   		</div>
 					                   		</div>
 					                	</div>
 				                	</c:forEach>
 			                	</c:when>
+			                	
 			                	<c:otherwise>
 			                		<span>현재 댓글이 없습니다</span>
 			                	</c:otherwise>
 		                	</c:choose>
+		                		<script>
+				                    $('#cmt-delete').click(function(){
+				                    	if(confirm("댓글을 삭제하시겠습니까?")){
+				                    		var cmtNo=$('.cmt-one').attr('id');
+					                    	var itItemNo=$('#like-scrap').attr('class');
+					                    	$.ajax({
+						    					url:"/itItem/deleteComment.do",
+						                    	data:{cmtNo:cmtNo,itItemNo:itItemNo},
+						                    	type:"get",
+						                    	success:function (result){
+						                    		$('#left-bottom-wrapper').html(result);
+						                    	},
+						                    	error:function(){
+						                    		console.log("통신실패");
+						                    		location.replace('/member/loginPage.do');
+						                    	}
+						    					
+						    				});
+				                    	}
+				                    	
+				                    });
+				          	 	</script>
 		                </div>
 		                
 		                <!-- 댓글 페이지네이션
@@ -145,6 +172,7 @@
 			    					
 			    				});
 	                    	})
+	                    	
 	                    </script>
 		        </div>
 		        

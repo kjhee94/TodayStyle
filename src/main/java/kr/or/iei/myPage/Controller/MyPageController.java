@@ -1,4 +1,4 @@
-package kr.or.iei.myPage.Controller;
+package kr.or.iei.myPage.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
