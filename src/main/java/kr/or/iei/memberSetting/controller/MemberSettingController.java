@@ -65,7 +65,7 @@ public class MemberSettingController {
 		ArrayList<Follow> followerList = mpService.followerList(userId);
 		//System.out.println(followerList);
 		ArrayList<Follow> followingList = mpService.followingList(userId);
-		System.out.println(followingList);
+		//System.out.println(followingList);
 		
 		model.addAttribute("followerList", followerList);
 		model.addAttribute("followingList", followingList);
@@ -386,6 +386,7 @@ public class MemberSettingController {
 		String userEmail = multi.getParameter("userEmail");
 		String gender = multi.getParameter("gender");
 		String emailCheckData = multi.getParameter("emailCheckData");
+		String filepath = "/resources/upload/profileImg/" + multi.getFilesystemName("profileImg");
 		
 		if(emailCheckData.equals("인증완료"))
 		{
@@ -395,11 +396,13 @@ public class MemberSettingController {
 			m.setNickname(nickname);
 			m.setUserEmail(userEmail);
 			m.setGender(gender);
+			m.setFilePath(filepath);
 
 			int memberUpdateResult = msService.memberUpdate(m);
 
 			if (memberUpdateResult > 0) {
 				session.setAttribute("member", m); // 회원정보(세션) 갱신
+				//System.out.println("if문: " +m);
 				model.addAttribute("msg", "회원정보가 수정되었습니다.");
 				model.addAttribute("location", "/myPage/setting.do");
 				return "common/msg";
@@ -416,11 +419,13 @@ public class MemberSettingController {
 			m.setUserName(userName);
 			m.setNickname(nickname);
 			m.setGender(gender);
+			m.setFilePath(filepath);
 
 			int memberUpdateResult = msService.memberUpdateNoMail(m);
 
 			if (memberUpdateResult > 0) {
 				session.setAttribute("member", m); // 회원정보(세션) 갱신
+				//System.out.println("else문: " +m);
 				model.addAttribute("msg", "회원정보가 수정되었습니다.");
 				model.addAttribute("location", "/myPage/setting.do");
 				return "common/msg";
