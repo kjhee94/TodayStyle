@@ -71,6 +71,7 @@ public class MyPageController {
    // 나의 코디 페이지
    @RequestMapping(value = "/myPage/myStyle.do")
    public String myPage(@SessionAttribute Member member, Model model) {
+	   
       
       //1. profile 내용
       profile(member, model);
@@ -243,13 +244,14 @@ public class MyPageController {
       
       int result=mpService.unFollow(map);
       
+      /*
       if(result>0) {
          System.out.println("팔로우 취소 완료");
       }
       else {
          System.out.println("팔로우 취소 실패");
       }
-      
+      */
       return ;
    }
    
@@ -269,12 +271,14 @@ public class MyPageController {
          
          int result=mpService.follow(map);
          
+         /*
          if(result>0) {
             System.out.println("팔로우 완료");
          }
          else {
             System.out.println("팔로우 실패");
          }
+         */
          
          return "myPage/myStyle";
       }
