@@ -48,10 +48,10 @@
              			<a href="/coordi/coordiPost.do?coordiNo=${mcList.coordiNo}">
                         	<div class="contents">
                         		<img src="${mcList.filepath }">
-		                        	<div id="${mcList.coordiNo }" class="likeScrap-wrap">
-		                                <img class="likeIcon" src="/resources/images/icon/heart_wf.png">
-		                                <img class="scrapIcon" src="/resources/images/icon/saved_wf.png">
-		                            </div>
+	                        	<div id="${mcList.coordiNo }" class="likeScrap-wrap">
+	                                <img class="likeIcon" src="/resources/images/icon/heart_wf.png">
+	                                <img class="scrapIcon" src="/resources/images/icon/saved_wf.png">
+	                            </div>
                         	</div>
                     	</a>
               		</c:forEach>
