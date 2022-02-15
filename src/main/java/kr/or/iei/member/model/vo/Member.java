@@ -16,12 +16,20 @@ public class Member {
 	private char endYN;
 	private int follow;
 	private String filePath;
+	
+	
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userId=" + userId + ", userPwd=" + userPwd + ", userName=" + userName
 				+ ", userEmail=" + userEmail + ", gender=" + gender + ", nickname=" + nickname + ", enrollDate="
-				+ enrollDate + ", roll=" + roll + ", endYN=" + endYN + "]";
+				+ enrollDate + ", roll=" + roll + ", endYN=" + endYN + ", follow=" + follow + ", filePath=" + filePath
+				+ "]";
 	}
+
+
+
+
+
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub

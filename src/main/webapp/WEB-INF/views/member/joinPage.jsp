@@ -159,6 +159,7 @@
     	
     $("#mail_check_button").click(function(){// 이메일 인증 입력창 나타나기
     	 var email = $("#userEmail").val();  // 입력한 이메일
+    	 $("input[name='userEmail']").attr('readonly','true');  // 이메일 입력창 비활성화
     	if(email!="" && ($('#userEmail').css("border-color")=="rgb(200, 200, 200)")){
     	 $('#emailCheck-area').css('display','block');
        
@@ -190,14 +191,14 @@
     	 var email = $("#userEmail").val();  // 입력한 이메일
          var cehckBox = $("#emailCheck-input");        // 인증번호 입력란
          var boxWrap = $(".mail_check_input_box");    // 인증번호 입력란 박스
-         
+         alert('이메일이 재전송 되었습니다.');
          $.ajax({
          	   url:"/member/emailCheck.do",
  	             data:{"email":email},
  	             type:"GET",
  	             success:function(data){
  	            	
- 	            	alert('이메일이 재전송 되었습니다.');
+ 	            	
  	            	code = data;
  	            	 
  	             }         
