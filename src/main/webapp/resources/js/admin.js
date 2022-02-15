@@ -97,6 +97,14 @@ $(document).ready(function(){
 		}
 	});
 	
+	
+	//submit 방지
+	 $('.input-style').keydown(function() {
+         if (event.keyCode == 13) {
+             event.preventDefault();
+         };
+     });
+	
 	//개별탈퇴처리 ajax
 	$(".btn-one-withdraw").click(function() {
 		

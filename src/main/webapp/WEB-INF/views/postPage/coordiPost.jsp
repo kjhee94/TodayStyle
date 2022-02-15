@@ -71,13 +71,13 @@
 	                    <div class="cmt-input">
 	                   		<div class="profile">
 	                   			<c:choose>
-					               <c:when test="${pc.profileFilePath!=null}">
-					                    <img src="${pc.profileFilePath}" id="profileImg">
-					               </c:when>
-					               <c:otherwise>
-					                   <img src="/resources/images/default/profile.jpg" id="profileImg">
-					               </c:otherwise>
-					            </c:choose>
+		                            <c:when test="${!sessionScope.member.filePath.isEmpty()}">
+		                            	<img src="${sessionScope.member.filePath}">
+		                            </c:when>
+		                            <c:otherwise>
+		                            	<img src="/resources/images/default/profile.jpg">
+		                            </c:otherwise>
+	                            </c:choose>
 	                   		</div>
 	                   		<div class="input-comment">
 	                   			<input class="input-style" type="text" name="comment" value="" placeholder="댓글을 입력해주세요">
