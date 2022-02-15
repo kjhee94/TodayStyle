@@ -100,9 +100,7 @@
         where
            cmt_no=#{cmtNo}
   		</update>
-	
-
-	 <insert id="insertInfo" parameterType="Post">
+    <insert id="insertInfo" parameterType="Post">
         <selectKey keyProperty="coordiNo" resultType="int" order="BEFORE">
             select COORDI_SEQ.nextval from dual
         </selectKey>
@@ -144,6 +142,9 @@
 
 
    </insert>
+  
+  
+
 
 
    <!-- 코디 업데이트 정보 불러오기 -->

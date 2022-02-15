@@ -203,7 +203,7 @@
                                 </div>
                                 <div class="shoes" style="display:none">
                                    <span>
-                                        <select class="select">
+                                        <select class="select" name="shoes">
                                             <option>신발</option>
                                             
                                         </select>
