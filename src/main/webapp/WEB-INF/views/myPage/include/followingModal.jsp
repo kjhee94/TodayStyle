@@ -68,6 +68,8 @@
     <script>
         // modal
         $(function() {
+        	
+        	// modal open
             $('#following-modal-btn').click(function() {
                 //$('body').css('overflow', 'hidden'); // 스크롤 제어
 
@@ -81,6 +83,8 @@
                 div.fadeIn();
                 
             });
+            
+         	// modal close
             $('#following-modal-close-btn').click(function() {
                 // 모달창 닫기
                 $('#following-modal').fadeOut();
@@ -88,15 +92,21 @@
                 //$('body').css('overflow', 'auto');
 				location.replace(location.href);
             });
+         
+         	// modal close
             $(document).mouseup(function(e) {
 
                 var container = $('#following-modal');
 
                 if (container.has(e.target).length === 0) {
 
-                    container.css('display', 'none');
-                    //$('body').css('overflow', 'auto');
-
+                	var status = container.css('display');
+                	if(status=='block')
+                	{
+                		container.css('display', 'none');
+                		location.replace(location.href);
+                	}
+                	
                 }
 
             });
@@ -130,7 +140,7 @@
     	        		
     	        	},
     	        	error:function(){
-    	        		console.log("통신실패");
+    	        		console.log("통신실패3");
     	        	}
     				
     			});
@@ -146,10 +156,10 @@
     	        	type:"get",
     	        	success:function (){
 
-    	            	alert('following-modal');
+    	        		
     	        	},
     	        	error:function(){
-    	        		console.log("통신실패");
+    	        		console.log("통신실패4");
     	        	}
     				
     			});

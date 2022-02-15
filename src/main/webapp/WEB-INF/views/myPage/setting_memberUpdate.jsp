@@ -176,6 +176,7 @@
 		   		if($("input[name='emailCheckData']").val()=="인증하기")
 		   		{
 		   			var email = $("input[name='userEmail']").val(); // 입력한 이메일
+		   			
 		       		
 		       		$.ajax({	
 		                   url:"/myPage/emailCheck.do",
@@ -421,7 +422,27 @@
                 $("input[name='userEmail']").css('border-color','#FD8A69');
             }
         });
-        
+        <%--이메일 중복검사--%>
+        $("input[name='userEmail']").blur(function(){
+    	  var email = $("input[name='userEmail']").val();
+    	  $.ajax({
+    		 url:"/myPage/mailCheck.do",
+    		 data:{"email":email},
+    		 type:"get",
+    		 success:function(result){
+    			 if(result=="true"){
+    				 $('#userEmailCheck').css('display', 'block');
+                     $('#userEmailCheck').css('color', '#FD8A69');
+                     $('#userEmailCheck').html('사용중인 이메일 입니다.');
+                     $("input[name='userEmail']").css('border-color','#FD8A69');
+    			 }
+    		 },
+    		 error:function(){
+    			 console.log("통신 실패");
+    			 
+    		 }
+    	  });
+       });
         
         
         <%-- 전체 항목 검사 --%>

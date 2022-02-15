@@ -43,12 +43,12 @@
 		                    		<c:if test="${not doneLoop}">
 			                    		<c:choose>
 				                    		<c:when test="${fList.userId.equals(fgList.userId)}">
-				                    			<div class="following-BTN fBtn" id="${fList.userId }">팔로잉</div>
+				                    			<div class="following_BTN fBtn" id="${fList.userId }">팔로잉</div>
 				                    			<c:set var="doneLoop" value="true" />
 				                    		</c:when>
 				                    		<c:otherwise>
 				                    			<c:if test="${i.last}">
-				                    				<div class="follow-BTN fBtn" id="${fList.userId }">팔로우</div>
+				                    				<div class="follow_BTN fBtn" id="${fList.userId }">팔로우</div>
 				                    			</c:if>
 				                    			
 				                    		</c:otherwise>
@@ -84,6 +84,8 @@
     <script>
         // modal
         $(function() {
+        	
+        	// modal open
             $('#follower-modal-btn').click(function() {
                 //$('body').css('overflow', 'hidden'); // 스크롤 제어
 
@@ -95,28 +97,43 @@
                 
                 // 모달창 띄우기
                 div.fadeIn();
-                
             });
+            
+        	// modal close
             $('#follower-modal-close-btn').click(function() {
+
                 // 모달창 닫기
                 $('#follower-modal').fadeOut();
                 // 스크롤 제어 해제
                 //$('body').css('overflow', 'auto');
 				location.replace(location.href);
 				
-
             });
+            
+         	// modal close
             $(document).mouseup(function(e) {
 
                 var container = $('#follower-modal');
 
                 if (container.has(e.target).length === 0) {
-
-                    container.css('display', 'none');
-                    //$('body').css('overflow', 'auto');
+				
+                	var status = container.css('display');
+                	if(status=='block')
+                	{
+                		container.css('display', 'none');
+                		location.replace(location.href);
+                	}
+                	
+                    
                 }
 
             });
+                
+
+            	
+            	
+            
+            
 
         });
         
@@ -135,29 +152,27 @@
         	if($(this).html() === "팔로잉")
         	{
         		var userId = $(this).attr('id');
-        		$(this).attr('class','follow-BTN fBtn');
+        		$(this).attr('class','follow_BTN fBtn');
         		$(this).html('팔로우');
         		$.ajax({
     				url:"/myPage/unFollow.do",
     	        	data:{unfollowUserId:userId},
     	        	type:"get",
     	        	success:function (){
-    	        		
+
     	        		
     	        	},
     	        	error:function(){
-    	        		console.log("통신실패");
+    	        		console.log("통신실패1");
     	        	}
     				
     			});
-        		alert('follower-modal'); 
         		
         	}
         	else
         	{
-        	
         		var userId = $(this).attr('id');
-        		$(this).attr('class','following-BTN fBtn');
+        		$(this).attr('class','following_BTN fBtn');
         		
         		$(this).html('팔로잉');
         		$.ajax({
@@ -165,10 +180,10 @@
     	        	data:{followUserId:userId},
     	        	type:"get",
     	        	success:function (){
-    	        		
+
     	        	},
     	        	error:function(){
-    	        		console.log("통신실패");
+    	        		console.log("통신실패2");
     	        	}
     				
     			});
