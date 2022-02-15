@@ -34,11 +34,11 @@
 					<div class="categoryContent">
 						<div class="one-check">
 							<input type="checkbox" class="gender" id="gender-box1" class="box" />
-							<label for="gender-box1">여성</label>
+							<label for="gender-box1">여자</label>
 						</div>
 						<div class="one-check">
 							<input type="checkbox" class="gender"  id="gender-box2" class="box" />
-							<label for="gender-box2">남성</label>
+							<label for="gender-box2">남자</label>
 						</div>
 						<div class="one-check">
 							<input type="checkbox" class="gender" id="gender-box3" class="box" />
@@ -81,14 +81,14 @@
 						<i class="fas fa-chevron-down"></i>
 					</div>
 					<div class="categoryContent">
-						<div class="tempBox">4˚이하</div>
-						<div class="tempBox">5˚-8˚</div>
-						<div class="tempBox">9˚-11˚</div>
-						<div class="tempBox">12˚-16˚</div>
-						<div class="tempBox">17˚-19˚</div>
-						<div class="tempBox">20˚-22˚</div>
-						<div class="tempBox">23˚-27˚</div>
-						<div class="tempBox">28˚이상</div>
+						<div class="tempBox">4°이하</div>
+						<div class="tempBox">5°~8°</div>
+						<div class="tempBox">9°~11°</div>
+						<div class="tempBox">12°~16°</div>
+						<div class="tempBox">17°~19°</div>
+						<div class="tempBox">20°~22°</div>
+						<div class="tempBox">23°~27°</div>
+						<div class="tempBox">28°이상</div>
 					</div>
 					
 				</div>
