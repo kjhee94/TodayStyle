@@ -94,15 +94,14 @@
                 		</div>
                 	</c:when>
                 	<c:otherwise>
-                		<a>
+                		<a href="/coordi/ItInsert.do">
 		                	<div class="contents-area-null"> 잇템을 추가해주세요 :)</div>
 		                </a>
                 	</c:otherwise>
                 	
                 </c:choose>
-                
+                <div id="space"></div>
             </div>
-            
 
         </div>
 
