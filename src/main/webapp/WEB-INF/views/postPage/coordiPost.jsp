@@ -51,10 +51,11 @@
 					
 						<div id="hashtag">
 							<c:forTokens var="hashTag" items="${requestScope.map.pc.hashtag}" delims=",">
-								<span><a href="">#${hashTag}</a></span>
+								<span><a href="/coordi/coordiList.do?hashTag=${hashTag}">#${hashTag}</a></span>
 							</c:forTokens>
 						</div>
-						
+						<script>
+						</script>
 		                <div id="box-post-btn">
 		               	 	<button class="btn-style-line"><a href="/coordi/coordiList.do">목록</a></button>
 		               	 	<c:if test="${requestScope.map.pc.userId==sessionScope.member.userId}">
