@@ -48,22 +48,19 @@ public class PostItItemServiceImpl implements PostItItemService{
 	
 	
 	@Override
-    public void insert(PostCoordi post, PostCoordi topPost, PostCoordi bottomPost, PostCoordi outerPost,
-            PostCoordi accPost, PostCoordi shoesPost) {
-        iDAO.insertInfo(post);
-         System.out.println(post.getCoordiNo());
+    public void insert(PostItItem post) throws Exception {
+
+		
+		
+		
+		iDAO.insertInfo(post);
 
         iDAO.insertPic(post);
+        
 
 
-        topPost.setCoordiNo(post.getCoordiNo());
-        bottomPost.setCoordiNo(post.getCoordiNo());
-        accPost.setCoordiNo(post.getCoordiNo());
-        outerPost.setCoordiNo(post.getCoordiNo());
-        shoesPost.setCoordiNo(post.getCoordiNo());
 
-         iDAO.insertCategory(topPost,bottomPost,accPost,outerPost,shoesPost);
-
+        System.out.println("테스트");
 
     }
 }

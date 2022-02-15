@@ -24,6 +24,7 @@ import kr.or.iei.member.model.vo.Member;
 import kr.or.iei.myPage.model.service.MyPageService;
 import kr.or.iei.postCoordi.model.vo.PostCoordi;
 import kr.or.iei.postItItem.model.service.PostItItemService;
+import kr.or.iei.postItItem.model.service.PostItItemServiceImpl;
 import kr.or.iei.postItItem.model.vo.PostItItem;
 
 @Controller
@@ -31,6 +32,9 @@ public class PostItItemController {
 	
 	@Autowired
 	private PostItItemService iService;
+	
+	@Autowired
+	private PostItItemServiceImpl itService;
 	
 	@Autowired
 	private MyPageService mpService;
@@ -129,8 +133,7 @@ public class PostItItemController {
         String originalFileName = multi.getFilesystemName("uploadFile");
 
         String originalUploadFilePath = uploadPath+originalFileName;
-        
-        String gender = multi.getParameter("gender");
+
         String top = multi.getParameter("top");
         String bottom = multi.getParameter("bottom");
         String outer = multi.getParameter("outer");
@@ -138,45 +141,96 @@ public class PostItItemController {
         String acc = multi.getParameter("acc");
         String tag = multi.getParameter("tags");
         String uploadFile = multi.getParameter("uploadFile");
-        String coordiContent = multi.getParameter("coordi-content");
+        String itTitle = multi.getParameter("it-title");
+        String itContent = multi.getParameter("it-content");
         String topBrand = multi.getParameter("top-textarea");
         String bottomBrand = multi.getParameter("bottom-textarea");
         String outerBrand = multi.getParameter("outer-textarea");
         String accBrand = multi.getParameter("acc-textarea");
         String shoesBrand = multi.getParameter("shoes-textarea");
+        String itemName = multi.getParameter("itemName");
+        String itemColor = multi.getParameter("itemColor");
+        String itemSize = multi.getParameter("itemSize");
+        String userHeight = multi.getParameter("userHeight");
+        String userSize = multi.getParameter("userSize");
         
-        PostCoordi post = new PostCoordi();
-        PostCoordi topPost = new PostCoordi();
-        PostCoordi bottomPost = new PostCoordi();
-        PostCoordi outerPost = new PostCoordi();
-        PostCoordi accPost = new PostCoordi();
-        PostCoordi shoesPost = new PostCoordi();
-        
-        post.setGender(gender);
+        PostItItem post = new PostItItem();
+
+
+ 
         post.setHashtag(tag);
-        post.setCoordiContent(coordiContent);
+        post.setItItemTitle(itTitle);
+        post.setItContent(itContent);
+        post.setItName(itemName);
+        post.setItColor(itemColor);
+        post.setItSize(itemSize);
+        post.setUserHeight(Integer.parseInt(userHeight));
+        post.setUserSize(userSize);
         post.setUserId(member.getUserId());
         post.setFilePath(uploadPath+originalFileName);
-        topPost.setCategoryCode(top);
-        bottomPost.setCategoryCode(bottom);
-        outerPost.setCategoryCode(outer);
-        accPost.setCategoryCode(acc);
-        shoesPost.setCategoryCode(shoes);
-        topPost.setBrand(topBrand);
-        bottomPost.setBrand(bottomBrand);
-        outerPost.setBrand(outerBrand);
-        accPost.setBrand(accBrand);
-        shoesPost.setBrand(shoesBrand);
+        
+        
+        if(!top.isEmpty()) {
+        	post.setCategoryCode(top);
+        	post.setBrand(topBrand);
+        	bottom = "";
+        	outer="";
+        	shoes="";
+        	acc="";
+        }
+        if(!bottom.isEmpty()) {
+        	post.setCategoryCode(bottom);
+        	post.setBrand(bottomBrand);
+        	top="";
+        	outer="";
+        	shoes="";
+        	acc="";
+        }
+        if(!outer.isEmpty()) {
+        	post.setCategoryCode(outer);
+        	post.setBrand(outerBrand);
+        	top="";
+        	bottom="";
+        	shoes="";
+        	acc="";
+        }
+        if(!shoes.isEmpty()) {
+        	post.setCategoryCode(shoes);
+        	post.setBrand(shoesBrand);
+        	top="";
+        	bottom="";
+        	outer="";
+        	acc="";
+        }
+        if(!acc.isEmpty()) {
+        	post.setCategoryCode(acc);
+        	post.setBrand(accBrand);
+        	top="";
+        	bottom="";
+        	outer="";
+        	shoes="";
+        }
+
+        
+        
+        
+        
+
+        
+        
+        
+        
 
     
 
 
-        iService.insert(post,topPost,bottomPost,outerPost,accPost,shoesPost);
-        
+        itService.insert(post);
+        System.out.println("테스트컨트롤");
         return "redirect:/";
+        
     }
     
     
-    
+   
    
 }

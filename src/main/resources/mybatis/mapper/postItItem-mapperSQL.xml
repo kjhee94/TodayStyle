@@ -104,8 +104,8 @@
   
   
   
-	<insert id="insertInfo" parameterType="Post">
-	      <selectKey keyProperty="coordiNo" resultType="int" order="BEFORE">
+	<insert id="insertInfo" parameterType="postItItem">
+	      <selectKey keyProperty="itItemNo" resultType="int" order="BEFORE">
 	          select IT_ITEM_SEQ.nextval from dual
 	      </selectKey>
 	  
@@ -113,32 +113,31 @@
 			INTO IT_ITEM VALUES( 
 			#{itItemNo},
 			#{userId},
-			#{coordiContent},
-			#{gender},
-			#{season},
-			#{temperature},
-			SYSDATE,
+			#{itItemTitle},
+			#{itContent},
+			#{itName},
+			#{itColor},
+			#{itSize},
 			#{hashtag},
+			#{categoryCode},
+			#{brand},
+			#{userSize},
+			#{userHeight},
+			SYSDATE,
 			'N'
 		)
 	</insert>
 	  
-	<insert id="insertPic" parameterType="Post">
+	<insert id="insertPic" parameterType="postItItem">
 		INSERT 
-		INTO COORDI_IMG VALUES(
-		#{coordiNo},
+		INTO IT_IMG VALUES(
+		#{itItemNo},
 		#{filePath},
 		'Y',
 		'N'
 		)
 	</insert>
+	
+
 	  
-	<insert id="insertCategory" parameterType="Post">
-		INSERT
-		INTO ITEM VALUES(
-		#{coordiNo},
-		#{categoryCode},
-		#{brand}
-		)
-	</insert>
 </mapper>

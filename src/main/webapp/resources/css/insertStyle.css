@@ -79,6 +79,22 @@ float: left;
     margin: 15px;
 }
 
+.textarea2{
+	    resize: none;
+    width: 335px;
+    height: 38px;
+    padding: 5px;
+    border: 1px solid #C8C8C8;
+    font-family: inherit;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color:#C8C8C8;
+    vertical-align: middle;
+    margin: 15px;
+}
+
 
 
 .select-category{

@@ -160,11 +160,14 @@ public class CoordiController {
 	
 	@RequestMapping(value="/coordi/coordiList.do",method=RequestMethod.GET)
 	public ModelAndView coordiList(ModelAndView mav,HttpServletRequest request) {
+		//해쉬태그
+		String hashTag=request.getParameter("hashTag");
 		
 		HttpSession session=request.getSession();
 		Member m=(Member)session.getAttribute("member");
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		HashMap<String, String> pMap =new HashMap<String, String>();
+		pMap.put("hashTag", hashTag);
 		ArrayList<Coordi> coordiList=coService.getCoordiList(pMap);
 		
 		//팔로우리스트와 좋아요 리스트 가져오기(로그인 한경우)
@@ -175,7 +178,10 @@ public class CoordiController {
 			map.put("likeList", likeList);
 			map.put("scrapList", scrapList);
 		}
-
+		if(hashTag!=null) {
+			map.put("hashTag", hashTag);
+		}
+		
 		map.put("coordiList", coordiList);
 		mav.addObject("map", map);
 		mav.setViewName("coordi/coordiList");
@@ -193,6 +199,7 @@ public class CoordiController {
 		HttpSession session=request.getSession();
 		Member m=(Member)session.getAttribute("member");
 		HashMap<String, Object> map=new HashMap<String, Object>();
+		System.out.println(temp);
 		if(m!=null) {
 			String userId=m.getUserId();
 			ArrayList<Integer> likeList=coService.selectLikeList(userId);
@@ -223,6 +230,7 @@ public class CoordiController {
 		ArrayList<Coordi> list =coService.selectCategoryCoordiList(map);
 		model.addAttribute("filter",filter);
 		model.addAttribute("list", list);
+		model.addAttribute("keyword",keyword);
 		return "coordi/categoryList";
 		
 		

@@ -60,7 +60,7 @@
 		                        			.then(function(json){
 		                        				const temparature = json.main.temp;
 		                        				const place = json.name;
-		                        				$('#temp').text(Math.round(temparature)+" ˚");
+		                        				$('#temp').text(Math.round(temparature)+" °");
 		                        			});
 		                        }
 		            			
