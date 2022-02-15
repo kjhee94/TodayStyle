@@ -28,7 +28,14 @@
 		                
 	                    <div class="cmt-input">
 	                   		<div class="profile">
-	                   			<img src="/resources/images/default/profile.jpg">
+	                   			<c:choose>
+		                            <c:when test="${!sessionScope.member.filePath.isEmpty()}">
+		                            	<img src="${sessionScope.member.filePath}">
+		                            </c:when>
+		                            <c:otherwise>
+		                            	<img src="/resources/images/default/profile.jpg">
+		                            </c:otherwise>
+	                            </c:choose>
 	                   		</div>
 	                   		<div class="input-comment">
 	                   			<input class="input-style" type="text" name="comment" value="" placeholder="댓글을 입력해주세요">
@@ -59,7 +66,6 @@
 						                   		<div class="cmt-info">
 						                   			<span>${cl.cmtTime}</span>
 						                   			<c:if test="${ cl.cmtWriter==sessionScope.member.userId}">
-						                   				<span>답글</span>
 						                   				<span class="cmt-delete" style="cursor:pointer">삭제</span>
 						                   			</c:if>
 						                   		</div>

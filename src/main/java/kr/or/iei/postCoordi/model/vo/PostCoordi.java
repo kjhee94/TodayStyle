@@ -280,6 +280,18 @@ public class PostCoordi {
 		PostTime = postTime;
 	}
 
+	@Override
+	public String toString() {
+		return "PostCoordi [coordiNo=" + coordiNo + ", nickName=" + nickName + ", userId=" + userId
+				+ ", profileFilePath=" + profileFilePath + ", follow=" + follow + ", coordiLike=" + coordiLike
+				+ ", coordiScrap=" + coordiScrap + ", temperature=" + temperature + ", season=" + season + ", gender="
+				+ gender + ", coordiContent=" + coordiContent + ", categoryName=" + categoryName + ", categoryCode="
+				+ categoryCode + ", brand=" + brand + ", filePath=" + filePath + ", hashtag=" + hashtag + ", delYN="
+				+ delYN + ", cmtNo=" + cmtNo + ", cmtWriter=" + cmtWriter + ", cmtContent=" + cmtContent
+				+ ", cmtParent=" + cmtParent + ", cmtDepth=" + cmtDepth + ", cmtSEQ=" + cmtSEQ + ", cmtDelYN="
+				+ cmtDelYN + ", CmtTime=" + CmtTime + ", PostTime=" + PostTime + "]";
+	}
+
 	
 
 	

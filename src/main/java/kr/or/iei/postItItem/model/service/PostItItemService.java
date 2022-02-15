@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
+import kr.or.iei.postCoordi.model.vo.PostCoordi;
 import kr.or.iei.postItItem.model.vo.PostItItem;
 
 public interface PostItItemService {
@@ -18,4 +19,9 @@ public interface PostItItemService {
 	int insertComment(HashMap<String, Object> map);
 
 	int deleteComment(int cmtNo);
+
+	void insert(PostCoordi post, PostCoordi topPost, PostCoordi bottomPost, PostCoordi outerPost, PostCoordi accPost,
+			PostCoordi shoesPost);
+	
+	
 }

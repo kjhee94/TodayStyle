@@ -91,7 +91,8 @@
   	values
   		(#{itItemNo},ititemcmt_seq.nextval,#{userId},#{comment},null,1,1,'N',sysdate)
   </insert>
-  <update id="deleteComment" >
+  
+  <update id="deleteComment" parameterType="int">
   	update
   		ititem_comments
   	set
@@ -99,4 +100,45 @@
   	where
   		cmt_no=#{cmtNo}
   </update>
+  
+  
+  
+  
+	<insert id="insertInfo" parameterType="Post">
+	      <selectKey keyProperty="coordiNo" resultType="int" order="BEFORE">
+	          select IT_ITEM_SEQ.nextval from dual
+	      </selectKey>
+	  
+		INSERT 
+			INTO IT_ITEM VALUES( 
+			#{itItemNo},
+			#{userId},
+			#{coordiContent},
+			#{gender},
+			#{season},
+			#{temperature},
+			SYSDATE,
+			#{hashtag},
+			'N'
+		)
+	</insert>
+	  
+	<insert id="insertPic" parameterType="Post">
+		INSERT 
+		INTO COORDI_IMG VALUES(
+		#{coordiNo},
+		#{filePath},
+		'Y',
+		'N'
+		)
+	</insert>
+	  
+	<insert id="insertCategory" parameterType="Post">
+		INSERT
+		INTO ITEM VALUES(
+		#{coordiNo},
+		#{categoryCode},
+		#{brand}
+		)
+	</insert>
 </mapper>

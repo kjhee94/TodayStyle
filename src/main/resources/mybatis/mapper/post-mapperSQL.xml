@@ -67,93 +67,115 @@
 	</select>
 
 
-
-
-	<insert id="insertInfo" parameterType="Post">
-		<selectKey keyProperty="coordiNo" resultType="int" order="BEFORE">
-			select COORDI_SEQ.nextval from dual
-		</selectKey>
+     <select id="selectLikeList" resultType="int" >
+	     select 
+	        coordi_no as coordiNo
+	     from 
+	        coordi_like
+	     where
+	        user_Id=#{userId}
+	  </select>
+	  
+	  <select id="selectScrapList" resultType="int" >
+	     select 
+	        coordi_no as coordiNo
+	     from 
+	        coordi_scrap
+	     where
+	        user_Id=#{userId}
+	  </select>
+	  
+	<insert id="insertComment" parameterType="hashmap">
+	   insert into 
+	      COORDI_COMMENTS
+	   values
+	      (#{coordiNo},coordicmt_seq.nextval,#{userId},#{comment},null,1,1,'N',sysdate)
+	</insert>
+	     
+     <update id="deleteComment" >
+        update
+           COORDI_COMMENTS
+        set
+           del_yn='Y'
+        where
+           cmt_no=#{cmtNo}
+  		</update>
 	
-	   INSERT 
-		   	INTO COORDI VALUES( 
-		   	#{coordiNo},
-		   	#{userId},
-		   	#{coordiContent},
-		   	#{gender},
-		   	#{season},
-		   	#{temperature},
-		   	SYSDATE,
-		   	#{hashtag},
-		   	'N'
-	   	)
+
+	 <insert id="insertInfo" parameterType="Post">
+        <selectKey keyProperty="coordiNo" resultType="int" order="BEFORE">
+            select COORDI_SEQ.nextval from dual
+        </selectKey>
+
+       INSERT 
+               INTO COORDI VALUES( 
+               #{coordiNo},
+               #{userId},
+               #{coordiContent},
+               #{gender},
+               #{season},
+               #{temperature},
+               SYSDATE,
+               #{hashtag},
+               'N'
+           )
    </insert>
-   
-   	<insert id="insertPic" parameterType="Post">
-	INSERT 
-		INTO COORDI_IMG VALUES(
-		#{coordiNo},
-		#{filePath},
-		#{topyn},
-		#{delyn}
-		)
+
+       <insert id="insertPic" parameterType="Post">
+    INSERT 
+        INTO COORDI_IMG VALUES(
+        #{coordiNo},
+        #{filePath},
+        'Y',
+        'N'
+        )
 
  
    </insert>
-   
-   	<insert id="insertCategory" parameterType="Post">
-	
-      
-      
+
+       <insert id="insertCategory" parameterType="Post">
+        INSERT
+            INTO ITEM VALUES(
+            #{coordiNo},
+            #{categoryCode},
+            #{brand}
+
+            )
+
+
    </insert>
-   
-
-  	<insert id="insertItItem">
-  	
-  	
-  	</insert>
-
-  	
-  	
-  	<insert id="deleteItItem">
-  	
-  	
-  	</insert>
 
 
-	<insert id="readCmt">
-    	SELECT
-    		  COORDI_POST_NO,COORDICMT_SEQ.nextval,CMT_WRITER,CMT_CONTENT,CMT_PARENT,CMT_DEPTH,CMT_SEQ,DEL_YN,SYSDATE
-    	 FROM COORDI_COMMENTS
-    	WHERE coordiNo = #{coordi_post}
-	</insert>
-	  <select id="selectLikeList" resultType="int" >
-  	select 
-  		coordi_no as coordiNo
-  	from 
-  		coordi_like
-  	where
-  		user_Id=#{userId}
-  </select>
-  <select id="selectScrapList" resultType="int" >
-  	select 
-  		coordi_no as coordiNo
-  	from 
-  		coordi_scrap
-  	where
-  		user_Id=#{userId}
-  </select>
-	<insert id="insertComment" parameterType="hashmap">
-	  	insert into 
-	  		COORDI_COMMENTS
-	  	values
-	  		(#{coordiNo},coordicmt_seq.nextval,#{userId},#{comment},null,1,1,'N',sysdate)
-  	</insert>
-  	<update id="deleteComment" >
-	  	update
-	  		COORDI_COMMENTS
-	  	set
-	  		del_yn='Y'
-	  	where
-	  		cmt_no=#{cmtNo}
-  </update>
+   <!-- 코디 업데이트 정보 불러오기 -->
+   <insert id="updateCoordiInfo" parameterType="Post">
+        SELECT
+            TEMPERATURE,
+            SEASON,
+            GENDER,
+            COORDICONTENT,
+            HASHTAG
+        FROM COORDI
+        WHERE coordi_No = #{coordiNo} and user_id = #{userId}
+   </insert>
+      <!-- 코디사진 업데이트 정보 불러오기 -->
+   <insert id="updateCoordiPic" parameterType="Post">
+        SELECT
+            CATEGORY,
+            FILEFATH,
+            COORDICONTENT,
+            HASHTAG
+        FROM COORDI_IMG
+        WHERE coordi_no = #{coordiNo}
+   </insert>
+      <!-- 코디카테고리 업데이트 정보 불러오기 -->
+      <insert id="updateCoordiCategory" parameterType="Post">
+        SELECT
+            coordi_no as coordiNo,
+            item_code as itemCode,
+            brand as brand
+        FROM ITEM
+        WHERE coordi_no = #{coordiNo}
+           </insert>
+
+	
 </mapper>

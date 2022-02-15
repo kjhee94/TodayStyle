@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐 입지?</title>
+<title>오늘 뭐 입지? - 잇템 작성</title>
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -15,6 +17,7 @@
 <link rel="stylesheet" href="/resources/css/insertStyle.css?ver=1">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="/resources/js/postInsert.js"></script>
+<script src="/resources/common/common.js"></script>
 </head>
 <body>
 	
@@ -86,19 +89,19 @@
                             <div id="select-category2">
                                 <div class="top" style="display:none">
                                    <span>
-                                        <select class="select">
-                                            <option>상의 카테고리 선택</option>
-                                            <option>블라우스</option>
-                                            <option>반팔</option>
-                                            <option>셔츠</option>
-                                            <option>긴팔</option>
-                                            <option>맨투맨</option>
-                                            <option>후드</option>
-                                            <option>니트</option>
-                                            <option>히트텍</option>
-                                            <option>원피스</option>
-                                            <option>조끼</option>
-                                            
+                                   <input type="text" id="TopCategory" style="display:none"/>
+                                        <select class="select" name="top" id="top" onchange="selectTopChange(this.value)" id="select">
+                                            <option value="상의선택">상의 카테고리 선택</option>
+                                            <option value="T-blouse">블라우스</option>
+                                            <option value="T-shortsleeve">반팔</option>
+                                            <option value="T-shirts">셔츠</option>
+                                            <option value="T-longsleeve">긴팔</option>
+                                            <option value="T-mantoman">맨투맨</option>
+                                            <option value="T-hoodie">후드</option>
+                                            <option value="T-knit">니트</option>
+                                            <option value="T-heattech">히트텍</option>
+                                            <option value="T-onepiece">원피스</option>
+                                            <option value="T-vest">조끼</option>
                                         </select>
                                     </span>
                                     <span>
@@ -272,30 +275,29 @@
 	            <div id="insert-picture">
                    
                 	<label for="uploadFile">
-                        <div class="input_wrap" onclick="onclick=document.all.file.click()">
-		                    <div style="vertical-align:middle;padding:180px 0px 180px 0px">
+                        <div id="input_wrap" class="input_wrap" onclick="onclick=document.all.file.click()">
+		                    <div style="vertical-align:middle;padding:180px 0px 180px 0px;margin-top:55px">
 			                    <span style="color:#707070">
 			                        <span style="padding:5px"><img src="/resources/images/icon/camera.png" style="width:15px; height:15px">
 			                    </span>
-			                    <span>
-		                        	사진을 등록해주세요<pre>
-		                        	</pre>(*최대 10장까지)
+			                    <span><pre></pre>
+		                        	사진을 등록해주세요
 	                        	</span>
 	                        </div>
                         </div>
-                       	<div class="imgs_wrap">	
-                       		<div id="preview">
-                       		
-                       		</div>
-	                    </div>
+
 	                   
-						<input style="display: none" type="file" name="uploadFile" id="uploadFile" multiple/>
-				              	
+						<input style="display: none" type="file" name="uploadFile" id="uploadFile"/>
+				         
                     
 	            </div>
+
 	            <div id="insert-info">
+	            	<div id="coordi-title">
+	                    <textarea placeholder="제목을 입력하세요" class="textarea" name="coordi-title"></textarea>
+	                </div>
 	                <div id="coordi-info2">
-	                    <textarea placeholder="코디설명을 입력하세요" class="textarea" ></textarea>
+	                    <textarea placeholder="코디설명을 입력하세요" class="textarea" name="coordi-content"></textarea>
 	                </div>
 	                
 					<div class="tr_hashTag_area">
@@ -582,6 +584,8 @@
 				      
 				      preview(arr);
 				      
+				      readImage(this);
+				      
 				      
 				    });//file change
 				    
@@ -604,7 +608,35 @@
 				      return true;
 				    }
 				    
+				    
+				    function readImage(input){
+				    	
+				    	 var file = input.files[0];
+				    	 
+				    	
+				    	 var img = document.createElement("img");
+				    	 img.style.width="100%";
+				    	 img.style.height="100%";
+				    	
+				    	 img.src = URL.createObjectURL(file);
+				    	 
+				    	 var inputWrap = document.getElementById("input_wrap");
+				    	 inputWrap.innerHTML="";
+				    	 console.log(inputWrap);
+				    	 inputWrap.appendChild(img);
+				    	 
+				    	
+				    	  
+				    	
+				    }
+				    
+				    
 				    function preview(arr){
+				    	
+				    	
+				    	
+				    	
+				    	
 				      arr.forEach(function(f){
 				        
 				        //파일명이 길면 파일명...으로 처리
@@ -624,15 +656,22 @@
 				            str += '<img src="'+e.target.result+'" title="'+f.name+'" width=100 height=100 />';
 				            str += '</li></div>';
 				            $(str).appendTo('#preview');
+				         	
+				          
+				            
+				            
 				          } 
 				          reader.readAsDataURL(f);
 				        }else{
 				          str += '<img src="/resources/img/fileImg.png" title="'+f.name+'" width=100 height=100 />';
 				          $(str).appendTo('#preview');
 				        }
+				        
+				    
 				      });//arr.forEach
 				    }
 				  });
+			 
 	</script>
 	<!-- footer -->
 	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>

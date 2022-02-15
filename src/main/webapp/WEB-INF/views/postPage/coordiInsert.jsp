@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐 입지?</title>
+<title>오늘 뭐 입지? - 코디 작성</title>
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -16,6 +18,7 @@
 <link rel="stylesheet" href="/resources/css/insertStyle.css?ver=1">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script src="/resources/js/postInsert.js"></script>
+<script src="/resources/common/common.js"></script>
 </head>
 <body>
 	
@@ -124,22 +127,22 @@
                                 <div class="top" style="display:none">
                                    <span>
                                    <input type="text" id="TopCategory" style="display:none"/>
-                                        <select class="select" onchange="selectTopChange(this.value)" id="select">
+                                        <select class="select" name="top" id="top" onchange="selectTopChange(this.value)" id="select">
                                             <option value="상의선택">상의 카테고리 선택</option>
                                             <option value="T-blouse">블라우스</option>
-                                            <option value="반팔">반팔</option>
-                                            <option value="셔츠">셔츠</option>
-                                            <option value="긴팔">긴팔</option>
-                                            <option value="맨투맨">맨투맨</option>
-                                            <option value="후드">후드</option>
-                                            <option value="니트">니트</option>
-                                            <option value="히트텍">히트텍</option>
-                                            <option value="원피스">원피스</option>
-                                            <option value="조끼">조끼</option>
+                                            <option value="T-shortsleeve">반팔</option>
+                                            <option value="T-shirts">셔츠</option>
+                                            <option value="T-longsleeve">긴팔</option>
+                                            <option value="T-mantoman">맨투맨</option>
+                                            <option value="T-hoodie">후드</option>
+                                            <option value="T-knit">니트</option>
+                                            <option value="T-heattech">히트텍</option>
+                                            <option value="T-onepiece">원피스</option>
+                                            <option value="T-vest">조끼</option>
                                         </select>
                                     </span>
                                     <span>
-                                    	<input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="top-textarea" style="margin-bottom:29px"/>
+                                    	<input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="top-textarea" name="top-textarea" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="top-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -148,27 +151,28 @@
                                 <div class="bottom" style="display:none" >
                                    <span>
                                    <input type="text" id="BottomCategory" style="display:none"/>
-                                        <select class="select" onchange="selectBottomChange(this.value)" id="select">
+                                        <select class="select" name="bottom" id="bottom" onchange="selectBottomChange(this.value)" id="select">
                                             <option value="하의선택">하의 카테고리 선택</option>
-                                            <option value="반바지">반바지</option>
-                                            <option value="짧은치마">짧은치마</option>
-                                            <option value="긴치마">긴치마</option>
-                                            <option value="슬랙스">슬랙스</option>
-                                            <option value="기모바지">기모바지</option>
-                                            <option value="스타킹">스타킹</option>
-                                            <option value="레깅스">레깅스</option>
-                                            <option value="일자바지">일자바지</option>
-                                            <option value="와이드팬츠">와이드팬츠</option>
-                                            <option value="스키니">스키니</option>
-                                            <option value="부츠컷">부츠컷</option>
-                                            <option value="조거">조거</option>
-                                            <option value="치마바지">치마바지</option>
-                                            <option value="멜빵">멜빵</option>
-                                            <option value="미니스커트">미니스커트</option>
+                                            <option value="B-short">반바지</option>
+                                            <option value="B-shortskirt">짧은치마</option>
+                                            <option value="B-longskirt">긴치마</option>
+                                            <option value="B-slacks">슬랙스</option>
+                                            <option value="B-nappingpants">기모바지</option>
+                                            <option value="B-stockings">스타킹</option>
+                                            <option value="B-leggings">레깅스</option>
+                                            <option value="B-straightpants">일자바지</option>
+                                            <option value="B-widepants">와이드팬츠</option>
+                                            <option value="B-skinny">스키니</option>
+                                            <option value="B-bootcut">부츠컷</option>
+                                            <option value="B-jogger">조거</option>
+                                            <option value="B-skirtpants">치마바지</option>
+                                            <option value="B-overalls">멜빵</option>
+                                            <option value="B-midiskirt">미니스커트</option>
+                                            <option value="B-Jeans">청바지</option>
                                         </select>
                                     </span>
                                     <span>
-                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="bottom-textarea" style="margin-bottom:29px"/>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="bottom-textarea" name="bottom-textarea" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="bottom-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -177,21 +181,21 @@
                                 <div class="outer" style="display:none">
                                    <span>
                                    <input type="text" id="OuterCategory" style="display:none"/>
-                                        <select class="select" onchange="selectOuterChange(this.value)" id="select" >
+                                        <select class="select" name="outer" id="outer" onchange="selectOuterChange(this.value)" id="select" >
                                             <option value="아우터선택">아우터 카테고리 선택</option>
-                                            <option value="자켓">자켓</option>
-                                            <option value="가디건">가디건</option>
-                                            <option value="야상">야상</option>
-                                            <option value="트렌치코트">트렌치코트</option>
-                                            <option value="패딩">패딩</option>
-                                            <option value="코트">코트</option>
-                                            <option value="바람막이">바람막이</option>
-                                            <option value="플리스">플리스</option>
-                                            <option value="집업">집업</option>
+                                            <option value="O-jacket">자켓</option>
+                                            <option value="O-cardigan">가디건</option>
+                                            <option value="O-fieldjacket">야상</option>
+                                            <option value="O-trenchcoat">트렌치코트</option>
+                                            <option value="O-padding">패딩</option>
+                                            <option value="O-coat">코트</option>
+                                            <option value="O-windbreaker">바람막이</option>
+                                            <option value="O-fleece">플리스</option>
+                                            <option value="O-zipup">집업</option>
                                         </select>
                                     </span>
                                     <span>
-                                         <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="outer-textarea"style="margin-bottom:29px"/>
+                                         <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="outer-textarea" name="outer-textarea" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="outer-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -205,7 +209,7 @@
                                         </select>
                                     </span>
                                     <span>
-                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="shoes-textarea" style="margin-bottom:29px"/>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="shoes-textarea" name="shoes-textarea" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="shoes-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -214,25 +218,25 @@
                                 <div class="acc" style="display:none">
                                    <span>
                                    <input type="text" id="AccCategory" style="display:none"/>
-                                        <select class="select" onchange="selectAccChange(this.value)" id="select">
+                                        <select class="select" name="acc" id="acc" onchange="selectAccChange(this.value)" id="select">
                                             <option value="악세사리선택">악세사리 카테고리 선택</option>
-                                            <option value="장갑">장갑</option>
-                                            <option value="목도리">목도리</option>
-                                            <option value="모자">모자</option>
-                                            <option value="양말">양말</option>
-                                            <option value="벨트">벨트</option>
-                                            <option value="시계">시계</option>
-                                            <option value="안경">안경</option>
-                                            <option value="가방">가방</option>
-                                            <option value="귀걸이">귀걸이</option>
-                                            <option value="목걸이">목걸이</option>
-                                            <option value="팔찌">팔찌</option>
-                                            <option value="반지">반지</option>
-                                            <option value="발찌">발찌</option>
+                                            <option value="A-gloves">장갑</option>
+                                            <option value="A-muffler">목도리</option>
+                                            <option value="A-hat">모자</option>
+                                            <option value="A-socks">양말</option>
+                                            <option value="A-belt">벨트</option>
+                                            <option value="A-clock">시계</option>
+                                            <option value="A-glasses">안경</option>
+                                            <option value="A-bag">가방</option>
+                                            <option value="A-earrings">귀걸이</option>
+                                            <option value="A-necklace">목걸이</option>
+                                            <option value="A-bracelet">팔찌</option>
+                                            <option value="A-ring">반지</option>
+                                            <option value="A-anklet">발찌</option>
                                         </select>
                                     </span>
                                     <span>
-                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="acc-textarea" style="margin-bottom:29px"/>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="acc-textarea" name="acc-textarea" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="acc-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -250,21 +254,16 @@
                    
                 	<label for="uploadFile">
                         <div id="input_wrap" class="input_wrap" onclick="onclick=document.all.file.click()">
-		                    <div style="vertical-align:middle;padding:180px 0px 180px 0px">
+		                    <div style="vertical-align:middle;padding:180px 0px 180px 0px;margin-top:55px">
 			                    <span style="color:#707070">
 			                        <span style="padding:5px"><img src="/resources/images/icon/camera.png" style="width:15px; height:15px">
 			                    </span>
-			                    <span>
-		                        	사진을 등록해주세요<pre>
-		                        	</pre>
+			                    <span><pre></pre>
+		                        	사진을 등록해주세요
 	                        	</span>
 	                        </div>
                         </div>
-                       	<div class="imgs_wrap">	
-                       		<div id="preview">
-                       		
-                       		</div>
-	                    </div>
+
 	                   
 						<input style="display: none" type="file" name="uploadFile" id="uploadFile"/>
 				         
@@ -272,7 +271,7 @@
 	            </div>
 	            <div id="insert-info">
 	                <div id="coordi-info2">
-	                    <textarea placeholder="코디설명을 입력하세요" class="textarea" name="coordi-content" ></textarea>
+	                    <textarea placeholder="코디설명을 입력하세요" class="textarea" name="coordi-content" id="coordi-content" ></textarea>
 	                </div>
 	                
 					<div class="tr_hashTag_area">
@@ -289,7 +288,7 @@
 			</div>
 			
 			<div id="coordi-post">
-				<input type="submit" class="btn-style-mint"  value="등록"></input>
+				<input type="submit" class="btn-style-mint" id="postBtn" value="등록"></input>
 			</div>
 			</form>
 			
@@ -481,7 +480,7 @@
 	                
 	                    // 해시태그가 중복되었는지 확인
 	                    if (result.length == 0) { 
-	                        $("#tag-list").append("<li class='tag-item' style='cursor:pointer; display:inline;border:none;width:90px;height:35px;border-radius:20px;background-color:#F5F5F5;margin:5px;color:#C8C8C8'>#  "+tagValue+"<span class='del-btn' idx='"+counter+" style='color:#FFFFFF'>  </span><input type='hidden' name='tags' value='"+tagValue+"'/></li>");
+	                        $("#tag-list").append("<li class='tag-item' style='cursor:pointer; display:inline;border:none;width:90px;height:35px;border-radius:20px;background-color:#F5F5F5;margin:5px;color:#C8C8C8'>#  "+tagValue+"<span class='del-btn' idx='"+counter+" style='color:#FFFFFF'>  </span><input type='hidden' id='tag' name='tags' value='"+tagValue+"'/></li>");
 	                        
 	                        addTag(tagValue);
 	                        self.val("");
@@ -683,8 +682,6 @@
 			};
 			
 
-			
-			
 
 			
 	</script>

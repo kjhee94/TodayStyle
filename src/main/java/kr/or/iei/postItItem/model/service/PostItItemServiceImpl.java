@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.or.iei.postCoordi.model.vo.PostCoordi;
 import kr.or.iei.postItItem.model.dao.PostItItemDAO;
 import kr.or.iei.postItItem.model.vo.PostItItem;
 
@@ -44,5 +45,26 @@ public class PostItItemServiceImpl implements PostItItemService{
 		// TODO Auto-generated method stub
 		return iDAO.deleteComment(cmtNo);
 	}
+	
+	
+	@Override
+    public void insert(PostCoordi post, PostCoordi topPost, PostCoordi bottomPost, PostCoordi outerPost,
+            PostCoordi accPost, PostCoordi shoesPost) {
+        iDAO.insertInfo(post);
+         System.out.println(post.getCoordiNo());
+
+        iDAO.insertPic(post);
+
+
+        topPost.setCoordiNo(post.getCoordiNo());
+        bottomPost.setCoordiNo(post.getCoordiNo());
+        accPost.setCoordiNo(post.getCoordiNo());
+        outerPost.setCoordiNo(post.getCoordiNo());
+        shoesPost.setCoordiNo(post.getCoordiNo());
+
+         iDAO.insertCategory(topPost,bottomPost,accPost,outerPost,shoesPost);
+
+
+    }
 }
  

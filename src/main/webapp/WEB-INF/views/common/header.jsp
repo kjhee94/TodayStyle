@@ -43,7 +43,7 @@
 								<div class="box-write">
 									<button class="btn-style-mint">글 작성</button>
 									<div class="box-write-link">
-										<a href="/coordi/coordiInsert.do">코디 작성</a>
+										<a href="/coordi/insertCoordi.do">코디 작성</a>
 										<a href="/coordi/ItInsert.do">잇템 작성</a>
 									</div>
 								</div>

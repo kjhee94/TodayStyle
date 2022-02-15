@@ -112,7 +112,7 @@
 						                   		<div class="cmt-info">
 						                   			<span>${cl.cmtTime}</span>
 						                   			<c:if test="${ cl.cmtWriter==sessionScope.member.userId}">
-						                   				<span id="cmt-delete" style="cursor:pointer">삭제</span>
+						                   				<span class="cmt-delete" style="cursor:pointer">삭제</span>
 						                   			</c:if>
 						                   			
 						                   		

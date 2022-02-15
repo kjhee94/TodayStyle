@@ -22,29 +22,19 @@ public class PostService implements PostServiceInterface{
 		
 		return postCoordiDAO.oneCoordiPost(coordiNo);
 	}
-	 
-	@Override
-	public void insert(PostCoordi post) {
-	postCoordiDAO.insertInfo(post);
-	System.out.println(post.getCoordiNo());
-		 	
-	//postCoordiDAO.insertPic(post);
-	//postCoordiDAO.insertCategory(post);
-	 		
-	}
 
 	@Override
 	public ArrayList<Integer> selectLikeList(String userId) {
-		
+      
 		return postCoordiDAO.selectLikeList(userId);
 	}
-
+	
 	@Override
 	public ArrayList<Integer> selectScrapList(String userId) {
 		// TODO Auto-generated method stub
 		return postCoordiDAO.selectScrapList(userId);
 	}
-
+	
 	@Override
 	public int insertComment(HashMap<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -53,9 +43,29 @@ public class PostService implements PostServiceInterface{
 
 	@Override
 	public int deleteComment(int cmtNo) {
-		
+	      
 		return postCoordiDAO.deleteComment(cmtNo);
 	}
+
+	
+	@Override
+	public void insert(PostCoordi post, PostCoordi topPost, PostCoordi bottomPost, PostCoordi outerPost, PostCoordi accPost, PostCoordi shoesPost) throws Exception {
+       
+		postCoordiDAO.insertInfo(post);
+		System.out.println(post.getCoordiNo());
+
+		postCoordiDAO.insertPic(post);
+
+
+        topPost.setCoordiNo(post.getCoordiNo());
+        bottomPost.setCoordiNo(post.getCoordiNo());
+        accPost.setCoordiNo(post.getCoordiNo());
+        outerPost.setCoordiNo(post.getCoordiNo());
+        shoesPost.setCoordiNo(post.getCoordiNo());
+
+        postCoordiDAO.insertCategory(topPost,bottomPost,accPost,outerPost,shoesPost);
+
+    }
 }
 	
  

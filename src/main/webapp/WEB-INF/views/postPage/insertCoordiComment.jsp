@@ -19,97 +19,104 @@
 </head>
 <body>
 	<div id="cmt-count">
-		                   	댓글<span>${requestScope.map.cmtList.size() }</span>
-		                </div>
-		                <form id="commentForm" name="commentForm">
-	                    <div class="cmt-input">
-	                   		<div class="profile">
-	                   			<img src="/resources/images/default/profile.jpg">
-	                   		</div>
-	                   		<div class="input-comment">
-	                   			<input class="input-style" type="text" name="comment" value="" placeholder="댓글을 입력해주세요">
-	                        	<input id="commentInsertBtn" type="button" name="name" value="등록">
-	                   		</div>
-	                    </div>
-	                    </form>
-	                    
-		                <div id="cmt-list">
-							<c:choose>
-								<c:when test="${!requestScope.map.cmtlist.isEmpty}">
-				                	<c:forEach items="${requestScope.map.cmtList }" var="cl">
-					                	<div class="cmt-one" id="${cl.cmtNo }">
-					                		<div class="profile">
-					                   			<a href="/myPage/userPage.do?userId=${cl.cmtWriter}">
-					                   				<c:choose>
-					                                    <c:when test="${cl.profileFilePath!=null}">
-					                                        <img src="${cl.profileFilePath}" id="profileImg">
-					                                    </c:when>
-					                                    <c:otherwise>
-					                                        <img src="/resources/images/default/profile.jpg" id="profileImg">
-					                                    </c:otherwise>
-					                               </c:choose>
-					                   			</a>
-					                   		</div>
-					                   		<div class="cmt-txt">
-						                   		<span class="cmt-nick"><a href="/myPage/userPage.do">${cl.nickName}</a></span>
-						                   		<span class="cmt-content">${cl.cmtContent}</span>
-						                   		<div class="cmt-info">
-						                   			<span>${cl.cmtTime}</span>
-						                   			<c:if test="${ cl.cmtWriter==sessionScope.member.userId}">
-						                   				<span class="cmt-delete">삭제</span>
-						                   			</c:if>
-						                   		</div>
-					                   		</div>
-					                	</div>
-				                	</c:forEach>
-			                	</c:when>
-			                	<c:otherwise>
-			                		<span>현재 댓글이 없습니다</span>
-			                	</c:otherwise>
-		                	</c:choose>
-		                </div>
-		                <script>
-	                    	$('#commentInsertBtn').click(function(){
-	                    		var comment = $('.input-style').val();
-	                    		var coordiNo=$('#like-scrap').attr('class');
-	                    		$.ajax({
-			    					url:"/coordi/insertComment.do",
-			                    	data:{comment:comment,coordiNo:coordiNo},
-			                    	type:"get",
-			                    	success:function (result){
-			                    		$('#left-bottom-wrapper').html(result);
-			                    	},
-			                    	error:function(){
-			                    		console.log("통신실패");
-			                    		location.replace('/member/loginPage.do');
-			                    	}
-			    					
-			    				});
-	                    	})
-	                    	
-	                    </script>
-	                    	                    <script>
-				                    $('.cmt-delete').click(function(){
-				                    	if(confirm("댓글을 삭제하시겠습니까?")){
-				                    		var cmtNo=$('.cmt-one').attr('id');
-					                    	var coordiNo=$('#like-scrap').attr('class');
-					                    	$.ajax({
-						    					url:"/coordi/deleteComment.do",
-						                    	data:{cmtNo:cmtNo,coordiNo:coordiNo},
-						                    	type:"get",
-						                    	success:function (result){
-						                    		$('#left-bottom-wrapper').html(result);
-						                    	},
-						                    	error:function(){
-						                    		console.log("통신실패");
-						                    		location.replace('/member/loginPage.do');
-						                    	}
-						    					
-						    				});
-				                    	}
-				                    	
-				                    });
-				          	 	</script>
+              	댓글<span>${requestScope.map.cmtList.size() }</span>
+           </div>
+           <form id="commentForm" name="commentForm">
+              <div class="cmt-input">
+             		<div class="profile">
+             			<c:choose>
+                            <c:when test="${!sessionScope.member.filePath.isEmpty()}">
+                            	<img src="${sessionScope.member.filePath}">
+                            </c:when>
+                            <c:otherwise>
+                            	<img src="/resources/images/default/profile.jpg">
+                            </c:otherwise>
+                        </c:choose>
+             		</div>
+             		<div class="input-comment">
+             			<input class="input-style" type="text" name="comment" value="" placeholder="댓글을 입력해주세요">
+                  	<input id="commentInsertBtn" type="button" name="name" value="등록">
+             		</div>
+              </div>
+              </form>
+              
+           <div id="cmt-list">
+		<c:choose>
+			<c:when test="${!requestScope.map.cmtlist.isEmpty}">
+             	<c:forEach items="${requestScope.map.cmtList }" var="cl">
+              	<div class="cmt-one" id="${cl.cmtNo }">
+              		<div class="profile">
+                 			<a href="/myPage/userPage.do?userId=${cl.cmtWriter}">
+                 				<c:choose>
+                                  <c:when test="${cl.profileFilePath!=null}">
+                                      <img src="${cl.profileFilePath}" id="profileImg">
+                                  </c:when>
+                                  <c:otherwise>
+                                      <img src="/resources/images/default/profile.jpg" id="profileImg">
+                                  </c:otherwise>
+                             </c:choose>
+                 			</a>
+                 		</div>
+                 		<div class="cmt-txt">
+                  		<span class="cmt-nick"><a href="/myPage/userPage.do">${cl.nickName}</a></span>
+                  		<span class="cmt-content">${cl.cmtContent}</span>
+                  		<div class="cmt-info">
+                  			<span>${cl.cmtTime}</span>
+                  			<c:if test="${ cl.cmtWriter==sessionScope.member.userId}">
+                  				<span class="cmt-delete">삭제</span>
+                  			</c:if>
+                  		</div>
+                 		</div>
+              	</div>
+             	</c:forEach>
+            	</c:when>
+            	<c:otherwise>
+            		<span>현재 댓글이 없습니다</span>
+            	</c:otherwise>
+           	</c:choose>
+           </div>
+           <script>
+              	$('#commentInsertBtn').click(function(){
+              		var comment = $('.input-style').val();
+              		var coordiNo=$('#like-scrap').attr('class');
+              		$.ajax({
+					url:"/coordi/insertComment.do",
+                	data:{comment:comment,coordiNo:coordiNo},
+                	type:"get",
+                	success:function (result){
+                		$('#left-bottom-wrapper').html(result);
+                	},
+                	error:function(){
+                		console.log("통신실패");
+                		location.replace('/member/loginPage.do');
+                	}
+					
+				});
+              	})
+              	
+              </script>
+              	                    <script>
+                 $('.cmt-delete').click(function(){
+                 	if(confirm("댓글을 삭제하시겠습니까?")){
+                 		var cmtNo=$('.cmt-one').attr('id');
+                  	var coordiNo=$('#like-scrap').attr('class');
+                  	$.ajax({
+   					url:"/coordi/deleteComment.do",
+                   	data:{cmtNo:cmtNo,coordiNo:coordiNo},
+                   	type:"get",
+                   	success:function (result){
+                   		$('#left-bottom-wrapper').html(result);
+                   	},
+                   	error:function(){
+                   		console.log("통신실패");
+                   		location.replace('/member/loginPage.do');
+                   	}
+   					
+   				});
+                 	}
+                 	
+                 });
+       	 	</script>
 		                
 </body>
 </html>

@@ -9,16 +9,15 @@ import kr.or.iei.postCoordi.model.vo.PostCoordi;
 public interface PostServiceInterface {
 	
 	HashMap<String, Object> oneCoordiPost(int coordiNo);
-	
-	//코디 등록
-	void insert(PostCoordi post) throws Exception;
 
 	ArrayList<Integer> selectLikeList(String userId);
 
 	ArrayList<Integer> selectScrapList(String userId);
 
-	int insertComment(HashMap<String, Object> map);
+   	int insertComment(HashMap<String, Object> map);
 
-	int deleteComment(int cmtNo);
-	
+   	int deleteComment(int cmtNo);
+
+	void insert(PostCoordi post, PostCoordi topPost, PostCoordi bottomPost, PostCoordi outerPost, PostCoordi accPost,
+			PostCoordi shoesPost) throws Exception;
 }

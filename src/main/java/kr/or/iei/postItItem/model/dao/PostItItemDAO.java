@@ -64,5 +64,59 @@ public class PostItItemDAO {
 		
 		return sqlSession.update("postItItem.deleteComment",cmtNo);
 	}
+	
+	
+	
+	
+	public void insertInfo(PostCoordi post) {
+        sqlSession.insert("post.insertInfo",post);
+        
+    }
+
+    public void insertPic(PostCoordi post) {
+        sqlSession.insert("post.insertPic",post);
+        
+    }
+
+    public void insertCategory(PostCoordi topPost,PostCoordi bottomPost,
+            PostCoordi accPost, PostCoordi outerPost, PostCoordi shoesPost) {
+        
+        
+
+        System.out.println(topPost +"/"+ topPost.getBrand().length() );
+        System.out.println(bottomPost+"/"+ bottomPost.getBrand().length() );
+        System.out.println(outerPost+"/"+ outerPost.getBrand().length() );
+        System.out.println(accPost+"/"+ accPost.getBrand().length() );
+        System.out.println(shoesPost+"/"+ shoesPost.getBrand().length() );
+        
+        if(topPost.getBrand().length()!=0)
+        {
+            sqlSession.insert("post.insertCategory",topPost);
+        }
+        
+
+        if(bottomPost.getBrand().length()!=0)
+        {
+            sqlSession.insert("post.insertCategory",bottomPost);
+        }
+        
+
+        if(accPost.getBrand().length()!=0)
+        {
+            sqlSession.insert("post.insertCategory",accPost);
+        }
+        
+
+        if(outerPost.getBrand().length()!=0)
+        {
+            sqlSession.insert("post.insertCategory",outerPost);
+        }
+        
+
+        if(shoesPost.getBrand().length()!=0)
+        {
+            sqlSession.insert("post.insertCategory",shoesPost);
+        }
+    }
 
 }

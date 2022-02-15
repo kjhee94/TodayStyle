@@ -169,6 +169,8 @@ textarea {
 	border: 3px solid #707070;
 	border-radius: 100px;
 	overflow: hidden;
+	width: 100%;
+	height: 100%;
 }
 .profile>a {
 	width: 100%;

@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class PostCoordiController {
     
     @Autowired
     private MyPageService mpService;
+    
+    @Autowired
+    private ServletContext context;
     
     //코디 게시물 개별페이지 이동
     @RequestMapping(value="/coordi/coordiPost.do",method=RequestMethod.GET)
@@ -74,16 +78,57 @@ public class PostCoordiController {
         return mav;
     }
 
+    //댓글 입력
+    @RequestMapping(value="/coordi/insertComment.do", method=RequestMethod.GET)
+    public String insertComment(@RequestParam String comment,@SessionAttribute Member member ,@RequestParam int coordiNo,Model model) {
+       String userId=member.getUserId();
+       HashMap<String, Object> map=new HashMap<String, Object>();
+       map.put("userId", userId);
+       map.put("comment", comment);
+       map.put("coordiNo", coordiNo);
+       int result=postService.insertComment(map);
+       HashMap<String, Object> resultMap = postService.oneCoordiPost(coordiNo);
+       model.addAttribute("map",resultMap);
+       return "postPage/insertCoordiComment";
+    }
+    
+    @RequestMapping(value="/coordi/deleteComment.do",method=RequestMethod.GET)
+    public String deleteComment(@RequestParam int cmtNo,Model model,@RequestParam int coordiNo) {
+       
+       int result=postService.deleteComment(cmtNo);
+       HashMap<String, Object> resultMap = postService.oneCoordiPost(coordiNo);
+       model.addAttribute("map",resultMap);
+       return "postPage/insertCoordiComment";
+    }
+
+    
+    
+    
+    //코디 수정 페이지 이동
+    @RequestMapping(value="/coordi/coordiUpdate.do",method=RequestMethod.GET)
+    public String coordiUpdate(HttpServletResponse response,@SessionAttribute Member m) throws Exception{
+		PostCoordi post = new PostCoordi();
+    	String userId = m.getUserId();
+    	
+        return "postPage/coordiUpdate";
+    }
+    
+    //코디 수정 기능
+    @RequestMapping(value="/coordi/updateCoordi.do",method=RequestMethod.GET)
+    public String updateCoordi(HttpServletResponse response,@SessionAttribute Member m) throws Exception{
+		PostCoordi post = new PostCoordi();
+    	String userId = m.getUserId();
+    	
+        return "postPage/coordiUpdate";
+    }
+
+
     //코디 작성페이지 이동
     @RequestMapping(value="/coordi/insertCoordi.do",method=RequestMethod.GET)
     public String insertCoordi(){
         return "postPage/coordiInsert";
     }
 
-    
-    @Autowired
-	ServletContext context;	
-    
     //코디 작성
     @RequestMapping( value = "/coordi/insertBoard.do", method=RequestMethod.POST)
     public String insertBoard(HttpServletRequest request, @SessionAttribute Member member) throws Exception{
@@ -91,13 +136,13 @@ public class PostCoordiController {
     	String uploadPath = "/resources/upload/uploadCoordi/";
 		
 	
-		int uploadFileSizeLimit = 5*1024*1024; // 최대 업로드 파일 크기 5MB로 제한 (500*1024*1024 하면 500 MB)
+		int uploadFileSizeLimit = 5*1024*1024; // 최대 업로드 파일 크기 5MB로 제한
 	
 		String encType="UTF-8";
 	
 		String uploadFilePath = context.getRealPath(uploadPath);// 실제 upload 전체경로
 		
-		//아래까지만 해도 파일이 업로드 잘 처리  됨
+		
 		MultipartRequest multi = new MultipartRequest(request, 
 												uploadFilePath, 
 												uploadFileSizeLimit, 
@@ -108,7 +153,6 @@ public class PostCoordiController {
 
 		String originalUploadFilePath = uploadPath+originalFileName;
 		
-		
 		String temperature = multi.getParameter("temperature");
 		String season = multi.getParameter("season");
 		String gender = multi.getParameter("gender");
@@ -118,9 +162,20 @@ public class PostCoordiController {
 		String shoes = multi.getParameter("shoes");
 		String acc = multi.getParameter("acc");
 		String tag = multi.getParameter("tags");
+		String uploadFile = multi.getParameter("uploadFile");
 		String coordiContent = multi.getParameter("coordi-content");
+		String topBrand = multi.getParameter("top-textarea");
+		String bottomBrand = multi.getParameter("bottom-textarea");
+		String outerBrand = multi.getParameter("outer-textarea");
+		String accBrand = multi.getParameter("acc-textarea");
+		String shoesBrand = multi.getParameter("shoes-textarea");
 		
 		PostCoordi post = new PostCoordi();
+		PostCoordi topPost = new PostCoordi();
+		PostCoordi bottomPost = new PostCoordi();
+		PostCoordi outerPost = new PostCoordi();
+		PostCoordi accPost = new PostCoordi();
+		PostCoordi shoesPost = new PostCoordi();
 		
 		post.setTemperature(temperature);
 		post.setSeason(season);
@@ -128,36 +183,20 @@ public class PostCoordiController {
 		post.setHashtag(tag);
 		post.setCoordiContent(coordiContent);
 		post.setUserId(member.getUserId());
+		post.setFilePath(uploadPath+originalFileName);
+		topPost.setCategoryCode(top);
+		bottomPost.setCategoryCode(bottom);
+		outerPost.setCategoryCode(outer);
+		accPost.setCategoryCode(acc);
+		shoesPost.setCategoryCode(shoes);
+		topPost.setBrand(topBrand);
+		bottomPost.setBrand(bottomBrand);
+		outerPost.setBrand(outerBrand);
+		accPost.setBrand(accBrand);
+		shoesPost.setBrand(shoesBrand);
 
-
-    	postService.insert(post);
-        return "coordi/coordiList";
-    }
-
-    @RequestMapping(value="/coordi/insertComment.do", method=RequestMethod.GET)
-    public String insertComment(@RequestParam String comment,@SessionAttribute Member member ,@RequestParam int coordiNo,Model model) {
-    	String userId=member.getUserId();
-    	HashMap<String, Object> map=new HashMap<String, Object>();
-    	map.put("userId", userId);
-    	map.put("comment", comment);
-    	map.put("coordiNo", coordiNo);
-    	int result=postService.insertComment(map);
-    	HashMap<String, Object> resultMap = postService.oneCoordiPost(coordiNo);
-    	model.addAttribute("map",resultMap);
-    	return "postPage/insertCoordiComment";
-    }
-    
-    @RequestMapping(value="/coordi/deleteComment.do",method=RequestMethod.GET)
-    public String deleteComment(@RequestParam int cmtNo,Model model,@RequestParam int coordiNo) {
+    	postService.insert(post,topPost,bottomPost,outerPost,accPost,shoesPost);
     	
-    	int result=postService.deleteComment(cmtNo);
-    	HashMap<String, Object> resultMap = postService.oneCoordiPost(coordiNo);
-    	model.addAttribute("map",resultMap);
-    	return "postPage/insertCoordiComment";
+        return "redirect:/";
     }
-
-
-
-
-
 }
