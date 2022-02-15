@@ -50,5 +50,25 @@ public class PostCoordiDAO {
 	public void insertCategory(PostCoordi post){
 		sqlSession.insert("post.insertCategory",post);
 	}
+
+	public ArrayList<Integer> selectLikeList(String userId) {
+		ArrayList<Integer> list =new ArrayList<Integer>(sqlSession.selectList("post.selectLikeList",userId));
+		return list;
+	}
+
+	public ArrayList<Integer> selectScrapList(String userId) {
+		ArrayList<Integer> list =new ArrayList<Integer>(sqlSession.selectList("post.selectScrapList",userId));
+		return list;
+	}
+
+	public int insertComment(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("post.insertComment",map);
+	}
+
+	public int deleteComment(int cmtNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("post.deleteComment",cmtNo);
+	}
 }
 

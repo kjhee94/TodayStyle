@@ -15,14 +15,15 @@
 		    del_YN as delYN,
 		    profileFilePath,
 		    nickname as nickName,
-		    filePath
+		    filePath,
+		    profileFilePath
 		FROM(
 		SELECT C.*, CI.FILEPATH AS filePath, NICKNAME, MI.FILEPATH AS profileFilePath
 		FROM COORDI C
 		LEFT JOIN COORDI_IMG CI ON (C.COORDI_NO=CI.COORDI_NO)
 		LEFT JOIN MEMBER M ON (M.USER_ID=C.USER_ID)
 		LEFT JOIN MEMBER_IMG MI ON (M.USER_ID=MI.USER_ID)
-		WHERE C.COORDI_NO=#{coordiNo} AND C.DEL_YN='N')
+		WHERE C.COORDI_NO=#{coordiNo} AND C.DEL_YN='N' and top_yn='Y')
 	</select>
 	
 	<select id="itemList" parameterType="int" resultType="Post">
@@ -125,6 +126,34 @@
     	 FROM COORDI_COMMENTS
     	WHERE coordiNo = #{coordi_post}
 	</insert>
-	
-
+	  <select id="selectLikeList" resultType="int" >
+  	select 
+  		coordi_no as coordiNo
+  	from 
+  		coordi_like
+  	where
+  		user_Id=#{userId}
+  </select>
+  <select id="selectScrapList" resultType="int" >
+  	select 
+  		coordi_no as coordiNo
+  	from 
+  		coordi_scrap
+  	where
+  		user_Id=#{userId}
+  </select>
+	<insert id="insertComment" parameterType="hashmap">
+	  	insert into 
+	  		COORDI_COMMENTS
+	  	values
+	  		(#{coordiNo},coordicmt_seq.nextval,#{userId},#{comment},null,1,1,'N',sysdate)
+  	</insert>
+  	<update id="deleteComment" >
+	  	update
+	  		COORDI_COMMENTS
+	  	set
+	  		del_yn='Y'
+	  	where
+	  		cmt_no=#{cmtNo}
+  </update>
 </mapper>
