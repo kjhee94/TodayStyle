@@ -1,5 +1,6 @@
 package kr.or.iei.postCoordi.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import kr.or.iei.postCoordi.model.dao.BoardDto;
@@ -11,5 +12,13 @@ public interface PostServiceInterface {
 	
 	//코디 등록
 	void insert(PostCoordi post) throws Exception;
+
+	ArrayList<Integer> selectLikeList(String userId);
+
+	ArrayList<Integer> selectScrapList(String userId);
+
+	int insertComment(HashMap<String, Object> map);
+
+	int deleteComment(int cmtNo);
 	
 }

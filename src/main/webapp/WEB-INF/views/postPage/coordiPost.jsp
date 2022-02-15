@@ -70,7 +70,14 @@
 		                <form id="commentForm" name="commentForm">
 	                    <div class="cmt-input">
 	                   		<div class="profile">
-	                   			<img src="/resources/images/default/profile.jpg">
+	                   			<c:choose>
+					               <c:when test="${pc.profileFilePath!=null}">
+					                    <img src="${pc.profileFilePath}" id="profileImg">
+					               </c:when>
+					               <c:otherwise>
+					                   <img src="/resources/images/default/profile.jpg" id="profileImg">
+					               </c:otherwise>
+					            </c:choose>
 	                   		</div>
 	                   		<div class="input-comment">
 	                   			<input class="input-style" type="text" name="comment" value="" placeholder="댓글을 입력해주세요">
@@ -83,7 +90,7 @@
 							<c:choose>
 								<c:when test="${!requestScope.map.cmtlist.isEmpty}">
 				                	<c:forEach items="${requestScope.map.cmtList }" var="cl">
-					                	<div class="cmt-one">
+					                	<div class="cmt-one" id="${cl.cmtNo }">
 					                		<div class="profile">
 					                   			<a href="/myPage/userPage.do?userId=${cl.cmtWriter}">
 					                   				<c:choose>
@@ -102,7 +109,7 @@
 						                   		<div class="cmt-info">
 						                   			<span>${cl.cmtTime}</span>
 						                   			<c:if test="${ cl.cmtWriter==sessionScope.member.userId}">
-						                   				<span>삭제</span>
+						                   				<span class="cmt-delete">삭제</span>
 						                   			</c:if>
 						                   		</div>
 					                   		</div>
@@ -129,11 +136,53 @@
 					    </div>
 					     -->
 		            </div>
+		            	<script>
+	                    	$('#commentInsertBtn').click(function(){
+	                    		var comment = $('.input-style').val();
+	                    		var coordiNo=$('#like-scrap').attr('class');
+	                    		$.ajax({
+			    					url:"/coordi/insertComment.do",
+			                    	data:{comment:comment,coordiNo:coordiNo},
+			                    	type:"get",
+			                    	success:function (result){
+			                    		$('#left-bottom-wrapper').html(result);
+			                    	},
+			                    	error:function(){
+			                    		console.log("통신실패");
+			                    		location.replace('/member/loginPage.do');
+			                    	}
+			    					
+			    				});
+	                    	})
+	                    	
+	                    </script>
+	                    <script>
+				                    $('.cmt-delete').click(function(){
+				                    	if(confirm("댓글을 삭제하시겠습니까?")){
+				                    		var cmtNo=$('.cmt-one').attr('id');
+					                    	var coordiNo=$('#like-scrap').attr('class');
+					                    	$.ajax({
+						    					url:"/coordi/deleteComment.do",
+						                    	data:{cmtNo:cmtNo,coordiNo:coordiNo},
+						                    	type:"get",
+						                    	success:function (result){
+						                    		$('#left-bottom-wrapper').html(result);
+						                    	},
+						                    	error:function(){
+						                    		console.log("통신실패");
+						                    		//location.replace('/member/loginPage.do');
+						                    	}
+						    					
+						    				});
+				                    	}
+				                    	
+				                    });
+				          	 	</script>
 		        </div>
 		        
 		         <div id="right-wrapper">
 		           <div id="user-info">
-		              <div id="user-box">
+		              <div id="user-box" class="${requestScope.map.pc.userId}">
 						<a href="/myPage/userPage.do?userId=${requestScope.map.pc.userId}">
 							<div class="profile">
 								<c:choose>
@@ -148,20 +197,162 @@
 							<span>${requestScope.map.pc.nickName}</span>
 						</a>
 		              </div>
-		              <button class="btn-style-line">팔로우</button>
+		              <c:choose>
+		              	<c:when test="${map.followBtn.equals('팔로잉') }">
+		              		<button id="followBtn" class="btn-style-line " style="background-color:#A9D4D9; color:#fff;">팔로잉</button>
+		              	</c:when>
+		              	<c:otherwise>
+		              		<button id="followBtn" class="btn-style-line ">팔로우</button>
+		              	</c:otherwise>
+		              </c:choose>
 		           </div>    
 		           
-		           <div id="like-scrap">
+		           <div id="like-scrap" class="${map.pc.coordiNo }">
 	                   	<button id="like">
-                   			<img src="/resources/images/icon/heart.png">
+	                   		<c:choose>
+	                   			<c:when test="${map.likeResult>0}">
+	                   				<img src="/resources/images/icon/heart_on.png">
+	                   			</c:when>
+	                   			<c:otherwise>
+	                   				<img src="/resources/images/icon/heart.png">
+	                   			</c:otherwise>
+	                   		</c:choose>
+	                   		
+                   			
                    			<span>${requestScope.map.countLike}</span>
 	                   	</button>
 		                <button id="scrap">
-	                   		<img src="/resources/images/icon/saved.png">
+		                	<c:choose>
+	                   			<c:when test="${map.scrapResult>0}">
+	                   				<img src="/resources/images/icon/saved_on.png"">
+	                   			</c:when>
+	                   			<c:otherwise>
+	                   				<img src="/resources/images/icon/saved.png">
+	                   			</c:otherwise>
+	                   		</c:choose>
+	                   		
 	                   		<span>${requestScope.map.countScrap}</span>
 		                </button>
 					</div>
+		           <script>
+		           		$('#followBtn').click(function(){
+		           			var text=$(this).text();
+		           			var followUserId=$(this).prev().attr('class');
+		           			if(text=='팔로우'){
+		           				$(this).text('팔로잉');
+		           				$(this).css('background-color','#A9D4D9');
+		           				$(this).css('color','#fff');
+		           				$.ajax({
+			    					url:"/myPage/follow.do",
+			                    	data:{followUserId:followUserId},
+			                    	type:"get",
+			                    	success:function (){
+			                    		
+			                    	},
+			                    	error:function(){
+			                    		console.log("통신실패");
+			                    		location.replace('/member/loginPage.do');
+			                    	}
+			    					
+			    				});
+		           			}else{
+		           				var unfollowUserId=$(this).prev().attr('class');
+		           				$(this).text('팔로우');
+		           				$(this).css('background-color','#fff');
+		           				$(this).css('color','#707070');
+		           				$.ajax({
+			    					url:"/myPage/unFollow.do",
+			                    	data:{unfollowUserId:unfollowUserId},
+			                    	type:"get",
+			                    	success:function (){
+			                    		
+			                    	},
+			                    	error:function(){
+			                    		console.log("통신실패");
+			                    	}
+			    					
+			    				});
+		           			}
+		           			
+		           			
+		           		})
+		           </script>
 		           
+		           	<script>
+		           	$('#like').click(function() {
+		           		var coordiNo=$(this).parent().attr('class');
+		           		var likeNum=$(this).children().eq(1).text();
+		    			if ($(this).children().eq(0).attr('src') === "/resources/images/icon/heart_on.png") {
+		    				$(this).children().eq(0).attr('src', "/resources/images/icon/heart.png");
+		    				
+		    				$(this).children().eq(1).text(likeNum-1);
+		    				$.ajax({
+		    					url:"/coordi/unlikeCoordi.do",
+		                    	data:{coordiNo:coordiNo},
+		                    	type:"get",
+		                    	success:function (){
+		                    		
+		                    	},
+		                    	error:function(){
+		                    		console.log("통신실패");
+		                    	}
+		    					
+		    				});
+		    			} else {		
+		    				$(this).children().eq(0).attr('src', "/resources/images/icon/heart_on.png");
+		    				$(this).children().eq(1).text(++likeNum);
+		    				$.ajax({
+		    					url:"/coordi/likeCoordi.do",
+		                    	data:{coordiNo:coordiNo},
+		                    	type:"get",
+		                    	success:function (){
+		                    		                	},
+		                    	error:function(){
+		                    		location.replace('/member/loginPage.do');
+		                    	}
+		    					
+		    				});
+		    			}
+		    		});
+		    		$('#scrap').click(function() {
+		    			var coordiNo=$(this).parent().attr('class');
+		    			var scrapNum=$(this).children().eq(1).text();
+		    			if ($(this).children().eq(0).attr('src') === "/resources/images/icon/saved_on.png") {
+		    				
+		    				$(this).children().eq(0).attr('src', "/resources/images/icon/saved.png");
+		    				$(this).children().eq(1).text(scrapNum-1);
+		    				$.ajax({
+		    					url:"/coordi/unscrapCoordi.do",
+		                    	data:{coordiNo:coordiNo},
+		                    	type:"get",
+		                    	success:function (){
+		                    		
+		                    	},
+		                    	error:function(){
+		                    		console.log("통신실패");
+		                    	}
+		    					
+		    				});
+		    			} else {
+		    				
+		    				$(this).children().eq(0).attr('src', "/resources/images/icon/saved_on.png");
+		    				$(this).children().eq(1).text(++scrapNum);
+		    				$.ajax({
+		    					url:"/coordi/scrapCoordi.do",
+		                    	data:{coordiNo:coordiNo},
+		                    	type:"get",
+		                    	success:function (){
+		                    		
+		                    	},
+		                    	error:function(){
+		                    		
+		                    		location.replace('/member/loginPage.do');
+		                    	}
+		    					
+		    				});
+		    			}
+		    		});
+		           	</script>
 					<div id="cloth-info">
 						<span class="info-title">아이템 정보</span>
 			           	<div class="box-style">
