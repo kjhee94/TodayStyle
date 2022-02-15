@@ -23,7 +23,7 @@
 									<div class="profile">
 										
 			                        	<c:choose>
-				                            <c:when test="${!sessionScope.member.filePath.isEmpty()}">
+				                            <c:when test="${sessionScope.member.filePath != null}">
 				                            	<img src="${sessionScope.member.filePath}">
 				                            </c:when>
 				                            <c:otherwise>
