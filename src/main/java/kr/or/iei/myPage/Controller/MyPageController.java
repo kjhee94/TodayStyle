@@ -235,7 +235,7 @@ public class MyPageController {
    public void unFollow(@RequestParam String unfollowUserId, @SessionAttribute Member member)
    {
 
-      System.out.println(unfollowUserId);
+      //System.out.println(unfollowUserId);
       String userId = member.getUserId();
       
       HashMap<String, Object> map=new HashMap<String, Object>();
@@ -343,7 +343,7 @@ public class MyPageController {
       ArrayList<Follow> followerList = mpService.followerList(memberUserId);
       //System.out.println(followerList);
       ArrayList<Follow> followingList = mpService.followingList(memberUserId);
-      System.out.println(followingList);
+      //System.out.println(followingList);
       
       model.addAttribute("followerList", followerList);
       model.addAttribute("followingList", followingList);
@@ -383,7 +383,7 @@ public class MyPageController {
       ArrayList<Follow> followerList = mpService.followerList(memberUserId);
       //System.out.println(followerList);
       ArrayList<Follow> followingList = mpService.followingList(memberUserId);
-      System.out.println(followingList);
+      //System.out.println(followingList);
       
       model.addAttribute("followerList", followerList);
       model.addAttribute("followingList", followingList);

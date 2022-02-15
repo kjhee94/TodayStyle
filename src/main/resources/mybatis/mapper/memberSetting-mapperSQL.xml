@@ -6,7 +6,7 @@
 	<select id="settingPwdCheck" parameterType="member" resultType="member">
 		SELECT
 			user_No as userNo,
-			user_Id as userId,
+			member.user_Id as userId,
 			user_Pwd as userPwd,
 			user_Name as userName,
 			user_Email as userEmail,
@@ -14,11 +14,13 @@
 			nickname as nickname,
 			enroll_Date as enrollDate,
 			roll as roll,
-			end_YN as endYN
+			end_YN as endYN,
+         	filePath as filePath
 		FROM
 			member
+				LEFT JOIN member_img ON (member.user_id=member_img.user_id)
 		WHERE
-			user_Id = #{userId} and user_Pwd = #{userPwd} and end_yn='N'
+			member.user_Id = #{userId} and user_Pwd = #{userPwd} and end_yn='N'
 	</select>
 
 	<!-- 닉네임 중복 체크 -->
