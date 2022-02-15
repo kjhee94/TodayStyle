@@ -19,13 +19,10 @@ public class MemberDAO {
 
 
 	public int insertMember(Member m) {
-		System.out.println(m);
 		return sqlSession.insert("member.insertMember",m);
 	}
 
 	public Member selectLoginMember(Member member) {
-		
-		System.out.println(member);
 		
 		return sqlSession.selectOne("member.selectLoginMember",member);
 	}
