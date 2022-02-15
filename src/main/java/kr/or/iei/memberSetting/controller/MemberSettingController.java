@@ -3,6 +3,7 @@ package kr.or.iei.memberSetting.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -202,13 +203,22 @@ public class MemberSettingController {
 
 			
 			try {
+				
+				
 				MimeMessage message = mailSender.createMimeMessage();
+				
+		
+				
 				MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 				helper.setFrom(setFrom);
 				helper.setTo(toMail);
 				helper.setSubject(title);
 				helper.setText(content, true);
+				
+				
+				
 				mailSender.send(message);
+			
 				
 			} catch (MessagingException e) {
 				// TODO Auto-generated catch block

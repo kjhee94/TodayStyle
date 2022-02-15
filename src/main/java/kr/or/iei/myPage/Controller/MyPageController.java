@@ -231,7 +231,7 @@ public class MyPageController {
 	
 	// 팔로우 취소
 	@RequestMapping(value = "/myPage/unFollow.do")
-	public void unFollow(@RequestParam String unfollowUserId, @SessionAttribute Member member)
+	public String unFollow(@RequestParam String unfollowUserId, @SessionAttribute Member member)
 	{
 
 		System.out.println(unfollowUserId);
@@ -250,7 +250,7 @@ public class MyPageController {
 			System.out.println("팔로우 취소 실패");
 		}
 		
-		return ;
+		return "myPage/myStyle";
 	}
 	
 	// 팔로우

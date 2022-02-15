@@ -21,7 +21,16 @@
 							<c:when test="${sessionScope.member!=null }">
 								<div class="box-mypage">
 									<div class="profile">
-										<img src="/resources/images/default/profile.jpg"/>
+										
+			                        	<c:choose>
+				                            <c:when test="${!sessionScope.member.filePath.isEmpty()}">
+				                            	<img src="${sessionScope.member.filePath}">
+				                            </c:when>
+				                            <c:otherwise>
+				                            	<img src="/resources/images/default/profile.jpg">
+				                            </c:otherwise>
+			                            </c:choose>
+			                            
 									</div>
 									<div class="box-mypage-link">
 										<a href="/myPage/myStyle.do">나의 코디</a>

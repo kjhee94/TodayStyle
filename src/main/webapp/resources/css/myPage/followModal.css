@@ -95,7 +95,7 @@
             cursor: pointer;
         }
 
-        .follow-btn.follow-BTN{
+        .follow-btn, .follow_BTN{
             width: 60px;
             height: 35px;
             float: right;
@@ -112,7 +112,7 @@
             cursor: pointer;
         }
         
-        .following-btn.following-BTN{
+        .following-btn, .following_BTN{
             width: 60px;
             height: 35px;
             float: right;
