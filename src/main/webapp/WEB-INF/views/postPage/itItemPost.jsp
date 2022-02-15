@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐 입지?</title>
+<title>오늘 뭐 입지? - 잇템 개별</title>
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -59,7 +61,9 @@
 						
 		                <div id="box-post-btn">
 		               	 	<button class="btn-style-line"><a href="/itItem/itItemList.do">목록</a></button>
-		                	<button class="btn-style-mint"><a href="">수정</a></button>
+		               	 	<c:if test="${requestScope.map.pi.userId==sessionScope.member.userId}">
+		                		<button class="btn-style-mint"><a href="/itItem/itItemUpdate.do?itItemNo=${requestScope.map.pi.itItemNo}">수정</a></button>
+		                	</c:if>
 		                </div>
 					</div>
 		            
@@ -101,7 +105,6 @@
 						                   		<div class="cmt-info">
 						                   			<span>${cl.cmtTime}</span>
 						                   			<c:if test="${ cl.cmtWriter==sessionScope.member.userId}">
-						                   				<span>답글</span>
 						                   				<span id="cmt-delete" style="cursor:pointer">삭제</span>
 						                   			</c:if>
 						                   			
@@ -443,7 +446,7 @@
 								<span>${requestScope.map.pi.userHeight}</span>
 							</div>
 							<div class="txt-item-list">
-								<span class="tit-item">정사이즈</span>
+								<span class="tit-item">사용자 사이즈</span>
 								<span>${requestScope.map.pi.userSize}</span>
 							</div>
 						</div>

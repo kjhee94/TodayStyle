@@ -61,7 +61,7 @@
 				</a>
 			</div>
 		 -->
-		<div class="box-sideBar">
+		<div>
 			<div class="box-sidebar-img">
 				<script src="/resources/API/talk.js"></script>
 			</div>

@@ -1,5 +1,7 @@
 package kr.or.iei.postCoordi.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -19,27 +23,20 @@ import kr.or.iei.postCoordi.model.vo.PostCoordi;
 @Controller
 public class PostCoordiController {
 
-
     @Autowired
     private PostServiceInterface postService;
 
-
     //코디 게시물 개별페이지 이동
     @RequestMapping(value="/coordi/coordiPost.do",method=RequestMethod.GET)
-    public String coordiPost(PostCoordi post){
-        //String result = postService.viewPost(post);
+    public ModelAndView coordiPost(@RequestParam int coordiNo, ModelAndView mav){
+        
+    	HashMap<String, Object> map = postService.oneCoordiPost(coordiNo);
+    	
+    	mav.addObject("map",map);
+    	mav.setViewName("postPage/coordiPost");
 
-        return "postPage/coordiPost";
+        return mav;
     }
-
-    //코디 게시물 개별페이지 조회
-    @RequestMapping(value="/coordi/coordiRead.do",method=RequestMethod.GET)
-    public String coordiRead(PostCoordi post) throws Exception{
-        int result = postService.viewPost(post);
-
-        return "postPage/coordiPost";
-    }
-
 
     //코디 작성페이지 이동
     @RequestMapping(value="/coordi/insertCoordi.do",method=RequestMethod.GET)
@@ -50,7 +47,6 @@ public class PostCoordiController {
     
     @Autowired
 	ServletContext context;	
-    
     
     //코디 작성
     @RequestMapping( value = "/coordi/insertBoard.do", method=RequestMethod.POST)
