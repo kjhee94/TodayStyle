@@ -5,12 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>오늘 뭐 입지?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/resources/common/common.css">
 <link rel="stylesheet" href="/resources/css/member/loginPage.css">
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
 </head>
 <body>
 	<div id="content">

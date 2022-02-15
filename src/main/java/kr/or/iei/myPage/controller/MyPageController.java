@@ -58,7 +58,7 @@ public class MyPageController {
 		ArrayList<Follow> followerList = mpService.followerList(userId);
 		//System.out.println(followerList);
 		ArrayList<Follow> followingList = mpService.followingList(userId);
-		System.out.println(followingList);
+		//System.out.println(followingList);
 		
 		model.addAttribute("followerList", followerList);
 		model.addAttribute("followingList", followingList);
