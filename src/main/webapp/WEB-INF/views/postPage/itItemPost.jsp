@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>오늘 뭐 입지?</title>
+<title>오늘 뭐 입지? - 잇템 개별</title>
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -59,7 +61,9 @@
 						
 		                <div id="box-post-btn">
 		               	 	<button class="btn-style-line"><a href="/itItem/itItemList.do">목록</a></button>
-		                	<button class="btn-style-mint"><a href="">수정</a></button>
+		               	 	<c:if test="${requestScope.map.pi.userId==sessionScope.member.userId}">
+		                		<button class="btn-style-mint"><a href="/itItem/itItemUpdate.do?itItemNo=${requestScope.map.pi.itItemNo}">수정</a></button>
+		                	</c:if>
 		                </div>
 					</div>
 		            
@@ -82,7 +86,7 @@
 			                <c:choose>
 								<c:when test="${!requestScope.map.list.isEmpty() }">
 				                	<c:forEach items="${requestScope.map.cmtList }" var="cl">
-					                	<div class="cmt-one">
+					                	<div class="cmt-one" id="${cl.cmtNo }">
 					                		<div class="profile">
 					                   			<a href="/myPage/userPage.do?userId=${cl.cmtWriter}">
 					                   				<c:choose>
@@ -100,17 +104,22 @@
 						                   		<span class="cmt-content">${cl.cmtContent}</span>
 						                   		<div class="cmt-info">
 						                   			<span>${cl.cmtTime}</span>
-						                   			<span>답글</span>
-						                   			<span>삭제</span>
+						                   			<c:if test="${ cl.cmtWriter==sessionScope.member.userId}">
+						                   				<span id="cmt-delete" style="cursor:pointer">삭제</span>
+						                   			</c:if>
+						                   			
+						                   		
 						                   		</div>
 					                   		</div>
 					                	</div>
 				                	</c:forEach>
 			                	</c:when>
+			                	
 			                	<c:otherwise>
 			                		<span>현재 댓글이 없습니다</span>
 			                	</c:otherwise>
 		                	</c:choose>
+		                		
 		                </div>
 		                
 		                <!-- 댓글 페이지네이션
@@ -145,7 +154,30 @@
 			    					
 			    				});
 	                    	})
+	                    	
 	                    </script>
+	                    <script>
+				                    $('.cmt-delete').click(function(){
+				                    	if(confirm("댓글을 삭제하시겠습니까?")){
+				                    		var cmtNo=$('.cmt-one').attr('id');
+					                    	var itItemNo=$('#like-scrap').attr('class');
+					                    	$.ajax({
+						    					url:"/itItem/deleteComment.do",
+						                    	data:{cmtNo:cmtNo,itItemNo:itItemNo},
+						                    	type:"get",
+						                    	success:function (result){
+						                    		$('#left-bottom-wrapper').html(result);
+						                    	},
+						                    	error:function(){
+						                    		console.log("통신실패");
+						                    		location.replace('/member/loginPage.do');
+						                    	}
+						    					
+						    				});
+				                    	}
+				                    	
+				                    });
+				          	 	</script>
 		        </div>
 		        
 		         <div id="right-wrapper">
@@ -393,7 +425,7 @@
 								<span>${requestScope.map.pi.userHeight}</span>
 							</div>
 							<div class="txt-item-list">
-								<span class="tit-item">정사이즈</span>
+								<span class="tit-item">사용자 사이즈</span>
 								<span>${requestScope.map.pi.userSize}</span>
 							</div>
 						</div>

@@ -8,21 +8,18 @@
 		SELECT *
 		FROM MEMBER 
 		WHERE TO_CHAR(ENROLL_DATE,'YYMMDD')=TO_CHAR(SYSDATE,'YYMMDD'))
-		GROUP BY ENROLL_DATE
 	</select>
 	
 	<select id="selectCountTodayNewCoordiPost" resultType="int">
 		SELECT COUNT(*) FROM(
 		SELECT * FROM COORDI 
 		WHERE TO_CHAR(REG_DATE,'YYMMDD')=TO_CHAR(SYSDATE,'YYMMDD'))
-		GROUP BY REG_DATE
 	</select>
 	
 	<select id="selectCountTodayNewIttemPost" resultType="int">
 		SELECT COUNT(*) FROM(
 		SELECT * FROM IT_ITEM 
 		WHERE TO_CHAR(REG_DATE,'YYMMDD')=TO_CHAR(SYSDATE,'YYMMDD'))
-		GROUP BY REG_DATE
 	</select>
 	
 	

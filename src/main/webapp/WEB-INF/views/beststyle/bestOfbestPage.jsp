@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>베스트</title>
+<title>오늘 뭐 입지?</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="/resources/css/beststyle/best.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>  
 <script src="/resources/common/common.js"></script>
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
 </head>
 
 <body>
@@ -37,6 +39,7 @@
 							<c:forEach items="${requestScope.list }" var="b" varStatus="i">
 							
 					<div class="img-coordi-box">
+					<a href="/coordi/coordiPost.do?coordiNo=${b.coordiNo}"> 
 						<img src="${b.coordifilepath}">
 						<div class="rank">
 							<i class="fas fa-bookmark"></i>
@@ -69,6 +72,7 @@
 							<span class="nickName">${b.nickname }</span>
 							</a>
 						</div>
+						</a>
 					</div>
 					</c:forEach>
 					</c:when>

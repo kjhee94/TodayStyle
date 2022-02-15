@@ -2,6 +2,73 @@
 <!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="post">
 
+	<select id="oneCoordiPost" parameterType="int" resultType="Post">
+		SELECT 
+		    coordi_no as coordiNo,
+		    user_id as userId,
+		    coordi_content as coordiContent,
+		    gender as gender,
+		    season as season,
+		    temperature as temperature,
+		    reg_date as postTime,
+		    hashtag as hashtag,
+		    del_YN as delYN,
+		    profileFilePath,
+		    nickname as nickName,
+		    filePath,
+		    profileFilePath
+		FROM(
+		SELECT C.*, CI.FILEPATH AS filePath, NICKNAME, MI.FILEPATH AS profileFilePath
+		FROM COORDI C
+		LEFT JOIN COORDI_IMG CI ON (C.COORDI_NO=CI.COORDI_NO)
+		LEFT JOIN MEMBER M ON (M.USER_ID=C.USER_ID)
+		LEFT JOIN MEMBER_IMG MI ON (M.USER_ID=MI.USER_ID)
+		WHERE C.COORDI_NO=#{coordiNo} AND C.DEL_YN='N' and top_yn='Y')
+	</select>
+	
+	<select id="itemList" parameterType="int" resultType="Post">
+		SELECT 
+			coordi_no as coordiNo,
+			item_code as categoryCode,
+			brand as brand,
+			item_name as categoryName
+		FROM (
+		SELECT I.*, ITEM_NAME FROM ITEM I
+		LEFT JOIN ITEM_CATEGORY IC ON(I.ITEM_CODE=IC.ITEM_CODE))
+		WHERE COORDI_NO=#{coordiNo}
+	</select>
+	
+	<select id="cmtList" parameterType="int" resultType="Post">
+		SELECT 
+		    coordi_post_no as itItemNo,
+		    cmt_no as cmtNo,
+		    cmt_writer as cmtWriter,
+		    cmt_content as cmtContent,
+		    del_YN as cmtDelYN,
+		    cmt_time as cmtTime,
+		    nickname as nickName,
+		    filepath as profileFilePath
+		FROM COORDI_COMMENTS  IC
+		LEFT JOIN MEMBER M ON (M.USER_ID=IC.cmt_writer)
+		LEFT JOIN MEMBER_IMG MI ON (MI.USER_ID=IC.cmt_writer)
+		WHERE coordi_post_no=#{coordiNo} AND del_YN='N'
+	</select>
+	
+	<select id="countLike" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM COORDI_LIKE
+		GROUP BY COORDI_NO
+		HAVING COORDI_NO=#{coordiNo}
+	</select>
+	
+	<select id="countScrap" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM COORDI_SCRAP
+		GROUP BY COORDI_NO
+		HAVING COORDI_NO=#{coordiNo}
+	</select>
+
+
+
+
 	<insert id="insertInfo" parameterType="Post">
 		<selectKey keyProperty="coordiNo" resultType="int" order="BEFORE">
 			select COORDI_SEQ.nextval from dual
@@ -59,6 +126,34 @@
     	 FROM COORDI_COMMENTS
     	WHERE coordiNo = #{coordi_post}
 	</insert>
-	
-
+	  <select id="selectLikeList" resultType="int" >
+  	select 
+  		coordi_no as coordiNo
+  	from 
+  		coordi_like
+  	where
+  		user_Id=#{userId}
+  </select>
+  <select id="selectScrapList" resultType="int" >
+  	select 
+  		coordi_no as coordiNo
+  	from 
+  		coordi_scrap
+  	where
+  		user_Id=#{userId}
+  </select>
+	<insert id="insertComment" parameterType="hashmap">
+	  	insert into 
+	  		COORDI_COMMENTS
+	  	values
+	  		(#{coordiNo},coordicmt_seq.nextval,#{userId},#{comment},null,1,1,'N',sysdate)
+  	</insert>
+  	<update id="deleteComment" >
+	  	update
+	  		COORDI_COMMENTS
+	  	set
+	  		del_yn='Y'
+	  	where
+	  		cmt_no=#{cmtNo}
+  </update>
 </mapper>

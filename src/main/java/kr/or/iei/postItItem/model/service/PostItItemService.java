@@ -16,4 +16,6 @@ public interface PostItItemService {
 	ArrayList<Integer> selectScrapList(String userId);
 
 	int insertComment(HashMap<String, Object> map);
+
+	int deleteComment(int cmtNo);
 }

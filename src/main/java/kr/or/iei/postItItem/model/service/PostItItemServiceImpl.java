@@ -38,5 +38,11 @@ public class PostItItemServiceImpl implements PostItItemService{
 		// TODO Auto-generated method stub
 		return iDAO.insertComment(map);
 	}
+
+	@Override
+	public int deleteComment(int cmtNo) {
+		// TODO Auto-generated method stub
+		return iDAO.deleteComment(cmtNo);
+	}
 }
  

@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지_오늘의 코디 댓글 관리</title>
+<title>오늘 뭐 입지?-오늘의 코디 댓글 관리</title>
+<link rel=" shortcut icon" href="/resources/images/favicon.ico">
+<link rel="icon" href="/resources/images/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -60,10 +62,8 @@
 					<tr>
 						<th><input type="checkbox" id="Allcheck"></th>
 						<th>댓글 번호</th>
-						<th>구분</th>
 						<th>작성자</th>
 						<th>내용</th>
-						<th>원 댓글 번호</th>
 						<th>작성일</th>
 						<th>삭제</th>
 					</tr>
@@ -86,20 +86,8 @@
 										</c:if>
 									</td>
 									<td>${cc.cmtNo}</td>
-									<td>
-										<c:if test="${cc.cmtDepth eq '1'}">
-											댓글
-										</c:if>
-										<c:if test="${cc.cmtDepth eq '2'}">
-											대댓글
-										</c:if>
-									</td>
 									<td>${cc.nickName}</td>
 									<td>${cc.cmtContent}</td>
-									<td>
-										<c:if test="${cc.cmtParent eq null}">-</c:if>
-										<c:if test="${cc.cmtParent ne null}">${cc.cmtParent}</c:if>
-									</td>
 									<td>${cc.cmtTime}</td>
 									<td>
 										<div class="btn-style-icon btn-one-coordi-comment-delete" delyn="${cc.cmtDelYN}" cmtNo="${cc.cmtNo}">

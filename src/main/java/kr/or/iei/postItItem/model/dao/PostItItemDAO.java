@@ -34,12 +34,6 @@ public class PostItItemDAO {
 			ItItemScrap=0;
 		}
 		
-		System.out.println(pi);
-		System.out.println(imgList);
-		System.out.println(cmtList);
-		System.out.println(ItItemLike);
-		System.out.println(ItItemScrap);
-		
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("pi",pi);
@@ -64,6 +58,11 @@ public class PostItItemDAO {
 	public int insertComment(HashMap<String, Object> map) {
 		
 		return sqlSession.insert("postItItem.insertComment",map);
+	}
+
+	public int deleteComment(int cmtNo) {
+		
+		return sqlSession.update("postItItem.deleteComment",cmtNo);
 	}
 
 }
