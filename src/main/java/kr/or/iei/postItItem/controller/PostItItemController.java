@@ -94,4 +94,12 @@ public class PostItItemController {
     	model.addAttribute("map",resultMap);
     	return "postPage/insertComment";
     }
+    
+    @RequestMapping(value="/itItem/deleteComment.do",method=RequestMethod.GET)
+    public String deleteComment(@RequestParam int cmtNo,Model model,@RequestParam int itItemNo) {
+    	int result=iService.deleteComment(cmtNo);
+    	HashMap<String, Object> resultMap = iService.oneItItemPost(itItemNo);
+    	model.addAttribute("map",resultMap);
+    	return "postPage/insertComment";
+    }
 }

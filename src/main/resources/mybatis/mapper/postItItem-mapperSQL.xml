@@ -91,4 +91,12 @@
   	values
   		(#{itItemNo},ititemcmt_seq.nextval,#{userId},#{comment},null,1,1,'N',sysdate)
   </insert>
+  <update id="deleteComment" >
+  	update
+  		ititem_comments
+  	set
+  		del_yn='Y'
+  	where
+  		cmt_no=#{cmtNo}
+  </update>
 </mapper>

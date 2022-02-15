@@ -66,4 +66,9 @@ public class PostItItemDAO {
 		return sqlSession.insert("postItItem.insertComment",map);
 	}
 
+	public int deleteComment(int cmtNo) {
+		
+		return sqlSession.update("postItItem.deleteComment",cmtNo);
+	}
+
 }
