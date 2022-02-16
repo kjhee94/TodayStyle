@@ -30,10 +30,13 @@ public class ItItemController {
 	
 	@RequestMapping(value="/itItem/itItemList.do",method = RequestMethod.GET)
 	public ModelAndView itItemList(ModelAndView mav,HttpServletRequest request) {
+		String hashTag=request.getParameter("hashTag");
+		HashMap<String, Object> iMap=new HashMap<String, Object>();
+		iMap.put("hashTag", hashTag);
 		HttpSession session=request.getSession();
 		Member m=(Member)session.getAttribute("member");
 		HashMap<String, Object> map=new HashMap<String, Object>();
-		ArrayList<ItItem> itItemList=itService.getItItemList();
+		ArrayList<ItItem> itItemList=itService.getItItemList(iMap);
 		
 		//팔로우리스트와 좋아요 리스트 가져오기(로그인 한경우)
 		if(m!=null) {
@@ -43,7 +46,9 @@ public class ItItemController {
 			map.put("likeList", likeList);
 			map.put("scrapList", scrapList);
 		}
-
+		if(hashTag!=null) {
+			map.put("hashTag", hashTag);
+		}
 		map.put("itItemList", itItemList);
 		mav.addObject("map", map);
 		mav.setViewName("itItem/itItemList");

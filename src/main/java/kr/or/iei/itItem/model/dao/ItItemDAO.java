@@ -17,8 +17,8 @@ public class ItItemDAO {
 	@Qualifier(value="sqlSessionTemplate")
 	private SqlSessionTemplate sqlSession;
 	
-	public ArrayList<ItItem> getItItemList() {
-		ArrayList<ItItem> list=new ArrayList(sqlSession.selectList("itItem.selectAllList"));
+	public ArrayList<ItItem> getItItemList(HashMap<String, Object> map) {
+		ArrayList<ItItem> list=new ArrayList(sqlSession.selectList("itItem.selectAllList",map));
 		return list;
 	}
 
@@ -56,5 +56,6 @@ public class ItItemDAO {
 		ArrayList<ItItem> list=new ArrayList(sqlSession.selectList("itItem.selectCategoryItItemList",map));
 		return list;
 	}
+
 
 }

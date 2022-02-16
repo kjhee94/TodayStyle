@@ -30,7 +30,7 @@
 			and season=#{season} 
 		</if>
 		<if test="hashTag!=null">
-			and hashTag=#{hashTag}
+			and hashtag like '%'||#{hashTag}||'%'
 		</if>
  	</select>
  	<select id="selectCategoryList" parameterType="hashmap" resultType="coordi">
