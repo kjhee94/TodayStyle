@@ -130,6 +130,7 @@ public class ItItemController {
 		ArrayList<ItItem> list=itService.selectCategoryItItemList(map);
 		model.addAttribute("filter",filter);
 		model.addAttribute("list",list);
+		model.addAttribute("keyword",keyword);
 		return "itItem/categoryList";
 	}
 }
