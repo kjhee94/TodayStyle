@@ -192,7 +192,8 @@ public class PostCoordiController {
 		String outer = multi.getParameter("outer");
 		String shoes = multi.getParameter("shoes");
 		String acc = multi.getParameter("acc");
-		String tag = multi.getParameter("tags");
+        String [] tag= multi.getParameterValues("tags");
+        String tags = String.join(",", tag);
 		String uploadFile = multi.getParameter("uploadFile");
 		String coordiContent = multi.getParameter("coordi-content");
 		String topBrand = multi.getParameter("top-textarea");
@@ -211,7 +212,7 @@ public class PostCoordiController {
 		post.setTemperature(temperature);
 		post.setSeason(season);
 		post.setGender(gender);
-		post.setHashtag(tag);
+		post.setHashtag(tags);
 		post.setCoordiContent(coordiContent);
 		post.setUserId(member.getUserId());
 		post.setFilePath(uploadPath+originalFileName);
