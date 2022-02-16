@@ -58,7 +58,7 @@
                  			</a>
                  		</div>
                  		<div class="cmt-txt">
-                  		<span class="cmt-nick"><a href="/myPage/userPage.do">${cl.nickName}</a></span>
+                  		<span class="cmt-nick"><a href="/myPage/userPage.do?userId=${cl.cmtWriter}">${cl.nickName}</a></span>
                   		<span class="cmt-content">${cl.cmtContent}</span>
                   		<div class="cmt-info">
                   			<span>${cl.cmtTime}</span>
