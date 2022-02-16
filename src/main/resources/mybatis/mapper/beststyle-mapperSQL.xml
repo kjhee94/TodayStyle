@@ -3,37 +3,57 @@
   <mapper namespace="beststyle">
   
   <select id="AllBest" resultType="beststyle">
-  	SELECT 
+  SELECT 
             num,
             count,
-            c.coordi_no as coordiNo,
-            c.user_id as userId,
+            coordiNo,
+             userId,
+            nickname,
+             coordiContent,
+            gender,
+            season,
+             temperature,
+            regdate,
+            hashtag,
+           delYN,
+          coordifilepath,
+            profilefilepath,
+            topYN
+  
+  FROM (
+    SELECT 
+            num,
+            count,
+            CC.coordi_no as coordiNo,
+            Cc.user_id as userId,
             m.nickname as nickname,
             coordi_content as coordiContent,
-            c.gender as gender,
+            CC.gender as gender,
             season as season,
             temperature as temperature,
             reg_date as regdate,
             hashtag as hashtag,
-            c.DEL_YN as delYN,
+            cc.DEL_YN as delYN,
             i.filepath as coordifilepath,
             g.filepath as profilefilepath,
             i.top_YN as topYN
-FROM (
-    SELECT row_number()over(order by count desc) as num, DATA.*
-    FROM (
-        SELECT NVL(count,0) AS count ,c.*
-        from coordi c
-        left join 
-            (select count(*) AS count,coordi_no 
-            from coordi_LIKE group by coordi_no) b 
-            on (b.coordi_No=c.coordi_No)
-        ) DATA
-    ) C
-                    left join coordi_img i on(c.coordi_no=i.coordi_no)
-                    left join member m on (m.user_id=c.user_id)
-                    left join member_img g on(m.user_id=g.user_id)
-    WHERE top_yn='Y' and num BETWEEN 1 AND 30
+    
+    FROM(
+        SELECT row_number()over(order by count desc) as num, DATA.*
+        FROM (
+            SELECT NVL(count,0) AS count ,c.*
+            from coordi c
+            left join 
+                (select count(*) AS count,coordi_no 
+                from coordi_LIKE group by coordi_no) b 
+                    on (b.coordi_No=c.coordi_No)
+            ) DATA
+        ) CC
+        left join coordi_img i on(cc.coordi_no=i.coordi_no)
+        left join member m on (m.user_id=CC.user_id)
+        left join member_img g on(m.user_id=g.user_id)
+        ORDER BY NUM ASC)
+        WHERE  (NUM BETWEEN 1 AND 20) 
   </select>
   
   	<select id="selectLikeList" resultType="int">
@@ -56,37 +76,57 @@ FROM (
  	</select>
  	
  	<select id="weekBest" resultType="beststyle">
- 	SELECT 
+ 	 SELECT 
             num,
             count,
-            c.coordi_no as coordiNo,
-            c.user_id as userId,
+            coordiNo,
+             userId,
+            nickname,
+             coordiContent,
+            gender,
+            season,
+             temperature,
+            regdate,
+            hashtag,
+           delYN,
+          coordifilepath,
+            profilefilepath,
+            topYN
+  
+  FROM (
+    SELECT 
+            num,
+            count,
+            CC.coordi_no as coordiNo,
+            Cc.user_id as userId,
             m.nickname as nickname,
             coordi_content as coordiContent,
-            c.gender as gender,
+            CC.gender as gender,
             season as season,
             temperature as temperature,
             reg_date as regdate,
             hashtag as hashtag,
-            c.DEL_YN as delYN,
+            cc.DEL_YN as delYN,
             i.filepath as coordifilepath,
             g.filepath as profilefilepath,
             i.top_YN as topYN
-FROM (
-    SELECT row_number()over(order by count desc) as num, DATA.*
-    FROM (
-        SELECT NVL(count,0) AS count ,c.*
-        from coordi c
-        left join 
-            (select count(*) AS count,coordi_no 
-            from coordi_LIKE group by coordi_no) b 
-            on (b.coordi_No=c.coordi_No)
-        ) DATA
-    ) C
-                    left join coordi_img i on(c.coordi_no=i.coordi_no)
-                    left join member m on (m.user_id=c.user_id)
-                    left join member_img g on(m.user_id=g.user_id)
-    WHERE top_yn='Y' and (num BETWEEN 1 AND 30) and (reg_date between (to_char(sysdate-7,'yyyy-mm-dd'))
-   and  (to_char(sysdate,'yyyy-mm-dd'))) 
+    
+    FROM(
+        SELECT row_number()over(order by count desc) as num, DATA.*
+        FROM (
+            SELECT NVL(count,0) AS count ,c.*
+            from coordi c
+            left join 
+                (select count(*) AS count,coordi_no 
+                from coordi_LIKE group by coordi_no) b 
+                    on (b.coordi_No=c.coordi_No)
+                  WHERE   (reg_date BETWEEN (to_char(sysdate-7,'yyyy-mm-dd'))AND(to_char(sysdate,'yyyy-mm-dd')))
+            ) DATA
+        ) CC
+        left join coordi_img i on(cc.coordi_no=i.coordi_no)
+        left join member m on (m.user_id=CC.user_id)
+        left join member_img g on(m.user_id=g.user_id)
+        ORDER BY NUM ASC)
+        WHERE  (NUM BETWEEN 1 AND 20) 
  	</select>
 </mapper>

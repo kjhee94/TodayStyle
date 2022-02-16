@@ -52,6 +52,7 @@
 		LEFT JOIN MEMBER M ON (M.USER_ID=IC.cmt_writer)
 		LEFT JOIN MEMBER_IMG MI ON (MI.USER_ID=IC.cmt_writer)
 		WHERE coordi_post_no=#{coordiNo} AND del_YN='N'
+		order by cmt_no desc
 	</select>
 	
 	<select id="countLike" parameterType="int" resultType="int">

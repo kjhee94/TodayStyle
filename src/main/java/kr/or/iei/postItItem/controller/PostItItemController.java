@@ -139,7 +139,8 @@ public class PostItItemController {
         //String outer = multi.getParameter("outer");
         //String shoes = multi.getParameter("shoes");
         //String acc = multi.getParameter("acc");
-        String tag = multi.getParameter("tags");
+        String [] tag= multi.getParameterValues("tags");
+        String tags = String.join(",", tag);
         String uploadFile = multi.getParameter("uploadFile");
         String itTitle = multi.getParameter("it-title");
         String itContent = multi.getParameter("it-content");
@@ -167,11 +168,14 @@ public class PostItItemController {
         }
         
         
+        
+        
+        
         PostItItem post = new PostItItem();
 
 
  
-        post.setHashtag(tag);
+        post.setHashtag(tags);
         post.setItItemTitle(itTitle);
         post.setItContent(itContent);
         post.setItName(itemName);
@@ -185,7 +189,7 @@ public class PostItItemController {
         post.setCategoryCode(select);
 
         
-        
+        System.out.println(tags);
         /*
         if(!top.isEmpty()) {
 
@@ -252,7 +256,6 @@ public class PostItItemController {
 
 
         itService.insert(post);
-        System.out.println("테스트컨트롤");
         return "redirect:/";
         
     }
