@@ -55,7 +55,7 @@
 					
 						<div id="hashtag">
 							<c:forTokens var="hashTag" items="${requestScope.map.pi.hashtag}" delims=",">
-								<span><a href="">#${hashTag}</a></span>
+								<span><a href="/itItem/itItemList.do?hashTag=${hashTag}">#${hashTag}</a></span>
 							</c:forTokens>
 						</div>
 						

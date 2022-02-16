@@ -33,6 +33,9 @@
 			member_img on (it_item.user_id=member_img.user_id)
 		where
 			top_YN='Y' and it_item.del_yn='N'
+		<if test="hashTag!=null">
+			and hashtag like '%'||#{hashTag}||'%'
+		</if>
 	</select>
 	<select id="selectLikeList" resultType="int">
  		select

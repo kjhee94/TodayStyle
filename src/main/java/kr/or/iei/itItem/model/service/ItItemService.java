@@ -7,7 +7,7 @@ import kr.or.iei.itItem.model.vo.ItItem;
 
 public interface ItItemService {
 
-	ArrayList<ItItem> getItItemList();
+	ArrayList<ItItem> getItItemList(HashMap<String, Object> map);
 
 	ArrayList<Integer> selectLikeList(String userId);
 
@@ -22,6 +22,7 @@ public interface ItItemService {
 	int insertScrapItItem(HashMap<String, Object> map);
 
 	ArrayList<ItItem> selectCategoryItItemList(HashMap<String, Object> map);
+
 
 	
 
