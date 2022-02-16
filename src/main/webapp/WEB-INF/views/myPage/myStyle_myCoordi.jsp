@@ -43,18 +43,13 @@
                     <div class="contents-plus"><a href="/myPage/myStyle.do">목록보기</a></div>
                 </div>
                 <div class="contents-area">
-                
                 	<c:forEach items="${requestScope.myCoordiList }" var="mcList" varStatus="i">
-             			<a href="/coordi/coordiPost.do?coordiNo=${mcList.coordiNo}">
-                        	<div class="contents">
-                        	
-                        		<img src="${mcList.filepath }">
-                        	</div>
-                    	</a>
+                       	<div class="contents">
+	                      	<a href="/coordi/coordiPost.do?coordiNo=${mcList.coordiNo}">
+	                      		<img src="${mcList.filepath }">
+	                      	</a>
+                       	</div>
               		</c:forEach>
-              		
-              		
-                    
                 </div>
                 <div id="space"></div>
 
