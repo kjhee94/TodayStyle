@@ -229,6 +229,7 @@ public class MemberSettingController {
 			
 			
 			String num = Integer.toString(checkNum);
+			System.out.println(num);
 			
 			return num;
 		}

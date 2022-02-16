@@ -45,15 +45,17 @@
                 <div class="contents-area">
                 
                 	<c:forEach items="${requestScope.memberItTemList }" var="miList" varStatus="i">
-             			<a href="/coordi/ItPost.do?itItemNo=${miList.itTemNo}">
-                        	<div class="contents">
-                        		<img src="${miList.filepath }">
-	                        	<div id="${miList.itTemNo }" class="likeScrap-wrap">
-	                                <img class="likeIcon" src="/resources/images/icon/heart_wf.png">
-	                                <img class="scrapIcon" src="/resources/images/icon/saved_wf.png">
-	                            </div>
-                        	</div>
-                    	</a>
+             			
+                       	<div class="contents">
+                       		<a href="/coordi/ItPost.do?itItemNo=${miList.itTemNo}">
+                       			<img src="${miList.filepath }">
+                       		</a>
+                        	<div id="${miList.itTemNo }" class="likeScrap-wrap">
+                                <img class="likeIcon" src="/resources/images/icon/heart_wf.png">
+                                <img class="scrapIcon" src="/resources/images/icon/saved_wf.png">
+                            </div>
+                       	</div>
+                    	
               		</c:forEach>
               		
               		
