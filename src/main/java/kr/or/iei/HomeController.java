@@ -45,9 +45,10 @@ public class HomeController {
 	public ModelAndView home(Locale locale, ModelAndView mav) {
 		String season=getSeason();
 		HashMap<String, String> pMap=new HashMap<String, String>();
+		HashMap<String, Object> iMap=new HashMap<String, Object>();
 		pMap.put("season", season);
 		ArrayList<Coordi> coordiList=coService.getCoordiList(pMap);
-		ArrayList<ItItem> itItemList=itService.getItItemList();
+		ArrayList<ItItem> itItemList=itService.getItItemList(iMap);
 		ArrayList<Member> topFollowList=mService.selectTopFollowList();
 		HashMap<String, Object> map=new HashMap<String, Object>();
 		

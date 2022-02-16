@@ -60,12 +60,12 @@
 						})
 					</script>
 					<div class="box-search">
-							<input class="search-style" type="text" name="keyword" placeholder="해시태그를 입력하세요">
+							<input class="search-style" type="text" name="keyword" placeholder="해시태그를 입력하세요" value="${map.get('hashTag')}">
 							<button id="searchBtn" type="button" ><i class="fas fa-search" style="cursor:pointer;"></i></button>
 					</div>
 				</div>
 				<script>
-				var keyword;
+				var keyword=$('.search-style').val();
 					$('#searchBtn').click(function(){
 						keyword =$('.search-style').val();
 						$.ajax({

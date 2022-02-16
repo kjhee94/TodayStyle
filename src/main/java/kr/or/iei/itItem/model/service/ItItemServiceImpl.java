@@ -16,8 +16,8 @@ public class ItItemServiceImpl implements ItItemService{
 	private ItItemDAO itDAO;
 
 	@Override
-	public ArrayList<ItItem> getItItemList() {
-		ArrayList<ItItem> list=itDAO.getItItemList();
+	public ArrayList<ItItem> getItItemList(HashMap<String, Object> map) {
+		ArrayList<ItItem> list=itDAO.getItItemList(map);
 		return list;
 	}
 
@@ -62,6 +62,8 @@ public class ItItemServiceImpl implements ItItemService{
 		ArrayList<ItItem> list=itDAO.selectCategoryItItemList(map);
 		return list;
 	}
+
+
 	
 	
 }
