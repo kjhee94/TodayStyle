@@ -5,16 +5,16 @@
 $(document).ready(function(){
 
 	//탈퇴버튼 아이콘
-	var $test = $(".btn-style-icon");
-	
-	$.each($test,function(index,item){
-		if($(item).attr("endyn")=='N'){
-			$(item).children('i').addClass("fa-trash");
-			
-		}else if($(item).attr("endyn")=='Y'){
-			$(item).children('i').addClass("fa-trash-restore");
-		}
-	});
+//	var $test = $(".btn-style-icon");
+//	
+//	$.each($test,function(index,item){
+//		if($(item).attr("endyn")=='N'){
+//			$(item).children('i').addClass("fa-trash");
+//			
+//		}else if($(item).attr("endyn")=='Y'){
+//			$(item).children('i').addClass("fa-trash-restore");
+//		}
+//	});
 	
 	//adminHeader slide
 	$("#gnbList>li").click(function() {
