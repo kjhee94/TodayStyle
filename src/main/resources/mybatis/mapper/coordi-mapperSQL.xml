@@ -32,6 +32,7 @@
 		<if test="hashTag!=null">
 			and hashtag like '%'||#{hashTag}||'%'
 		</if>
+		order by coordiNo
  	</select>
  	<select id="selectCategoryList" parameterType="hashmap" resultType="coordi">
  		select 
