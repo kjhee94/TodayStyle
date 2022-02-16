@@ -232,7 +232,7 @@ public class PostCoordiController {
 
 		pService.insert(post,topPost,bottomPost,outerPost,accPost,shoesPost);
     	
-        return "coordi/coordiList";
+        return "redirect:/coordi/coordiList.do";
     }
 
 

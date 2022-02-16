@@ -256,7 +256,7 @@ public class PostItItemController {
 
 
         itService.insert(post);
-        return "redirect:/";
+        return "redirect:/itItem/itItemList.do";
         
     }
     
