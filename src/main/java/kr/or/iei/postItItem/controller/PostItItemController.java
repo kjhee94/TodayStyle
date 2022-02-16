@@ -154,7 +154,18 @@ public class PostItItemController {
         String userHeight = multi.getParameter("userHeight");
         String userSize = multi.getParameter("userSize");
         String select = multi.getParameter("select");
-        String brand = multi.getParameter("brand");
+        String []  values = multi.getParameterValues("brand");
+        
+        String brand="";
+        
+        for(String str : values)
+        {
+        	if(str.length() != 0)
+        	{
+        		brand = str;
+        	}
+        }
+        
         
         PostItItem post = new PostItItem();
 
