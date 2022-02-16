@@ -22,6 +22,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import kr.or.iei.member.model.vo.Member;
 import kr.or.iei.myPage.model.service.MyPageService;
+import kr.or.iei.postCoordi.model.service.PostService;
 import kr.or.iei.postCoordi.model.service.PostServiceInterface;
 import kr.or.iei.postCoordi.model.vo.PostCoordi;
 import kr.or.iei.postItItem.model.vo.PostItItem;
@@ -37,6 +38,9 @@ public class PostCoordiController {
     
     @Autowired
     private ServletContext context;
+    
+    @Autowired
+    private PostService pService;
     
     //코디 게시물 개별페이지 이동
     @RequestMapping(value="/coordi/coordiPost.do",method=RequestMethod.GET)
@@ -106,18 +110,45 @@ public class PostCoordiController {
     
     //코디 수정 페이지 이동
     @RequestMapping(value="/coordi/coordiUpdate.do",method=RequestMethod.GET)
-    public String coordiUpdate(HttpServletResponse response,@SessionAttribute Member m) throws Exception{
-		PostCoordi post = new PostCoordi();
+    public String coordiUpdate(HttpServletRequest request,HttpSession session,@SessionAttribute Member m,PostCoordi post,Model model) throws Exception{
     	String userId = m.getUserId();
     	
-        return "postPage/coordiUpdate";
+    	post.setUserId(userId);
+    	
+    	PostCoordi result = pService.selectCoordi(post);
+    	
+    	if(result!=null)
+    	{
+    		session.setAttribute("post", post);
+    		return "postPage/coordiUpdate";
+    	}else { 
+    		return "common/error_400";
+    	}
+    	
+}
+    
+    //코디 수정페이지 이동2
+    @RequestMapping(value="/coordi/coordiUpdate2.do",method=RequestMethod.GET)
+    public ModelAndView coordiUpdate2(@RequestParam int coordiNo, ModelAndView mav,HttpServletRequest request){
+    	HttpSession session=request.getSession();
+		Member m=(Member)session.getAttribute("member");
+    	HashMap<String, Object> map = postService.oneCoordiPost(coordiNo);
+    	
+    	
+    	mav.addObject("map",map);
+    	mav.setViewName("postPage/coordiUpdate");
+
+        return mav;
     }
+
+  
     
     //코디 수정 기능
     @RequestMapping(value="/coordi/updateCoordi.do",method=RequestMethod.GET)
     public String updateCoordi(HttpServletResponse response,@SessionAttribute Member m) throws Exception{
 		PostCoordi post = new PostCoordi();
     	String userId = m.getUserId();
+    	
     	
         return "postPage/coordiUpdate";
     }
@@ -198,16 +229,13 @@ public class PostCoordiController {
 	
 
 
-    	postService.insert(post,topPost,bottomPost,outerPost,accPost,shoesPost);
+		pService.insert(post,topPost,bottomPost,outerPost,accPost,shoesPost);
     	
         return "coordi/coordiList";
     }
 
 
 
+    }
 
 
-
-
-
-}

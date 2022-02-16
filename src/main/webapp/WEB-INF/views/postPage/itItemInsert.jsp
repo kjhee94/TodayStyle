@@ -56,23 +56,23 @@
                             <div class="select-category">
                                <div class="togglebox">
                         	   <a>
-                        	   		<button type="button" value="상의" class="top-btn" id="top-btn" name="top" onclick="categoryBtn(this.value)">상의</button>
+                        	   		<button type="button" value="상의" class="top-btn" id="top-btn" name="select" onclick="categoryBtn(this.value)">상의</button>
                                </a>
                                <input type="hidden" name="top" id="top"/>
                                <a>
-                               		<button type="button" value="하의" class="bottom-btn" id="bottom-btn" name="bottom" onclick="categoryBtn(this.value)">하의</button>
+                               		<button type="button" value="하의" class="bottom-btn" id="bottom-btn" name="select" onclick="categoryBtn(this.value)">하의</button>
                                </a>
                                <input type="hidden" name="bottom" id="bottom"/>
                                <a>
-                               		<button type="button" value="아우터" class="outer-btn" id="outer-btn" name="outer" onclick="categoryBtn(this.value)">아우터</button>
+                               		<button type="button" value="아우터" class="outer-btn" id="outer-btn" name="select" onclick="categoryBtn(this.value)">아우터</button>
                                </a>
                                <input type="hidden" name="outer" id="outer"/>
                                <a>
-                              		 <button type="button" value="신발" class="shoes-btn" id="shoes-btn" name="shoes" onclick="categoryBtn(this.value)">신발</button>
+                              		 <button type="button" value="신발" class="shoes-btn" id="shoes-btn" name="select" onclick="categoryBtn(this.value)">신발</button>
                                </a>
                                <input type="hidden" name="shoes" id="shoes"/>
                                <a>
- 									<button type="button" value="악세사리" class="acc-btn" id="acc-btn"  name="acc" onclick="categoryBtn(this.value)">악세사리</button>
+ 									<button type="button" value="악세사리" class="acc-btn" id="acc-btn"  name="select" onclick="categoryBtn(this.value)">악세사리</button>
                                </a>
                                <input type="hidden" name="acc" id="acc"/>
                                 </div>
@@ -83,8 +83,8 @@
                                 <div class="top" style="display:none">
                                    <span>
                                    <input type="text" id="TopCategory" style="display:none"/>
-                                        <select class="select" name="top" id="top-info" onchange="selectTopChange(this.value)" id="select">
-                                            <option value="상의선택">상의 카테고리 선택</option>
+                                        <select class="select" name="select" id="top-info" onchange="selectTopChange(this.value)" id="select">
+                                            <option value="" selected disabled hidden>상의 카테고리 선택</option>
                                             <option value="T-blouse">블라우스</option>
                                             <option value="T-shortsleeve">반팔</option>
                                             <option value="T-shirts">셔츠</option>
@@ -98,7 +98,7 @@
                                         </select>
                                     </span>
                                     <span>
-                                    	<input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="top-textarea" name="top-textarea" style="margin-bottom:29px"/>
+                                    	<input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="top-textarea" name="brand" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="top-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -107,8 +107,8 @@
                                 <div class="bottom" style="display:none" >
                                    <span>
                                    <input type="text" id="BottomCategory" style="display:none"/>
-                                        <select class="select" name="bottom" id="bottom-info" onchange="selectBottomChange(this.value)" id="select">
-                                            <option value="하의선택">하의 카테고리 선택</option>
+                                        <select class="select" name="select" id="bottom-info" onchange="selectBottomChange(this.value)" id="select">
+                                            <option value="" selected disabled hidden>하의 카테고리 선택</option>
                                             <option value="B-short">반바지</option>
                                             <option value="B-shortskirt">짧은치마</option>
                                             <option value="B-longskirt">긴치마</option>
@@ -128,7 +128,7 @@
                                         </select>
                                     </span>
                                     <span>
-                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="bottom-textarea" name="bottom-textarea" style="margin-bottom:29px"/>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="bottom-textarea" name="brand" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="bottom-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -137,8 +137,8 @@
                                 <div class="outer" style="display:none">
                                    <span>
                                    <input type="text" id="OuterCategory" style="display:none"/>
-                                        <select class="select" name="outer" id="outer-info" onchange="selectOuterChange(this.value)" id="select" >
-                                            <option value="아우터선택">아우터 카테고리 선택</option>
+                                        <select class="select" name="select" id="outer-info" onchange="selectOuterChange(this.value)" id="select" >
+                                            <option value="" selected disabled hidden>아우터 카테고리 선택</option>
                                             <option value="O-jacket">자켓</option>
                                             <option value="O-cardigan">가디건</option>
                                             <option value="O-fieldjacket">야상</option>
@@ -151,7 +151,7 @@
                                         </select>
                                     </span>
                                     <span>
-                                         <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="outer-textarea" name="outer-textarea" style="margin-bottom:29px"/>
+                                         <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="outer-textarea" name="brand" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="outer-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -159,13 +159,13 @@
                                 </div>
                                 <div class="shoes" style="display:none">
                                    <span>
-                                        <select class="select" id="shoes-info">
-                                            <option>신발</option>
+                                        <select class="select" id="shoes-info" name="select">
+                                            <option value="S-shoes">신발</option>
                                             
                                         </select>
                                     </span>
                                     <span>
-                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="shoes-textarea" name="shoes-textarea" style="margin-bottom:29px"/>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="shoes-textarea" name="brand" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="shoes-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -174,8 +174,8 @@
                                 <div class="acc" style="display:none">
                                    <span>
                                    <input type="text" id="AccCategory" style="display:none"/>
-                                        <select class="select" name="acc" id="acc-info" onchange="selectAccChange(this.value)" id="select">
-                                            <option value="악세사리선택">악세사리 카테고리 선택</option>
+                                        <select class="select" name="select" id="acc-info" onchange="selectAccChange(this.value)" id="select">
+                                            <option value="" selected disabled hidden >악세사리 카테고리 선택</option>
                                             <option value="A-gloves">장갑</option>
                                             <option value="A-muffler">목도리</option>
                                             <option value="A-hat">모자</option>
@@ -192,7 +192,7 @@
                                         </select>
                                     </span>
                                     <span>
-                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="acc-textarea" name="acc-textarea" style="margin-bottom:29px"/>
+                                        <input type="text" placeholder="브랜드를 입력하세요" class="textarea2" id="brand" name="brand" style="margin-bottom:29px"/>
                                     </span>
                                     <span>
                                         <input type="button" class="acc-cancel-btn" value="x" style="position:relative; bottom:4px"></input>
@@ -311,7 +311,7 @@
 			</div>
 			
 			<div id="coordi-post">
-				<input type="submit" class="btn-style-mint" id="postBtn" value="등록"></input>
+				<input type="submit" class="btn-style-mint" id="postBtn" value="등록" ></input>
 			</div>
 		</form>
    	</div>
@@ -331,6 +331,8 @@
 				}
 			})
 	
+
+			
 			$('#top-btn').click(function(){
 				var color = $(this).css('background-color');
 				
@@ -348,6 +350,7 @@
 				}else{
 					$(this).css('background-color','rgba(0, 0, 0, 0)')
 					$('.top').hide(200);
+					$('.top').attr("disabled", true);
 					$(this).css('color','#707070')
 				}
 			
@@ -370,11 +373,14 @@
 				}else{
 					$(this).css('background-color','rgba(0, 0, 0, 0)')
 					$('.bottom').hide(200);
+					$('.bottom').attr("disabled", true);
 					$(this).css('color','#707070')
 				}
 				
 				
 			})
+			
+
 			
 			$('#outer-btn').click(function(){
 				var color = $(this).css('background-color');
@@ -394,6 +400,7 @@
 				}else{
 					$(this).css('background-color','rgba(0, 0, 0, 0)')
 					$('.outer').hide(200);
+					$('.outer').attr("disabled", true);
 					$(this).css('color','#707070')
 					
 				}
@@ -419,6 +426,7 @@
 				}else{
 					$(this).css('background-color','rgba(0, 0, 0, 0)')
 					$('.shoes').hide(200);
+					$('.shoes').attr("disabled", true);
 					$(this).css('color','#707070')
 				}
 			})
@@ -496,7 +504,8 @@
 					$('.acc-btn').css('color','#707070')
 			})
 			
-			
+
+
 
 			//해시태그
 			 $(document).ready(function () {

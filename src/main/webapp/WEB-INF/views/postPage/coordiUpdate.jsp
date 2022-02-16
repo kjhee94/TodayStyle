@@ -265,7 +265,7 @@
 	            </div>
 	            <div id="insert-info">
 	                <div id="coordi-info2">
-	                    <textarea placeholder="코디설명을 입력하세요" class="textarea" name="coordi-content" ></textarea>
+	                    <textarea class="textarea" name="coordi-content" >${requestScope.map.pc.coordiContent} </textarea>
 	                </div>
 	                
 					<div class="tr_hashTag_area">

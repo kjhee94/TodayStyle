@@ -67,6 +67,13 @@ public class PostService implements PostServiceInterface{
         postCoordiDAO.insertCategory(topPost,bottomPost,accPost,outerPost,shoesPost);
 
     }
+
+	@Override
+	public PostCoordi selectCoordi(PostCoordi post) {
+		
+		PostCoordi result = postCoordiDAO.selectPost(post);
+		return result;
+	}
 }
 	
  
