@@ -37,16 +37,18 @@
             </div>
             <div class="contents-wrap">
                 <div class="contents-title-wrap">
-                    <div class="contents-title">나의 코디</div>
+                    <div class="contents-title">나의 잇템</div>
                     <div class="contents-num">${requestScope.myCoordiList.size() }</div>
                     <div class="contents-plus"><a href="/myPage/myStyle.do">목록보기</a></div>
                 </div>
                 <div class="contents-area">
                 
                 	<c:forEach items="${requestScope.myItTemList }" var="mITList" varStatus="i">
-             			<a href="/coordi/ItPost.do?itItemNo=${mITList.itTemNo}">
-                        	<div class="contents"><img src="${mITList.filepath }"></div>
-                    	</a>
+                       	<div class="contents">
+                        	<a href="/coordi/ItPost.do?itItemNo=${mITList.itTemNo}">
+                        		<img src="${mITList.filepath }">
+                        	</a>
+                       	</div>
               		</c:forEach>
               		
               	
